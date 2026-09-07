@@ -334,8 +334,6 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
      „Studium Generale by Denisa" se rupea pe trei rânduri și împingea
      butoanele.                                                             */
   .brand-text { display: none; }
-  .burger-text { position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip-path: inset(50%); white-space: nowrap; }
 
   /* Meniul: ecran plin, lipit sub antet.
 
