@@ -255,6 +255,29 @@ a.sr-only:focus {
   display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between;
   font-size: var(--fs-xs); color: var(--text-muted); }
 
+/* --- AOS: animația, scrisă aici ------------------------------------------
+   `aos.css` de pe CDN era încă o foaie de stil care blochează randarea, pe al
+   treilea server, 750 ms pe telefon la PageSpeed, și conținea reguli pentru
+   fiecare durată și fiecare întârziere între 50 și 3000 ms. Site-ul folosește
+   un singur efect, `fade-up`, și cinci întârzieri. Scriem chiar acele reguli
+   și scăpăm de fișier; `aos.js` doar pune clasele, atât.
+   -------------------------------------------------------------------------- */
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 550ms;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+[data-aos="fade-up"] { transform: translate3d(0, 24px, 0); }
+[data-aos].aos-animate { opacity: 1; transform: none; }
+[data-aos][data-aos-delay="70"]  { transition-delay: 70ms; }
+[data-aos][data-aos-delay="90"]  { transition-delay: 90ms; }
+[data-aos][data-aos-delay="140"] { transition-delay: 140ms; }
+[data-aos][data-aos-delay="210"] { transition-delay: 210ms; }
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] { opacity: 1; transform: none; transition: none; }
+}
+
 /* --- AOS: plasa de siguranță ----------------------------------------------
    `aos.css` ascunde din start tot ce poartă `data-aos` și arată abia când
    scriptul vede elementul intrând în ecran. Dacă scriptul nu ajunge, fiindcă

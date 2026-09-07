@@ -1,0 +1,8 @@
+# Academia · Studium Generale by Denisa
+User-agent: *
+Allow: /
+
+# manualul de brand nu are ce căuta în rezultatele căutării
+Disallow: /brand/
+
+Sitemap: https://studiumgenerale.ro/sitemap.xml

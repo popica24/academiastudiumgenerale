@@ -18,7 +18,9 @@ assets/site.css       Doar aranjarea în pagină. Fără componente noi.
 assets/config.js      SINGURUL loc cu date reale
 assets/site.js        WhatsApp, formularul de potrivire, video, carusel, meniu,
                       AOS, numerele care urcă din hero
-assets/logo.jpg       Sigla
+assets/logo.webp      Sigla
+assets/og.jpg         Imaginea de previzualizare pentru linkuri
+assets/fonturi/       Fonturile, subsetate pentru română
 assets/foto/materii/  Cele 15 fotografii ale materiilor, plus SURSE.txt
 assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
@@ -73,7 +75,7 @@ Etichetele dispar singure când valorile devin reale.
 ## Fotografia din „Despre"
 
 `assets/foto/image.png`, poza primită de la client, are 3.1 MB și 1638×2048.
-Pagina folosește o derivată, `assets/foto/despre.jpg`: 959×1200, 221 KB, aceeași
+Pagina folosește o derivată, `assets/foto/despre.webp`: 719×900, 40 KB, aceeași
 poză. Originalul a rămas pe disc, neatins, dar nu îl încarcă nicio pagină; se
 poate șterge sau păstra ca sursă pentru alte tăieturi.
 
@@ -137,6 +139,18 @@ Două zone sunt deja marcate cu comentarii în HTML:
 
 Antetul și subsolul sunt identice în cele patru pagini, ca să poată fi
 extrase în `header.php` / `footer.php` fără nicio modificare de stil.
+
+## SEO
+
+`robots.txt`, `sitemap.xml` și metadatele din `<head>`: titlu, descriere,
+canonic, Open Graph (cu `assets/og.jpg`, 1200×630) și Twitter card. Datele
+structurate, JSON-LD de tip `EducationalOrganization` cu adresă, telefon,
+program, catalogul de materii și firul Ariadnei, se construiesc din
+`assets/config.js`, deci nu se pot desincroniza de datele reale.
+
+**Toate adresele arată spre `https://studiumgenerale.ro`,** care nu e încă
+înregistrat. Se schimbă în cinci locuri: cele patru pagini, `sitemap.xml`,
+`robots.txt` și `assets/site.js`.
 
 ## Singura dependență
 

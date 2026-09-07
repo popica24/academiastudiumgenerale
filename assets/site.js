@@ -574,7 +574,108 @@
     }
   }
 
-  /* --- 9. Linkul paginii curente ---------------------------------------- */
+  /* --- 9. Date structurate pentru motoarele de căutare ---------------------
+     JSON-LD construit din config.js, nu scris în pagini. Regula proiectului e
+     că datele de contact stau într-un singur fișier; dacă adresa și telefonul
+     ar fi copiate în patru pagini, s-ar desincroniza la prima schimbare.
+     Google randează JavaScript înainte să citească datele structurate, deci
+     le vede. Ce trebuie citit fără JavaScript, adică Open Graph, e scris în
+     HTML, tocmai pentru că aplicațiile de previzualizare nu rulează scripturi.
+
+     Cerut de Google pentru un rezultat bogat: nume, adresă, telefon, program.
+     `areaServed` și `hasOfferCatalog` nu sunt obligatorii, dar spun exact ce
+     face școala și pentru cine.                                            */
+  (function () {
+    var baza = "https://studiumgenerale.ro";
+    if (!isReal(C.company)) return;
+
+    var orar = (C.schedule || "").match(/(\d{2}):(\d{2})[^\d]+(\d{2}):(\d{2})/);
+    var scoala = {
+      "@type": "EducationalOrganization",
+      "@id": baza + "/#scoala",
+      /* numele de marcă, nu cel din registrul comerțului: pe acela îl pune
+         `legalName`, unde îl caută cine trebuie                            */
+      name: "Academia · Studium Generale by Denisa",
+      legalName: C.company,
+      url: baza + "/",
+      logo: baza + "/assets/logo.webp",
+      image: baza + "/assets/og.jpg",
+      description: document.querySelector('meta[name="description"]')
+        ? document.querySelector('meta[name="description"]').content : "",
+      inLanguage: "ro-RO",
+      areaServed: { "@type": "City", name: "București" }
+    };
+    if (isReal(C.phone)) scoala.telephone = C.phone.replace(/\s/g, "");
+    if (isReal(C.email)) scoala.email = C.email;
+    if (isReal(C.address)) {
+      var cod = C.address.match(/\b(\d{6})\b/);
+      scoala.address = {
+        "@type": "PostalAddress",
+        streetAddress: C.address.split(",")[0].trim(),
+        addressLocality: "București",
+        postalCode: cod ? cod[1] : undefined,
+        addressCountry: "RO"
+      };
+    }
+    if (orar) {
+      scoala.openingHoursSpecification = [{
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: orar[1] + ":" + orar[2],
+        closes: orar[3] + ":" + orar[4]
+      }];
+    }
+    var retele = [C.facebook, C.instagram].filter(isReal);
+    if (retele.length) scoala.sameAs = retele;
+
+    /* Materiile, ca ofertă: fiecare cu profesorul ei nu intră aici, dar
+       lista în sine spune ce se predă.                                     */
+    if ((C.materii || []).length) {
+      var vazute = [];
+      (C.materii || []).forEach(function (m) {
+        if (vazute.indexOf(m.nume) === -1) vazute.push(m.nume);
+      });
+      scoala.hasOfferCatalog = {
+        "@type": "OfferCatalog",
+        name: "Materii",
+        itemListElement: vazute.map(function (nume) {
+          return {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Course",
+              name: nume,
+              description: "Pregătire la " + nume +
+                ", individual sau în grupe de maximum trei elevi.",
+              provider: { "@id": baza + "/#scoala" }
+            }
+          };
+        })
+      };
+    }
+
+    var noduri = [scoala];
+
+    /* Firul Ariadnei, pe paginile interioare. */
+    var aici = location.pathname.split("/").pop();
+    var TITLURI = { "despre.html": "Despre", "blog.html": "Blog",
+                    "blog-articol.html": "Articol" };
+    if (TITLURI[aici]) {
+      noduri.push({
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Acasă", item: baza + "/" },
+          { "@type": "ListItem", position: 2, name: TITLURI[aici], item: baza + "/" + aici }
+        ]
+      });
+    }
+
+    var eticheta = document.createElement("script");
+    eticheta.type = "application/ld+json";
+    eticheta.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": noduri });
+    document.head.appendChild(eticheta);
+  })();
+
+  /* --- 10. Linkul paginii curente --------------------------------------- */
   var here = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll("[data-nav] a").forEach(function (a) {
     if (a.getAttribute("href") === here) a.setAttribute("aria-current", "page");

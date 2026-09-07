@@ -51,6 +51,32 @@ fereastră mai mare; media queries se uită la lățimea iframe-ului, deci
 layout-ul e cel adevărat. La fel se poate injecta și `tools/audit.js` în
 iframe, cu `--allow-file-access-from-files`.
 
+## SEO și viteză
+
+- **Fonturile stau în `assets/fonturi/`**, nu la Google. Sunt fișierele lor,
+  subsetate la glifele de care are nevoie o pagină în română: 345 KB au
+  devenit 92 KB. Regulile `@font-face` sunt la începutul lui `tokens.css`, cu
+  `unicode-range`, deci browserul ia doar ce folosește. Șase fețe se
+  preîncarcă din `<head>`, cele din primul ecran. Ca să adaugi o greutate,
+  ia fișierul de la Google, subsetează-l cu `fontTools` și scrie încă un
+  `@font-face`. Montserrat 700 nu se servește: `b` și `strong` sunt 600.
+- **`aos.css` nu se mai încarcă.** Site-ul folosește un singur efect,
+  `fade-up`, iar regulile lui sunt scrise în `site.css`. De pe CDN vine doar
+  `aos.js`, cu `defer`.
+- **Pozele sunt `.webp`**, la mărimea la care se afișează: 4.4 MB au devenit
+  1.1 MB. Sursele mari, `image.png` și `clasa.jpg`, au rămas pe disc dar nu
+  le încarcă nicio pagină.
+- **Open Graph e scris în HTML**, fiindcă aplicațiile care fac previzualizarea
+  unui link nu rulează JavaScript. **JSON-LD se construiește din `config.js`**
+  în `site.js`, secțiunea 9, ca datele de contact să rămână într-un singur
+  loc; Google randează JavaScript înainte să le citească.
+- **Adresa canonică e `https://studiumgenerale.ro`**, în `<link rel=canonical>`,
+  în Open Graph, în `sitemap.xml`, în `robots.txt` și în `site.js`. Domeniul nu
+  e încă înregistrat. Până atunci, copia de pe `vercel.app` nu se indexează, ea
+  arată spre domeniul adevărat. Dacă adresa se schimbă, se schimbă în toate
+  cele cinci locuri.
+- **`vercel.json`** ține fonturile un an în cache și restul o lună.
+
 ## Telefon
 
 Reperul e **iPhone 16, 393px**. Regulile de telefon stau într-un singur bloc,

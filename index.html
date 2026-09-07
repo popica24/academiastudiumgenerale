@@ -5,13 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Academia · pregătire pentru Bacalaureat și Evaluare Națională</title>
 <meta name="description" content="Studium Generale by Denisa. Pregătire individuală sau în grupe de maximum trei elevi, cu părintele la curent după fiecare ședință. Prima ședință e o discuție, nu o lecție.">
-<link rel="icon" href="assets/logo.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Poiret+One&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-      integrity="sha384-/rJKQnzOkEo+daG0jMjU1IwwY9unxt1NBw3Ef2fmOJ3PW/TfAg2KXVoWwMZQZtw9"
-      crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="canonical" href="https://studiumgenerale.ro/">
+<meta name="theme-color" content="#121B52">
+<meta name="author" content="Studium Generale by Denisa SRL">
+
+<!-- Open Graph: ce se vede când linkul e trimis pe WhatsApp sau Facebook.
+     Rămâne scris în pagină, nu construit din JavaScript: aplicațiile care fac
+     previzualizarea citesc HTML-ul brut, nu rulează scripturi. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Academia · Studium Generale by Denisa">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:url" content="https://studiumgenerale.ro/">
+<meta property="og:title" content="Academia · Studium Generale by Denisa">
+<meta property="og:description" content="Pregătire pentru Bacalaureat și Evaluarea Națională în București: individual sau în grupe de maximum trei elevi, 16 materii, prima ședință gratuită.">
+<meta property="og:image" content="https://studiumgenerale.ro/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Blazonul Academiei Studium Generale by Denisa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Academia · Studium Generale by Denisa">
+<meta name="twitter:description" content="Pregătire pentru Bacalaureat și Evaluarea Națională în București: individual sau în grupe de maximum trei elevi, 16 materii, prima ședință gratuită.">
+<meta name="twitter:image" content="https://studiumgenerale.ro/assets/og.jpg">
+
+<link rel="icon" href="assets/logo.webp">
+<!-- Fonturile stau lângă site, în assets/fonturi/. Cele șase fețe de mai jos
+     apar în primul ecran, deci se cer odată cu HTML-ul, nu abia după ce se
+     descarcă foaia de stil. Restul se încarcă normal, la nevoie. -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonturi/poiret-one-400-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonturi/poiret-one-400-latin-ext.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonturi/montserrat-400-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonturi/montserrat-400-latin-ext.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonturi/montserrat-600-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonturi/great-vibes-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="brand/tokens.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -22,7 +48,7 @@
 <header class="site-head">
   <div class="wrap head-inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark"><img src="assets/logo.jpg" alt=""></span>
+      <span class="brand-mark"><img src="assets/logo.webp" alt=""></span>
       <span class="brand-text">
         <span class="brand-name">Academia</span>
         <span class="brand-sub">Studium Generale by Denisa</span>
@@ -91,7 +117,7 @@
     </div>
 
     <div class="grid grid-2">
-      <!-- Fiecare card are poza lui, `assets/foto/motive/<card>.jpg`, aceeași
+      <!-- Fiecare card are poza lui, `assets/foto/motive/<card>.webp`, aceeași
            cale în ambele <img>: primul e stratul estompat, al doilea cel clar.
            `--voal-foto` de pe fiecare card nu e ales din ochi: e minimul la
            care textul alb trece de 4.5:1 peste cel mai luminos pixel din
@@ -100,29 +126,29 @@
            într-o proprietate personalizată se rezolvă față de foaia de stil
            (assets/), nu față de pagină, și calea se dublează. -->
       <article class="foto-card reason" style="--voal-foto:rgba(11, 25, 54, 0.57)" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur"  src="assets/foto/motive/parinte.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar"  src="assets/foto/motive/parinte.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur"  src="assets/foto/motive/parinte.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar"  src="assets/foto/motive/parinte.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Părintele știe în fiecare moment ce se întâmplă la curs</h3>
         <p>Nu așteptați ședința cu părinții ca să aflați cum merge. Întrebați oricând și primiți răspuns concret: ce s-a lucrat la ultima ședință, ce a înțeles și ce urmează.</p>
       </article>
 
       <article class="foto-card reason" style="--voal-foto:rgba(11, 25, 54, 0.48)" data-aos="fade-up" data-aos-delay="90">
-        <img class="foto-blur"  src="assets/foto/motive/raport.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar"  src="assets/foto/motive/raport.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur"  src="assets/foto/motive/raport.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar"  src="assets/foto/motive/raport.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Raport de progres în fiecare lună</h3>
         <p>Un document scurt: ce s-a parcurs, procentul din programă, la ce capitole stă prost și ce facem luna următoare. Ajunge la părinte, nu doar la elev.</p>
       </article>
 
       <article class="foto-card reason" style="--voal-foto:rgba(11, 25, 54, 0.60)" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur"  src="assets/foto/motive/recuperare.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar"  src="assets/foto/motive/recuperare.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur"  src="assets/foto/motive/recuperare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar"  src="assets/foto/motive/recuperare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Recuperările nu se pierd</h3>
         <p>Ședința la care elevul nu a putut ajunge se reprogramează în aceeași săptămână sau se recuperează online. Nu se șterge din abonament.</p>
       </article>
 
       <article class="foto-card reason" style="--voal-foto:rgba(11, 25, 54, 0.48)" data-aos="fade-up" data-aos-delay="90">
-        <img class="foto-blur"  src="assets/foto/motive/simulare.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar"  src="assets/foto/motive/simulare.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur"  src="assets/foto/motive/simulare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar"  src="assets/foto/motive/simulare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Simulări în condiții reale</h3>
         <p>Lunar pentru grupele de Bacalaureat, cu timp cronometrat și barem oficial. Nota din simulare intră în raport, ca să se vadă evoluția, nu impresia.</p>
       </article>
@@ -155,105 +181,105 @@
       <p>Pregătire pentru Evaluarea Națională și Bacalaureat, plus limbi străine, de la engleză la coreeană.</p>
     </div>
 
-    <!-- Fiecare materie are poza ei, `assets/foto/materii/<materie>.jpg`,
+    <!-- Fiecare materie are poza ei, `assets/foto/materii/<materie>.webp`,
          aceeași cale în ambele `<img>` ale cardului: primul e stratul
          estompat, al doilea cel clar. Toate sunt domeniu public sau CC0;
          sursa și licența fiecăreia sunt în README.md. `--foto-pos` alege ce
          parte a pozei rămâne în cadru la decupare. -->
     <div class="grid grid-3">
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur" src="assets/foto/materii/romana.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/romana.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/romana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/romana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Română</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="assets/foto/materii/mate-gimnaziu.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/mate-gimnaziu.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/mate-gimnaziu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/mate-gimnaziu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Matematică, gimnaziu</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="assets/foto/materii/mate-liceu.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/mate-liceu.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/mate-liceu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/mate-liceu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Matematică, liceu</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="assets/foto/materii/istorie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/istorie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/istorie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/istorie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Istorie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur" src="assets/foto/materii/geografie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/geografie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/geografie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/geografie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Geografie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="assets/foto/materii/logica.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/logica.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Logică</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="assets/foto/materii/biologie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/biologie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Biologie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="assets/foto/materii/chimie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/chimie.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Chimie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur" src="assets/foto/materii/engleza.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/engleza.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Engleză</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="assets/foto/materii/spaniola.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/spaniola.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Spaniolă</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="assets/foto/materii/franceza.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/franceza.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Franceză</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="assets/foto/materii/chineza.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/chineza.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/chineza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/chineza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Chineză</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur" src="assets/foto/materii/coreeana.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/coreeana.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/coreeana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/coreeana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Coreeană</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="assets/foto/materii/maghiara.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/maghiara.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/maghiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/maghiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Maghiară</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="assets/foto/materii/informatica.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/informatica.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/informatica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/informatica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Informatică</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="assets/foto/materii/greaca.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/greaca.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-blur" src="assets/foto/materii/greaca.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/greaca.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h3>Greacă</h3>
       </article>
     </div>
@@ -348,7 +374,7 @@
     <div class="foot-grid">
       <div class="foot-col">
         <a class="brand" href="index.html" style="margin-bottom:var(--sp-4)">
-          <span class="brand-mark"><img src="assets/logo.jpg" alt=""></span>
+          <span class="brand-mark"><img src="assets/logo.webp" alt=""></span>
           <span>
             <span class="brand-name">Academia</span>
             <span class="brand-sub">Studium Generale by Denisa</span>
@@ -396,11 +422,11 @@
 <script>document.getElementById("an").textContent = new Date().getFullYear();</script>
 <!-- AOS de pe CDN. `onerror` e plasa de siguranță: dacă fișierul nu ajunge,
      clasa `fara-aos` readuce la vedere tot ce urma să fie animat. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
         integrity="sha384-n1AULnKdMJlK1oQCLNDL9qZsDgXtH6jRYFCpBtWFc+a9Yve0KSoMn575rk755NJZ"
         crossorigin="anonymous" referrerpolicy="no-referrer"
         onerror="document.documentElement.classList.add('fara-aos')"></script>
-<script src="assets/config.js"></script>
-<script src="assets/site.js"></script>
+<script defer src="assets/config.js"></script>
+<script defer src="assets/site.js"></script>
 </body>
 </html>
