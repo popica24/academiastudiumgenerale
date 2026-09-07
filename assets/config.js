@@ -54,7 +54,7 @@ window.ACADEMIA = {
   phone: "+40 735 433 720",
   email: "contact@studiumgenerale.ro",
   address: "Str. Edgar Quinet 10, et. 1, ap. 4, 010018 București",
-  schedule: "Luni–vineri, 14:00–20:00",
+  schedule: "Luni–vineri, 08:00–21:00",
 
   /* --- Rețele (lasă gol ca să dispară din subsol) ------------------------- */
   facebook: "",

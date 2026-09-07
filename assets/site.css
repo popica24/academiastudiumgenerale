@@ -14,7 +14,9 @@ section + section { padding-top: 0; }
 .sec-head { margin-bottom: var(--sp-10); }
 .sec-head .eyebrow { margin-bottom: var(--sp-3); }
 .sec-head h2 { font-size: var(--fs-2xl); margin-bottom: var(--sp-4); }
-.sec-head p { color: var(--text-secondary); }
+/* `:not(.eyebrow)`: supratitlul e tot un <p>, iar regula asta, fiind mai
+   specifică decât `.eyebrow`, îi fura auriul.                             */
+.sec-head p:not(.eyebrow) { color: var(--text-secondary); }
 
 .grid { display: grid; gap: var(--sp-6); }
 /* patru carduri: 2×2, ca să nu rămână al patrulea singur pe un rând */
@@ -47,9 +49,12 @@ section + section { padding-top: 0; }
   background: #fff; border: var(--stroke); border-radius: var(--r-md);
 }
 .brand-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.brand-name { font-family: var(--font-primary); font-size: var(--fs-md);
-  letter-spacing: var(--ls-tight); line-height: 1; -webkit-text-stroke: 0; font-weight: 600;
-  font-family: var(--font-secondary); }
+/* Numele mărcii, caligrafic, ca semnătura de sub blazon. Fontul are ochiul
+   mic, deci urcă la fs-xl ca să rămână la aceeași greutate optică.       */
+/* Numele mărcii, caligrafic, ca semnătura de sub blazon. Fontul are ochiul
+   mic și se scrie legat, deci urcă în corp și nu se rărește.              */
+.brand-name { font-family: var(--font-accent); font-size: var(--fs-xl);
+  font-weight: 400; letter-spacing: 0; line-height: 1.05; -webkit-text-stroke: 0; }
 .brand-sub { display: block; font-family: var(--font-secondary); font-size: 11px;
   font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
   color: var(--text-muted); margin-top: 3px; }
@@ -90,7 +95,8 @@ section + section { padding-top: 0; }
 
 .proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   gap: var(--sp-6); margin-top: var(--sp-16); }
-.proof-item { border-left: 2px solid var(--stroke-color); padding-left: var(--sp-5); }
+/* Linia de lângă cifre e aurie, ca filetele din afiș. */
+.proof-item { border-left: 2px solid var(--accent); padding-left: var(--sp-5); }
 /* tabular-nums: cifrele au aceeași lățime, deci numărul nu tresare cât urcă */
 .proof-num { font-family: var(--font-primary); font-size: var(--fs-2xl);
   font-variant-numeric: tabular-nums;
@@ -285,7 +291,7 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
   .head-inner { position: relative; }
   /* Regula ascunde etichetele din butoanele antetului, dar nu și liniile
      hamburgerului, care sunt tot un span.                                  */
-  .head-actions .btn span:not(.burger-linii) { display: none; }
+  .head-actions .btn span:not(.burger-linii):not(.ico-wa) { display: none; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
 }
 /* --- Telefon: sub 560px ---------------------------------------------------

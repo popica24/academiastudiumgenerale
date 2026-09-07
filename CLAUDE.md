@@ -79,10 +79,9 @@ raportează, pe fiecare lățime: contrastul calculat pe fundalul **compus**
 text pe cutii de linie reale și derulare orizontală a paginii. Rulează-l după
 orice schimbare de layout sau culoare. Zero peste tot înseamnă curat.
 
-Un singur rezultat e fals pozitiv cunoscut: butonul WhatsApp de pe banda CTA
-raportează 1.08:1. Parserul din audit citește doar `rgba()`, iar butonul e
-`color-mix()`, deci pierde umplerea proprie. Valoarea reală e 14.22:1: cerneala
-bleumarin pe unt.
+Din 2026-09-07, auditul iese **zero peste tot**. Falsul pozitiv de la butonul
+WhatsApp a dispărut de la sine: butonul nu mai e o tentă `color-mix()`, pe care
+parserul n-o putea citi, ci verdele plin al aplicației, scris `rgb()`.
 
 ## Arhitectura
 
@@ -140,6 +139,17 @@ care vor deveni buclă și șablon.
 - **Conturul de 2px nu e decorativ.** Fundalul e alb (`#FCFBF7`) și cardurile
   sunt aproape albe: diferența de ton e 1.04:1. Rama e singurul lucru care le
   separă de pagină.
+- **Aurul e măsurat în afiș**, nu ales pe lângă el: `#C2840A` e tonul din
+  mijlocul literelor lui „GRATUITĂ", `#E3B34A` lumina de pe ele, `#9C6304`
+  umbra, care e și singurul auriu care trece de 4.5:1 pe hârtie, deci singurul
+  bun pentru text mic. Aurul și bleumarinul sunt cele două culori ale mărcii.
+- **Caligrafia are fontul ei, Great Vibes**, cel mai apropiat de semnătura de
+  sub blazon. Intră doar prin `.script` și prin numele mărcii din antet,
+  niciodată la text de citit. Se scrie legat: `letter-spacing` rămâne zero,
+  altfel se rup legăturile dintre litere.
+- **Butonul de WhatsApp poartă verdele lor**, `#25D366`, cu glifa oficială pusă
+  ca mască CSS. Textul e cerneala sistemului, nu alb: alb pe verdele lor dă
+  1.98:1, cerneala dă 8.78:1.
 - **Sistemul e bleumarinul siglei.** `--navy-700` (`#121B52`) și `--navy-900`
   (`#0B1936`) sunt măsurate direct în blazon: prima e cununa și toca, a doua
   panglica și semnătura. Verdele de lauri a ieșit din sistem în 2026-09-06;

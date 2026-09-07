@@ -66,13 +66,16 @@
   /* ----------------------------------------------------------------------
      3. ACCENTE
      ---------------------------------------------------------------------- */
-  --brass-50:  #F7EFDC;
-  --brass-100: #EBDCB6;
-  --brass-200: #E3CE95;
-  --brass-300: #DCC17A;
-  --brass-400: #B98B2E;
-  --brass-500: #AD8129;  /* ★ ACCENTUL: 3.24 pe parchment: marcaje, text mare */
-  --brass-700: #8A6620;  /* accent ca text mic    AA 4.82 */
+  /* Aurul e măsurat în afișul „PRIMA ȘEDINȚĂ GRATUITĂ": #C2840A e tonul din
+     mijlocul literelor, #E3B34A lumina de pe ele, #9C6304 umbra. Înlocuiește
+     alama olivă de dinainte, care era aleasă pe lângă afiș, nu din el.     */
+  --brass-50:  #FAF0DA;
+  --brass-100: #F2DFAE;
+  --brass-200: #EBCF8B;
+  --brass-300: #E3B34A;  /* aurul pe bleumarin plin   8.29 pe navy-700 */
+  --brass-400: #D0920E;
+  --brass-500: #C2840A;  /* ★ ACCENTUL: 3.07 pe hârtie, marcaje și text mare */
+  --brass-700: #9C6304;  /* accent ca text mic        AA 4.83 pe hârtie */
 
   --azure-50:  #E9EFFC;
   --azure-500: #2E63D8;  /* ★ link                AA 4.96 */
@@ -119,6 +122,8 @@
   --accent-text: var(--brass-700);
   --accent-bg:   var(--brass-50);
   --link:        var(--azure-500);
+  --whatsapp:     #25D366;   /* verdele aplicației, măsurat din marca lor */
+  --whatsapp-500: #1EBE5D;   /* aceeași verde, o treaptă mai jos, pentru hover */
   /* Voalul de peste fotografii: navy-900 la 65%, adică pragul sigur pentru
      orice fotografie, inclusiv una albă. Un card care își știe poza îl poate
      subția: `tools/voal.py` calculează minimul pentru fiecare imagine.
@@ -164,7 +169,10 @@
      ---------------------------------------------------------------------- */
   --font-primary:   "Poiret One", "PoiretTComma", "Century Gothic", "Questrial", "Avenir Next", sans-serif;
   --font-secondary: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-accent:    var(--font-primary);   /* Poiret One, dar rărit: vezi .script */
+  /* Caligrafia din siglă. Great Vibes e cel mai apropiat de semnătura
+     „Stadium Generale by Denisa" de sub blazon. Se folosește doar prin
+     `.script`, niciodată la text de citit.                             */
+  --font-accent:    "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive;
   --font-cta:       var(--font-secondary);
   --font-mono:      ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
@@ -235,13 +243,20 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 
 :focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--r-xs); }
 
+/* Supratitlul e auriu, ca rândurile mici din afiș. 4.83:1 pe hârtie. */
 .eyebrow {
   font-family: var(--font-secondary); font-size: var(--fs-xs);
   font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide);
-  text-transform: uppercase; color: var(--text-muted);
+  text-transform: uppercase; color: var(--accent-text);
 }
+/* Caligrafia se scrie legat: `letter-spacing` rupe legăturile dintre litere,
+   deci rămâne zero. Fontul are ochiul mic, de aici mărirea.                */
 .script { font-family: var(--font-accent); font-weight: var(--fw-regular);
-  letter-spacing: 0.14em; color: var(--accent-text); }
+  letter-spacing: 0; font-size: 1.35em; line-height: 1.15;
+  /* coada literelor iese din cutie; fără marginea asta, cuvântul următor
+     se lipește de ea când `.script` e folosit în mijlocul unei fraze     */
+  margin-inline-end: 0.14em;
+  color: var(--accent-text); }
 
 /* ==========================================================================
    STICLA
@@ -301,6 +316,19 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 .btn-primary::before { left: 16%; right: 16%;
   background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 75%, rgba(255,255,255,0)); }
 .btn-primary:hover { background: var(--navy-500); }
+/* --- Butonul de WhatsApp -------------------------------------------------
+   Verdele e chiar #25D366, cel al aplicației. Textul rămâne cerneala
+   sistemului, nu alb: alb pe verdele lor dă 1.98:1, adică sub orice prag,
+   iar cerneala dă 8.78:1. Glifa e conturul oficial (Simple Icons, CC0),
+   pusă ca mască, deci ia culoarea textului și nu e o cerere de rețea.    */
+.btn-wa { background: var(--whatsapp); color: var(--navy-900); --stroke-color: var(--navy-900); }
+.btn-wa:hover { background: var(--whatsapp-500); }
+.ico-wa {
+  width: 1.15em; height: 1.15em; flex: none; display: block;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17.472%2014.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94%201.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198%200-.52.074-.792.372-.272.297-1.04%201.016-1.04%202.479%200%201.462%201.065%202.875%201.213%203.074.149.198%202.096%203.2%205.077%204.487.709.306%201.262.489%201.694.625.712.227%201.36.195%201.871.118.571-.085%201.758-.719%202.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421%207.403h-.004a9.87%209.87%200%2001-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86%209.86%200%2001-1.51-5.26c.001-5.45%204.436-9.884%209.888-9.884%202.64%200%205.122%201.03%206.988%202.898a9.825%209.825%200%20012.893%206.994c-.003%205.45-4.437%209.884-9.885%209.884m8.413-18.297A11.815%2011.815%200%200012.05%200C5.495%200%20.16%205.335.157%2011.892c0%202.096.547%204.142%201.588%205.945L.057%2024l6.305-1.654a11.882%2011.882%200%20005.683%201.448h.005c6.554%200%2011.89-5.335%2011.893-11.893a11.821%2011.821%200%2000-3.48-8.413z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17.472%2014.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94%201.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198%200-.52.074-.792.372-.272.297-1.04%201.016-1.04%202.479%200%201.462%201.065%202.875%201.213%203.074.149.198%202.096%203.2%205.077%204.487.709.306%201.262.489%201.694.625.712.227%201.36.195%201.871.118.571-.085%201.758-.719%202.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421%207.403h-.004a9.87%209.87%200%2001-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86%209.86%200%2001-1.51-5.26c.001-5.45%204.436-9.884%209.888-9.884%202.64%200%205.122%201.03%206.988%202.898a9.825%209.825%200%20012.893%206.994c-.003%205.45-4.437%209.884-9.885%209.884m8.413-18.297A11.815%2011.815%200%200012.05%200C5.495%200%20.16%205.335.157%2011.892c0%202.096.547%204.142%201.588%205.945L.057%2024l6.305-1.654a11.882%2011.882%200%20005.683%201.448h.005c6.554%200%2011.89-5.335%2011.893-11.893a11.821%2011.821%200%2000-3.48-8.413z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+}
 .btn-secondary { background: var(--glass-fill); color: var(--text); }
 .btn-accent { background: color-mix(in srgb, var(--p-butter) 88%, transparent); color: var(--on-pastel); }
 .btn-ghost { background: transparent; border-color: transparent; box-shadow: none;

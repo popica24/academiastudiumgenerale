@@ -162,14 +162,16 @@ Detaliile sunt în manual (`brand/brandbook.html`), dar pe scurt:
    fotografiilor.
 2. **Fiecare obiect are contur** de 2px navy 900. Fundalul e alb și curat,
    deci rama e singurul lucru care separă un card de pagină. Nu se scoate.
-3. **Culorile vin din siglă:** `--navy-700` (`#121B52`) și `--navy-900`
+3. **Butonul de WhatsApp e verdele lor** (`#25D366`) cu glifa oficială, iar
+   textul de pe el e cerneala sistemului, nu alb.
+4. **Culorile vin din siglă:** `--navy-700` (`#121B52`) și `--navy-900`
    (`#0B1936`), măsurate în blazon. Pe o suprafață bleumarin plină, sigla trece
    integral pe alb.
-4. **Poiret One nu coboară sub 26px** și nu are decât greutatea 400.
+5. **Poiret One nu coboară sub 26px** și nu are decât greutatea 400.
    Sub prag se folosește Montserrat 600.
-5. **Nu se șterge peticul pentru „ț"** din `tokens.css`. Subsetul Google al
+6. **Nu se șterge peticul pentru „ț"** din `tokens.css`. Subsetul Google al
    lui Poiret One nu conține ț și Ț; fără petic, orice cuvânt cu ț arată reparat.
-6. Componente noi se adaugă în `tokens.css`, nu în `site.css`.
+7. Componente noi se adaugă în `tokens.css`, nu în `site.css`.
 
 ## Rulare locală
 

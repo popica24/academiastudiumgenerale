@@ -23,6 +23,14 @@
     el.href = waHref(el.getAttribute("data-wa"));
     el.target = "_blank";
     el.rel = "noopener";
+    /* Glifa WhatsApp se pune din cod, nu din HTML: e decor, nu conținut, iar
+       așa nu poate lipsi de pe vreun buton adăugat mai târziu.            */
+    if (el.classList.contains("btn-wa") && !el.querySelector(".ico-wa")) {
+      var ico = document.createElement("span");
+      ico.className = "ico-wa";
+      ico.setAttribute("aria-hidden", "true");
+      el.insertBefore(ico, el.firstChild);
+    }
   });
 
   /* --- 2. Formularul de potrivire ---------------------------------------
