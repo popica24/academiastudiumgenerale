@@ -89,7 +89,7 @@ completă e în `assets/foto/motive/SURSE.txt`.
 
 | Fișier | Cardul | Ce arată | Licență | Sursă |
 | --- | --- | --- | --- | --- |
-| `plan.jpg` | Un plan scris de la început | Cineva scrie într-un caiet, lângă un laptop | CC0 | Flickr |
+| `parinte.jpg` | Părintele știe ce se întâmplă la curs | Cineva scrie într-un caiet, lângă un laptop | CC0 | Flickr |
 | `raport.jpg` | Raport de progres în fiecare lună | O mână parcurge cu pixul un document tipărit | domeniu public | Flickr |
 | `recuperare.jpg` | Recuperările nu se pierd | Pagini de calendar, ediție din 1914 | domeniu public | Wikimedia Commons |
 | `simulare.jpg` | Simulări în condiții reale | Sală de clasă goală, cu băncile pregătite | domeniu public | Flickr |

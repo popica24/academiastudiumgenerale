@@ -76,7 +76,7 @@
         optiuni: function () {
           return [
             { eticheta: "Singur, unu la unu", valoare: "individuală" },
-            { eticheta: "În grupă de maximum șase", valoare: "în grupă" }
+            { eticheta: "În grupă de maximum trei", valoare: "în grupă" }
           ];
         }
       }
@@ -190,7 +190,7 @@
 
       var optiuni = pas.optiuni();
       var lista = document.createElement("div");
-      /* Sub patru opțiuni textele sunt lungi („În grupă de maximum șase"),
+      /* Sub patru opțiuni textele sunt lungi („În grupă de maximum trei"),
          deci pe telefon stau una sub alta, nu două pe rând.               */
       lista.className = "formular-optiuni" + (optiuni.length < 4 ? " putine" : "");
       optiuni.forEach(function (o) {
