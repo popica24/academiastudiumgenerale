@@ -1,0 +1,7 @@
+Incorporat: sa poată scrie direct pe whatsapp
+Sa se programeze prin site (Callendly)
+O pagina cu o descriere
+Videouri de prezentare
+Recenziile incorporate (carusel)
+Poze cu profesorii (opțional)
+Blog din când in cand (backend in php)

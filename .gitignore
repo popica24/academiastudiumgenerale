@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# fișierele temporare ale auditului, dacă rularea a fost întreruptă
+_audit_*.html

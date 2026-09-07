@@ -1,0 +1,787 @@
+/* ==========================================================================
+   ACADEMIA. Studium Generale by Denisa
+   Design tokens v3.0, sticlă conturată
+
+   Sursa culorilor:      assets/logo.jpg
+     Bleumarinul blazonului dă primara: #121B52, cununa și toca, plus
+     #0B1936, panglica și semnătura. Măsurate în siglă, nu alese pe lângă
+     ea. Verdele de lauri a ieșit din sistem: sigla e albastră, deci și
+     pagina e albastră.
+   Sursa componentelor:  inspo1.webp / inspo2.webp
+     Structura rămâne: pastile, teanc de oferte, rânduri numerotate, tag-uri.
+     Suprafața se schimbă: umplerea devine sticlă, umbra devine moale.
+
+   SITE CU O SINGURĂ TEMĂ: deschisă. Nu există temă închisă și nu se adaugă
+   una prin `prefers-color-scheme`, paleta e construită pentru hârtie.
+
+   TREI REGULI ABSOLUTE
+     1. Fără gradient, cu O singură excepție: dunga speculară de 1px de pe
+        muchia de sus a sticlei (--glass-sheen). Nicăieri altundeva.
+     2. Conturul rămâne: 2px navy 900, plin. Sticla se vede prin el, nu îl
+        înlocuiește. Fără contur, panourile se topesc unele în altele.
+     3. Textul stă pe sticlă opacă, nu pe transparență. Sub 55% umplere,
+        contrastul devine impredictibil, vezi --glass-fill.
+   ========================================================================== */
+
+:root {
+  /* ----------------------------------------------------------------------
+     1. PRIMARE: bleumarinul siglei
+     Scara crește din cele două albastruri măsurate direct în blazon:
+     #121B52, culoarea cununii, a tocii și a cărților, devine primara, iar
+     #0B1936, al panglicii și al semnăturii, devine cerneala și conturul.
+     Restul treptelor sunt construite în jurul lor. Nu mai există două
+     închisuri în sistem: sigla și pagina sunt aceeași familie, iar cardul
+     alb de sub blazon nu mai desparte nimic, doar îl așază.
+     ---------------------------------------------------------------------- */
+  --navy-50:  #EDEFF7;
+  --navy-100: #D8DCEC;
+  --navy-200: #B4BBD8;
+  --navy-300: #8891BE;
+  --navy-400: #5A669F;
+  --navy-500: #37427C;   /* hover primar          alb peste el 9.41 */
+  --navy-600: #232E68;
+  --navy-700: #121B52;   /* ★ PRIMARA: bleumarinul siglei   alb 16.10 */
+  --navy-800: #101749;
+  --navy-900: #0B1936;   /* ★ CERNEALA ȘI CONTURUL          hârtie 16.81 */
+
+  /* ----------------------------------------------------------------------
+     2. SECUNDARE: hârtie și piatră
+     --paper e un alb cald, nu alb pur: #FFF pe ecran mare obosește ochiul,
+     iar 96.4% luminanță arată tot alb, dar nu lovește. Cardurile rămân #FFF, 
+     diferența de ton e mică (1.04:1) și nu ea separă cardul de pagină, ci
+     conturul de 2px. De asta conturul nu e negociabil.
+     ---------------------------------------------------------------------- */
+  --paper:     #FCFBF7;  /* ★ fundalul paginilor: alb blând, nu #FFF */
+  --white:     #FFFFFF;
+
+  --stone-50:  #FBF9F3;
+  --stone-100: #F3F0E7;
+  --stone-200: #E6E3DA;  /* linii interioare */
+  --stone-300: #CDC9BE;
+  --stone-400: #A5A199;  /* doar non-text */
+  --stone-500: #726F67;  /* text estompat   AA pe parchment 4.61 */
+  --stone-600: #57544D;  /* text secundar   AA pe parchment 6.94 */
+  --stone-700: #3B3934;
+
+  /* ----------------------------------------------------------------------
+     3. ACCENTE
+     ---------------------------------------------------------------------- */
+  --brass-50:  #F7EFDC;
+  --brass-100: #EBDCB6;
+  --brass-200: #E3CE95;
+  --brass-300: #DCC17A;
+  --brass-400: #B98B2E;
+  --brass-500: #AD8129;  /* ★ ACCENTUL: 3.24 pe parchment: marcaje, text mare */
+  --brass-700: #8A6620;  /* accent ca text mic    AA 4.82 */
+
+  --azure-50:  #E9EFFC;
+  --azure-500: #2E63D8;  /* ★ link                AA 4.96 */
+  --azure-600: #2A5CC9;
+  --azure-700: #1F4CB4;
+
+  /* ----------------------------------------------------------------------
+     4. PASTELURI: tentele sistemului
+     Opace pentru obiecte mici (tag, bară de progres, badge); aceleași valori
+     devin tentă de sticlă la 60% când se combină cu `.glass`.
+     ---------------------------------------------------------------------- */
+  --p-indigo: #D8DCEC;  /* navy:   TENTA DE BRAND, aceeași cu --navy-100 */
+  --p-sage:   #D4E5D9;  /* verde:  reușit, disponibil. Nu mai e tenta de brand */
+  --p-sky:    #C6DFFA;  /* azure:  informativ, online */
+  --p-butter: #FBE7B0;  /* brass:  termen, ofertă */
+  --p-lilac:  #E2DBF3;  /* rece:   a cincea categorie, contrapunct */
+  --p-blush:  #F9D3CD;  /* roșu:   rămas în urmă */
+  --on-pastel:    var(--navy-900);   /* min. 11.6:1 pe oricare */
+
+  /* ----------------------------------------------------------------------
+     5. SEMANTICE: doar stări de formular
+     ---------------------------------------------------------------------- */
+  --success: #2A7350;  --success-bg: var(--p-sage);
+  --warning: #8A6620;  --warning-bg: var(--p-butter);
+  --danger:  #A83428;  --danger-bg:  var(--p-blush);
+  --info:    #2A5CC9;  --info-bg:    var(--p-sky);
+
+  /* ----------------------------------------------------------------------
+     6. ROLURI SEMANTICE
+     ---------------------------------------------------------------------- */
+  --bg:        var(--paper);
+  --bg-sunken: #F4F2EA;
+  --surface:   var(--white);      /* suprafață opacă, când sticla nu e potrivită */
+  --surface-2: var(--stone-50);
+
+  --text:           var(--navy-900);
+  --text-secondary: var(--stone-600);
+  --text-muted:     var(--stone-500);
+
+  --border:        var(--stone-200);
+  --border-strong: var(--stone-300);
+
+  --accent:      var(--brass-500);
+  --accent-text: var(--brass-700);
+  --accent-bg:   var(--brass-50);
+  --link:        var(--azure-500);
+  /* Voalul de peste fotografii: navy-900 la 65%, adică pragul sigur pentru
+     orice fotografie, inclusiv una albă. Un card care își știe poza îl poate
+     subția: `tools/voal.py` calculează minimul pentru fiecare imagine.
+     Scris rgba, nu color-mix: auditul citește rgba și ar rata restul.     */
+  --voal-foto:   rgba(11, 25, 54, 0.65);
+  --focus-ring:  var(--azure-500);
+
+  /* ----------------------------------------------------------------------
+     7. STICLĂ: mecanica sistemului
+     Trei straturi, în ordinea asta:
+       a) umplerea translucidă   --glass-fill
+       b) blurul din spate       --glass-blur
+       c) dunga speculară de 1px --glass-sheen   (singurul gradient permis)
+     plus conturul de 2px bleumarin, care nu dispare niciodată.
+     ---------------------------------------------------------------------- */
+  --glass-fill:      rgba(255, 255, 255, 0.62);
+  --glass-fill-soft: rgba(255, 255, 255, 0.52);  /* minimul care ține stone-500 peste AA */
+  --glass-fill-deep: rgba(255, 255, 255, 0.82);  /* sub text lung */
+  --glass-tint:      0.60;                        /* cât din pastel trece în sticlă */
+  --glass-blur:      saturate(170%) blur(20px);
+  --glass-blur-lg:   saturate(180%) blur(34px);
+
+  /* dunga speculară: se stinge la capete, ca lumina pe o muchie reală */
+  --glass-sheen: linear-gradient(90deg,
+                   rgba(255,255,255,0) 0%,
+                   rgba(255,255,255,0.95) 22%,
+                   rgba(255,255,255,0.95) 78%,
+                   rgba(255,255,255,0) 100%);
+
+  --stroke-color: var(--navy-900);
+  --stroke:      2px solid var(--stroke-color);
+  --stroke-thin: 1.5px solid var(--stroke-color);
+  --stroke-bold: 3px solid var(--stroke-color);
+
+  /* umbre moi: sticla plutește, nu stă lipită */
+  --sh-1: 0 1px 3px rgba(16,42,30,.08), 0 1px 2px rgba(16,42,30,.05);
+  --sh-2: 0 6px 20px -6px rgba(16,42,30,.18), 0 2px 6px rgba(16,42,30,.07);
+  --sh-3: 0 18px 44px -14px rgba(16,42,30,.24), 0 4px 12px rgba(16,42,30,.09);
+  --sh-0: none;
+
+  /* ----------------------------------------------------------------------
+     8. TIPOGRAFIE: 4 roluri, 3 familii
+     ---------------------------------------------------------------------- */
+  --font-primary:   "Poiret One", "PoiretTComma", "Century Gothic", "Questrial", "Avenir Next", sans-serif;
+  --font-secondary: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-accent:    var(--font-primary);   /* Poiret One, dar rărit: vezi .script */
+  --font-cta:       var(--font-secondary);
+  --font-mono:      ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --fs-xs:   0.75rem;    --fs-sm:   0.875rem;   --fs-base: 1.0625rem;
+  --fs-md:   1.3125rem;  --fs-lg:   1.625rem;   --fs-xl:   2.0625rem;
+  --fs-2xl:  2.5625rem;  --fs-3xl:  3.25rem;    --fs-4xl:  4rem;
+
+  --lh-tight: 1.1; --lh-heading: 1.18; --lh-snug: 1.4; --lh-body: 1.6; --lh-loose: 1.75;
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+  --poiret-stroke: 0.022em;
+  --ls-tight: 0.015em; --ls-snug: 0.005em; --ls-normal: 0; --ls-wide: 0.08em;
+  --measure: 60ch;
+  --inaltime-antet: 74px;   /* antetul lipicios: sigla 44px + 2 × --sp-3 + rama */
+
+  /* ----------------------------------------------------------------------
+     9. COLȚURI: scară Apple, curbă continuă
+     Sticla cere colțuri mai generoase decât o suprafață opacă: pe o muchie
+     strânsă, dunga speculară se frânge.
+     ---------------------------------------------------------------------- */
+  --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --r-xl: 20px; --r-2xl: 28px; --r-full: 999px;
+
+  /* 10. SPAȚIERE: grilă de 4px */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px; --sp-32: 128px;
+  --container: 1180px; --container-text: 720px; --gutter: var(--sp-6);
+
+  /* 11. MIȘCARE */
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-fast: 140ms; --dur-base: 240ms; --dur-slow: 380ms;
+}
+
+/* ==========================================================================
+   BAZĂ
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-regular);   /* Poiret One nu are decât 400 */
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+h4 { font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
+
+p { margin: 0; max-width: var(--measure); }
+a { color: var(--link); text-underline-offset: 0.18em; }
+/* La hover nimic nu se recolorează, nicăieri. Linkul e deja albastru și deja
+   subliniat în starea de repaus, deci semnalul de „se poate apăsa” există
+   înainte să vină cursorul; sub el linia se îngroașă, atât.                */
+a:not(.btn):hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--r-xs); }
+
+.eyebrow {
+  font-family: var(--font-secondary); font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide);
+  text-transform: uppercase; color: var(--text-muted);
+}
+.script { font-family: var(--font-accent); font-weight: var(--fw-regular);
+  letter-spacing: 0.14em; color: var(--accent-text); }
+
+/* ==========================================================================
+   STICLA
+   `.glass` e un strat, nu o componentă: se pune pe card, buton, panou.
+   ========================================================================== */
+.glass {
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: var(--stroke);
+  box-shadow: var(--sh-2);
+}
+/* dunga speculară: singurul gradient din sistem */
+.glass::before {
+  content: ""; position: absolute; top: 0; left: 9%; right: 9%; height: 1px;
+  background: var(--glass-sheen); pointer-events: none; border-radius: inherit;
+}
+.glass-soft { background: var(--glass-fill-soft); }
+.glass-deep { background: var(--glass-fill-deep); }
+.glass-lg   { -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg); }
+
+/* browser fără backdrop-filter: se compensează cu opacitate, nu se renunță */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass      { background: rgba(255, 255, 255, 0.92); }
+  .glass-soft { background: rgba(255, 255, 255, 0.86); }
+}
+
+/* ==========================================================================
+   COMPONENTE
+   ========================================================================== */
+
+/* --- Butoane ------------------------------------------------------------- */
+.btn {
+  position: relative;
+  font-family: var(--font-cta); font-size: var(--fs-base);
+  font-weight: var(--fw-semibold); letter-spacing: var(--ls-snug); line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--sp-2); padding: 14px var(--sp-6);
+  border: var(--stroke); border-radius: var(--r-full);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  color: var(--text); box-shadow: var(--sh-2);
+  cursor: pointer; text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+.btn::before {
+  content: ""; position: absolute; top: 0; left: 14%; right: 14%; height: 1px;
+  background: var(--glass-sheen); pointer-events: none;
+}
+.btn:hover  { transform: translateY(-2px); box-shadow: var(--sh-3); }
+.btn:active { transform: translateY(0) scale(0.975); box-shadow: var(--sh-1); }
+
+.btn-primary { background: var(--navy-700); color: #fff; }
+.btn-primary::before { left: 16%; right: 16%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 75%, rgba(255,255,255,0)); }
+.btn-primary:hover { background: var(--navy-500); }
+.btn-secondary { background: var(--glass-fill); color: var(--text); }
+.btn-accent { background: color-mix(in srgb, var(--p-butter) 88%, transparent); color: var(--on-pastel); }
+.btn-ghost { background: transparent; border-color: transparent; box-shadow: none;
+  color: var(--link); padding: 8px var(--sp-3);
+  -webkit-backdrop-filter: none; backdrop-filter: none; }
+.btn-ghost::before { display: none; }
+.btn-ghost:hover  { transform: none; box-shadow: none; text-decoration: underline; }
+.btn-ghost:active { transform: none; box-shadow: none; }
+
+.btn-sm    { font-size: var(--fs-sm); padding: 9px var(--sp-4); box-shadow: var(--sh-1); }
+.btn-sm:hover { box-shadow: var(--sh-2); }
+.btn-block { display: flex; width: 100%; padding: 20px var(--sp-6); font-size: var(--fs-md); }
+.btn-arrow { width: 44px; height: 44px; padding: 0; flex: none;
+  border-radius: var(--r-full); font-size: var(--fs-md); box-shadow: var(--sh-1); }
+.btn-arrow::before { left: 26%; right: 26%; }
+.btn-arrow.sm { width: 34px; height: 34px; font-size: var(--fs-base); }
+
+/* --- Navigație: sticlă subțire ------------------------------------------- */
+.nav { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.navlink {
+  font-size: var(--fs-sm); font-weight: var(--fw-medium); line-height: 1;
+  padding: 11px var(--sp-4);
+  border: var(--stroke-thin); border-radius: var(--r-full);
+  background: var(--glass-fill-soft);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  color: var(--text); text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+/* Aceeași stare ca la buton: obiectul se ridică, nimic nu se recolorează.
+   Fără o umbră, ridicarea de 2 px nu s-ar vedea, deci apare cea mai mică
+   dintre ele, doar cât să desprindă linkul de fundal.                      */
+.navlink:hover  { transform: translateY(-2px); box-shadow: var(--sh-1); }
+.navlink:active { transform: translateY(0) scale(0.975); box-shadow: none; }
+.navlink[aria-current="page"] { background: var(--navy-700); color: #fff; }
+
+/* --- Card ---------------------------------------------------------------- */
+.card {
+  container-type: inline-size;
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  border: var(--stroke); border-radius: var(--r-lg);
+  box-shadow: var(--sh-2); padding: var(--sp-6);
+}
+.card::before { content: ""; position: absolute; top: 0; left: 9%; right: 9%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.card-flat  { box-shadow: var(--sh-1); }
+.card-panel { border-radius: var(--r-2xl); box-shadow: var(--sh-3); padding: var(--sp-10);
+  background: var(--glass-fill-deep);
+  -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg); }
+
+/* --- Tag: opac. Prea mic pentru blur, prea mic pentru sheen -------------- */
+.tag {
+  display: inline-block; font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  line-height: 1; padding: 7px var(--sp-3);
+  border: var(--stroke-thin); border-radius: var(--r-full);
+  background: var(--surface); color: var(--text);
+}
+
+/* --- Rând de ofertă ------------------------------------------------------ */
+.offer {
+  position: relative;
+  display: flex; align-items: center; gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-6);
+  border: var(--stroke); border-radius: var(--r-lg); box-shadow: var(--sh-2);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.offer::before { content: ""; position: absolute; top: 0; left: 6%; right: 6%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.offer:hover { transform: translateY(-2px); box-shadow: var(--sh-3); }
+.offer-body { flex: 1; min-width: 0; }
+.offer-title { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
+.offer-desc  { font-size: var(--fs-sm); opacity: .78; margin-top: 2px; }
+.offer-price { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-snug);
+  font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer-stack { display: flex; flex-direction: column; }
+.offer-stack > .offer + .offer { margin-top: -14px; }
+.offer-stack > .offer:hover { z-index: 2; }
+
+/* --- Listă de progres ---------------------------------------------------- */
+.progress-list { display: flex; flex-direction: column; }
+.progress-row {
+  display: grid; grid-template-columns: 2.6em minmax(0, 1fr) 3.4em 150px;
+  align-items: center; gap: var(--sp-4); padding: var(--sp-4) 0;
+  border-bottom: 1.5px solid var(--stroke-color);
+}
+.progress-row:last-child { border-bottom: 0; }
+.progress-row .idx   { font-weight: var(--fw-semibold); font-variant-numeric: tabular-nums; opacity: .55; }
+.progress-row .label { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-base); letter-spacing: var(--ls-snug);
+  min-width: 0; overflow-wrap: break-word; }
+.progress-row .pct   { font-variant-numeric: tabular-nums; font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm); text-align: right; }
+
+/* card ingust: bara coboara sub eticheta in loc sa o striveasca */
+@container (max-width: 560px) {
+  .progress-row { grid-template-columns: 2.6em minmax(0, 1fr) 3.4em; row-gap: var(--sp-3); }
+  .progress-row .meter { grid-column: 2 / -1; }
+}
+
+/* bara: opacă. Un indicator citit dintr-o privire nu are voie să fie translucid */
+.meter { height: 20px; border: var(--stroke-thin); border-radius: var(--r-full);
+  background: var(--surface); overflow: hidden; }
+.meter > span { display: block; height: 100%; background: var(--p-indigo);
+  border-right: 1.5px solid var(--stroke-color); }
+.meter > span.zero { border-right: 0; }
+
+/* --- Cerc de statistică -------------------------------------------------- */
+.stat { position: relative; width: 116px; height: 116px; flex: none;
+  border: var(--stroke); border-radius: var(--r-full);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; text-align: center; }
+.stat .num { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-tight); font-variant-numeric: tabular-nums; }
+.stat .ico { font-size: var(--fs-md); line-height: 1; }
+.stat-label { font-size: var(--fs-sm); text-align: center; margin-top: var(--sp-2); }
+
+/* --- Card de profesor ----------------------------------------------------
+   Eticheta cu numele stă deasupra materiei: se citește întâi omul, apoi ce
+   predă. Săgeata rămâne jos-dreapta, aliniată cu vechimea.
+   ------------------------------------------------------------------------ */
+.person {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-4);
+  align-items: flex-start;                 /* altfel eticheta se întinde */
+  padding: var(--sp-5);
+  border: var(--stroke); border-radius: var(--r-xl); box-shadow: var(--sh-2);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+}
+.person::before { content: ""; position: absolute; top: 0; left: 9%; right: 9%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.person h4 { font-size: var(--fs-md); letter-spacing: var(--ls-snug); }
+.person .foot { display: flex; width: 100%; align-items: center;
+  justify-content: space-between; margin-top: auto; }
+
+/* --- Avatar --------------------------------------------------------------
+   Cercul ține locul fotografiei. Cu fotografie, un <img> umple același cerc.
+   ------------------------------------------------------------------------ */
+.avatar {
+  width: 104px; height: 104px; flex: none;
+  border: var(--stroke); border-radius: var(--r-full);
+  display: grid; place-items: center; overflow: hidden;
+  font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-tight);
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* --- Bulă de dialog ------------------------------------------------------ */
+.bubble { position: relative; display: inline-block; max-width: 30ch;
+  padding: var(--sp-4) var(--sp-5); border: var(--stroke); border-radius: var(--r-xl);
+  background: var(--glass-fill-deep);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  font-size: var(--fs-sm); line-height: var(--lh-snug); }
+.bubble::before, .bubble::after {
+  content: ""; position: absolute; left: 34px; width: 0; height: 0; border-style: solid; }
+.bubble::before { bottom: -19px; border-width: 19px 15px 0 0;
+  border-color: var(--stroke-color) transparent transparent transparent; }
+.bubble::after  { bottom: -15px; border-width: 15px 11px 0 0;
+  border-color: var(--glass-fill-deep) transparent transparent transparent; }
+
+/* --- Chip de titlu ------------------------------------------------------- */
+.chip { position: relative; display: inline-block;
+  font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-xl); letter-spacing: var(--ls-tight); line-height: 1;
+  padding: 12px var(--sp-5); border: var(--stroke); border-radius: var(--r-lg);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  box-shadow: var(--sh-2); }
+.chip::before { content: ""; position: absolute; top: 0; left: 12%; right: 12%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.chip-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+
+/* --- Formular: opac. Câmpul e o gaură în pagină, nu o lentilă ------------ */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: var(--fs-xs); font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.field input, .field select, .field textarea {
+  font: inherit; font-size: var(--fs-base); color: var(--text);
+  background: var(--surface); border: var(--stroke); border-radius: var(--r-md);
+  box-shadow: inset 0 1px 3px rgba(16,42,30,.07);
+  padding: 12px var(--sp-4); width: 100%; }
+.field input:focus { outline: none; box-shadow: inset 0 1px 3px rgba(16,42,30,.07), 0 0 0 3px var(--focus-ring); }
+.field .hint { font-size: var(--fs-xs); color: var(--text-muted); }
+.field.err input { background: var(--p-blush); color: var(--navy-900); }
+.field.err .hint { color: var(--danger); font-weight: var(--fw-medium); }
+
+/* --- Formularul de potrivire ---------------------------------------------
+   Trei întrebări, un singur pas vizibil o dată. Scena își animă înălțimea
+   între pași, ca pagina să nu sară sub degetul care tocmai a apăsat; pasul
+   care intră vine din jos, cel care iese pleacă în sus. Fără bibliotecă de
+   animație: două tranziții și o clasă. Cine cere mai puțină mișcare din
+   sistem primește aceleași pași, doar că fără drum între ei.
+   -------------------------------------------------------------------------- */
+.formular {
+  container-type: inline-size;
+  border: var(--stroke); border-radius: var(--r-2xl); box-shadow: var(--sh-3);
+  background: var(--glass-fill-deep);
+  -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg);
+  padding: var(--sp-10);
+}
+.formular-progres { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-8); }
+.formular-progres span {
+  height: 4px; flex: 1; border-radius: var(--r-full);
+  background: var(--border);
+  transition: background var(--dur-base) var(--ease);
+}
+.formular-progres span.e-facut { background: var(--navy-700); }
+
+.formular-scena { position: relative; transition: height var(--dur-slow) var(--ease); }
+.formular-pas {
+  opacity: 0; transform: translateY(10px);
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+.formular-pas.e-vizibil { opacity: 1; transform: none; }
+.formular-pas.e-iesit   { opacity: 0; transform: translateY(-10px); }
+
+/* Titlul pasului primește focusul la schimbare, ca cititorul de ecran și
+   tastatura să nu rămână în urmă. Nu e un control, deci nu poartă inelul de
+   focus: următorul Tab ajunge pe prima opțiune, care îl are pe al ei.      */
+.formular-pas h3:focus { outline: none; }
+.formular-numar { font-family: var(--font-secondary); font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide);
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--sp-3); }
+.formular-pas h3 { font-size: var(--fs-xl); max-width: 22ch; }
+.formular-optiuni { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-8); }
+
+/* Opțiunea e un buton, nu o casetă de bifat: se apasă o dată și pasul trece.
+   La hover se ridică și atât, ca orice buton din sistem.                    */
+.optiune {
+  font-family: var(--font-cta); font-size: var(--fs-base);
+  font-weight: var(--fw-medium); letter-spacing: var(--ls-snug); line-height: 1;
+  padding: 13px var(--sp-5);
+  border: var(--stroke); border-radius: var(--r-full);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  color: var(--text); box-shadow: var(--sh-1); cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+.optiune:hover  { transform: translateY(-2px); box-shadow: var(--sh-2); }
+.optiune:active { transform: translateY(0) scale(0.975); box-shadow: var(--sh-1); }
+.optiune.e-ales { background: var(--navy-700); color: #fff; --stroke-color: var(--navy-900); }
+
+.formular-inapoi { margin-top: var(--sp-6); }
+.formular-raspuns { font-size: var(--fs-lg); letter-spacing: var(--ls-snug);
+  font-family: var(--font-primary); font-weight: var(--fw-regular);
+  max-width: 26ch; margin-top: var(--sp-4); }
+.formular-recapitulare { font-size: var(--fs-sm); color: var(--text-secondary);
+  margin-top: var(--sp-4); }
+.formular-final { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center;
+  margin-top: var(--sp-8); }
+
+@container (max-width: 520px) {
+  .formular-pas h3 { font-size: var(--fs-lg); }
+}
+
+/* --- Portret --------------------------------------------------------------
+   O fotografie de om, arătată ca atare: fără voal, fără mască, fără blur pe
+   margini. Aceleași colțuri și același contur de 2px ca restul obiectelor,
+   fiindcă altfel ar pluti în pagină. Raportul de 4/5 taie din înălțimea unei
+   poze de telefon fără să strivească fața.
+   -------------------------------------------------------------------------- */
+.portret { margin: 0; }
+.portret img {
+  /* `height: auto` nu e de decor: atributele width/height din HTML sunt bune
+     pentru rezervarea locului cât se încarcă poza, dar se mapează pe `height`,
+     iar `aspect-ratio` nu are ce face peste o înălțime dată în pixeli.      */
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+  object-position: var(--foto-pos, 50% 30%);
+  border: var(--stroke); border-radius: var(--r-2xl);
+  box-shadow: var(--sh-3);
+  background: var(--surface-2);
+}
+.portret figcaption {
+  font-size: var(--fs-xs); color: var(--text-muted);
+  margin-top: var(--sp-3); max-width: 34ch;
+}
+
+/* --- Bandă CTA ----------------------------------------------------------- */
+.ctaband { position: relative; background: var(--navy-700); color: #fff;
+  border: var(--stroke-bold); border-radius: var(--r-2xl); box-shadow: var(--sh-3);
+  padding: var(--sp-12); display: flex; flex-wrap: wrap; gap: var(--sp-8);
+  align-items: center; justify-content: space-between; overflow: hidden; }
+.ctaband::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45) 25%,
+              rgba(255,255,255,.45) 75%, rgba(255,255,255,0)); pointer-events: none; }
+.ctaband h3 { color: #fff; max-width: 16ch; }
+.ctaband .script { color: var(--brass-300); }
+.ctaband .btn { --stroke-color: rgba(255,255,255,.5); }
+.ctaband .btn-accent { --stroke-color: var(--navy-900); }
+.ctaband .btn-primary { background: #fff; color: var(--navy-700); --stroke-color: var(--navy-900); }
+.ctaband .btn-primary:hover { background: var(--p-butter); }
+.ctaband .btn-secondary { background: rgba(255,255,255,.14); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   ț și Ț, peticul
+   Subsetul latin-ext pe care Google îl servește pentru Poiret One conține
+   ș și Ș, dar NU conține ț (U+021B) și Ț (U+021A). Fără peticul ăsta, cele
+   două litere cad pe fontul de sistem, pe macOS, Avenir Next și apar
+   vizibil mai groase și de altă formă decât restul cuvântului.
+   Fontul complet Poiret One (OFL) ARE cele două glife, construite din „t" plus
+   virgula U+0326. Le-am decupat de acolo: 708 de octeți, două glife, încorporate
+   ca date. Deci ț nu e un împrumut din alt font, e litera originală.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "PoiretTComma";
+  src: url(data:font/woff2;base64,d09GMgABAAAAAALEAA4AAAAABdgAAAJyAAEZ2wAAAAAAAAAAAAAAAAAAAAAAAAAAGhgbgRAcMAZgADgRCAqBbIFeATYCJAMaCxAABCAFgz4HIBvHBCgeB87ZLR4UFarJSfbEzi14ntbS92fmiDfAmxQR9yjELpXEwlQRKiDLLKuiSqpLMbx7EIzTTYDLf8mdi1M12QLB3J+HMMARHWORJZ0DrIZjA8/zYs+XQLlCBYDqTndKh49LLpck/+EIEAYABIVGAEGAIINNpOfOX7oWa7tb6rDerrYGLAbAdQkgtU5LA35AAMGg8KMIMpqikAGmKydoAPcqQVCZqxWKOIBCpQ4xzMESS/GHGo5X0pUOOGxUqRzDA+qA2ggsUe+BbGd0UQAP+DtzZvU8HqhSVaYfuSPBLOYTIADySPUCNg0oQAMWjQAWQ19gMAioMhdUqQsIBlAYBHGJAeADIAoYYDyYDcqBBQDEJd8c8Ufj8R1BiRA0wbfvRIcIEVQ9b0OsrcdaG5Qz52XfhdDBc+Y1H764VNFdceFlNac9OzeteGPfOlB+QM9evnhqOXM+voGV830TrqlIdE50dd3zqSGAxiursHB9jx7+YSCg4JIjqpdxFz9UJwJIyefll7d3xKb+9mv9E+Bx29wBAG9eHNv/f4n+ps4sBnwoAAQ+r932IONnIKDslV9Gd5YCYfw2LsXtoCMJ4CPDx2IeBAAAAD31zbrOBIDzwCBYzoMiyj3QTPQEDH0z4KG0gbf1UtNs5mjUpFuLnIysNrbRRhplFNtaWQ7bSo1yWjja2FZouGktzOY59nBnadcmq1FrNY2BoYfaNGk12QgjZOR8n2+323B7NKo3wi51HF0cOR12GaEp1Wik6YOK7F7NkdGuzi4tRhl+oCMfnWKOTVabZ8qzSJOGje4dOzmL9ZxuRq6Ubifi+k0JNBBybxkN) format("woff2");
+  unicode-range: U+021A-021B;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   GROSIMEA LUI POIRET ONE
+   Poiret One are o singură greutate și trăsături foarte subțiri. --poiret-stroke
+   îngroașă litera uniform, în em, deci se scalează cu mărimea. Se aplică și
+   peste glifele de petic, ca ț să rămână la aceeași grosime cu restul.
+   Peste 0.03em contraformele încep să se închidă.
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4,
+.chip, .offer-title, .offer-price, .stat .num, .ring .val, .avatar,
+.script, .rail-title, .sample-fraunces, .sample-cormorant, .scale-table .demo {
+  -webkit-text-stroke: var(--poiret-stroke) currentColor;
+  paint-order: stroke fill;
+}
+/* ce a coborât sub prag e Montserrat: nu se mai îngroașă */
+.progress-row .label, .sw-name, .brandmark, .person h4, .profile-name {
+  -webkit-text-stroke: 0;
+}
+
+/* --------------------------------------------------------------------------
+   PRAGUL LUI POIRET ONE, 26px
+   Poiret One are o singură greutate (400) și trăsături de păr. Sub 26px se
+   subțiază până la dispariție, mai ales peste sticlă. Tot ce cade sub prag
+   trece pe Montserrat 600: aceeași ierarhie, dar citibilă.
+   -------------------------------------------------------------------------- */
+.progress-row .label,
+.sw-name,
+.brandmark,
+.person h4,
+.profile-name {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-snug);
+}
+
+/* --- Card cu fotografie ---------------------------------------------------
+   Trei straturi, ca marginile pozei să se topească în loc să se taie drept:
+     1  .foto-blur  aceeași poză, mărită și estompată, umple până în colțuri
+     2  .foto-clar  poza clară, cu marginile topite peste cea estompată
+     3  ::after     voalul care garantează contrastul textului
+   Masca stratului 2 e un gradient. E a doua excepție de la regula „fără
+   gradient”, alături de dunga speculară, și e limitată la mască: nicio
+   umplere vizibilă din sistem nu are voie să fie gradient.
+   Baza e folosită de două ori, cu același desen și înălțimi diferite:
+   `.reason`, cardul mare din „Cum lucrăm”, și `.materie`, cardul din
+   „Materii”. Poza e `<img>`, niciodată `url()` într-o variabilă CSS: o cale
+   relativă pusă acolo se rezolvă față de foaia de stil, nu față de pagină.
+   -------------------------------------------------------------------------- */
+.foto-card {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: space-between;
+  border: var(--stroke); border-radius: var(--r-2xl);
+  box-shadow: var(--sh-2);
+  background: var(--navy-900);   /* baza pe care cad marginile topite */
+  color: #fff;                     /* tot ce nu-și cere singur culoarea */
+}
+.foto-blur, .foto-clar {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: var(--foto-pos, center);
+  pointer-events: none;
+}
+.foto-blur {                /* 1. stratul estompat */
+  z-index: -3;
+  filter: blur(26px) saturate(0.85);
+  transform: scale(1.18) scaleX(var(--flip, 1));
+}
+.foto-clar {                /* 2. stratul clar, topit spre margini */
+  z-index: -2;
+  filter: saturate(0.85);
+  transform: scaleX(var(--flip, 1));
+  /* Două treceri liniare, una pe orizontală și una pe verticală, păstrate
+     doar unde se suprapun. Rezultă o ramă moale care urmează muchia
+     cardului, nu o elipsă: fiecare latură se topește la fel, iar colțurile,
+     unde se sting amândouă, se topesc de două ori. Asta le rotunjește de la
+     sine, în același spirit cu superelipsa de pe colțuri.                  */
+  --topire: 16%;
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent 0, #000 var(--topire), #000 calc(100% - var(--topire)), transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 var(--topire), #000 calc(100% - var(--topire)), transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    linear-gradient(to right,  transparent 0, #000 var(--topire), #000 calc(100% - var(--topire)), transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 var(--topire), #000 calc(100% - var(--topire)), transparent 100%);
+          mask-composite: intersect;
+}
+.foto-card::after {         /* 3. voalul */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--voal-foto);
+}
+.foto-card h3 {
+  font-family: var(--font-primary);         /* Poiret One */
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.15;
+  color: #fff;
+  -webkit-text-stroke: var(--poiret-stroke) currentColor;
+  paint-order: stroke fill;
+}
+.foto-card p { font-size: var(--fs-sm); color: #fff; opacity: 0.92; max-width: 42ch; }
+
+/* Cardul mare: titlu, paragraf, un motiv pe card. */
+.reason { min-height: 360px; gap: var(--sp-4); padding: var(--sp-8); }
+.reason h3 { font-size: var(--fs-xl); max-width: 15ch; }
+
+/* Cardul de materie: fotografia și numele materiei, atât. Neavând text mic
+   pe el, pragul de contrast e 3:1, nu 4.5:1, deci voalul poate fi mai
+   subțire. `tools/voal.py` măsoară pe cele 15 fotografii un maxim cerut de
+   0.46; 0.48 lasă o marjă și se vede mult mai mult din poză.               */
+.materie { min-height: 210px; gap: var(--sp-5); padding: var(--sp-6);
+  --voal-foto: rgba(11, 25, 54, 0.48); }
+.materie h3 { font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
+
+
+/* ==========================================================================
+   TENTE
+   Utilitare de umplere. Stau ULTIMELE, după toate componentele: `.chip` și
+   `.p-butter` au aceeași specificitate, deci câștigă cea scrisă mai jos.
+   Pe `.glass` tenta devine translucidă; singură, rămâne opacă.
+   ========================================================================== */
+.p-white, .p-indigo, .p-sage, .p-sky, .p-butter, .p-lilac, .p-blush {
+  --stroke-color: var(--navy-900);
+  color: var(--on-pastel);
+}
+.p-white      { background: #FFFFFF; }
+.p-indigo     { background: var(--p-indigo); }
+.p-sage { background: var(--p-sage); }
+.p-sky        { background: var(--p-sky); }
+.p-butter     { background: var(--p-butter); }
+.p-lilac       { background: var(--p-lilac); }
+.p-blush      { background: var(--p-blush); }
+
+/* aceleași tente, translucide, când obiectul e de sticlă */
+.glass.p-white,      .btn.p-white,      .card.p-white,      .offer.p-white,      .chip.p-white,      .stat.p-white,      .person.p-white, .bubble.p-white      { background: rgba(255,255,255,.72); }
+.glass.p-indigo,     .btn.p-indigo,     .card.p-indigo,     .offer.p-indigo,     .chip.p-indigo,     .stat.p-indigo,     .person.p-indigo, .bubble.p-indigo     { background: color-mix(in srgb, var(--p-indigo) 60%, rgba(255,255,255,.72)); }
+.glass.p-sage, .btn.p-sage, .card.p-sage, .offer.p-sage, .chip.p-sage, .stat.p-sage, .person.p-sage, .bubble.p-sage { background: color-mix(in srgb, var(--p-sage) 60%, rgba(255,255,255,.72)); }
+.glass.p-sky,        .btn.p-sky,        .card.p-sky,        .offer.p-sky,        .chip.p-sky,        .stat.p-sky, .person.p-sky, .bubble.p-sky { background: color-mix(in srgb, var(--p-sky) 60%, rgba(255,255,255,.72)); }
+.glass.p-butter,     .btn.p-butter,     .card.p-butter,     .offer.p-butter,     .chip.p-butter,     .stat.p-butter, .person.p-butter, .bubble.p-butter { background: color-mix(in srgb, var(--p-butter) 60%, rgba(255,255,255,.72)); }
+.glass.p-lilac,       .btn.p-lilac,       .card.p-lilac,       .offer.p-lilac,       .chip.p-lilac,       .stat.p-lilac, .person.p-lilac, .bubble.p-lilac { background: color-mix(in srgb, var(--p-lilac) 60%, rgba(255,255,255,.72)); }
+.glass.p-blush,      .btn.p-blush,      .card.p-blush,      .offer.p-blush,      .chip.p-blush,      .stat.p-blush, .person.p-blush, .bubble.p-blush { background: color-mix(in srgb, var(--p-blush) 60%, rgba(255,255,255,.72)); }
+
+/* coada bulei ia exact umplerea bulei, altfel rămâne un triunghi de altă culoare */
+.bubble.p-white::after      { border-top-color: rgba(255,255,255,.72); }
+.bubble.p-indigo::after { border-top-color: color-mix(in srgb, var(--p-indigo) 60%, rgba(255,255,255,.72)); }
+.bubble.p-sage::after { border-top-color: color-mix(in srgb, var(--p-sage) 60%, rgba(255,255,255,.72)); }
+.bubble.p-sky::after        { border-top-color: color-mix(in srgb, var(--p-sky) 60%, rgba(255,255,255,.72)); }
+.bubble.p-butter::after     { border-top-color: color-mix(in srgb, var(--p-butter) 60%, rgba(255,255,255,.72)); }
+.bubble.p-lilac::after       { border-top-color: color-mix(in srgb, var(--p-lilac) 60%, rgba(255,255,255,.72)); }
+.bubble.p-blush::after      { border-top-color: color-mix(in srgb, var(--p-blush) 60%, rgba(255,255,255,.72)); }
+
+.meter > span.p-sage, .meter > span.p-butter, .meter > span.p-blush,
+.meter > span.p-lilac, .meter > span.p-sky, .meter > span.p-indigo { border-right: 1.5px solid var(--navy-900); }
+
+@supports (corner-shape: superellipse(2.5)) {
+  .btn, .card, .offer, .chip, .field input, .tag, .navlink, .bubble, .glass {
+    corner-shape: superellipse(2.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .btn:hover, .offer:hover, .navlink:hover { transform: none; }
+}

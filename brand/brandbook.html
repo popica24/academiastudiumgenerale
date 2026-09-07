@@ -1,0 +1,1712 @@
+<title>Manualul de brand Academia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poiret+One&display=swap">
+
+<style>
+:root {
+  /* ----------------------------------------------------------------------
+     1. PRIMARE: bleumarinul siglei, măsurat în blazon.
+     ---------------------------------------------------------------------- */
+  --navy-50:  #EDEFF7;
+  --navy-100: #D8DCEC;
+  --navy-200: #B4BBD8;
+  --navy-300: #8891BE;
+  --navy-400: #5A669F;
+  --navy-500: #37427C;   /* hover primar */
+  --navy-600: #232E68;
+  --navy-700: #121B52;   /* ★ PRIMARA: cununa, toca și cărțile din siglă */
+  --navy-800: #101749;
+  --navy-900: #0B1936;   /* ★ CERNEALA ȘI CONTURUL: panglica din siglă */
+
+  /* ----------------------------------------------------------------------
+     2. SECUNDARE: hârtie și piatră
+     ---------------------------------------------------------------------- */
+  --paper: #FCFBF7;  /* ★ fundalul paginilor */
+  --white:     #FFFFFF;
+
+  --stone-50:  #FBF9F3;
+  --stone-100: #F3F0E7;
+  --stone-200: #E6E3DA;  /* linii interioare */
+  --stone-300: #CDC9BE;
+  --stone-400: #A5A199;  /* doar non-text */
+  --stone-500: #726F67;  /* text estompat   AA pe hârtie 4.61 */
+  --stone-600: #57544D;  /* text secundar   AA pe hârtie 6.94 */
+  --stone-700: #3B3934;
+
+  /* ----------------------------------------------------------------------
+     3. ACCENTE
+     ---------------------------------------------------------------------- */
+  --brass-50:  #F7EFDC;
+  --brass-100: #EBDCB6;
+  --brass-200: #E3CE95;
+  --brass-300: #DCC17A;
+  --brass-400: #B98B2E;
+  --brass-500: #AD8129;  /* ★ ACCENTUL: 3.24 pe hârtie: marcaje, text mare */
+  --brass-700: #8A6620;  /* accent ca text mic    AA 4.82 */
+
+  --azure-50:  #E9EFFC;
+  --azure-500: #2E63D8;  /* ★ link                AA 4.96 */
+  --azure-600: #2A5CC9;
+  --azure-700: #1F4CB4;
+
+  /* ----------------------------------------------------------------------
+     4. PASTELURI: tentele sistemului
+     Opace pentru obiecte mici (tag, bară de progres, badge); aceleași valori
+     devin tentă de sticlă la 60% când se combină cu `.glass`.
+     ---------------------------------------------------------------------- */
+  --p-indigo: #D8DCEC;  /* navy:   TENTA DE BRAND */
+  --p-sage:   #D4E5D9;  /* verde:  reușit, disponibil */
+  --p-sky:        #C6DFFA;  /* azure: informativ, online */
+  --p-butter:     #FBE7B0;  /* brass: termen, ofertă */
+  --p-lilac:       #E2DBF3;  /* rece:  a cincea categorie, contrapunct */
+  --p-blush:      #F9D3CD;  /* roșu: rămas în urmă */
+  --on-pastel:    var(--navy-900);   /* min. 11.6:1 pe oricare */
+
+  /* ----------------------------------------------------------------------
+     5. SEMANTICE: doar stări de formular
+     ---------------------------------------------------------------------- */
+  --success: #2A7350;  --success-bg: var(--p-sage);
+  --warning: #8A6620;  --warning-bg: var(--p-butter);
+  --danger:  #A83428;  --danger-bg:  var(--p-blush);
+  --info:    #2A5CC9;  --info-bg:    var(--p-sky);
+
+  /* ----------------------------------------------------------------------
+     6. ROLURI SEMANTICE
+     ---------------------------------------------------------------------- */
+  --bg:        var(--paper);
+  --bg-sunken: #F4F2EA;
+  --surface:   var(--white);      /* suprafață opacă, când sticla nu e potrivită */
+  --surface-2: var(--stone-50);
+
+  --text:           var(--navy-900);
+  --text-secondary: var(--stone-600);
+  --text-muted:     var(--stone-500);
+
+  --border:        var(--stone-200);
+  --border-strong: var(--stone-300);
+
+  --accent:      var(--brass-500);
+  --accent-text: var(--brass-700);
+  --accent-bg:   var(--brass-50);
+  --link:        var(--azure-500);
+  --focus-ring:  var(--azure-500);
+
+  /* ----------------------------------------------------------------------
+     7. STICLĂ: mecanica sistemului
+     Trei straturi, în ordinea asta:
+       a) umplerea translucidă   --glass-fill
+       b) blurul din spate       --glass-blur
+       c) dunga speculară de 1px --glass-sheen   (singurul gradient permis)
+     plus conturul de 2px bleumarin, care nu dispare niciodată.
+     ---------------------------------------------------------------------- */
+  --glass-fill:      rgba(255, 255, 255, 0.62);
+  --glass-fill-soft: rgba(255, 255, 255, 0.52);  /* minimul care ține stone-500 peste AA */
+  --glass-fill-deep: rgba(255, 255, 255, 0.82);  /* sub text lung */
+  --glass-tint:      0.60;                        /* cât din pastel trece în sticlă */
+  --glass-blur:      saturate(170%) blur(20px);
+  --glass-blur-lg:   saturate(180%) blur(34px);
+
+  /* dunga speculară: se stinge la capete, ca lumina pe o muchie reală */
+  --glass-sheen: linear-gradient(90deg,
+                   rgba(255,255,255,0) 0%,
+                   rgba(255,255,255,0.95) 22%,
+                   rgba(255,255,255,0.95) 78%,
+                   rgba(255,255,255,0) 100%);
+
+  --stroke-color: var(--navy-900);
+  --stroke:      2px solid var(--stroke-color);
+  --stroke-thin: 1.5px solid var(--stroke-color);
+  --stroke-bold: 3px solid var(--stroke-color);
+
+  /* umbre moi: sticla plutește, nu stă lipită */
+  --sh-1: 0 1px 3px rgba(16,42,30,.08), 0 1px 2px rgba(16,42,30,.05);
+  --sh-2: 0 6px 20px -6px rgba(16,42,30,.18), 0 2px 6px rgba(16,42,30,.07);
+  --sh-3: 0 18px 44px -14px rgba(16,42,30,.24), 0 4px 12px rgba(16,42,30,.09);
+  --sh-0: none;
+
+  /* ----------------------------------------------------------------------
+     8. TIPOGRAFIE: 4 roluri, 3 familii
+     ---------------------------------------------------------------------- */
+  --font-primary:   "Poiret One", "PoiretTComma", "Century Gothic", "Questrial", "Avenir Next", sans-serif;
+  --font-secondary: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-accent:    var(--font-primary);   /* Poiret One, dar rărit: vezi .script */
+  --font-cta:       var(--font-secondary);
+  --font-mono:      ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --fs-xs:   0.75rem;    --fs-sm:   0.875rem;   --fs-base: 1.0625rem;
+  --fs-md:   1.3125rem;  --fs-lg:   1.625rem;   --fs-xl:   2.0625rem;
+  --fs-2xl:  2.5625rem;  --fs-3xl:  3.25rem;    --fs-4xl:  4rem;
+
+  --lh-tight: 1.1; --lh-heading: 1.18; --lh-snug: 1.4; --lh-body: 1.6; --lh-loose: 1.75;
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+  --poiret-stroke: 0.022em;
+  --ls-tight: 0.015em; --ls-snug: 0.005em; --ls-normal: 0; --ls-wide: 0.08em;
+  --measure: 60ch;
+
+  /* ----------------------------------------------------------------------
+     9. COLȚURI: scară Apple, curbă continuă
+     Sticla cere colțuri mai generoase decât o suprafață opacă: pe o muchie
+     strânsă, dunga speculară se frânge.
+     ---------------------------------------------------------------------- */
+  --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --r-xl: 20px; --r-2xl: 28px; --r-full: 999px;
+
+  /* 10. SPAȚIERE: grilă de 4px */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px; --sp-32: 128px;
+  --container: 1180px; --container-text: 720px; --gutter: var(--sp-6);
+
+  /* 11. MIȘCARE */
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-fast: 140ms; --dur-base: 240ms; --dur-slow: 380ms;
+}
+
+/* ==========================================================================
+   BAZĂ
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-regular);   /* Poiret One nu are decât 400 */
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+h4 { font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
+
+p { margin: 0; max-width: var(--measure); }
+a { color: var(--link); text-underline-offset: 0.18em; }
+/* La hover nimic nu se recolorează, nicăieri. Linkul e deja albastru și deja
+   subliniat în starea de repaus; sub el linia se îngroașă, atât.           */
+a:not(.btn):hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: var(--r-xs); }
+
+.eyebrow {
+  font-family: var(--font-secondary); font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide);
+  text-transform: uppercase; color: var(--text-muted);
+}
+.script { font-family: var(--font-accent); font-weight: var(--fw-regular);
+  letter-spacing: 0.14em; color: var(--accent-text); }
+
+/* ==========================================================================
+   STICLA
+   `.glass` e un strat, nu o componentă: se pune pe card, buton, panou.
+   ========================================================================== */
+.glass {
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: var(--stroke);
+  box-shadow: var(--sh-2);
+}
+/* dunga speculară: singurul gradient din sistem */
+.glass::before {
+  content: ""; position: absolute; top: 0; left: 9%; right: 9%; height: 1px;
+  background: var(--glass-sheen); pointer-events: none; border-radius: inherit;
+}
+.glass-soft { background: var(--glass-fill-soft); }
+.glass-deep { background: var(--glass-fill-deep); }
+.glass-lg   { -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg); }
+
+/* browser fără backdrop-filter: se compensează cu opacitate, nu se renunță */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass      { background: rgba(255, 255, 255, 0.92); }
+  .glass-soft { background: rgba(255, 255, 255, 0.86); }
+}
+
+/* ==========================================================================
+   COMPONENTE
+   ========================================================================== */
+
+/* --- Butoane ------------------------------------------------------------- */
+.btn {
+  position: relative;
+  font-family: var(--font-cta); font-size: var(--fs-base);
+  font-weight: var(--fw-semibold); letter-spacing: var(--ls-snug); line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--sp-2); padding: 14px var(--sp-6);
+  border: var(--stroke); border-radius: var(--r-full);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  color: var(--text); box-shadow: var(--sh-2);
+  cursor: pointer; text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+.btn::before {
+  content: ""; position: absolute; top: 0; left: 14%; right: 14%; height: 1px;
+  background: var(--glass-sheen); pointer-events: none;
+}
+.btn:hover  { transform: translateY(-2px); box-shadow: var(--sh-3); }
+.btn:active { transform: translateY(0) scale(0.975); box-shadow: var(--sh-1); }
+
+.btn-primary { background: var(--navy-700); color: #fff; }
+.btn-primary::before { left: 16%; right: 16%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 75%, rgba(255,255,255,0)); }
+.btn-primary:hover { background: var(--navy-500); }
+.btn-secondary { background: var(--glass-fill); color: var(--text); }
+.btn-accent { background: color-mix(in srgb, var(--p-butter) 88%, transparent); color: var(--on-pastel); }
+.btn-ghost { background: transparent; border-color: transparent; box-shadow: none;
+  color: var(--link); padding: 8px var(--sp-3);
+  -webkit-backdrop-filter: none; backdrop-filter: none; }
+.btn-ghost::before { display: none; }
+.btn-ghost:hover  { transform: none; box-shadow: none; text-decoration: underline; }
+.btn-ghost:active { transform: none; box-shadow: none; }
+
+.btn-sm    { font-size: var(--fs-sm); padding: 9px var(--sp-4); box-shadow: var(--sh-1); }
+.btn-sm:hover { box-shadow: var(--sh-2); }
+.btn-block { display: flex; width: 100%; padding: 20px var(--sp-6); font-size: var(--fs-md); }
+.btn-arrow { width: 44px; height: 44px; padding: 0; flex: none;
+  border-radius: var(--r-full); font-size: var(--fs-md); box-shadow: var(--sh-1); }
+.btn-arrow::before { left: 26%; right: 26%; }
+.btn-arrow.sm { width: 34px; height: 34px; font-size: var(--fs-base); }
+
+/* --- Navigație: sticlă subțire ------------------------------------------- */
+.nav { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.navlink {
+  font-size: var(--fs-sm); font-weight: var(--fw-medium); line-height: 1;
+  padding: 11px var(--sp-4);
+  border: var(--stroke-thin); border-radius: var(--r-full);
+  background: var(--glass-fill-soft);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  color: var(--text); text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+/* Aceeași stare ca la buton: obiectul se ridică, nimic nu se recolorează.
+   Fără o umbră, ridicarea de 2 px nu s-ar vedea, deci apare cea mai mică
+   dintre ele, doar cât să desprindă linkul de fundal.                      */
+.navlink:hover  { transform: translateY(-2px); box-shadow: var(--sh-1); }
+.navlink:active { transform: translateY(0) scale(0.975); box-shadow: none; }
+.navlink[aria-current="page"] { background: var(--navy-700); color: #fff; }
+
+/* --- Card ---------------------------------------------------------------- */
+.card {
+  container-type: inline-size;
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  border: var(--stroke); border-radius: var(--r-lg);
+  box-shadow: var(--sh-2); padding: var(--sp-6);
+}
+.card::before { content: ""; position: absolute; top: 0; left: 9%; right: 9%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.card-flat  { box-shadow: var(--sh-1); }
+.card-panel { border-radius: var(--r-2xl); box-shadow: var(--sh-3); padding: var(--sp-10);
+  background: var(--glass-fill-deep);
+  -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg); }
+
+/* --- Tag: opac. Prea mic pentru blur, prea mic pentru sheen -------------- */
+.tag {
+  display: inline-block; font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  line-height: 1; padding: 7px var(--sp-3);
+  border: var(--stroke-thin); border-radius: var(--r-full);
+  background: var(--surface); color: var(--text);
+}
+
+/* --- Rând de ofertă ------------------------------------------------------ */
+.offer {
+  position: relative;
+  display: flex; align-items: center; gap: var(--sp-5);
+  padding: var(--sp-5) var(--sp-6);
+  border: var(--stroke); border-radius: var(--r-lg); box-shadow: var(--sh-2);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.offer::before { content: ""; position: absolute; top: 0; left: 6%; right: 6%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.offer:hover { transform: translateY(-2px); box-shadow: var(--sh-3); }
+.offer-body { flex: 1; min-width: 0; }
+.offer-title { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
+.offer-desc  { font-size: var(--fs-sm); opacity: .78; margin-top: 2px; }
+.offer-price { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-snug);
+  font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer-stack { display: flex; flex-direction: column; }
+.offer-stack > .offer + .offer { margin-top: -14px; }
+.offer-stack > .offer:hover { z-index: 2; }
+
+/* --- Listă de progres ---------------------------------------------------- */
+.progress-list { display: flex; flex-direction: column; }
+.progress-row {
+  display: grid; grid-template-columns: 2.6em minmax(0, 1fr) 3.4em 150px;
+  align-items: center; gap: var(--sp-4); padding: var(--sp-4) 0;
+  border-bottom: 1.5px solid var(--stroke-color);
+}
+.progress-row:last-child { border-bottom: 0; }
+.progress-row .idx   { font-weight: var(--fw-semibold); font-variant-numeric: tabular-nums; opacity: .55; }
+.progress-row .label { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-base); letter-spacing: var(--ls-snug);
+  min-width: 0; overflow-wrap: break-word; }
+.progress-row .pct   { font-variant-numeric: tabular-nums; font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm); text-align: right; }
+
+/* card ingust: bara coboara sub eticheta in loc sa o striveasca */
+@container (max-width: 560px) {
+  .progress-row { grid-template-columns: 2.6em minmax(0, 1fr) 3.4em; row-gap: var(--sp-3); }
+  .progress-row .meter { grid-column: 2 / -1; }
+}
+
+/* bara: opacă. Un indicator citit dintr-o privire nu are voie să fie translucid */
+.meter { height: 20px; border: var(--stroke-thin); border-radius: var(--r-full);
+  background: var(--surface); overflow: hidden; }
+.meter > span { display: block; height: 100%; background: var(--p-sage);
+  border-right: 1.5px solid var(--stroke-color); }
+.meter > span.zero { border-right: 0; }
+
+/* --- Cerc de statistică -------------------------------------------------- */
+.stat { position: relative; width: 116px; height: 116px; flex: none;
+  border: var(--stroke); border-radius: var(--r-full);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; text-align: center; }
+.stat .num { font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-lg); letter-spacing: var(--ls-tight); font-variant-numeric: tabular-nums; }
+.stat .ico { font-size: var(--fs-md); line-height: 1; }
+.stat-label { font-size: var(--fs-sm); text-align: center; margin-top: var(--sp-2); }
+
+/* --- Bulă de dialog ------------------------------------------------------ */
+.bubble { position: relative; display: inline-block; max-width: 30ch;
+  padding: var(--sp-4) var(--sp-5); border: var(--stroke); border-radius: var(--r-xl);
+  background: var(--glass-fill-deep);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  font-size: var(--fs-sm); line-height: var(--lh-snug); }
+.bubble::before, .bubble::after {
+  content: ""; position: absolute; left: 34px; width: 0; height: 0; border-style: solid; }
+.bubble::before { bottom: -19px; border-width: 19px 15px 0 0;
+  border-color: var(--stroke-color) transparent transparent transparent; }
+.bubble::after  { bottom: -15px; border-width: 15px 11px 0 0;
+  border-color: var(--glass-fill-deep) transparent transparent transparent; }
+
+/* --- Chip de titlu ------------------------------------------------------- */
+.chip { position: relative; display: inline-block;
+  font-family: var(--font-primary); font-weight: var(--fw-regular);
+  font-size: var(--fs-xl); letter-spacing: var(--ls-tight); line-height: 1;
+  padding: 12px var(--sp-5); border: var(--stroke); border-radius: var(--r-lg);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  box-shadow: var(--sh-2); }
+.chip::before { content: ""; position: absolute; top: 0; left: 12%; right: 12%;
+  height: 1px; background: var(--glass-sheen); pointer-events: none; }
+.chip-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+
+/* --- Formular: opac. Câmpul e o gaură în pagină, nu o lentilă ------------ */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: var(--fs-xs); font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.field input, .field select, .field textarea {
+  font: inherit; font-size: var(--fs-base); color: var(--text);
+  background: var(--surface); border: var(--stroke); border-radius: var(--r-md);
+  box-shadow: inset 0 1px 3px rgba(16,42,30,.07);
+  padding: 12px var(--sp-4); width: 100%; }
+.field input:focus { outline: none; box-shadow: inset 0 1px 3px rgba(16,42,30,.07), 0 0 0 3px var(--focus-ring); }
+.field .hint { font-size: var(--fs-xs); color: var(--text-muted); }
+.field.err input { background: var(--p-blush); color: var(--navy-900); }
+.field.err .hint { color: var(--danger); font-weight: var(--fw-medium); }
+
+/* --- Bandă CTA ----------------------------------------------------------- */
+.ctaband { position: relative; background: var(--navy-700); color: #fff;
+  border: var(--stroke-bold); border-radius: var(--r-2xl); box-shadow: var(--sh-3);
+  padding: var(--sp-12); display: flex; flex-wrap: wrap; gap: var(--sp-8);
+  align-items: center; justify-content: space-between; overflow: hidden; }
+.ctaband::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45) 25%,
+              rgba(255,255,255,.45) 75%, rgba(255,255,255,0)); pointer-events: none; }
+.ctaband h3 { color: #fff; max-width: 16ch; }
+.ctaband .script { color: var(--brass-300); }
+.ctaband .btn { --stroke-color: rgba(255,255,255,.5); }
+.ctaband .btn-accent { --stroke-color: var(--navy-900); }
+.ctaband .btn-primary { background: #fff; color: var(--navy-700); --stroke-color: var(--navy-900); }
+.ctaband .btn-primary:hover { background: var(--p-butter); }
+.ctaband .btn-secondary { background: rgba(255,255,255,.14); color: #fff; }
+
+/* ==========================================================================
+   TENTE
+   Utilitare de umplere. Stau ULTIMELE, după toate componentele: `.chip` și
+   `.p-butter` au aceeași specificitate, deci câștigă cea scrisă mai jos.
+   Pe `.glass` tenta devine translucidă; singură, rămâne opacă.
+   ========================================================================== */
+.p-white, .p-indigo, .p-sage, .p-sky, .p-butter, .p-lilac, .p-blush {
+  --stroke-color: var(--navy-900);
+  color: var(--on-pastel);
+}
+.p-white      { background: #FFFFFF; }
+.p-indigo { background: var(--p-indigo); }
+.p-sage { background: var(--p-sage); }
+.p-sky        { background: var(--p-sky); }
+.p-butter     { background: var(--p-butter); }
+.p-lilac       { background: var(--p-lilac); }
+.p-blush      { background: var(--p-blush); }
+
+/* aceleași tente, translucide, când obiectul e de sticlă */
+.glass.p-white,      .btn.p-white,      .card.p-white,      .offer.p-white,      .chip.p-white,      .stat.p-white,      .bubble.p-white      { background: rgba(255,255,255,.72); }
+.glass.p-sage, .btn.p-sage, .card.p-sage, .offer.p-sage, .chip.p-sage, .stat.p-sage, .bubble.p-sage { background: color-mix(in srgb, var(--p-sage) 60%, rgba(255,255,255,.72)); }
+.glass.p-sky,        .btn.p-sky,        .card.p-sky,        .offer.p-sky,        .chip.p-sky,        .stat.p-sky, .bubble.p-sky { background: color-mix(in srgb, var(--p-sky) 60%, rgba(255,255,255,.72)); }
+.glass.p-butter,     .btn.p-butter,     .card.p-butter,     .offer.p-butter,     .chip.p-butter,     .stat.p-butter, .bubble.p-butter { background: color-mix(in srgb, var(--p-butter) 60%, rgba(255,255,255,.72)); }
+.glass.p-lilac,       .btn.p-lilac,       .card.p-lilac,       .offer.p-lilac,       .chip.p-lilac,       .stat.p-lilac, .bubble.p-lilac { background: color-mix(in srgb, var(--p-lilac) 60%, rgba(255,255,255,.72)); }
+.glass.p-blush,      .btn.p-blush,      .card.p-blush,      .offer.p-blush,      .chip.p-blush,      .stat.p-blush, .bubble.p-blush { background: color-mix(in srgb, var(--p-blush) 60%, rgba(255,255,255,.72)); }
+
+/* coada bulei ia exact umplerea bulei, altfel rămâne un triunghi de altă culoare */
+.bubble.p-white::after      { border-top-color: rgba(255,255,255,.72); }
+.bubble.p-sage::after { border-top-color: color-mix(in srgb, var(--p-sage) 60%, rgba(255,255,255,.72)); }
+.bubble.p-sky::after        { border-top-color: color-mix(in srgb, var(--p-sky) 60%, rgba(255,255,255,.72)); }
+.bubble.p-butter::after     { border-top-color: color-mix(in srgb, var(--p-butter) 60%, rgba(255,255,255,.72)); }
+.bubble.p-lilac::after       { border-top-color: color-mix(in srgb, var(--p-lilac) 60%, rgba(255,255,255,.72)); }
+.bubble.p-blush::after      { border-top-color: color-mix(in srgb, var(--p-blush) 60%, rgba(255,255,255,.72)); }
+
+.meter > span.p-sage, .meter > span.p-butter, .meter > span.p-blush,
+.meter > span.p-lilac, .meter > span.p-sky { border-right: 1.5px solid var(--navy-900); }
+
+@supports (corner-shape: superellipse(2.5)) {
+  .btn, .card, .offer, .chip, .field input, .tag, .navlink, .bubble, .glass {
+    corner-shape: superellipse(2.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .btn:hover, .offer:hover, .navlink:hover { transform: none; }
+}
+
+
+/* --------------------------------------------------------------------------
+   ț și Ț, peticul
+   Subsetul latin-ext pe care Google îl servește pentru Poiret One conține
+   ș și Ș, dar NU conține ț (U+021B) și Ț (U+021A). Fără peticul ăsta, cele
+   două litere cad pe fontul de sistem, pe macOS, Avenir Next și apar
+   vizibil mai groase și de altă formă decât restul cuvântului.
+   Fontul complet Poiret One (OFL) ARE cele două glife, construite din „t" plus
+   virgula U+0326. Le-am decupat de acolo: 708 de octeți, două glife, încorporate
+   ca date. Deci ț nu e un împrumut din alt font, e litera originală.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "PoiretTComma";
+  src: url(data:font/woff2;base64,d09GMgABAAAAAALEAA4AAAAABdgAAAJyAAEZ2wAAAAAAAAAAAAAAAAAAAAAAAAAAGhgbgRAcMAZgADgRCAqBbIFeATYCJAMaCxAABCAFgz4HIBvHBCgeB87ZLR4UFarJSfbEzi14ntbS92fmiDfAmxQR9yjELpXEwlQRKiDLLKuiSqpLMbx7EIzTTYDLf8mdi1M12QLB3J+HMMARHWORJZ0DrIZjA8/zYs+XQLlCBYDqTndKh49LLpck/+EIEAYABIVGAEGAIINNpOfOX7oWa7tb6rDerrYGLAbAdQkgtU5LA35AAMGg8KMIMpqikAGmKydoAPcqQVCZqxWKOIBCpQ4xzMESS/GHGo5X0pUOOGxUqRzDA+qA2ggsUe+BbGd0UQAP+DtzZvU8HqhSVaYfuSPBLOYTIADySPUCNg0oQAMWjQAWQ19gMAioMhdUqQsIBlAYBHGJAeADIAoYYDyYDcqBBQDEJd8c8Ufj8R1BiRA0wbfvRIcIEVQ9b0OsrcdaG5Qz52XfhdDBc+Y1H764VNFdceFlNac9OzeteGPfOlB+QM9evnhqOXM+voGV830TrqlIdE50dd3zqSGAxiursHB9jx7+YSCg4JIjqpdxFz9UJwJIyefll7d3xKb+9mv9E+Bx29wBAG9eHNv/f4n+ps4sBnwoAAQ+r932IONnIKDslV9Gd5YCYfw2LsXtoCMJ4CPDx2IeBAAAAD31zbrOBIDzwCBYzoMiyj3QTPQEDH0z4KG0gbf1UtNs5mjUpFuLnIysNrbRRhplFNtaWQ7bSo1yWjja2FZouGktzOY59nBnadcmq1FrNY2BoYfaNGk12QgjZOR8n2+323B7NKo3wi51HF0cOR12GaEp1Wik6YOK7F7NkdGuzi4tRhl+oCMfnWKOTVabZ8qzSJOGje4dOzmL9ZxuRq6Ubifi+k0JNBBybxkN) format("woff2");
+  unicode-range: U+021A-021B;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   GROSIMEA LUI POIRET ONE
+   Poiret One are o singură greutate și trăsături foarte subțiri. --poiret-stroke
+   îngroașă litera uniform, în em, deci se scalează cu mărimea. Se aplică și
+   peste glifele de petic, ca ț să rămână la aceeași grosime cu restul.
+   Peste 0.03em contraformele încep să se închidă.
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4,
+.chip, .offer-title, .offer-price, .stat .num, .ring .val, .avatar,
+.script, .rail-title, .sample-fraunces, .sample-cormorant, .scale-table .demo {
+  -webkit-text-stroke: var(--poiret-stroke) currentColor;
+  paint-order: stroke fill;
+}
+/* ce a coborât sub prag e Montserrat: nu se mai îngroașă */
+.progress-row .label, .sw-name, .brandmark, .person h4, .profile-name {
+  -webkit-text-stroke: 0;
+}
+
+/* --------------------------------------------------------------------------
+   PRAGUL LUI POIRET ONE, 26px
+   Poiret One are o singură greutate (400) și trăsături de păr. Sub 26px se
+   subțiază până la dispariție, mai ales peste sticlă. Tot ce cade sub prag
+   trece pe Montserrat 600: aceeași ierarhie, dar citibilă.
+   -------------------------------------------------------------------------- */
+.progress-row .label,
+.sw-name,
+.brandmark,
+.person h4,
+.profile-name {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-snug);
+}
+
+/* ── Cadrul manualului ──────────────────────────────────────────────────── */
+.shell{display:grid; grid-template-columns:250px minmax(0,1fr); gap:var(--sp-12);
+  max-width:1320px; margin:0 auto; padding:0 var(--sp-8) var(--sp-24);}
+
+.rail{position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto;
+  padding:var(--sp-10) 0 var(--sp-6); display:flex; flex-direction:column; gap:var(--sp-5);}
+.rail-title{font-family:var(--font-accent); letter-spacing:.14em; font-size:var(--fs-md);
+  color:var(--accent-text);}
+.rail nav{display:flex; flex-direction:column; gap:var(--sp-2);}
+.rail nav a{display:grid; grid-template-columns:2.1em 1fr; gap:var(--sp-2);
+  padding:9px var(--sp-4); text-decoration:none; color:var(--text); font-size:var(--fs-sm);
+  border:var(--stroke-thin); border-radius:var(--r-full);
+  background:var(--glass-fill-soft);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  transition:background 140ms var(--ease), transform 140ms var(--ease);}
+.rail nav a:hover{background:color-mix(in srgb,var(--p-sage) 75%,transparent);
+  color:var(--navy-900); transform:translateY(-1px);}
+.rail nav a b{font-weight:600; font-variant-numeric:tabular-nums; opacity:.55;}
+
+main{min-width:0; padding-top:var(--sp-10);}
+
+.masthead{display:grid; grid-template-columns:184px minmax(0,1fr); gap:var(--sp-10);
+  align-items:center; padding-bottom:var(--sp-12); border-bottom:var(--stroke-bold);}
+.masthead .logobox{position:relative; width:184px; border:var(--stroke);
+  border-radius:var(--r-2xl); box-shadow:var(--sh-3); background:rgba(255,255,255,.86);
+  -webkit-backdrop-filter:var(--glass-blur-lg); backdrop-filter:var(--glass-blur-lg);
+  padding:var(--sp-3);}
+.masthead .logobox::before{content:""; position:absolute; top:0; left:12%; right:12%;
+  height:1px; background:var(--glass-sheen); pointer-events:none;}
+.masthead img{width:100%; height:auto; display:block; border-radius:var(--r-lg);}
+.masthead h1{font-size:var(--fs-3xl); margin-bottom:var(--sp-3);}
+.masthead .lede{font-size:var(--fs-md); color:var(--text-secondary); line-height:1.5;}
+.meta{display:flex; flex-wrap:wrap; gap:var(--sp-2); margin-top:var(--sp-6);}
+
+.plate{padding-top:var(--sp-16); scroll-margin-top:var(--sp-5);}
+.plate-head{display:flex; align-items:baseline; gap:var(--sp-4); padding-bottom:var(--sp-4);
+  border-bottom:1.5px solid var(--stroke-color); margin-bottom:var(--sp-8);}
+.plate-num{font-size:var(--fs-xs); font-weight:600; letter-spacing:.12em;
+  color:var(--accent-text); font-variant-numeric:tabular-nums;}
+.plate h2{font-size:var(--fs-2xl); flex:1;}
+.plate-note{font-size:var(--fs-sm); color:var(--text-muted); max-width:26ch; text-align:right;}
+.intro{color:var(--text-secondary); margin-bottom:var(--sp-8); max-width:62ch;}
+.note{font-size:var(--fs-xs); color:var(--text-muted); line-height:1.5;}
+.note b{color:var(--text); font-weight:600;}
+code{font-family:var(--font-mono); font-size:.92em; white-space:nowrap;
+  color:var(--text-secondary); background:rgba(255,255,255,.6);
+  border:1px solid var(--border); border-radius:var(--r-xs); padding:1px 5px;}
+
+/* culori */
+.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(172px,1fr));
+  gap:var(--sp-5); margin-bottom:var(--sp-10);}
+.swatches.c3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.swatches.c4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.swatches.c5{grid-template-columns:repeat(5,minmax(0,1fr));}
+@media (max-width:1180px){.swatches.c3,.swatches.c4,.swatches.c5{grid-template-columns:repeat(auto-fill,minmax(172px,1fr));}}
+.sw{position:relative; border:var(--stroke); border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:var(--sh-2); background:var(--glass-fill-deep);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  display:flex; flex-direction:column;}
+.sw-chip{height:96px; border-bottom:var(--stroke); position:relative;}
+.sw-chip .star{position:absolute; top:9px; right:11px; font-size:var(--fs-sm);}
+.sw-body{padding:var(--sp-4); display:flex; flex-direction:column; gap:6px; flex:1;}
+.sw-name{font-family:var(--font-primary); font-weight:400; font-size:var(--fs-base); letter-spacing:.005em;}
+.sw-vals{font-family:var(--font-mono); font-size:12px; color:var(--text-secondary);
+  font-variant-numeric:tabular-nums; line-height:1.7;}
+.sw-use{font-size:var(--fs-xs); color:var(--text-muted); line-height:1.5; margin-top:auto; padding-top:6px;}
+.ratio{display:inline-block; align-self:flex-start; font-size:12px; font-weight:600;
+  line-height:1.5; font-variant-numeric:tabular-nums; border:1.5px solid var(--navy-900);
+  border-radius:var(--r-full); padding:1px 8px; color:var(--navy-900);}
+.ratio.pass{background:var(--p-sage);} .ratio.large{background:var(--p-butter);}
+
+.ramp{display:flex; border-radius:var(--r-md); overflow:hidden; border:var(--stroke);
+  box-shadow:var(--sh-2); margin-bottom:var(--sp-10);}
+.ramp div{flex:1; height:60px; display:flex; align-items:flex-end; justify-content:center;
+  padding-bottom:6px; font-size:12px; font-weight:600; font-variant-numeric:tabular-nums;}
+
+/* panouri de demonstrație */
+.demo-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:var(--sp-6); align-items:start;}
+.demo-panel{position:relative; border:var(--stroke); border-radius:var(--r-lg);
+  box-shadow:var(--sh-2); background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  padding:var(--sp-6); display:flex; flex-direction:column; gap:var(--sp-5);}
+.demo-panel::before{content:""; position:absolute; top:0; left:9%; right:9%; height:1px;
+  background:var(--glass-sheen); pointer-events:none;}
+.demo-panel > .eyebrow{margin-bottom:0;}
+.demo-panel.wide{grid-column:1/-1;}
+.btnrow{display:flex; flex-wrap:wrap; gap:var(--sp-4); align-items:center;}
+
+/* tipografie */
+.typerole{position:relative; border:var(--stroke); border-radius:var(--r-lg); box-shadow:var(--sh-2);
+  background:var(--glass-fill-deep);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  padding:var(--sp-6); margin-bottom:var(--sp-6);
+  display:grid; grid-template-columns:minmax(0,1fr) 232px; gap:var(--sp-8); align-items:start;}
+.typerole::before{content:""; position:absolute; top:0; left:9%; right:9%; height:1px;
+  background:var(--glass-sheen); pointer-events:none;}
+.typerole .spec{border-left:1.5px solid var(--border-strong); padding-left:var(--sp-6);
+  font-size:var(--fs-xs); line-height:1.9; color:var(--text-secondary); font-variant-numeric:tabular-nums;}
+.typerole .spec dt{font-weight:600; color:var(--text-muted); letter-spacing:.06em;
+  text-transform:uppercase; font-size:11px; margin-top:var(--sp-3);}
+.typerole .spec dt:first-child{margin-top:0;}
+.typerole .spec dd{margin:0; font-family:var(--font-mono); font-size:12px; color:var(--text);}
+.sample-fraunces{font-family:var(--font-primary); font-weight:400; font-size:var(--fs-2xl);
+  letter-spacing:.015em; line-height:1.15;}
+.sample-inter{font-size:var(--fs-base); line-height:1.6; color:var(--text-secondary);}
+.sample-cormorant{font-family:var(--font-accent); font-weight:400; letter-spacing:.14em;
+  font-size:var(--fs-xl); color:var(--accent-text); line-height:1.35;}
+.glyphs{font-size:var(--fs-sm); color:var(--text-muted); letter-spacing:.04em;
+  margin-top:var(--sp-3); word-break:break-word;}
+
+.scale-table{width:100%; border-collapse:collapse; font-size:var(--fs-sm);}
+.scale-table th{text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-muted); font-weight:600; padding:0 var(--sp-4) var(--sp-3) 0;
+  border-bottom:var(--stroke);}
+.scale-table td{padding:var(--sp-3) var(--sp-4); border-bottom:1px solid var(--border);
+  vertical-align:baseline; font-variant-numeric:tabular-nums; color:var(--text-secondary);}
+.scale-table td:first-child{font-family:var(--font-mono); font-size:12px; color:var(--text);
+  white-space:nowrap; padding-left:0;}
+.scale-table .demo{font-family:var(--font-primary); font-weight:400; color:var(--text);
+  letter-spacing:.015em; line-height:1.1; width:42%;}
+.tblwrap{overflow-x:auto;}
+
+/* colțuri, sticlă, spațiere */
+.radii{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:var(--sp-5);}
+.radbox{border:var(--stroke); background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  padding:var(--sp-4); border-radius:var(--r-lg); box-shadow:var(--sh-1);
+  display:flex; flex-direction:column; gap:var(--sp-3);}
+.radshape{height:72px; background:var(--p-sage); border:var(--stroke);}
+.radmeta{font-family:var(--font-mono); font-size:12px; color:var(--text); font-variant-numeric:tabular-nums;}
+.raduse{font-size:var(--fs-xs); color:var(--text-muted); line-height:1.45;}
+
+.glassdemo{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:var(--sp-5);}
+.glassdemo .box{position:relative; height:86px; border:var(--stroke); border-radius:var(--r-lg);
+  display:grid; place-items:center; font-family:var(--font-mono); font-size:12px;
+  color:var(--navy-900); text-align:center; padding:0 8px;
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);}
+.glassdemo .box::before{content:""; position:absolute; top:0; left:10%; right:10%; height:1px;
+  background:var(--glass-sheen); pointer-events:none;}
+.glassdemo .box.nosheen::before{display:none;}
+/* fâșie colorată sub demonstrația de sticlă, ca blurul să aibă ce refracta */
+.glassbed{position:relative; padding:var(--sp-6); border-radius:var(--r-xl);
+  border:1.5px dashed var(--border-strong); overflow:hidden;}
+.glassbed::after{content:""; position:absolute; inset:0; z-index:-1;}
+.glassbed .strip{position:absolute; inset:0; display:flex; z-index:-1;}
+.glassbed .strip span{flex:1;}
+
+.spacing{display:flex; flex-direction:column; gap:var(--sp-2);}
+.spacerow{display:grid; grid-template-columns:60px 1fr; gap:var(--sp-4); align-items:center;
+  font-family:var(--font-mono); font-size:12px; color:var(--text-secondary); font-variant-numeric:tabular-nums;}
+.spacebar{height:14px; background:var(--p-butter); border:1.5px solid var(--navy-900); border-radius:var(--r-xs);}
+
+/* profesori */
+.people{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:var(--sp-6);}
+.person{position:relative; border:var(--stroke); border-radius:var(--r-xl); box-shadow:var(--sh-2);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  padding:var(--sp-5); display:flex; flex-direction:column; gap:var(--sp-4); align-items:flex-start;}
+.person::before{content:""; position:absolute; top:0; left:9%; right:9%; height:1px;
+  background:var(--glass-sheen); pointer-events:none;}
+.person h4{font-size:var(--fs-md); letter-spacing:.005em;}
+.person .foot{display:flex; width:100%; align-items:center; justify-content:space-between; margin-top:auto;}
+.avatar{width:104px; height:104px; border-radius:var(--r-full); border:var(--stroke);
+  display:grid; place-items:center; font-family:var(--font-primary); font-weight:400;
+  font-size:var(--fs-lg); letter-spacing:.015em; flex:none;}
+
+/* panoul elevului */
+.dash{display:grid; grid-template-columns:260px minmax(0,1fr) 240px; gap:var(--sp-6); align-items:start;}
+.dashcol{display:flex; flex-direction:column; gap:var(--sp-4);}
+.ring{position:relative; border:var(--stroke); border-radius:var(--r-2xl); box-shadow:var(--sh-2);
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  padding:var(--sp-5); display:flex; flex-direction:column; align-items:center; gap:var(--sp-2);}
+.ring::before{content:""; position:absolute; top:0; left:12%; right:12%; height:1px;
+  background:var(--glass-sheen); pointer-events:none;}
+.ringwrap{position:relative; width:150px; height:150px;}
+.ringwrap .inner{position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:2px; text-align:center; padding:0 26px;}
+.ring .cap{font-size:var(--fs-xs); color:var(--text-muted); text-align:center;}
+.ring .val{font-family:var(--font-primary); font-weight:400; font-size:var(--fs-lg); letter-spacing:.015em;}
+.stats{display:flex; gap:var(--sp-5); justify-content:center; flex-wrap:wrap;}
+.statwrap{display:flex; flex-direction:column; align-items:center;}
+.bigpill{position:relative; border:var(--stroke); border-radius:var(--r-2xl);
+  padding:var(--sp-5) var(--sp-6); text-align:center; font-size:var(--fs-base); line-height:1.4;}
+.bigpill b{font-weight:700;}
+
+/* bare orizontale */
+.navbar,.footerbar{position:relative; display:flex; flex-wrap:wrap; gap:var(--sp-4);
+  align-items:center; justify-content:space-between; border:var(--stroke);
+  border-radius:var(--r-xl); box-shadow:var(--sh-2); padding:var(--sp-4) var(--sp-5);
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--glass-blur-lg); backdrop-filter:var(--glass-blur-lg);}
+.navbar::before,.footerbar::before{content:""; position:absolute; top:0; left:8%; right:8%;
+  height:1px; background:var(--glass-sheen); pointer-events:none;}
+.footerbar .center{font-size:var(--fs-xs); color:var(--text-muted); text-align:center;}
+.brandmark{display:flex; align-items:center; gap:var(--sp-3);
+  font-family:var(--font-primary); font-weight:400; font-size:var(--fs-md); letter-spacing:.015em;}
+.brandmark .seal{width:34px; height:34px; border-radius:var(--r-full); border:var(--stroke-thin);
+  display:grid; place-items:center; font-size:var(--fs-sm); background:var(--p-butter);
+  color:var(--navy-900);}
+
+/* reguli */
+.rules{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:var(--sp-6);}
+.rulecol{position:relative; border:var(--stroke); border-radius:var(--r-lg); box-shadow:var(--sh-2);
+  background:var(--glass-fill-deep);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  padding:var(--sp-6);}
+.rulecol::before{content:""; position:absolute; top:0; left:9%; right:9%; height:1px;
+  background:var(--glass-sheen); pointer-events:none;}
+.rulecol h4{font-size:var(--fs-lg); margin-bottom:var(--sp-5); display:flex; align-items:center; gap:var(--sp-3);}
+.mark{width:28px; height:28px; border-radius:var(--r-full); display:grid; place-items:center;
+  font-size:14px; font-weight:700; flex:none; font-family:var(--font-secondary);
+  border:1.5px solid var(--navy-900); color:var(--navy-900);}
+.mark.yes{background:var(--p-sage);} .mark.no{background:var(--p-blush);}
+.rulecol ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:var(--sp-3);}
+.rulecol li{font-size:var(--fs-sm); line-height:1.55; color:var(--text-secondary);
+  padding-left:var(--sp-4); border-left:1.5px solid var(--border-strong);}
+.rulecol li b{color:var(--text); font-weight:600;}
+
+.usage{margin-top:var(--sp-16); padding-top:var(--sp-8); border-top:var(--stroke-bold);}
+pre{position:relative; margin:var(--sp-5) 0 0; background:var(--glass-fill-deep);
+  -webkit-backdrop-filter:var(--glass-blur); backdrop-filter:var(--glass-blur);
+  border:var(--stroke); border-radius:var(--r-md); box-shadow:var(--sh-1);
+  padding:var(--sp-5); overflow-x:auto; font-family:var(--font-mono); font-size:var(--fs-xs);
+  line-height:1.7; color:var(--text-secondary);}
+pre b{color:var(--text); font-weight:600;}
+pre code{background:none; border:0; padding:0; white-space:inherit;}
+
+@media (max-width:1100px){ .dash{grid-template-columns:1fr;} }
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr; gap:var(--sp-8); padding:0 var(--sp-5) var(--sp-16);}
+  .rail{position:static; height:auto; padding-bottom:0;}
+  .rail nav{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  .masthead{grid-template-columns:1fr; gap:var(--sp-6);}
+  .masthead .logobox{width:140px;}
+  .masthead h1{font-size:var(--fs-2xl);}
+  .typerole{grid-template-columns:1fr;}
+  .typerole .spec{border-left:0; border-top:1.5px solid var(--border-strong);
+    padding-left:0; padding-top:var(--sp-4);}
+  .plate-note{display:none;}
+  .ctaband{padding:var(--sp-8);}
+}
+
+</style>
+
+
+
+
+<div class="shell">
+  <aside class="rail">
+    <div class="rail-title">Academia</div>
+    <nav>
+      <a href="#p1"><b>01</b> Sigla</a>
+      <a href="#p2"><b>02</b> Culori</a>
+      <a href="#p3"><b>03</b> Tente</a>
+      <a href="#p4"><b>04</b> Sticlă &amp; contur</a>
+      <a href="#p5"><b>05</b> Tipografie</a>
+      <a href="#p6"><b>06</b> Scara</a>
+      <a href="#p7"><b>07</b> Colțuri</a>
+      <a href="#p8"><b>08</b> Spațiere</a>
+      <a href="#p9"><b>09</b> Componente</a>
+      <a href="#p10"><b>10</b> Reguli</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header class="masthead">
+      <div class="logobox">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCALQAtADASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAgJBgcBBAUDAv/EAF4QAAEDAwIDBAMIDwUGAwQIBwEAAgMEBQYHEQgSIRMxQVEiYXEUGDJWgZHS0wkVFiNCUlNVV4KSk5SVoRdicrHRJDNDorLBNDh1GWNzsyVFVHaFwsPwNTY3dKPh8f/EABoBAQADAQEBAAAAAAAAAAAAAAADBAUCAQb/xAA3EQEAAgECAwQIBgEEAwEAAAAAAQIDBBESITEFE0FRFBUiUmFxkaEygbHR4fBiI0JTwSQz8TT/2gAMAwEAAhEDEQA/AJ/IiLkEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQETdEBERAREQEREBERAREQEREBERAREQEREBERAREQEREBE3RAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQcE7DdaryzXzDMX1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EREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERARNx5rjmb+MEHKLjcea5QEREBERAREQEREBERAREQERN0BFwXNHe4BA5p7iEHKIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiJuEBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFimouoeL6X4BWZfl1caS3UwA9Ec0kzz8GKNv4T3bdB7SSACVlaiHx4WbIX4phOX0VFJcLHYLm6e5UwG7BzGPs3yD8Q8j4y49B2nrVrRYK589cV52if7t+fR5ado3Z3jd14g9XKGG/Q1Nv0qxmqYJaSJ1I25XeoiPwXu7TaKHcbEAtJ693cVnVPpdfIow6fWPUCeo5djKZ6Nrd/MRim5fkXoaZ6pYZqph0F/wAPusVTGWgz0hcBPRvPfHLH3tI7t+494JCzfwXmbJel5rwxXbw2/fmNKUGT6iafa4WLBc5vEGVWDJxPFaL22kZSVVNUxRmUwVDI/QeHMa4tkaG9QQQt1jqN1iEGFPq81o8ryi4sutwt3bNtscUHYQUQlHK5zW8zi6QsHKXud3bhobzHf6ai6gY/pjpzcsxyWodFQ0MfNysAMkzydmRMB73uOwA+U9AVxbbJasUjn05eMnRlaLVOj+o2cZvWXimzfEqLHZ4IKOvpaamqXTSRwVIkLI6jcDlmAiDnAdNnt7itrDuXGSk47cNur0REXAIo5cQGr+dWvVHENHdIJqRmXXyXt6qqqKdtQ2iptyA4td0G4bI8kjo2Pp1cFIS3RVMFqpoKysNZURxNbLUmMRmZwGxfyt6N3PXYd26myYLY6Vvb/d089vM3dlERQgiIgL8SyshidJI4NY0Euc47AAdSSv2unc6GO52ert0znNjqYXwvLe8BzS0kfIU+YxrTzIrhl2Jty6oc2K23SQ1Frp+XZzaT4MT3nxdIB2m34Ie1vgSdb6ncStqxnMxp3p9YKvO88kJjFotzvvVM7x7eUb8u3eWju/CLVpbL9c8swbQXH9BcapaqLVKJzcYlbEwh0EUW0cVTC4jZxnjMZY4dG7vJ2LVIHh/0JsejGCCLaKuyava2S7XY+k6WQ9TGxx6iJpJ2H4R3cep6ac6Wmnr3ueN9/wAMefxn4fq8336PIsuBa/ZdGLjqLq8/FhJ6QseGUULBAD+C6qma9ziO47Db1lZDJpzqPj9OanENZb5XVDPSFFllNT11NMQPgufFHHKwH8Zrjt37HuW1tgvJybJLHiWLVuQ5Hc4LdbKOMyz1U7uVrGgf1J7gB1JIAVSdRe87REfKIh7tDHNMNQhnlgr211tdab/Z66S13m1ukEnuWpZsTyv2HPG5pa9j9hu13mCs6UfOGZt2yWvz7WKuoJrdQ5td2VNrpJxyv9xwR9lHKR5vH/Tv1BCkGvNTjjHlmkeH284/KeTyOgiIoHoiIgIiICItc61atWvRzSypymup3VtY6RtLbrfGdn1lS/4EY8duhLiB0AO3XZd46WyWilY5yNjItR6KZNqhe3Xyj1QFobcab3JOIbbTuibROniMrqR5c48z429kS7/3m3XbdbcTJScdprIIiLgEUdrbrRnGpPFJVYFpnDa48Qxp/LkF+qYHTmWQEgwQbODQeYFoPX4L3dwAdIgb7DfvUubDbDMRfrMb/XzN3KIiiBdauuFFbLfNX3CqgpaWBhklnnkEbI2jvc5ziAB6yuyol1lsunFHxF3+x3itqafSvB673FLboXlgvVe0nmEhHexpB9jdtti8kT4MPebzadqxzmf74y8mdmzjxG4xfbpNbNMsaybUKphdySVFhpA2ijd5Oq5nMj+YlejHl2t88fbR6OWWmH5Ksyxgl+Xs6dzQf1itjWezWqxWWntFnt1Nb6GmYI4aWljEcUbR4NaOgXe2S2THv7NOXxmd/tsNQVOs+Q4rC6o1H0iymy0LBvJdLQ+K9UkTfFz+w2la31mNdR2vNsznNrdhejNXQZDW1NOK2vvRDpKK0Uu+3NIBymSZx9FsO7evVxAC63E3ra/SPTaKlx8CozG+PNHaKZredzHHYOn5fwuXmaGj8J7mju3WqrHw2Z9pppLb9Q8DyGsj1Vp2Pr7tSSymWlu4ee0fRSM7nObuQHeL+bu3aRew6bDbF3uX2Zmdq+U/GfHaPPfq8mZTEp2yspImzy9rIGAOk5eXmO3U7eG/kvqtcaK6t2fWPS+myi3Rmkq2P9y3C3SHd9FUtA54zv1I6gtPiCPHcDY6zcmO2O00vG0w6ERFwCIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAsK1J1HtunOPU9VNR1F0u1wqWUFps1Jt29xqn/BiZv0aPFzz0a0EnwBzQnYE+SjVYax+oH2R/JHXHd9FgFkjpbdCerWVFSGmSYD8YtLm7+QCsafFGSbWt0rG8/p+svJb6xOPKW43FLmMtuddpSZJYrcxwgp9+6JjnHmfy9xeduY7nZo2A9aqpaetpJaWqgjnglYWSRSNDmvaehBB6EHyK+yKvM7zu9RtzLg9xCovxyrSm/XTTfI2kuZPZ5He5i71xbgtB8mOA/ulYodcNbNALvSWjX/HYMkxuaUQQ5fYmjm38BIzZoc7YE8pDHHrtzKXq15rpbbFc+HHNqbIo4XUAs9TM8ydzHsjL43g+Dg9rSD57LRwa2ck1xaiOOvTn1j5T1/6czHkyi15RaL7hMGV4/VC7Wypp/dVNLRDtDUM2JAYPFx225Tsd+h2KiBqrqZRaocR9isdzx7Jm4RghbecgoftfvNJVk/eI5Iubu3LABudy9w2WTcHt0uOIcD90yrJi9tqpKquuNI2ToPc8bAXhu/g6Vku3rJ818eFHT29X3EJdVc0bGfuhu78gjp+bmdVTBzhDNN5MjJkMbPBzi89QwCzXBTR3zXmd+GeGJ+M/wAb/m8332bf05ya2WPEq/I8/dJil3vVxfVVn3ROZRbyOa0MhiL3+myKIRxgjvLHHbqtj3XJMfsVqZdL3e7fbKF5AbVVtSyCMk9QOZ5A6qJ2LwwcSXGrcMxq6dtbgWn/APsVrikbzRVdaXb9pseh9Jpf7GQ+a71cIeInjdbay1tdgemn32oaRzQ1tyc7YA+Dg1zCPZE7wcoL6KOL2522je3w36R8+j3iSv8Ad1J9rxXe6I/cxZ2nbFwDOXbfm37ttuu/csDq9c9JIKC61UWoNgqm2uKSWpbS1jJS3kBJaNjsXnbYNB3J7lobUmuv/EjxGVGiGOXGqt2B40Wy5VXUj9nVcu//AIYHuOxHKB3cwe4g8jQujq/b7JkOdYfwgaYUUFrsvaR1+RmibsKelj9MMce8yEbPLj1LnRb96YtBWZrXJPOY3n/GvXefjMdI+RxeTs6MWbL8ix3POJKaK2wZxlsU8WLQXaQNhpaZo5Yhu49zuRo9YjB7nlSB0odqDa9IKOo1judtkyJrZJqyopjGyKOPmJaHObszdrdt3DZvzbnQ3EJa7fqJqzphw1Y/TQxW+GVt2urImj/Y6KFhYxgP4JLBIPlZ5rv8VOS3G9yYtw3YM4RXfK5Y2VnZjpSUDT3O27geRxP9yJw/CU+XHOqtSOUcXPp+Gsco5+W36POiS1qybHb7b319jvluudJG4sfUUVSyaNpA3IL2kgEDv69EtGTY9kFPJPYL5brrFE/s5JKGpZO1j/xSWEgH1d6jPr1V0+nGh2L8OWllMynveUFlmpIo+j46YkNnnft4yEkF3jzSHwXa1cvNDw88M9h0m07fDSZHd2C122YERFm+3umtkd+D8Inm8C4H8FVK6LjivDPO0zt8o8Z/vhLrdJyOsppnObFMyRzTyuDCHFp8jt3L6CVhaXA9FADV60XjTDhrxbT3EbvV2F9/rRG2mZ94rL16O9RW10p9KKMuczli33awjnO45G5hqTXZrprwt4dp/h+UXO1XS4Pp7PZKWBn/ANI3Z7nAyzSPd6VNDu88rG+mA5gcW7lok9W8UUmt/wAUzEcvCPF5xJoNe1ziAeo7x5Lk9y11pbjNo0swbH9Om3CStu76eWqqZ5C6SSrmBaaidzjudi+RoG57i0DuWxT3LOvERaYid4dIM6X4pHxDcYupWoN2uV0o6KwTigs9Vbao089LI1xjifG4Aj0WRSO2ILSZTuCFJeG0a6WKL3PQ5PiWVQg+jJe6KW31O39+SmLo3H1iNu609wXUrcfvOrWH1oDLtbsoeZmOGzjGQ5rHewljvnUsVp9qZZjPwR+GsREfLaHNejUlbJxK1gMNvodLrQD0M89XXVxA8wwRxAn1ErwY+HWoy7IqW+a4Z7cM8fTPEtPZWQigtMDx3H3OwkyEebz1677re0krY2EuIGwJ6nZQxbxIZ3nXHZjmE4NXR0+EiudC4tga9t1hjY/t6jncN+TeNwYWED0Qeu6j0kZs3F3O1eGJmZ+Hz6/R7O3imVFHT0NGyGJjIYY2hrGNAa1jQOgAHQAAfIAvJsua4fkdyqbfj+UWe6VdLuJ4KKsjmfFsdjzBpJHXp7eii/rXnVRqlxAs0JoMp+57EbXG2qy64wz9nNU77EUcW3pOJ5mgtaCSXHcEM2Pu5dd7RpJiTtT6HGY8esuO2uaxYhYjT9jNcKqqewmWSP4TWHsmcrX+mQ2R7gCWhcRo52rWZ9u3SPn03+f6czdJoVdM6odAJmGVvwo+Ycw9o7wv2JGF5bv1A3IKg3ZnZBpXwq5JqNJkAteSXphqa/KZoG1ddda+XfsqOja/o2FjiQZTvuRIWN5Whyzyw3Gbhh4Oq3Ps0qKi7ZxfC2rqRcJ3yyVFbK09jTucSTyxs3LtvKTbvC6toJ/2W358MfGfH8oecSR9+zPEcWdA3JcmtFndUHlhbX1ccBlP90OIJ+Raj4gNWMtwq76e2PTqip7neMkvDYnU7oe27WkYGmTl2Pog87Tz+ABK11pZh9zqcVuGTVczMw1dyyndHWXuoYJ6PHoJm7CPtOrG8jXb9jGeZzgGbBoLl62WY7plbNIr1nuXG4VFlxK2jGsdqKevmpahzKdvYudG+J7d3zVG7dzuC2Jp7l3jwY8WaKz7Xh856Rt8N+nm95zG6UocNtuvyheLkWZYniNE2rynJLVZYHHZslwqmQBx8m8xG/yKKGmmQ3Ph14G6nUjMqqtueSZFM2poKGvqZJXF8jeWmiPMSQOUOldt12O3fsvTwrA6TTfTm6cSXEHI6/5s6m93tZcAH/a4O/3VNAw7tZK4ua3oNmbho22JPNtBFJtvbeN+GNutp+Hy83m6U9ovtmyC1R3OxXSkuVFKCY6mjlbLG/bodnNJG4PQjwUSclyCn1Q4xbhkFbTyXHEdLQ2moqGM7i53uV3LHEwdxd2gA9XZAnoSsiwjUrJMf4Scv15zS12Gx1V4ZJcbdRW2mMPaEtEVM6Uuce0e93JsdgSxoJ336d7hd0prMb0ksmR5kxsNZN2l5jgkcHET1DfTq5nd3a9kQxo/4bC/8J7tpMeP0WuS9uv4Y/7+kcvzOsxDc+J0EGD4G+oyW40kVbM99yu9wkkEcTqiU80juZ2wDG9GN37mMaF7VgyfHMqtrrhjN9t14pGu5DPQVDJ2B3kS0kb7bHb1hQ8osotfEZrfcr/ldwfVaaYxVmnsmLUzXTy36rb17Z9Ozd0je53pANAcxu4HOTInTm3PtebXy5XuCG3X/IhFWNssGzm2+hp2iCBj3M9DtPScXEHbclrdxHuq2o0/dcrz7XWY8t/D+9Oj2J3bQWm+I7US54VplFY8Sa6bNMoqBZrHTxn0+1k6OlHkGNO+/g4tW4ZpGRQukke1jQCS5x2AAHeT5KNOks/9tPFDlWsFY1z7DjG+O4zG8ejzEc1RUgfjODgAfAPA8F5paRvOW8b1rz+c+EfnP23J8mf6A4dhGm+m0eCYzfbZdbtQvL73NTVDJJZKw9JHSAHmaARytB7g0Dv3Wwr/AJZjGKwwTZNkNss8c7uSF9fUsgErvxW8xHMevcFo/UbIYZOOfSXGMc5ftxDDX1V2fCAC2gfCQ2OQjvaXs5wD3ENPisHxSlfxC8cF0za5wvkwzTqQ261QTsPLPXcx3k5T4hzTJ+rCpp01su+fLPKY4p+u0R+c9Pg83iOUJWXjJcex6yfbi/3ugtdv3A91107YItz3DmcQNz5Lu0lZS19DDW0U7J6eZgkiljO7XtI3DgfEEeKiDnFfFxA8c+PaZRxmrwvDO0u105hzRVlQw8pB8HNDyyL1/fVLGnvFCcmlx2N5dWQUzaqRrWHljjc4tbzHuBJa/YeIafJV9Rp+5rTefamN9vKPD93sTu9RaFxnbQTNczpsgtdwOIZBeZcgor3QUklXHSyTNaJqepZEHPi2e3dj+UsLXbEgjZb5c4NG5XnRXuyz3N1vhu1BJWM6OgZUMMjfUWg7hRY8k1ia7bxPV61nes1rNTaNmL6bRXYUlc5rLhk76WaigoqbmBkED5GtdLO9oLW8gIbzcznDYA7Tra2jtVnqK+4VEdLS08T5pppDs2NjQXOcT5AAn5F992dXeXifBR04iL3edQsktnDlgtUWXG+NFVkVfH1FstgIJ5/J0h6BviNh+GpMOOM14pHKPGfKPGXk8mCaJ2St4heJe68QuTU0n3N2ac0OLUc46Exk8smx/E5i8/8AvJP7imTy+jt3LxcQxaz4VhNsxXH6MUttt0DaeniHeGjxcfFxO5J8SSV7a61eo7++8RtWOUR5RH95kRsiTh0R0u+ya5Fh9A0w2TOLX9t2Uw6MZUtDnlwHcPSZUftqVlwudvtNuluF0rqeipIW80tRUytijjHm5ziAB7VFXJaiG/fZXcWZSPaW43jUstfID6MPNHMRzHw/38ff+MFjVrye2cRmttyyvMKySr06xurdTY/iVM11RJeqlvXt5Kdm5kb3O9IBo5mt3ADyb+p085uDLadoikTP6R+cxs5iduSYdjyfHcntv2wxy+W+70nMWe6KCds8fMPDmaSN+o6esLvxVlLO0mCdkoB23jcHdfLooeazZBf8Qx6txukqIbDm+p9dG2SCneC2w2mCJsAJdH3ycgIcWb7ue9rN+Vu/kajW3MMS02wLRfTO8T4dV5FVijo7LSRhtfUU+x7eur6gHmjcT6RjZ3DmaXHlIbXx9n8fD7W3F0+UdZ/vlL2bbJl3+tmgxyufb56OOuELxS+7JOSIzcp5A8+XNtvt123WC6K/2s0umE9XrXcLRNe3VUk8bqHsxHDTco5Q9zNmHYh53Hc0jck7rRnENYKCmwDTXhYwk9rV32th7aWT05IqaBxdJUP368znl7yfHkeFva92m2OteP6OWQGK3Po2NrWMd1htkPKwsJHjK4Ni9bTKfwSuLYYx4Y3/AN079Oe0eP5+XwexO8vawrUOkzyB1ysdmugschcaO81DI44K5rXcpfE3n7TkJ3LXOYA4DcdNt8sq62koKOWrrqmKmp4m80k0zwxjB5lx2AHtWkeGHM6G68OcVuqpIaepxKeosdeT6LWe53Hlf6mmPlPq2d5LU+M0F14vNWq7LMnlrIdIrDWGntVlD3Rsu8zf+JLttzDuLvIOawbemV7Gj9u/H7Na9Z6/KI+Mm6VWOagYPl9XPTYrl1kvU0AJljt9bHO5gB2JIaT036b9yyNRgwTOZdR+KmpxzAsbxqjwLAGOpzdI6H78+oe10RipntLWxsPpjbYgtjJ7y3aSFmu1Fe7PFcrbOJ6SXfspmggSAEt3G/eNwdj3EbEdCq+owThtwz5b/XzInd30RFA9EREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQcEbjZRwyqnfotxaVOrVdA/7isuoIbZe7gxpLbVWRbCGebb4MLwA0v7mkknbpvJBfKopoKumkpqqFk0MjSx8cjeZr2kbEEHoQR4FS4cvdzPLeJjaRxBVU1VSxVNNURTQytD45Y3hzXtI3BaR0II8QvqXNA3JAWrhoVjVrrHz4Rfcnwhr3F7qXH7iY6TmPXcUsrZIW/qsC7v9nWYSMEVTrTmLoh0+80tuikI9bxTb/KNk4KT0t9f7Izi6Xe12Wzz3W73GloKGBpfLVVUrYoo2jxc5xAAUdsvlvvFCI8SxT3fadLO2bJdsjkjMUl7DHAiCiY4bmLmALpiA07DbcDY7JpNCcEddYrrk8d0zKvheJIp8or5Lg2Jw7iyF/3lh9bWBbKjiZE0NY0NaBsAO4DyC7x5a4Zi+PnaPHyeTG7U2sWn1ZV8ImSaeaeWyOGUWkUduoIPQBYwtPZN38XNaR17yevesPs0uY5Lw5WzT3BMUyHGXUtgbQ11ZeqN9A6J7IOU08Af1fJJIOUygcjGlzty7lCkYmyU1Fq14Z57Tv8AmbIv8PVhyOycOdo08tuMX/G77NNPJkNzuFG+mFI50pD3QucPv0ro2sbGWczWjZzj6Ia7rcPuO5Zgend/wO24ZdrPlNXfquSqutbRubRU9OXBsc7JndJ9ogORjSSXH0uUblSpTZSZNZa/Hv8A7p3n5kQiVolZs60oxrLcEtun1+qczuOQ1EsN8r4D9rZYHbCKrmqt9nta3mcY2+m5xIAHMSONMcJyLSXiO1JuNdieTZNeL02nNlu4pyYK1r93zunqfgU5MvKXh22zRsxrtmgy22RdX197TeZj8fX7ft0NkU9MseyPAOIzU3I83sl9yDLrw6nbaaujoZPc1ZTuZzOZFNsY4WteGMIkcC1sbe/x6uI4tmWH8Z+X5znWMX3IbjcLTC2y1trony0plkDBNAyU7MgDOURgyFvoNLj1d1lrtudyudl5OuvM2mY/FERPyjbp5dDZFatxDJse41LHqXl+N3q/tnx+djKiy0b6uKjr3SFracd3IxsLi1sj+UOJe4kbnbx9NcJyvW3ixvGsGpuP1dusuOvFFj1rrYntje5pPK8BwHaNbuZC4DZz3t26NCmCQCOq4DQPP511HaF4rMRHPh4d/KPh8zZGo6VXjUTjsuubZzbJxjOI0tLTWCGdh7KsmeztDKPBzWPc8kfjBgPwV5OaW26QfZFLLluXWO9VON2ywOFhlorfNVxyVp3Dmfe2nlk3e8jm27mHfbqpV7AIQCd+q5jXXienLh4Y+EPOFh+G2e5ur67K8lpRTXi4tbGyj5w8W+lYSY6cOHQv3cXvcOhe4gEta1Zii/EkrImOfI4Na0bkk7ADzVKZ3dNFag6Q5hb9X2ayaNXK30WUSQClu9oufM2jvUI2253N6xygAAO8dm9Rsd/Vt2f671bDS1WgcVFVDoaifKqb3Lv5gsY6Tb9Tdfi9cSWFDIpsYwG23rUS/wAR5ZKPGKcTxQnf/i1LiImDzPMV9oL/AMRl6j7alwDBsYjPcy9XuasmA/vNp4g3f2PV+e84YjNWOXSbTtO31jf7ueXg+smAZrm0DnauZRRttGxL8Yx0SQUco8qqoeRLO3zYOzYfEOHRas4ebFT6g8RGb66w0UUGPQH7m8XgjiEcYpoQ1j5I2jo1uzQBt09N48F9tSL3r3k9+bopb79g5ut7p3Nuk9joqsSWahf0dPLJJKWsLhu1jNuZ252271svEsI1R0/wa2YrjdzwF9tttO2mgiNqq6cua3vLnCof6Tju4nY7klS8U4cVvaje3KNvCPH69PludWuNKIm6R646qtz603WKrv18+2dqukNsnq466mdzkMjfDG7Z7S7YsOx6+KxXJ7PlfEzxYW7GL7jV3smnWI/7ZVMrYXROrJXAHlce7nf0ZygksYJNyHEgSvxyoyqohlZlVstlFOxwEbrbWvqI5m7fC2fGxzDv02O/tXuiNoIIHd3de5RV11qZJy7e1ttv5ctt4/J7ty2Rd4jrFXVWtmjkdzstdJp5a7hJU3B1voZKiKKZnL2LZI4muIbs0Nb022c4Lz9fMOzbUFmJaiz45dprFYcgp6l2NRwF9U638wMtVJANyZXFo+9dXNj23HMXgSzIB7/6JsOXZeY9fanBtH4YmPrvv+fN5NWrrhmFRm9nGPaaU9yhNWOznv0tBNSQWyA/DeztWMMk+x2ZG0EBxDnkAbHV3FBp1dK3BNNsZsNiuVXhNqvdO280dqp31M0dK0NYx3Zs3e8BpkBIBO7gVKINAO/Xf1ndc96h0+onBkjJSOj2Y3jZFXWmw3e/6kaXZtkliuseCWi9l89rgon1ElNGIwYaiogja5455GhnLseRgAOxeQOvxTWHMNStFqO5QWO9R2OC8Ur3WxtO81fuY8wlrJYW7uG27Q2PYua0uc4AnZssC0Hb1d2ycg2AHTZS49dbHbHaI/B0+u/1JjfkiXxEYvk2oGgsNTjWL3d2LWSsojQWSKmeyqq6aM8stSacgODQzlZHGQHbGR5A3bttXKqq4as6cVOK4A+vtdtuNE+Oqu9RSS0nZRlhDaeJsjWu7Rx5WucBsxnP15i0LcHKNgNu5NthsP6qOdVaa1rt+GZmPz2/Y2Rn4dr3Saa8P1uwC+YlkVLmNukqIqu009omfLVSOme5r2ShvZOjc0t2kLw0AdSAFuzC7JdKYV1/yVkTb7dHtkmhifzx0cTQRFTMd+EGAuJd+E973DYEAZWGgefzr9LnPmnNe15jnM7yRGzFs5s12yKyxWOhlZBRVTy24S8xD3QAb9k0Afhu5WuPgwv26kKOuieSZVpFoPX4XdNMcvued01zrJvcFHbJewrnyyczJhVbdiIjuAXF24DegPRSzXQvF3ttgsdZerxWRUdvo4XT1NRM7lZFG0cznOPkACV7jz8NJxzG8TMT9CYaB0o0ez2w0uZarZtWU1VqrktJKyFrHB0NsbyHsoGO7ujhGCR0AY0AnYk+Bo3bMwxXhgpcKbYL5iV5LquryfJLvD2LaIGRzpp4nEnt5jGAGObuxu3M4+iGu2jTZJqvqBTsrcPt1swzH5xzQXPIqZ9TX1LD3SMo2uY2FpHUdq/m2I3YFobVa25FqFqdRaD43qXluS3uocJsouAnjpbfaaIfDjNPTtax0jtwOV5dt6I73Ha/jvfUWmmSYjpM/CK8vltHlv1c9HY4aslxq2UGWZ5bra+uvmU3D3Jj+M24iWrZbqb71AH9fvLN9y6WUtb6BcSSeso8JxyustvqrhfJ4qm/XWY1dymhB7MSbBrYo9+vZRsa1jd+p2Lj1cV98OwjFcFxinseK2SjtlHFGxnLTxNY6UtGwdI4Dd7vEuO5JJWRKjq88Zsk3r0n9PB1WNoag4nW547hiyUacirN57NnMKLf3QafnHbdly9ebk37uu3Nt12Wp9NMI4R7noRZZa1uGCrNHG6urbjXspblFU8o7XtJC9ssbw/m6DbbYbdFLVzebvXgV+CYVdLkbjc8QsFbWHvqam3wyyH9ZzSV1i1U0xd1zjnvvHKfz/6Nue6NtryrNbTfxj3Dvm9VqnbCHxyU9+jdUUlp9Elrhdxyh4BAAhPaOI8R3rLtJKjEtLrVXT6gSXi1Zpeaj3TfrzktIYm1lR5R1DOaDsW9zGtf0HeASt/09JTUlPHT0sEcMMY5WRxtDWtHkAOgX0LGnw6HvHmmTU8deHbr1nxn5/8AwiGHz6t6WU9H7qm1JxGOEDftHXinA2/bWr8t4nbRWiTHtE7PXaj5RL6EQtUD32+mcenPPUbBvKO/Zp6+Jb3rdNRiWLVcnaVWN2id+/NzS0UTjv57lq9Kno6akgbBSwRQRN7o4mhjR8g6KOl8VZ3msz+fL7c/vBzR40x0CyPGtOs6vuVXeK4amZpRVDK24A7x0rpI3BkLHfihzgXEDb0WgdGhdXh+yO36acO1qwa9YnkdJllqbPFXWmGzzOlmk7V7udsob2Toy0giQvDQPHopML88jfX86kvrb5YtXJz3mJ8ukbRHy2NkQ9B8PyPV7X698Q2pVjqbc2lkFFjdqq43NEDWDYSBrwCQwHo7Ybve9w7gu9DHdLL9kIy/Mcuxi/1zYbLDRYnHRW+WeOpa5rA8RyAdmx2/aAl7mhvO8kgKVwYAd/8AMoWg/wD/AFSX7Qta1p4eU14Yjyjl0NkU8Zx7JsX4zsi1D1MsV5udfX2SBlidaKGWsp4i7pNSRva3lY6MAMDpCwODnvJAcdvnh1/zzTzWPO8w1MoMor628VL4aSxW6kkrmNp4miWj9zOjYWvbs+eF2xHI/YuGzi5Sx5RvuuCweG4+VczrZt+KvhEflHl5PNkK8J021DdwvZ3ZLDSVsGQ5Yay83WpdA+BjXvY4x26m7RrTI9/wXygcjQ5wBJ2WzdLYaqt4abBp5g1lvVo9y2cQXSvuFFLQuhqHMJmhj7RrS6Z8pcC9oLWAl3NzcoUh+VchoHt9Z3TLrr5YmLR1nf8A6/8Aj2IiEROGXGL5a9AW6dQ49eLHfKy5VL8orqqjkpvccfN2Yjie8DtJXxta1hYXBgc55IIaHS0oqSmoLfDRUcEcFPDG2KKKMbNYxoAa0DwAAAX2DQD/AP7X6UOpzznyTkmOczuRG0bCIigeiIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICjpxTwZBdIcRx+orrna9O624Obl1ztjHPlhgDQY2P5AXNheeYOfsQDtzdBsZFrjYb77dVNgy91eLxG+xMbtI43qnw4af4pS4/g+R2NtHG3aG249G+umld644Wue9583dd+8rvvyPVfUVppMUx6bALJKNn33IomPuL2+dNQgkMPk+cjbf/dlbbipaeAuMEEcRcd3cjQ3f27L6bDyC9tlp1iN585nf9vu8Yvg+AY7gVlmo7JBM+oq5fdNfcayUz1VfOe+aeU9XvPzAdGgDospRFDa02neXpsiIvAREQEREBERAREQEREBYpqNitTmWAVFipX0vaOqKap7KrB7GoEM8cxhk2BIY/s+UkA7A9x7jlaL2J2neBqDLGa85bSyY/jVNj2C0s45Ki/TVzrhVxtPf7mhbG1od37Oe7p37A7Fe5pJo9iukGJy2mwMmqauqk90XC61juepr5uu75HfKdmjoNz3kknYaKTvr8Hdxyj4ePzNhERRAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z" alt="Sigla Academia. Studium Generale by Denisa: cunună de lauri, tocă și cărți în bleumarin.">
+      </div>
+      <div>
+        <div class="eyebrow">Manual de brand · v4.0</div>
+        <h1>Academia</h1>
+        <p class="lede"><span class="script">Studium Generale by Denisa</span>, sistemul vizual complet pentru site: culori, tente, sticlă, tipografie, colțuri, spațiere și componente.</p>
+        <div class="meta">
+          <span class="tag p-butter">Sursa culorilor: logo.jpg</span>
+          <span class="tag p-sky">Sursa componentelor: inspo1 · inspo2</span>
+          <span class="tag p-lilac">Temă unică: deschisă</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 01 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p1">
+      <div class="plate-head">
+        <span class="plate-num">01</span>
+        <h2>Sigla</h2>
+        <p class="plate-note">Cununa, toca și cărțile formează un tot. Nu se separă.</p>
+      </div>
+      <p class="intro"><i>Studium generale</i> era numele medieval al școlii deschise oricui venea să învețe, indiferent de unde. Blazonul spune exact asta: lauri pentru rezultat, cărți pentru muncă, panglică pentru nume. Sigla poartă două culori și doar două și sunt singurele două bleumarinuri din tot sistemul.</p>
+      <div class="demo-grid">
+        <div class="demo-panel">
+          <div class="eyebrow">Culorile siglei</div>
+          <div class="sw-vals">
+            <div><span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:#121B52;border:1.5px solid #0B1936;vertical-align:-2px;margin-right:8px;"></span>#121B52: cunună, tocă, cărți</div>
+            <div><span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:#0B1936;border:1.5px solid #0B1936;vertical-align:-2px;margin-right:8px;"></span>#0B1936: panglică, semnătură</div>
+          </div>
+          <p class="note">Pe fond deschis: sigla în bleumarinul ei, neatinsă. Pe bleumarin plin sau pe fotografie închisă: sigla integral albă, o singură culoare.</p>
+        </div>
+        <div class="demo-panel">
+          <div class="eyebrow">Spațiu liber &amp; dimensiune minimă</div>
+          <p class="note"><b>Spațiu liber:</b> de jur împrejur, cel puțin cât înălțimea panglicii „Academia”. Nimic, text, buton, margine, nu intră în zona aceea.</p>
+          <p class="note"><b>Minim:</b> 120&nbsp;px lățime cu semnătura „Studium Generale by Denisa”; sub această mărime se folosește doar blazonul, fără semnătură.</p>
+          <p class="note"><b>În ramă:</b> sigla stă pe un card cu umplere de minimum 86% și contur de 2&nbsp;px. Pe sticlă subțire, cercurile din spate trec prin cunună și blazonul devine ilizibil.</p>
+          <p class="note"><b>O singură familie.</b> Sigla e bleumarin, iar din 2026-09-06 și sistemul e. Cardul alb din jurul siglei nu mai desparte două închisuri, el doar așază blazonul și îi dă aer. Pe o suprafață bleumarin plină, sigla trece integral pe alb: două nuanțe apropiate de albastru, una peste alta, se citesc ca o greșeală de tipar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p2">
+      <div class="plate-head">
+        <span class="plate-num">02</span>
+        <h2>Culori</h2>
+        <p class="plate-note">Toate rapoartele de contrast sunt calculate, nu estimate.</p>
+      </div>
+      <p class="intro">Primara e chiar bleumarinul blazonului, măsurat în siglă: #121B52 pentru cunună, tocă și cărți, #0B1936 pentru panglică și semnătură. Verdele de lauri a ieșit din sistem; ce urmează, urcă doar în blazon. Suprafețele sunt de sticlă: ierarhia se construiește din contur, blur și spațiu, niciodată din gradient, în afară de dunga de 1&nbsp;px de pe muchia sticlei.</p>
+
+      <div class="eyebrow">Primare</div>
+      <div class="swatches c3">
+        <div class="sw">
+          <div class="sw-chip" style="background:#121B52"><span class="star" style="color:#DCC17A">★</span></div>
+          <div class="sw-body">
+            <div class="sw-name">Navy 700</div>
+            <div class="sw-vals">#121B52<br>rgb(18 27 82)<br>--navy-700</div>
+            <span class="ratio pass">15.55:1 pe hârtie</span>
+            <div class="sw-use">Primara. Titluri, buton principal, benzi CTA. Cununa, toca și cărțile din blazon.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#0B1936"><span class="star" style="color:#DCC17A">★</span></div>
+          <div class="sw-body">
+            <div class="sw-name">Navy 900</div>
+            <div class="sw-vals">#0B1936<br>rgb(11 25 54)<br>--navy-900</div>
+            <span class="ratio pass">16.81:1 pe hârtie</span>
+            <div class="sw-use">Cerneala <b>și rama</b>. Textul de corp și fiecare contur de 2&nbsp;px, pe orice suprafață.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#37427C"></div>
+          <div class="sw-body">
+            <div class="sw-name">Navy 500</div>
+            <div class="sw-vals">#37427C<br>rgb(55 66 124)<br>--navy-500</div>
+            <span class="ratio pass">9.41:1 pe alb</span>
+            <div class="sw-use">Starea de hover a butonului primar. Nu se folosește ca suprafață mare.</div>
+          </div>
+        </div>
+      </div>
+      <div class="ramp">
+        <div style="background:#EDEFF7;color:#0B1936">50</div>
+        <div style="background:#D8DCEC;color:#0B1936">100</div>
+        <div style="background:#B4BBD8;color:#0B1936">200</div>
+        <div style="background:#8891BE;color:#0B1936">300</div>
+        <div style="background:#5A669F;color:#fff">400</div>
+        <div style="background:#37427C;color:#fff">500</div>
+        <div style="background:#232E68;color:#fff">600</div>
+        <div style="background:#121B52;color:#fff">700</div>
+        <div style="background:#101749;color:#fff">800</div>
+        <div style="background:#0B1936;color:#fff">900</div>
+      </div>
+
+      <div class="eyebrow">De unde vin cele două</div>
+      <div class="swatches c3">
+        <div class="sw">
+          <div class="sw-chip" style="background:#121B52"></div>
+          <div class="sw-body">
+            <div class="sw-name">Măsurat în blazon</div>
+            <div class="sw-vals">#121B52<br>rgb(18 27 82)<br>--navy-700</div>
+            <span class="ratio pass">16.10:1 pe alb</span>
+            <div class="sw-use">Cunună, tocă, cărți. Culoarea cea mai întinsă din siglă, deci primara sistemului.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#0B1936"></div>
+          <div class="sw-body">
+            <div class="sw-name">Măsurat în blazon</div>
+            <div class="sw-vals">#0B1936<br>rgb(11 25 54)<br>--navy-900</div>
+            <span class="ratio pass">17.40:1 pe alb</span>
+            <div class="sw-use">Panglică și semnătură. Cel mai închis ton din siglă, deci cerneala și rama.</div>
+          </div>
+        </div>
+        <div class="sw p-butter">
+          <div class="sw-body" style="justify-content:center">
+            <div class="sw-name">De ce din siglă</div>
+            <div class="sw-use" style="margin-top:6px;color:inherit;opacity:.85">Sigla e deja tipărită, semnată și recunoscută. Până în septembrie 2026 sistemul avea altă culoare decât ea, un verde de lauri, iar cardul alb din jurul blazonului exista ca să țină cele două închisuri departe. Acum culorile sunt luate din siglă, deci nu mai e nimic de ținut departe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eyebrow">Secundare, hârtie și piatră</div>
+      <div class="swatches c5">
+        <div class="sw">
+          <div class="sw-chip" style="background:#FCFBF7"><span class="star" style="color:#AD8129">★</span></div>
+          <div class="sw-body">
+            <div class="sw-name">Paper</div>
+            <div class="sw-vals">#FCFBF7<br>rgb(252 251 247)<br>--paper</div>
+            <div class="sw-use">Fundalul site-ului. <b>Alb blând, nu #FFF.</b> 96.4% luminanță: arată alb, dar nu obosește ochiul pe ecran mare. Peste el stau cercurile pe care sticla le refractă.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#FFFFFF"></div>
+          <div class="sw-body">
+            <div class="sw-name">Alb</div>
+            <div class="sw-vals">#FFFFFF<br>rgb(255 255 255)<br>--white</div>
+            <div class="sw-use">Baza sticlei și umplerea cardurilor. Pe hârtie diferența de ton e doar 1.04:1, cardul nu se vede din culoare, ci din contur.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#E6E3DA"></div>
+          <div class="sw-body">
+            <div class="sw-name">Stone 200</div>
+            <div class="sw-vals">#E6E3DA<br>rgb(230 227 218)<br>--stone-200</div>
+            <div class="sw-use">Linii <b>interioare</b>, în card. Rama exterioară e mereu navy 900.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#726F67"></div>
+          <div class="sw-body">
+            <div class="sw-name">Stone 500</div>
+            <div class="sw-vals">#726F67<br>rgb(114 111 103)<br>--stone-500</div>
+            <span class="ratio pass">4.85:1 pe hârtie</span>
+            <div class="sw-use">Text estompat: date, note, metadate.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#57544D"></div>
+          <div class="sw-body">
+            <div class="sw-name">Stone 600</div>
+            <div class="sw-vals">#57544D<br>rgb(87 84 77)<br>--stone-600</div>
+            <span class="ratio pass">7.29:1 pe hârtie</span>
+            <div class="sw-use">Text secundar, paragrafe de introducere.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eyebrow">Accente</div>
+      <div class="swatches c5">
+        <div class="sw">
+          <div class="sw-chip" style="background:#AD8129"><span class="star" style="color:#0B1936">★</span></div>
+          <div class="sw-body">
+            <div class="sw-name">Brass 500</div>
+            <div class="sw-vals">#AD8129<br>rgb(173 129 41)<br>--brass-500</div>
+            <span class="ratio large">3.41:1 pe hârtie</span>
+            <div class="sw-use">Accentul. Marcaje și text mare. <b>Nu pentru text sub 24&nbsp;px.</b></div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#8A6620"></div>
+          <div class="sw-body">
+            <div class="sw-name">Brass 700</div>
+            <div class="sw-vals">#8A6620<br>rgb(138 102 32)<br>--brass-700</div>
+            <span class="ratio pass">5.07:1 pe hârtie</span>
+            <div class="sw-use">Varianta de text a accentului: supratitluri, citate, caligrafic mic.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#DCC17A"></div>
+          <div class="sw-body">
+            <div class="sw-name">Brass 300</div>
+            <div class="sw-vals">#DCC17A<br>rgb(220 193 122)<br>--brass-300</div>
+            <span class="ratio pass">9.91:1 pe navy 900</span>
+            <div class="sw-use">Accentul pe bleumarin plin: benzi CTA, subsol. 9.16:1 pe navy 700.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#2E63D8"><span class="star" style="color:#DCC17A">★</span></div>
+          <div class="sw-body">
+            <div class="sw-name">Azure 500</div>
+            <div class="sw-vals">#2E63D8<br>rgb(46 99 216)<br>--azure-500</div>
+            <span class="ratio pass">5.21:1 pe hârtie</span>
+            <div class="sw-use">Exclusiv interactiv: linkuri în text, inelul de focus.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip" style="background:#8FAEF5"></div>
+          <div class="sw-body">
+            <div class="sw-name">Azure 300</div>
+            <div class="sw-vals">#8FAEF5<br>rgb(143 174 245)<br>--azure-300</div>
+            <span class="ratio pass">7.91:1 pe navy 900</span>
+            <div class="sw-use">Linkul pe bleumarin plin.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p3">
+      <div class="plate-head">
+        <span class="plate-num">03</span>
+        <h2>Tente</h2>
+        <p class="plate-note">Umplerile sistemului. Cinci, atât. Nu se inventează a șasea.</p>
+      </div>
+      <p class="intro">Fiecare tentă e versiunea foarte deschisă a unei culori pe care sistemul o are deja: indigo vine din bleumarin, sage din verdele de stare, butter din alamă, sky din azur. De asta un card colorat rămâne în familie, nu arată ca o decorațiune lipită peste brand. </p>
+      <p class="intro"><b style="color:var(--text)">Regula care le ține împreună:</b> textul pe o tentă e mereu navy 900, iar conturul la fel. Contrastul minim al textului pe oricare dintre ele este 11.1:1 în variantă opacă. Pe sticlă, tenta trece la 60% și se așază peste alb translucid, nu peste pagină direct, deci raportul rămâne peste 11:1.</p>
+      <div class="swatches c5">
+        <div class="sw">
+          <div class="sw-chip p-indigo"><span class="star">★</span></div>
+          <div class="sw-body">
+            <div class="sw-name">Indigo</div>
+            <div class="sw-vals">#D8DCEC<br>--p-indigo</div>
+            <span class="ratio pass">12.74:1</span>
+            <div class="sw-use">Tenta de brand, din bleumarin. Prima alegere pentru un card colorat, bare de progres, hover.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip p-sage"></div>
+          <div class="sw-body">
+            <div class="sw-name">Sage</div>
+            <div class="sw-vals">#D4E5D9<br>--p-sage</div>
+            <span class="ratio pass">13.27:1</span>
+            <div class="sw-use">Tenta de stare: marchează „reușit” și „disponibil”. Singurul verde rămas în sistem.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip p-sky"></div>
+          <div class="sw-body">
+            <div class="sw-name">Sky</div>
+            <div class="sw-vals">#C6DFFA<br>--p-sky</div>
+            <span class="ratio pass">11.18:1</span>
+            <div class="sw-use">Informativ: „online”, tipul grupei, note explicative.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip p-butter"></div>
+          <div class="sw-body">
+            <div class="sw-name">Butter</div>
+            <div class="sw-vals">#FBE7B0<br>--p-butter</div>
+            <span class="ratio pass">12.51:1</span>
+            <div class="sw-use">Termen, ofertă, atenție blândă. Umplerea butonului de accent.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip p-lilac"></div>
+          <div class="sw-body">
+            <div class="sw-name">Lilac</div>
+            <div class="sw-vals">#E2DBF3<br>--p-lilac</div>
+            <span class="ratio pass">11.41:1</span>
+            <div class="sw-use">A cincea categorie, un contrapunct rece, când sage, butter și sky sunt deja luate.</div>
+          </div>
+        </div>
+        <div class="sw">
+          <div class="sw-chip p-blush"></div>
+          <div class="sw-body">
+            <div class="sw-name">Blush</div>
+            <div class="sw-vals">#F9D3CD<br>--p-blush</div>
+            <span class="ratio pass">11.10:1</span>
+            <div class="sw-use">Rămas în urmă, câmp greșit. Niciodată alarmant, e o notă, nu o sirenă.</div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-panel" style="max-width:none">
+        <div class="eyebrow">Cum se aleg</div>
+        <p class="note"><b>O tentă pe obiect.</b> Un card are o singură umplere. Dacă are nevoie de două, sunt două carduri.</p>
+        <p class="note"><b>Cel mult trei tente într-un ecran</b>, patru începe să arate ca o cutie de creioane, nu ca o școală.</p>
+        <p class="note"><b>Tenta înseamnă ceva.</b> Într-o listă de pachete, culoarea distinge pachetele; nu se rotește la întâmplare de la o pagină la alta.</p>
+        <p class="note"><b>Opac sau de sticlă.</b> Aceeași tentă are două stări: singură e opacă (tag, bară de progres, badge), pe un obiect de sticlă devine translucidă. Obiectele mici rămân opace, un blur de 20&nbsp;px pe o etichetă de 24&nbsp;px e muncă degeaba și o face doar mai greu de citit.</p>
+        <p class="note"><b>Albul e și el o umplere.</b> <code>.p-white</code> face parte din aceeași familie: fundal alb, contur navy 900, text navy 900. Se folosește pentru obiectele albe așezate pe un card colorat, eticheta cu numele profesorului, butonul rotund.</p>
+        <p class="note"><b>Clasele de tentă se scriu ultimele în foaia de stil.</b> <code>.chip</code> și <code>.p-butter</code> au aceeași specificitate, deci decide ordinea: dacă pastelurile stau mai sus, fiecare componentă își suprascrie culoarea cu alb.</p>
+      </div>
+    </section>
+
+    <!-- 04 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p4">
+      <div class="plate-head">
+        <span class="plate-num">04</span>
+        <h2>Sticlă &amp; contur</h2>
+        <p class="plate-note">Mecanica întregului sistem. Dacă se pierde asta, se pierde tot.</p>
+      </div>
+      <p class="intro">Fiecare suprafață e o lentilă cu ramă: umplere albă translucidă, blur pe ce se află în spate, o dungă de lumină de 1&nbsp;px pe muchia de sus și <b style="color:var(--text)">conturul de 2&nbsp;px în navy 900, care nu dispare niciodată</b>. Pe fundal alb și curat, <b style="color:var(--text)">rama e cea care face toată treaba</b>: fără ea, un card alb pe hârtie albă pur și simplu nu există.</p>
+      <p class="intro"><b style="color:var(--text)">Unde se vede efectiv blurul:</b> sub antetul lipit, când conținutul curge pe dedesubt; sub meniul de pe telefon; între rândurile suprapuse din teancul de pachete; sub orice panou așezat peste o fotografie. În rest, un card singur pe pagină, sticla e doar o suprafață aproape albă cu contur, și e în regulă să fie așa.</p>
+
+      <div class="glassbed" style="margin-bottom:32px">
+        <div class="strip" aria-hidden="true">
+          <span style="background:var(--p-sage)"></span>
+          <span style="background:var(--p-butter)"></span>
+          <span style="background:var(--p-sky)"></span>
+          <span style="background:var(--p-lilac)"></span>
+          <span style="background:var(--p-blush)"></span>
+        </div>
+        <div class="glassdemo">
+          <div class="box" style="background:var(--glass-fill-soft)">--glass-fill-soft<br>52%</div>
+          <div class="box" style="background:var(--glass-fill)">--glass-fill<br>62%</div>
+          <div class="box" style="background:var(--glass-fill-deep)">--glass-fill-deep<br>82%</div>
+          <div class="box nosheen" style="background:var(--glass-fill)">fără dungă<br>arată plat</div>
+          <div class="box" style="background:var(--glass-fill); -webkit-backdrop-filter:none; backdrop-filter:none">fără blur<br>arată murdar</div>
+        </div>
+      </div>
+      <p class="note" style="margin-bottom:48px">Cele cinci casete stau peste aceleași fâșii colorate, ca să se vadă diferența. <b>52%</b> doar peste zone liniștite, sub atât, textul estompat scade sub 4.5:1. <b>62%</b> este implicit. <b>82%</b> sub text lung, un paragraf întreg nu se citește peste o suprafață care se schimbă sub el. Ultimele două arată ce cade dacă scoți o piesă: fără dunga speculară sticla devine un dreptunghi decolorat, iar fără blur culorile din spate lovesc direct în text.</p>
+
+      <div class="demo-grid">
+        <div class="demo-panel">
+          <div class="eyebrow">Cele trei straturi</div>
+          <dl class="spec" style="border:0;padding:0;font-size:var(--fs-xs);line-height:1.9;color:var(--text-secondary)">
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px">1 · Umplerea</dt>
+            <dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">rgba(255,255,255,.62)</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">2 · Blurul</dt>
+            <dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">saturate(170%) blur(20px)</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">3 · Dunga speculară</dt>
+            <dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">1px, sus, se stinge la capete</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">+ Rama</dt>
+            <dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">2px solid #0B1936</dd>
+          </dl>
+          <p class="note"><b>Saturația e importantă.</b> Fără <code>saturate(170%)</code> blurul spală culorile din spate și sticla capătă un gri mort. Cu ea, cercurile pastel rămân colorate prin lentilă.</p>
+          <p class="note"><b>Fundalul e curat.</b> Pagina n-are forme colorate în spate, nici cercuri, nici pete estompate, nimic care să semene a gradient. Consecința e că blurul are ce face doar acolo unde chiar există straturi suprapuse; vezi panoul alăturat.</p>
+        </div>
+
+        <div class="demo-panel">
+          <div class="eyebrow">Singurul gradient din sistem</div>
+          <p class="note">Regula „fără gradient” rămâne în picioare pentru orice umplere, buton, hero sau fundal. Excepția e una singură și are 1&nbsp;px înălțime: dunga de lumină de pe muchia de sus a sticlei. Se stinge spre capete, ca reflexia pe o muchie reală, o dungă albă uniformă arată ca o linie desenată, nu ca lumină.</p>
+          <pre style="margin-top:4px">--glass-sheen:
+  linear-gradient(90deg,
+    rgba(255,255,255,0)   0%,
+    rgba(255,255,255,.95) 22%,
+    rgba(255,255,255,.95) 78%,
+    rgba(255,255,255,0) 100%);</pre>
+          <p class="note">Pe navy 700 aceeași dungă coboară la <code>.5</code>, pe fundal închis, alb pur la 95% arată ca un defect.</p>
+        </div>
+
+        <div class="demo-panel">
+          <div class="eyebrow">Umbra și apăsarea</div>
+          <div class="btnrow" style="min-height:60px">
+            <button class="btn btn-primary" type="button">Apasă-mă</button>
+            <button class="btn p-butter" type="button">Și pe mine</button>
+          </div>
+          <p class="note">Umbra nu mai e o formă solidă, ci una moale: sticla plutește deasupra paginii, nu stă lipită de ea. Trei trepte, <code>--sh-1</code> pentru obiecte mici, <code>--sh-2</code> implicit, <code>--sh-3</code> pentru ce plutește cel mai sus.</p>
+          <p class="note">La hover obiectul urcă 2&nbsp;px și umbra crește o treaptă. La apăsare coboară la loc și se micșorează cu 2.5%, mișcarea unei lentile apăsate, nu a unui buton care cade într-un locaș.</p>
+        </div>
+
+        <div class="demo-panel">
+          <div class="eyebrow">Ce NU e de sticlă</div>
+          <p class="note"><b>Câmpurile de formular.</b> Un câmp e o gaură în pagină, nu o lentilă, fundal opac și o umbră interioară.</p>
+          <p class="note"><b>Barele de progres și tag-urile.</b> Un indicator citit dintr-o privire nu are voie să fie translucid, iar un blur pe o etichetă de 24&nbsp;px e muncă degeaba.</p>
+          <p class="note"><b>Banda CTA.</b> Rămâne navy 700 plin, un bloc de culoare fermă care oprește pagina. Primește doar dunga speculară.</p>
+          <p class="note"><b>Sigla.</b> Niciodată peste sticlă direct: stă pe un card cu umplere de 86% sau mai mare.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p5">
+      <div class="plate-head">
+        <span class="plate-num">05</span>
+        <h2>Tipografie</h2>
+        <p class="plate-note">Patru roluri, două familii. Fiecare rol are un singur loc.</p>
+      </div>
+      <p class="intro">Poiret One e o literă de afiș art-deco: geometrică, subțire, cu o singură greutate. Montserrat duce tot restul. Contrastul dintre ele, trăsături de păr peste litere solide, e ce dă paginii caracter, cu condiția ca fiecare să rămână la locul ei.</p>
+      <p class="intro"><b style="color:var(--text)">Grosimea:</b> Poiret One are o singură greutate, iar la mărimi mari trăsătura de păr devine prea firavă pe hârtie. <code>--poiret-stroke</code> o îngroașă uniform cu 0.022em, în em, deci crește odată cu litera. Peste 0.03em contraformele încep să se închidă.</p>
+      <p class="intro"><b style="color:var(--text)">Regula care le ține separate:</b> Poiret One nu coboară sub 26&nbsp;px. Sub pragul ăsta trăsăturile se subțiază până se pierd, mai ales peste sticlă, iar textul devine o sugestie de text. Tot ce e mai mic trece pe Montserrat 600, aceeași ierarhie, dar citibilă.</p>
+
+      <div class="typerole">
+        <div>
+          <div class="eyebrow">Primară · titluri</div>
+          <div class="sample-fraunces">Rezultate care contează,<br>nu promisiuni</div>
+          <div class="glyphs">ABCDEFGHIJKLMNOPQRSTUVWXYZ ĂÂÎȘȚ<br>abcdefghijklmnopqrstuvwxyz ăâîșț 0123456789</div>
+          <div class="eyebrow" style="margin-top:28px;margin-bottom:12px">Pragul, văzut</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+              <span style="font-family:var(--font-primary);font-size:33px;letter-spacing:.015em">Bacalaureat</span>
+              <span class="tag p-sage" style="font-size:12px">33px · da</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+              <span style="font-family:var(--font-primary);font-size:26px;letter-spacing:.015em">Bacalaureat</span>
+              <span class="tag p-sage" style="font-size:12px">26px · minimul</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+              <span style="font-family:var(--font-primary);font-size:17px;letter-spacing:.015em">Bacalaureat</span>
+              <span class="tag p-blush" style="font-size:12px">17px · interzis</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+              <span style="font-family:var(--font-secondary);font-weight:600;font-size:17px;letter-spacing:.005em">Bacalaureat</span>
+              <span class="tag p-sage" style="font-size:12px">17px Montserrat 600 · așa</span>
+            </div>
+          </div>
+        </div>
+        <dl class="spec">
+          <dt>Familie</dt><dd>Poiret One</dd>
+          <dt>Greutate</dt><dd>400, singura</dd>
+          <dt>Îngroșare</dt><dd>--poiret-stroke 0.022em</dd>
+          <dt>Mărime minimă</dt><dd>26px, fără excepție</dd>
+          <dt>Tracking</dt><dd>+0.015em</dd>
+          <dt>Interlinie</dt><dd>1.18</dd>
+          <dt>Rezervă</dt><dd>Century Gothic, Questrial</dd>
+          <dt>Unde</dt><dd>h1–h4, chipuri de titlu, prețuri, cifre mari</dd>
+        </dl>
+      </div>
+
+      <div class="typerole">
+        <div>
+          <div class="eyebrow">Secundară · corp de text și interfață</div>
+          <p class="sample-inter">Pregătim elevi pentru Evaluarea Națională și Bacalaureat în grupe de maximum șase. Fiecare copil primește un plan scris la început și un raport de progres la finalul fiecărei luni, știți exact unde e și ce urmează. Ședințele se țin în centru sau online, iar recuperările nu se pierd.</p>
+          <div class="glyphs">ABCDEFGHIJKLMNOPQRSTUVWXYZ ĂÂÎȘȚ<br>abcdefghijklmnopqrstuvwxyz ăâîșț 0123456789</div>
+        </div>
+        <dl class="spec">
+          <dt>Familie</dt><dd>Montserrat</dd>
+          <dt>Greutăți</dt><dd>400 · 500 · 600 · 700</dd>
+          <dt>Corp</dt><dd>17px / 1.6</dd>
+          <dt>Măsură</dt><dd>max. 60 caractere</dd>
+          <dt>Rezervă</dt><dd>-apple-system, Segoe UI</dd>
+          <dt>Unde</dt><dd>paragrafe, navigație, tabele, formulare, tag-uri<br>+ orice titlu sub 26px</dd>
+        </dl>
+      </div>
+
+      <div class="typerole">
+        <div>
+          <div class="eyebrow">Accent · semnătura</div>
+          <div class="sample-cormorant">Studium Generale by Denisa</div>
+          <p class="note" style="margin-top:14px">Tot Poiret One, dar tratat altfel: rărit la <code>0.14em</code> și colorat în alamă. Litera rămâne aceeași, purtarea ei nu, rarefierea e ce transformă un titlu într-o semnătură. <b>Maximum opt cuvinte, niciodată un paragraf, niciodată într-un buton.</b></p>
+        </div>
+        <dl class="spec">
+          <dt>Familie</dt><dd>Poiret One</dd>
+          <dt>Tracking</dt><dd>+0.14em</dd>
+          <dt>Mărime minimă</dt><dd>21px (rărit, deci iartă)</dd>
+          <dt>Culoare</dt><dd>brass-700 pe deschis<br>brass-300 pe bleumarin</dd>
+          <dt>Unde</dt><dd>supratitluri, citate, semnătură</dd>
+        </dl>
+      </div>
+
+      <div class="demo-panel" style="margin-bottom:24px">
+        <div class="eyebrow">Peticul pentru ț și Ț</div>
+        <p class="note">Subsetul <i>latin-ext</i> pe care Google îl servește pentru Poiret One conține <b>ș</b> și <b>Ș</b>, dar nu conține <b>ț</b> (U+021B) și <b>Ț</b> (U+021A). Fără petic, cele două litere cad pe fontul de sistem, pe macOS, Avenir Next și ies vizibil mai groase și de altă formă în mijlocul cuvântului: <span style="font-family:'Avenir Next',sans-serif">ț</span> în loc de <span style="font-family:var(--font-primary)">ț</span>.</p>
+        <p class="note">Fontul complet Poiret One le are, sunt compuse din „t” plus virgula U+0326. Sunt decupate de acolo: <b>două glife, 708 octeți</b>, încorporate direct în foaia de stil ca <code>@font-face</code> cu <code>unicode-range: U+021A-021B</code>. Deci ț nu e împrumutat din alt font, e litera originală. <b>Peticul nu se șterge</b>, fără el, orice cuvânt cu ț arată reparat.</p>
+        <div style="font-family:var(--font-primary);font-size:41px;letter-spacing:.015em;-webkit-text-stroke:var(--poiret-stroke) currentColor;paint-order:stroke fill;margin-top:4px">Spațiere · Colțuri · Țara · învață</div>
+      </div>
+
+      <div class="typerole">
+        <div>
+          <div class="eyebrow">CTA · acțiuni</div>
+          <div class="btnrow" style="margin-bottom:16px">
+            <span class="btn btn-primary">Programează o ședință</span>
+            <span class="btn p-butter">Scrie pe WhatsApp</span>
+          </div>
+          <p class="note">Montserrat 600, propoziție normală, nu majuscule. Butonul spune verbul, la persoana a doua: <b>„Programează o ședință”</b>, nu „Trimite”. Niciodată Poiret One într-un buton: la 17&nbsp;px ar fi ilizibil, iar butonul e exact locul unde textul trebuie să fie cel mai clar.</p>
+        </div>
+        <dl class="spec">
+          <dt>Familie</dt><dd>Montserrat</dd>
+          <dt>Greutate</dt><dd>600</dd>
+          <dt>Tracking</dt><dd>+0.005em</dd>
+          <dt>Mărime</dt><dd>17px · 14px (mic)</dd>
+          <dt>Padding</dt><dd>14px / 24px</dd>
+          <dt>Formă</dt><dd>pastilă + contur 2px + sticlă 62%</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 06 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p6">
+      <div class="plate-head">
+        <span class="plate-num">06</span>
+        <h2>Scara tipografică</h2>
+        <p class="plate-note">Rație 1.25, bază 17px. Nu se inventează mărimi între trepte.</p>
+      </div>
+      <div class="tblwrap">
+        <table class="scale-table">
+          <thead><tr><th>Token</th><th>px</th><th>rem</th><th>Unde</th><th>Specimen</th></tr></thead>
+          <tbody>
+            <tr><td>--fs-4xl</td><td>64</td><td>4</td><td>Titlul de hero</td><td class="demo" style="font-size:42px">Academia</td></tr>
+            <tr><td>--fs-3xl</td><td>52</td><td>3.25</td><td>h1 de pagină</td><td class="demo" style="font-size:35px">Despre noi</td></tr>
+            <tr><td>--fs-2xl</td><td>41</td><td>2.5625</td><td>h2 de secțiune</td><td class="demo" style="font-size:29px">Materii și grupe</td></tr>
+            <tr><td>--fs-xl</td><td>33</td><td>2.0625</td><td>h3, chip de titlu, bandă CTA</td><td class="demo" style="font-size:24px;font-family:var(--font-secondary);font-weight:600">Ce spun părinții</td></tr>
+            <tr><td>--fs-lg</td><td>26</td><td>1.625</td><td>h4, titlu de card, preț</td><td class="demo" style="font-size:21px;font-family:var(--font-secondary);font-weight:600">Pregătire Bacalaureat</td></tr>
+            <tr><td>--fs-md</td><td>21</td><td>1.3125</td><td>Introducere, citat, buton bloc</td><td style="font-size:19px;color:var(--text-secondary)">Grupe de maximum șase elevi.</td></tr>
+            <tr><td>--fs-base</td><td>17</td><td>1.0625</td><td>Corpul de text și interfața</td><td style="font-size:16px">Ședințele se țin în centru sau online.</td></tr>
+            <tr><td>--fs-sm</td><td>14</td><td>0.875</td><td>Tag, navigație, tabele, subsol</td><td style="font-size:14px">Luni–vineri, 14:00–20:00</td></tr>
+            <tr><td>--fs-xs</td><td>12</td><td>0.75</td><td>Supratitluri majuscule, note</td><td style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600">Evaluare Națională</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 07 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p7">
+      <div class="plate-head">
+        <span class="plate-num">07</span>
+        <h2>Colțuri</h2>
+        <p class="plate-note">Scară Apple, curbă continuă. Raza urmează mărimea elementului.</p>
+      </div>
+      <p class="intro">Raza nu e o preferință, e o funcție de mărime: cu cât elementul e mai mare, cu atât colțul e mai generos. Sticla cere colțuri ceva mai generoase decât o suprafață opacă, pe o muchie strânsă, dunga speculară se frânge vizibil. Un buton primește pastilă, un card 16&nbsp;px, un panou 28&nbsp;px. Aceeași rază peste tot aplatizează ierarhia.</p>
+      <div class="radii">
+        <div class="radbox"><div class="radshape" style="border-radius:4px"></div><div class="radmeta">--r-xs · 4px</div><div class="raduse">Checkbox, evidențiere de cod.</div></div>
+        <div class="radbox"><div class="radshape" style="border-radius:8px"></div><div class="radmeta">--r-sm · 8px</div><div class="raduse">Miniatură, element din card.</div></div>
+        <div class="radbox"><div class="radshape" style="border-radius:12px"></div><div class="radmeta">--r-md · 12px</div><div class="raduse">Câmp de formular, select.</div></div>
+        <div class="radbox"><div class="radshape" style="border-radius:16px"></div><div class="radmeta">--r-lg · 16px</div><div class="raduse">Card, rând de ofertă, chip de titlu.</div></div>
+        <div class="radbox"><div class="radshape" style="border-radius:20px"></div><div class="radmeta">--r-xl · 20px</div><div class="raduse">Card de profesor, bară de navigație, bulă.</div></div>
+        <div class="radbox"><div class="radshape" style="border-radius:28px"></div><div class="radmeta">--r-2xl · 28px</div><div class="raduse">Panou de hero, bandă CTA, pastilă mare.</div></div>
+        <div class="radbox"><div class="radshape" style="border-radius:999px"></div><div class="radmeta">--r-full</div><div class="raduse">Buton, tag, avatar, cerc de statistică.</div></div>
+      </div>
+      <p class="note" style="margin-top:20px">Raza interioară = raza exterioară − padding: un card de 16&nbsp;px cu 8&nbsp;px padding dă 8&nbsp;px înăuntru, ca cele două curbe să rămână paralele. Unde browserul îl suportă, <code>corner-shape: superellipse(2.5)</code> transformă raza în squircle-ul continuu de pe iOS; unde nu, rămâne raza clasică. Îmbunătățire progresivă, nu cerință.</p>
+    </section>
+
+    <!-- 08 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p8">
+      <div class="plate-head">
+        <span class="plate-num">08</span>
+        <h2>Spațiere</h2>
+        <p class="plate-note">Grilă de 4px. Orice valoare din afara scării e o greșeală.</p>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-panel">
+          <div class="eyebrow">Scara</div>
+          <div class="spacing">
+            <div class="spacerow"><span>4px</span><div class="spacebar" style="width:4px"></div></div>
+            <div class="spacerow"><span>8px</span><div class="spacebar" style="width:8px"></div></div>
+            <div class="spacerow"><span>12px</span><div class="spacebar" style="width:12px"></div></div>
+            <div class="spacerow"><span>16px</span><div class="spacebar" style="width:16px"></div></div>
+            <div class="spacerow"><span>24px</span><div class="spacebar" style="width:24px"></div></div>
+            <div class="spacerow"><span>32px</span><div class="spacebar" style="width:32px"></div></div>
+            <div class="spacerow"><span>48px</span><div class="spacebar" style="width:48px"></div></div>
+            <div class="spacerow"><span>64px</span><div class="spacebar" style="width:64px"></div></div>
+            <div class="spacerow"><span>96px</span><div class="spacebar" style="width:96px"></div></div>
+          </div>
+        </div>
+        <div class="demo-panel">
+          <div class="eyebrow">Ritmul paginii</div>
+          <dl class="spec" style="border:0;padding:0;font-size:var(--fs-xs);line-height:1.9;color:var(--text-secondary)">
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px">Între secțiuni</dt><dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">96px desktop · 64px mobil</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">Titlu → paragraf</dt><dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">16px</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">Padding de card</dt><dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">24px</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">Gap într-o grilă</dt><dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">24px, umbra are nevoie de loc</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">Container</dt><dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">1180px · text 720px</dd>
+            <dt style="font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-top:12px">Margine laterală</dt><dd style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--text)">32px desktop · 20px mobil</dd>
+          </dl>
+          <p class="note"><b>Umbra ocupă spațiu.</b> Într-o grilă de carduri, gap-ul minim e 24px, la 16px umbrele moi a două carduri se suprapun și marginea se înnoroiește.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p9">
+      <div class="plate-head">
+        <span class="plate-num">09</span>
+        <h2>Componente</h2>
+        <p class="plate-note">Sistemul la lucru. Fiecare piesă iese din tokeni, nimic desenat separat.</p>
+      </div>
+
+      <div class="eyebrow">Bara de navigație</div>
+      <div class="navbar" style="margin-bottom:32px">
+        <div class="brandmark"><span class="seal">A</span> Academia</div>
+        <nav class="nav">
+          <a class="navlink" href="#p9" aria-current="page">Materii</a>
+          <a class="navlink" href="#p9">Profesori</a>
+          <a class="navlink" href="#p9">Rezultate</a>
+          <a class="navlink" href="#p9">Blog</a>
+          <a class="navlink" href="#p9">Contact</a>
+        </nav>
+      </div>
+      <p class="note" style="margin-bottom:48px">Bara plutește: sticlă cu blur mare, ca fundalul să curgă pe sub ea la derulare. Pastilele dinăuntru au contur subțire de 1.5&nbsp;px și umplere de 44%, sunt mobilier, nu obiecte de apăsat. Pagina curentă e umplută cu navy 700 plin.</p>
+
+      <div class="eyebrow">Titlul de pagină</div>
+      <div style="margin-bottom:20px">
+        <h3 style="font-size:clamp(2.125rem,4.4vw,3.25rem);line-height:1.1;max-width:19ch">Pregătire serioasă pentru Bacalaureat și Evaluarea Națională</h3>
+      </div>
+      <p class="note" style="margin-bottom:32px">Titlul e o propoziție întreagă, într-un singur <code>h1</code>. Poiret One 400, mărime <code>clamp(2.125rem, 5.4vw, 4rem)</code>, interlinie 1.1, lățime maximă 19 caractere, peste atât ochiul pierde rândul la revenire. <b>Fără cuvinte tăiate în casete:</b> un titlu bucățit se citește ca patru etichete, nu ca o frază, iar motoarele de căutare îl văd la fel.</p>
+
+      <div class="demo-panel" style="margin-bottom:48px">
+        <div class="eyebrow">Chipul, ce a mai rămas din el</div>
+        <div class="chip-row" style="margin-bottom:4px">
+          <span class="chip p-butter">Locuri limitate</span>
+          <span class="chip p-sage">Grupa de Mate-Info</span>
+        </div>
+        <p class="note"><code>.chip</code> rămâne în sistem, dar nu mai e tratament de titlu: e o casetă de accent pentru o campanie sau un anunț scurt, cel mult două într-un ecran. Titlul unei pagini nu se compune niciodată din chipuri.</p>
+      </div>
+
+      <div class="demo-grid" style="margin-bottom:48px">
+        <div class="demo-panel">
+          <div class="eyebrow">Butoane</div>
+          <div class="btnrow">
+            <button class="btn btn-primary" type="button">Programează</button>
+            <button class="btn btn-accent" type="button">WhatsApp</button>
+          </div>
+          <div class="btnrow">
+            <button class="btn btn-secondary" type="button">Vezi materiile</button>
+            <button class="btn btn-ghost" type="button">Citește tot →</button>
+          </div>
+          <div class="btnrow">
+            <button class="btn btn-sm btn-secondary" type="button">Filtrează</button>
+            <button class="btn btn-arrow btn-secondary" type="button" aria-label="Mai departe">→</button>
+            <button class="btn btn-arrow sm p-lilac" type="button" aria-label="Mai departe">→</button>
+          </div>
+          <button class="btn btn-block btn-primary" type="button">Rezervă un loc în grupă</button>
+          <p class="note">Un singur buton primar pe ecran. Butonul rotund cu săgeată e perechea fiecărui card care duce undeva, nu apare niciodată singur.</p>
+        </div>
+
+        <div class="demo-panel">
+          <div class="eyebrow">Tag-uri și bule</div>
+          <div class="btnrow" style="gap:12px">
+            <span class="tag p-sage">Locuri disponibile</span>
+            <span class="tag p-sky">Online</span>
+            <span class="tag p-butter">Începe în 9 zile</span>
+            <span class="tag">Clasa a XII-a</span>
+          </div>
+          <div style="padding-bottom:22px">
+            <div class="bubble p-butter">Prima ședință e o discuție de 50 de minute și e gratuită.</div>
+          </div>
+          <p class="note">Tag-ul e o etichetă, nu un buton: opac, contur de 1.5&nbsp;px, fără umbră, fără hover. Bula e de sticlă la 82%, text lung cere umplere mare, plus coada, și ea conturată.</p>
+        </div>
+      </div>
+
+      <div class="eyebrow">Pachete, teanc de rânduri</div>
+      <div class="offer-stack" style="margin-bottom:20px">
+        <div class="offer p-lilac">
+          <div class="offer-body">
+            <div class="offer-title">Grup mic</div>
+            <div class="offer-desc">Maximum 6 elevi, două ședințe pe săptămână, materiale incluse</div>
+          </div>
+          <div class="offer-price">450 lei/lună</div>
+          <button class="btn btn-arrow p-lilac" type="button" aria-label="Detalii Grup mic">→</button>
+        </div>
+        <div class="offer p-sage">
+          <div class="offer-body">
+            <div class="offer-title">Semi-individual</div>
+            <div class="offer-desc">Doi elevi, plan comun, raport de progres la finalul fiecărei luni</div>
+          </div>
+          <div class="offer-price">700 lei/lună</div>
+          <button class="btn btn-arrow p-sage" type="button" aria-label="Detalii Semi-individual">→</button>
+        </div>
+        <div class="offer p-butter">
+          <div class="offer-body">
+            <div class="offer-title">Individual</div>
+            <div class="offer-desc">Program flexibil, simulări săptămânale, acces la toate testele</div>
+          </div>
+          <div class="offer-price">1.100 lei/lună</div>
+          <button class="btn btn-arrow p-butter" type="button" aria-label="Detalii Individual">→</button>
+        </div>
+      </div>
+      <p class="note" style="margin-bottom:48px">Rândurile se suprapun cu 14&nbsp;px, teancul se citește de sus în jos, ca niște lentile puse una peste alta; unde se suprapun, sticla se adună și tenta de dedesubt se vede prin cea de deasupra. La hover, rândul urcă deasupra celorlalte. Ordinea e de la cel mai accesibil la cel mai scump, nu invers. Maximum trei rânduri într-un teanc.</p>
+
+      <div class="eyebrow">Profesori</div>
+      <div class="people" style="margin-bottom:48px">
+        <div class="person p-butter">
+          <span class="tag p-white">Denisa V.</span>
+          <h4>Matematică</h4>
+          <div class="avatar p-white">DV</div>
+          <div class="foot">
+            <span style="font-size:var(--fs-sm)">14 ani la catedră</span>
+            <button class="btn btn-arrow sm p-white" type="button" aria-label="Profilul Denisei">→</button>
+          </div>
+        </div>
+        <div class="person p-sky">
+          <span class="tag p-white">Andrei M.</span>
+          <h4>Limba română</h4>
+          <div class="avatar p-white">AM</div>
+          <div class="foot">
+            <span style="font-size:var(--fs-sm)">Corector la BAC</span>
+            <button class="btn btn-arrow sm p-white" type="button" aria-label="Profilul lui Andrei">→</button>
+          </div>
+        </div>
+        <div class="person p-sage">
+          <span class="tag p-white">Ioana T.</span>
+          <h4>Fizică</h4>
+          <div class="avatar p-white">IT</div>
+          <div class="foot">
+            <span style="font-size:var(--fs-sm)">Doctorat în optică</span>
+            <button class="btn btn-arrow sm p-white" type="button" aria-label="Profilul Ioanei">→</button>
+          </div>
+        </div>
+      </div>
+      <p class="note" style="margin-top:-32px;margin-bottom:48px">Eticheta cu numele stă sus, deasupra materiei, se citește întâi omul, apoi ce predă. Cercul e fotografia; până există fotografii, inițialele în Poiret One, pe alb. Săgeata stă mereu jos-dreapta, aliniată cu vechimea.</p>
+
+      <div class="eyebrow">Panoul elevului</div>
+      <div class="dash" style="margin-bottom:20px">
+        <div class="dashcol">
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+              <h4 class="profile-name" style="font-size:var(--fs-md)">Maria<br>Popescu</h4>
+              <span style="font-size:var(--fs-xs);color:var(--text-muted);white-space:nowrap">Clasa a XII-a</span>
+            </div>
+            <div style="font-size:var(--fs-sm);color:var(--text-secondary);margin-top:8px">
+              maria.popescu@exemplu.ro<br>0721 004 118
+            </div>
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px">
+              <div class="avatar p-sky">MP</div>
+              <button class="btn btn-arrow sm btn-secondary" type="button" aria-label="Setări">⚙</button>
+            </div>
+          </div>
+          <span class="tag p-sky">Grupă: BAC Mate-Info</span>
+          <div class="bigpill p-butter"><b>9 zile</b> până la simularea din decembrie</div>
+          <button class="btn btn-block btn-primary" type="button">Programează recuperarea</button>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-bottom:6px">Progresul la materie</h4>
+          <p style="font-size:var(--fs-sm);color:var(--text-secondary);margin-bottom:8px">Capitolele parcurse din programa de Bacalaureat, Mate-Info.</p>
+          <div class="progress-list">
+            <div class="progress-row">
+              <span class="idx">01.</span><span class="label">Funcții și grafice</span>
+              <span class="pct">82%</span>
+              <div class="meter"><span class="p-sage" style="width:82%"></span></div>
+            </div>
+            <div class="progress-row">
+              <span class="idx">02.</span><span class="label">Trigonometrie</span>
+              <span class="pct">64%</span>
+              <div class="meter"><span class="p-sage" style="width:64%"></span></div>
+            </div>
+            <div class="progress-row">
+              <span class="idx">03.</span><span class="label">Numere complexe</span>
+              <span class="pct">35%</span>
+              <div class="meter"><span class="p-butter" style="width:35%"></span></div>
+            </div>
+            <div class="progress-row">
+              <span class="idx">04.</span><span class="label">Șiruri și limite</span>
+              <span class="pct">12%</span>
+              <div class="meter"><span class="p-blush" style="width:12%"></span></div>
+            </div>
+            <div class="progress-row">
+              <span class="idx">05.</span><span class="label">Probabilități</span>
+              <span class="pct">0%</span>
+              <div class="meter"><span class="zero" style="width:0"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashcol">
+          <div class="ring">
+            <div class="ringwrap">
+              <svg viewBox="0 0 150 150" width="150" height="150" role="img" aria-label="Media la simulări: 8.40 din 10">
+                <circle cx="75" cy="75" r="58" fill="none" stroke="#D4E5D9" stroke-width="14"
+                        stroke-dasharray="306.1 364.42" transform="rotate(-90 75 75)"></circle>
+                <circle cx="75" cy="75" r="65" fill="none" stroke="#0B1936" stroke-width="2"></circle>
+                <circle cx="75" cy="75" r="51" fill="none" stroke="#0B1936" stroke-width="2"></circle>
+                <line x1="75" y1="24" x2="75" y2="10" stroke="#0B1936" stroke-width="2"></line>
+                <line x1="31.94" y1="47.67" x2="20.12" y2="40.17" stroke="#0B1936" stroke-width="2"></line>
+              </svg>
+              <div class="inner">
+                <span class="cap">Media la simulări</span>
+                <span class="val">8.40</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="stats">
+              <div class="statwrap">
+                <div class="stat p-sage"><span class="ico">✓</span><span class="num">12/16</span></div>
+                <span class="stat-label">ședințe</span>
+              </div>
+              <div class="statwrap">
+                <div class="stat p-butter"><span class="ico">★</span><span class="num">4.8/5</span></div>
+                <span class="stat-label">teme predate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="note" style="margin-bottom:48px">Rândurile de progres sunt numerotate pentru că <b>sunt o ordine reală</b>, programa se parcurge în ordinea asta. Bara își schimbă pastelul după cât de în urmă e capitolul: sage peste 50%, butter între 20 și 50, blush sub 20. Procentul apare mereu și în cifre, ca informația să nu stea doar în culoare.</p>
+
+      <div class="demo-grid" style="margin-bottom:48px">
+        <div class="demo-panel">
+          <div class="eyebrow">Formular</div>
+          <div class="field">
+            <label for="d1">Numele elevului</label>
+            <input id="d1" type="text" value="Maria P." readonly>
+            <span class="hint">Apare doar în confirmarea trimisă părintelui.</span>
+          </div>
+          <div class="field err">
+            <label for="d2">Telefon</label>
+            <input id="d2" type="text" value="07" readonly>
+            <span class="hint">Numărul are 10 cifre. Mai lipsesc 8.</span>
+          </div>
+          <p class="note">Câmpul greșit se umple cu blush și spune ce lipsește. Culoarea singură nu e mesaj, textul e.</p>
+        </div>
+        <div class="demo-panel">
+          <div class="eyebrow">Recenzie</div>
+          <div class="card card-flat p-sage" style="box-shadow:var(--sh-1)">
+            <p class="script" style="font-size:var(--fs-md);color:var(--navy-900);line-height:1.45">A intrat cu 6.40 la simulare și a ieșit din Bacalaureat cu 8.75. Diferența a făcut-o planul scris de la început.</p>
+            <div style="margin-top:14px;font-size:var(--fs-xs);letter-spacing:.04em;text-transform:uppercase;font-weight:600;color:var(--navy-900);opacity:.7">Andreea M. · părinte, promoția 2025</div>
+          </div>
+          <p class="note">Accentul își câștigă locul aici: e o voce omenească, nu textul site-ului. Numele și anul rămân în Montserrat, ca să pară verificabile, pentru că sunt.</p>
+        </div>
+      </div>
+
+      <div class="eyebrow">Banda CTA</div>
+      <div class="ctaband" style="margin-bottom:20px">
+        <div>
+          <span class="script">Studium Generale by Denisa</span>
+          <h3>Prima ședință e o discuție, nu o lecție</h3>
+        </div>
+        <div class="btnrow">
+          <span class="btn btn-primary">Alege o oră în calendar</span>
+          <span class="btn btn-accent">Scrie pe WhatsApp</span>
+        </div>
+      </div>
+      <p class="note" style="margin-bottom:48px">Bleumarin plin, contur de 3&nbsp;px, umbră moale, colț de 28&nbsp;px. Singura suprafață mare care nu e de sticlă, pagina are nevoie de un bloc ferm care o oprește. Două acțiuni: una duce în calendar, una deschide WhatsApp. Fără gradient, fără umbră difuză.</p>
+
+      <div class="eyebrow">Subsol</div>
+      <div class="footerbar">
+        <a class="navlink p-butter" href="#p9">Am nevoie de ajutor</a>
+        <span class="center">© Academia 2026 · Termeni · Confidențialitate</span>
+        <nav class="nav">
+          <a class="navlink" href="#p9">Facebook</a>
+          <a class="navlink" href="#p9">Instagram</a>
+          <a class="navlink" href="#p9">WhatsApp</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 10 ─────────────────────────────────────────────────────────────── -->
+    <section class="plate" id="p10">
+      <div class="plate-head">
+        <span class="plate-num">10</span>
+        <h2>Reguli</h2>
+        <p class="plate-note">Dacă una se încalcă, sistemul se destramă vizibil.</p>
+      </div>
+      <div class="rules">
+        <div class="rulecol">
+          <h4><span class="mark yes">✓</span> Așa da</h4>
+          <ul>
+            <li><b>Fiecare obiect e conturat.</b> Sticla fără ramă se topește în sticla de dedesubt.</li>
+            <li><b>Text lung stă pe umplere de 82%.</b> Sub 55%, contrastul devine impredictibil.</li>
+            <li><b>Textul pe o tentă e mereu navy 900.</b></li>
+            <li><b>Umplerea se ia dintr-o clasă <code>.p-*</code></b>, nu dintr-un stil scris pe element.</li>
+            <li><b>Fără forme colorate în fundal.</b> Nici cercuri, nici pete estompate, pagina e albă.</li>
+            <li><b>Un singur buton primar</b> pe ecran; restul secundare, accent sau text.</li>
+            <li><b>Cel mult trei tente</b> într-un ecran, fiecare cu un înțeles.</li>
+            <li><b>Gap de minimum 24&nbsp;px</b> între carduri, umbra moale are nevoie de loc.</li>
+            <li><b>Raza urmează mărimea:</b> câmp 12, card 16, panou 28, buton pastilă.</li>
+            <li><b>Focus vizibil</b> pe tot ce se poate accesa cu tastatura.</li>
+            <li><b>Două familii, patru roluri.</b> Poiret One pentru afiș, Montserrat pentru restul.</li>
+          </ul>
+        </div>
+        <div class="rulecol">
+          <h4><span class="mark no">✕</span> Așa nu</h4>
+          <ul>
+            <li><b>Niciun gradient</b> în umpleri, butoane, hero sau bare. Doar dunga de 1&nbsp;px.</li>
+            <li><b>Niciun blur pe obiecte mici.</b> Tag, badge, bară de progres: opace.</li>
+            <li><b>Rama nu se subțiază sub 1.5&nbsp;px</b> și nu devine gri, e navy 900.</li>
+            <li><b>Alama nu e fundal</b> pentru text de corp; pentru asta există butter.</li>
+            <li><b>Sigla nu se așază direct pe sticlă subțire</b>, minimum 86% umplere sub ea.</li>
+            <li><b>Poiret One niciodată sub 26&nbsp;px</b> și niciodată la 600, nu are decât greutatea 400.</li>
+            <li><b>Fără majuscule</b> pe butoane și titluri; doar pe supratitluri de 12&nbsp;px.</li>
+            <li><b>Fără mărimi în afara scării</b>, 18px sau 24px nu există în sistem.</li>
+            <li><b>Culoarea nu poartă singură informația.</b> Procentul apare și în cifre.</li>
+            <li><b>Niciun text de interfață sub 12&nbsp;px;</b> metadatele mono, minimum 11.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="usage">
+      <div class="eyebrow">Cum se folosește pe site</div>
+      <h3 style="font-size:var(--fs-lg);margin-bottom:12px">Un singur fișier, importat o dată</h3>
+      <p class="note" style="max-width:60ch;font-size:var(--fs-base);color:var(--text-secondary)"><code>brand/tokens.css</code> conține toate valorile de mai sus ca variabile CSS, tema închisă, pastelurile și clasele de componente, buton, card, tag, ofertă, bară de progres, bulă, chip, câmp, bandă CTA. Componentele consumă rolurile semantice, niciodată rampa direct.</p>
+      <pre>&lt;link rel="stylesheet" href="/brand/tokens.css"&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Poiret+One&amp;display=swap"&gt;
+
+<b>&lt;!-- Un card de sticlă cu tentă: clasa aduce cu ea rama și culoarea textului --&gt;</b>
+&lt;article class="card p-sage"&gt;
+  &lt;span class="tag"&gt;Clasa a XII-a&lt;/span&gt;
+  &lt;h3&gt;Pregătire Bacalaureat&lt;/h3&gt;
+  &lt;a class="btn btn-primary" href="/programare"&gt;Programează o ședință&lt;/a&gt;
+&lt;/article&gt;
+
+<b>/* Așa da: straturile, luate din tokeni */</b>
+.panou { background: var(--glass-fill-deep);
+         backdrop-filter: var(--glass-blur);
+         border: var(--stroke);
+         border-radius: var(--r-2xl);
+         box-shadow: var(--sh-3); }
+
+<b>/* Așa nu: sticlă fără ramă și cu umplere prea subțire sub text lung */</b>
+.panou { background: rgba(255,255,255,.3);
+         backdrop-filter: blur(20px);
+         border: 0; }</pre>
+    </section>
+  </main>
+</div>

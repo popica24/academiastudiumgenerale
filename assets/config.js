@@ -1,0 +1,68 @@
+/* ==========================================================================
+   ACADEMIA · Studium Generale by Denisa
+   DE COMPLETAT: singurul loc din tot site-ul cu date reale.
+   Schimbă valorile de mai jos și toate paginile se actualizează singure.
+   Nimic altundeva nu conține numere de telefon, linkuri sau ID-uri.
+   ========================================================================== */
+window.ACADEMIA = {
+  /* --- WhatsApp -----------------------------------------------------------
+     Format internațional, fără + și fără spații.  Ex: 40721004118           */
+  whatsapp: "40735433720",
+
+  /* Textul cu care se deschide conversația. Părintele îl poate șterge.      */
+  whatsappMessage:
+    "Bună ziua! Am găsit Academia pe site și aș vrea detalii despre pregătirea pentru ",
+
+  /* --- Formularul de potrivire --------------------------------------------
+     Cele trei întrebări de pe pagina principală ajung aici. Materia și
+     profesorul ei: `de` și `pana` sunt vârstele între care se oferă, pentru
+     materiile care se predau altfel la gimnaziu și altfel la liceu. O materie
+     fără ele apare la orice vârstă. Prenumele sunt cele care ies în mesajul
+     de WhatsApp, deci se scriu exact cum vreți să le citească părintele.
+     Aceleași 16 materii sunt și în cardurile din `index.html`.             */
+  materii: [
+    { nume: "Română",      profesori: ["Luiza"] },
+    { nume: "Matematică",  profesori: ["Andra"],              pana: 14 },
+    { nume: "Matematică",  profesori: ["Andrei"],             de: 15 },
+    { nume: "Istorie",     profesori: ["Ștefania"] },
+    { nume: "Geografie",   profesori: ["Alexandra"] },
+    { nume: "Logică",      profesori: ["Sara"] },
+    { nume: "Biologie",    profesori: ["Andra", "Cătălin"] },
+    { nume: "Chimie",      profesori: ["Ioana"] },
+    { nume: "Engleză",     profesori: ["Denisa", "Ștefania"] },
+    { nume: "Spaniolă",    profesori: ["Diana"] },
+    { nume: "Franceză",    profesori: ["Sara", "Ilinca"] },
+    { nume: "Chineză",     profesori: ["Alex", "Ana"] },
+    { nume: "Coreeană",    profesori: ["Jun"] },
+    { nume: "Maghiară",    profesori: [] },        /* DE COMPLETAT: cine predă */
+    { nume: "Informatică", profesori: ["Andrei"] },
+    { nume: "Greacă",      profesori: ["Denisa"] },
+  ],
+
+  /* Mesajul cu care se deschide WhatsApp la capătul formularului.
+     %MATERIE%, %VARSTA% și %MOD% se înlocuiesc cu ce a ales vizitatorul.   */
+  formularMesaj:
+    "Bună ziua, aș dori să particip la cursurile de %MATERIE%, îmi puteți da " +
+    "mai multe detalii? Am %VARSTA% ani și aș vrea pregătire %MOD%.",
+
+  /* --- Video de prezentare ------------------------------------------------
+     Doar ID-ul din adresa YouTube (partea de după v=), sau lasă gol.        */
+  youtubeId: "hc8JZRhXLo8",
+  youtubeTitle: "Cum arată o ședință la Academia",
+
+  /* --- Contact ------------------------------------------------------------ */
+  phone: "+40 735 433 720",
+  email: "contact@studiumgenerale.ro",
+  address: "Str. Edgar Quinet 10, et. 1, ap. 4, 010018 București",
+  schedule: "Luni–vineri, 14:00–20:00",
+
+  /* --- Rețele (lasă gol ca să dispară din subsol) ------------------------- */
+  facebook: "",
+  instagram: "",
+
+  /* --- Date de firmă ------------------------------------------------------
+     Obligatorii în subsolul unui site comercial din România.                */
+  company: "STUDIUM GENERALE BY DENISA SRL",
+  cui: "52829916",
+  regCom: "J2025084335006",
+};

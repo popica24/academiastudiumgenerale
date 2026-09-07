@@ -1,0 +1,273 @@
+/* ==========================================================================
+   ACADEMIA · stratul de site
+   Peste brand/tokens.css. Aici stau DOAR aranjarea în pagină și secțiunile.
+   Butoanele, cardurile, tag-urile, sticla și tentele vin din tokeni.
+   Dacă ai nevoie de o componentă nouă, se adaugă acolo, nu aici.
+   ========================================================================== */
+
+/* --- Structura paginii --------------------------------------------------- */
+.wrap { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--sp-8); }
+.wrap-text { max-width: var(--container-text); }
+section { padding-block: var(--sp-24); }
+section + section { padding-top: 0; }
+
+.sec-head { margin-bottom: var(--sp-10); }
+.sec-head .eyebrow { margin-bottom: var(--sp-3); }
+.sec-head h2 { font-size: var(--fs-2xl); margin-bottom: var(--sp-4); }
+.sec-head p { color: var(--text-secondary); }
+
+.grid { display: grid; gap: var(--sp-6); }
+/* patru carduri: 2×2, ca să nu rămână al patrulea singur pe un rând */
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.stack { display: flex; flex-direction: column; gap: var(--sp-4); align-items: flex-start; }
+.row   { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+
+/* --- Antet: sticlă lipită sus, fundalul curge pe sub ea ------------------ */
+.site-head {
+  position: sticky; top: 0; z-index: 50;
+  padding-block: var(--sp-3);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg);
+  border-bottom: var(--stroke);
+}
+.site-head::before {
+  content: ""; position: absolute; bottom: -1px; left: 6%; right: 6%; height: 1px;
+  background: var(--glass-sheen); pointer-events: none;
+}
+.head-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-5); }
+
+/* sigla: bleumarin, deci mereu pe cardul ei alb (vezi manualul, plata 01) */
+.brand { display: flex; align-items: center; gap: var(--sp-3); text-decoration: none; color: var(--text); }
+.brand-mark {
+  width: 46px; height: 46px; flex: none; padding: 4px;
+  background: #fff; border: var(--stroke); border-radius: var(--r-md);
+}
+.brand-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.brand-name { font-family: var(--font-primary); font-size: var(--fs-md);
+  letter-spacing: var(--ls-tight); line-height: 1; -webkit-text-stroke: 0; font-weight: 600;
+  font-family: var(--font-secondary); }
+.brand-sub { display: block; font-family: var(--font-secondary); font-size: 11px;
+  font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-muted); margin-top: 3px; }
+
+.burger { display: none; }
+
+/* --- Hero ---------------------------------------------------------------- */
+.hero { padding-top: var(--sp-20); padding-bottom: var(--sp-16); }
+/* Titlul de hero: o propoziție întreagă, nu cuvinte în cutii.
+   clamp ține linia lizibilă de la telefon la ecran mare; max-width în ch
+   o oprește să se întindă pe toată lățimea, unde ochiul pierde rândul. */
+.hero h1 {
+  font-size: clamp(2.125rem, 5.4vw, 4rem);
+  line-height: 1.1;
+  max-width: 19ch;
+  margin-bottom: var(--sp-6);
+}
+.hero-lede { font-size: var(--fs-md); color: var(--text-secondary);
+  max-width: 54ch; margin-bottom: var(--sp-8); }
+.hero-actions { gap: var(--sp-5); }
+.hero-note { font-size: var(--fs-sm); color: var(--text-muted); margin-top: var(--sp-5); }
+
+.proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-6); margin-top: var(--sp-16); }
+.proof-item { border-left: 2px solid var(--stroke-color); padding-left: var(--sp-5); }
+/* tabular-nums: cifrele au aceeași lățime, deci numărul nu tresare cât urcă */
+.proof-num { font-family: var(--font-primary); font-size: var(--fs-2xl);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-tight); line-height: 1.05; display: block;
+  -webkit-text-stroke: var(--poiret-stroke) currentColor; paint-order: stroke fill; }
+.proof-label { font-size: var(--fs-sm); color: var(--text-secondary); margin-top: 6px; }
+
+/* Cardul cu fotografie (`.foto-card`, `.reason`, `.materie`) a trecut în
+   brand/tokens.css, lângă celelalte componente: are culori, umbre și un voal,
+   deci nu era aranjare în pagină. Aici nu mai rămâne nimic din el.         */
+
+/* --- Video --------------------------------------------------------------- */
+.video {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+  border: var(--stroke); border-radius: var(--r-2xl); box-shadow: var(--sh-3);
+  overflow: hidden; cursor: pointer; background: var(--navy-800); padding: 0;
+}
+.video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.video-poster { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.video-play {
+  position: absolute; inset: 0; margin: auto; width: 84px; height: 84px;
+  display: grid; place-items: center; border-radius: var(--r-full);
+  border: var(--stroke); background: var(--glass-fill-deep);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  font-size: 26px; color: var(--navy-900); box-shadow: var(--sh-2);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.video:hover .video-play { transform: scale(1.06); }
+.video.is-placeholder { cursor: default; background: var(--bg-sunken); }
+.video.is-placeholder .video-play { display: none; }
+.video-fallback {
+  position: absolute; inset: 0; display: none; flex-direction: column;
+  align-items: center; justify-content: center; gap: var(--sp-3);
+  text-align: center; padding: var(--sp-8); color: var(--text-secondary);
+}
+.video.is-placeholder .video-fallback { display: flex; }
+
+/* --- Caruselul de recenzii ----------------------------------------------- */
+.carusel { position: relative; }
+.carusel-track {
+  display: flex; gap: var(--sp-6); overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--sp-1); padding-block: var(--sp-2) var(--sp-6);
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.carusel-track::-webkit-scrollbar { display: none; }
+.carusel-track > * { scroll-snap-align: start; flex: 0 0 min(100%, 420px); }
+.recenzie { display: flex; flex-direction: column; gap: var(--sp-4); height: 100%; }
+.recenzie blockquote { margin: 0; font-size: var(--fs-md); line-height: var(--lh-snug); }
+.recenzie figcaption { display: flex; align-items: center; gap: var(--sp-3); margin-top: auto; }
+.recenzie .who { font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+.recenzie .when { font-size: var(--fs-xs); color: var(--text-muted); }
+.carusel-nav { display: flex; align-items: center; gap: var(--sp-4); }
+.carusel-dots { display: flex; gap: var(--sp-2); flex: 1; flex-wrap: wrap; }
+.carusel-dot {
+  width: 10px; height: 10px; padding: 0; border-radius: var(--r-full);
+  border: 1.5px solid var(--stroke-color); background: transparent; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.carusel-dot[aria-current="true"] { background: var(--navy-700); }
+.carusel .btn-arrow:disabled { opacity: .35; cursor: default; box-shadow: none; transform: none; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+/* linkul de salt: ascuns pentru ochi, dar vizibil de îndată ce primește focus */
+a.sr-only:focus {
+  position: fixed; top: 12px; left: 12px; z-index: 100;
+  width: auto; height: auto; margin: 0; padding: 9px var(--sp-4);
+  overflow: visible; clip: auto; white-space: nowrap;
+  border: var(--stroke); background: var(--surface); box-shadow: var(--sh-2);
+}
+
+/* --- Despre: textul și omul, unul lângă altul -----------------------------
+   Textul rămâne pe măsura lui de citit, portretul ia coloana din dreapta și
+   stă lipit cât timp textul curge pe lângă el. Sub 900px coloanele se pun una
+   sub alta, iar portretul urcă primul: e mai bine să vezi omul înainte să
+   începi să citești despre el.                                             */
+.despre-sus { display: grid; gap: var(--sp-10) var(--sp-12);
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  align-items: start; }
+/* Antetul e lipicios și acoperă 74px. Portretul se oprește sub el, nu sub
+   marginea ferestrei, altfel intră pe dedesubt la derulare.                */
+.despre-sus .portret { position: sticky; top: calc(var(--inaltime-antet) + var(--sp-5)); }
+
+/* Textul paginii „Despre" curge pe toată lățimea coloanei, ca într-un
+   document scris: doar spațiere și aliniere. Regula generală care ține
+   paragrafele la 60 de caractere nu se aplică aici.                        */
+.despre-hero h1, .despre-hero .hero-lede { max-width: none; }
+/* `.articol.despre-text`, nu `.despre-text`: regula generală `.articol` are
+   aceeași specificitate și e scrisă mai jos în fișier, deci ar câștiga ea și
+   ar recentra a doua parte a paginii pe măsura de citit.                   */
+.articol.despre-text, .despre-sus .articol { max-width: none; margin-inline: 0; }
+.articol.despre-text p, .despre-sus .articol p,
+.articol.despre-text li, .despre-sus .articol li,
+.articol.despre-text blockquote, .despre-sus .articol blockquote { max-width: none; }
+/* Pe „Despre" citatul e text, nu obiect: fără chenar, fără fundal, fără colț
+   rotunjit și fără bara de accent. Rămâne doar ritmul din jur, adică aceeași
+   distanță ca între două paragrafe, și aceeași mărime de literă.          */
+.articol.despre-text blockquote, .despre-sus .articol blockquote {
+  padding: 0; border: 0; background: none; border-radius: 0;
+  font-size: inherit; color: var(--text-secondary);
+  /* `.articol blockquote` pune `margin: 0`, ceea ce avea sens cât timp
+     citatul era o cutie cu padding propriu. Fără cutie, ar sta lipit de
+     paragraful de deasupra: îi dăm exact distanța dintre două paragrafe. */
+  margin-top: var(--sp-6);
+}
+.despre-sus .articol h2:first-child { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .despre-sus { grid-template-columns: 1fr; }
+  .despre-sus .portret { position: static; order: -1; max-width: 420px; }
+}
+
+/* --- Blog ---------------------------------------------------------------- */
+.articole { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); }
+.articol-card { display: flex; flex-direction: column; gap: var(--sp-3);
+  align-items: flex-start; text-decoration: none; color: inherit; }
+.articol-card h3 { font-size: var(--fs-lg); }
+.articol-card p { font-size: var(--fs-sm); color: var(--text-secondary); }
+.articol-meta { display: flex; gap: var(--sp-3); align-items: center; font-size: var(--fs-xs);
+  color: var(--text-muted); margin-top: auto; padding-top: var(--sp-3); width: 100%; }
+
+.articol { max-width: var(--container-text); margin-inline: auto; }
+.articol > * + * { margin-top: var(--sp-6); }
+.articol h2 { font-size: var(--fs-xl); margin-top: var(--sp-12); }
+.articol h3 { font-size: var(--fs-lg); margin-top: var(--sp-10);
+  font-family: var(--font-secondary); font-weight: var(--fw-semibold); -webkit-text-stroke: 0; }
+.articol p, .articol li { color: var(--text-secondary); }
+.articol ul, .articol ol { padding-left: var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-3); }
+.articol blockquote {
+  margin: 0; padding: var(--sp-5) var(--sp-6);
+  border-left: 3px solid var(--accent); background: var(--glass-fill-soft);
+  border-radius: var(--r-md); font-size: var(--fs-md);
+}
+
+/* --- Subsol -------------------------------------------------------------- */
+.site-foot { padding-block: var(--sp-16) var(--sp-12); margin-top: var(--sp-24);
+  border-top: var(--stroke); }
+.foot-grid { display: grid; gap: var(--sp-10);
+  grid-template-columns: minmax(240px, 1.4fr) repeat(auto-fit, minmax(160px, 1fr)); }
+.foot-col h4 { font-family: var(--font-secondary); font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: var(--sp-4); -webkit-text-stroke: 0; }
+.foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+/* Butoanele și linkurile de navigație din subsol își păstrează culoarea
+   proprie: regula de mai jos e mai specifică decât `.btn` sau `.navlink`,
+   deci le-ar decolora textul și l-ar duce spre albastru la hover.          */
+.foot-col a:not(.btn):not(.navlink) { color: var(--text-secondary); text-decoration: none; font-size: var(--fs-sm); }
+.foot-col a:not(.btn):not(.navlink):hover { text-decoration: underline; }
+.foot-bottom { margin-top: var(--sp-12); padding-top: var(--sp-6); border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between;
+  font-size: var(--fs-xs); color: var(--text-muted); }
+
+/* --- AOS: plasa de siguranță ----------------------------------------------
+   `aos.css` ascunde din start tot ce poartă `data-aos` și arată abia când
+   scriptul vede elementul intrând în ecran. Dacă scriptul nu ajunge, fiindcă
+   CDN-ul e blocat sau rețeaua cade, jumătate de pagină ar rămâne invizibilă.
+   Clasa `fara-aos` se pune pe `<html>` din `onerror`-ul etichetei `<script>`
+   sau din site.js, dacă `window.AOS` lipsește, și readuce totul la vedere. */
+html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
+
+/* elementele care așteaptă date reale se văd că așteaptă */
+[data-nedefinit] { position: relative; }
+[data-nedefinit]::after {
+  content: attr(data-nedefinit) " de completat";
+  position: absolute; top: -10px; right: -6px; z-index: 2;
+  font-family: var(--font-secondary); font-size: 10px; font-weight: 600;
+  letter-spacing: .04em; padding: 2px 7px; border-radius: var(--r-full);
+  background: var(--p-blush); color: var(--navy-900);
+  border: 1.5px solid var(--navy-900); white-space: nowrap;
+}
+
+/* în antet nu are loc deasupra: coboară sub buton */
+.site-head [data-nedefinit]::after { top: auto; bottom: -11px; right: 0; }
+
+/* --- Sub 860px ----------------------------------------------------------- */
+@media (max-width: 860px) {
+  .wrap { padding-inline: var(--sp-5); }
+  section { padding-block: var(--sp-16); }
+  .burger { display: inline-flex; }
+  /* închis din CSS, nu din JS: altfel prima încărcare arată meniul peste hero */
+  #meniu { display: none; }
+  #meniu.is-open { display: flex; }
+  #meniu {
+    position: absolute; left: var(--sp-5); right: var(--sp-5); top: calc(100% + 10px);
+    flex-direction: column; align-items: stretch; gap: var(--sp-2);
+    padding: var(--sp-4); border: var(--stroke); border-radius: var(--r-xl);
+    background: var(--glass-fill-deep); box-shadow: var(--sh-3);
+    -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg);
+  }
+  #meniu .navlink { text-align: center; }
+  .head-inner { position: relative; }
+  .head-actions .btn span { display: none; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .foot-grid { grid-template-columns: 1fr; }
+  .hero h1 { max-width: none; }
+}

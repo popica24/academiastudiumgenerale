@@ -1,0 +1,115 @@
+Fotografiile din cardurile de materie. Toate sunt domeniu public sau CC0:
+pot fi folosite comercial, fără atribuire. Linia de atribuire de mai jos e
+scrisă oricum, ca să se poată verifica proveniența oricând.
+
+romana.jpg  (Română)
+  ce arată : Scrisoarea lui Neacșu din Câmpulung, 1521, cel mai vechi text păstrat în limba română
+  licență  : domeniu public
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Neac%C5%9Fu%27s_letter.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/8/82/Neac%C5%9Fu%27s_letter.jpg
+
+mate-gimnaziu.jpg  (Matematică, gimnaziu)
+  ce arată : Abac folosit într-un magazin din Otaru
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Abacus_actually_in_use_at_kimono_shop_in_Otaru.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/d/d3/Abacus_actually_in_use_at_kimono_shop_in_Otaru.jpg
+
+mate-liceu.jpg  (Matematică, liceu)
+  ce arată : Tablă cu ecuații la un curs de matematică
+  licență  : domeniu public
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Mathematics_lecture_at_the_Helsinki_University_of_Technology.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/8/86/Mathematics_lecture_at_the_Helsinki_University_of_Technology.jpg
+
+istorie.jpg  (Istorie)
+  ce arată : Relief de pe Columna lui Traian
+  licență  : domeniu public
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Trajan%27s_Column_(48423642906).jpg
+  fișier   : https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Trajan%27s_Column_%2848423642906%29.jpg/1920px-Trajan%27s_Column_%2848423642906%29.jpg
+
+geografie.jpg  (Geografie)
+  ce arată : Harta lui Mercator, ediția Lucas 1898
+  licență  : domeniu public
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Lucas_1898_Plate_13_Part_of_Mercator_Map_of_the_World_Duisburg_1569_annalsofvoyageso00luca_0296.jpg
+  fișier   : https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Lucas_1898_Plate_13_Part_of_Mercator_Map_of_the_World_Duisburg_1569_annalsofvoyageso00luca_0296.jpg/1920px-Lucas_1898_Plate_13_Part_of_Mercator_Map_of_the_World_Duisburg_1569_annalsofvoyageso00luca_0296.jpg
+
+logica.jpg  (Logică)
+  ce arată : Piese de șah pe tablă
+  licență  : CC0
+  sursă    : Rawpixel
+  pagina   : https://www.rawpixel.com/image/5914376/image-public-domain-free-game
+  fișier   : https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL3B4MTAyNTQ2MS1pbWFnZS1rd3Z3ZXRoNy5qcGc.jpg
+
+biologie.jpg  (Biologie)
+  ce arată : Obiectivul unui microscop
+  licență  : domeniu public
+  sursă    : Flickr
+  pagina   : https://www.flickr.com/photos/23408922@N07/10731246075
+  fișier   : https://live.staticflickr.com/3816/10731246075_c38d3d1722_b.jpg
+
+chimie.jpg  (Chimie)
+  ce arată : Sticlărie de laborator
+  licență  : domeniu public
+  sursă    : Flickr
+  pagina   : https://www.flickr.com/photos/183773348@N07/48691828153
+  fișier   : https://live.staticflickr.com/65535/48691828153_0342b03fb2_b.jpg
+
+engleza.jpg  (Engleză)
+  ce arată : Cabine telefonice roșii, Londra
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Red_telephone_box_(London)_in_2025.01.jpg
+  fișier   : https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Red_telephone_box_%28London%29_in_2025.01.jpg/1920px-Red_telephone_box_%28London%29_in_2025.01.jpg
+
+spaniola.jpg  (Spaniolă)
+  ce arată : Plaza de España, Sevilla
+  licență  : CC0
+  sursă    : Rawpixel
+  pagina   : https://www.rawpixel.com/image/5945563/free-public-domain-cc0-photo
+  fișier   : https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHg3NTIwMDgtaW1hZ2Uta3d5b20yOXAuanBn.jpg
+
+franceza.jpg  (Franceză)
+  ce arată : Turnul Eiffel
+  licență  : domeniu public
+  sursă    : Flickr
+  pagina   : https://www.flickr.com/photos/134469298@N03/29520256753
+  fișier   : https://live.staticflickr.com/5522/29520256753_0da1f0c49b_b.jpg
+
+chineza.jpg  (Chineză)
+  ce arată : Caligrafie chinezească în stil semicursiv
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/w/index.php?curid=76013588
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/3/31/Clevelandart_2003.353.jpg
+
+coreeana.jpg  (Coreeană)
+  ce arată : Streașină de templu coreean, Naksansa
+  licență  : CC0
+  sursă    : Rawpixel
+  pagina   : https://www.rawpixel.com/image/6021272/photo-image-public-domain-sky-free
+  fișier   : https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL2ZybmFrc2Fuc2Ffc29rY2hvX3NreV9nYW5nd29uLWltYWdlLWt5YmIzOTRuLmpwZw.jpg
+
+maghiara.jpg  (Maghiară)
+  ce arată : Parlamentul Ungariei, Budapesta
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Hungarian_Parliament_Building_2023-9.jpg
+  fișier   : https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Hungarian_Parliament_Building_2023-9.jpg/1920px-Hungarian_Parliament_Building_2023-9.jpg
+
+informatica.jpg  (Informatică)
+  ce arată : Programarea calculatorului ENIAC, 1946
+  licență  : domeniu public
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Glen_Beck_and_Betty_Snyder_program_the_ENIAC_in_building_328_at_the_Ballistic_Research_Laboratory.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/d/d3/Glen_Beck_and_Betty_Snyder_program_the_ENIAC_in_building_328_at_the_Ballistic_Research_Laboratory.jpg
+
+greaca.jpg  (Greacă)
+  ce arată : Coloanele unui templu grecesc
+  licență  : CC0
+  sursă    : Rawpixel
+  pagina   : https://www.rawpixel.com/image/6030694/photo-image-public-domain-free-history
+  fișier   : https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJ0ZW1wbGVfYW5jaWVudF9ydWluc19hcmNoaXRlY3R1cmUtaW1hZ2Uta3liY2d6bWMuanBn.jpg

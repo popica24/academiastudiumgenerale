@@ -1,0 +1,31 @@
+Fotografiile din cardurile secțiunii „Cum lucrăm”. Toate sunt domeniu
+public sau CC0: se pot folosi comercial, fără atribuire. Proveniența e
+scrisă oricum, ca să se poată verifica oricând.
+
+plan.jpg  (Un plan scris de la început)
+  ce arată : Cineva scrie într-un caiet, lângă un laptop
+  licență  : CC0
+  sursă    : Flickr
+  pagina   : https://www.flickr.com/photos/132795455@N08/18692128651
+  fișier   : https://live.staticflickr.com/313/18692128651_9fde6621b8_b.jpg
+
+raport.jpg  (Raport de progres în fiecare lună)
+  ce arată : O mână parcurge cu pixul un document tipărit
+  licență  : domeniu public
+  sursă    : Flickr
+  pagina   : https://www.flickr.com/photos/49208525@N08/6343722631
+  fișier   : https://live.staticflickr.com/6218/6343722631_84be289da6_b.jpg
+
+recuperare.jpg  (Recuperările nu se pierd)
+  ce arată : Pagini de calendar, ediție din 1914
+  licență  : domeniu public
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:1914-julian-gregorian-calendar-Greek-French.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/a/a8/1914-julian-gregorian-calendar-Greek-French.jpg
+
+simulare.jpg  (Simulări în condiții reale)
+  ce arată : Sală de clasă goală, cu băncile pregătite
+  licență  : domeniu public
+  sursă    : Flickr
+  pagina   : https://www.flickr.com/photos/23408922@N07/3571102858
+  fișier   : https://live.staticflickr.com/3594/3571102858_54d5b5f58c_b.jpg
