@@ -23,6 +23,7 @@ assets/foto/materii/  Cele 15 fotografii ale materiilor, plus SURSE.txt
 assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
 tools/voal.py         Cât de gros trebuie voalul peste o fotografie
+tools/mobil.sh        Captură la 393px, cât are un iPhone 16
 ```
 
 ## De completat înainte de publicare

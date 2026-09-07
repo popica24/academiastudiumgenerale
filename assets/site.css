@@ -18,8 +18,11 @@ section + section { padding-top: 0; }
 
 .grid { display: grid; gap: var(--sp-6); }
 /* patru carduri: 2×2, ca să nu rămână al patrulea singur pe un rând */
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+/* `min(...)` nu e decor: pe un ecran de 393px, `minmax(380px, 1fr)` cere o
+   coloană de 380px într-un container de 353px, iar cardurile ies în afară pe
+   dreapta. Cu `min()`, coloana coboară la lățimea containerului.           */
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
 .stack { display: flex; flex-direction: column; gap: var(--sp-4); align-items: flex-start; }
 .row   { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
 
@@ -52,6 +55,22 @@ section + section { padding-top: 0; }
   color: var(--text-muted); margin-top: 3px; }
 
 .burger { display: none; }
+/* Hamburgerul e desenat din trei linii, nu dintr-o imagine: o iconiță de 16px
+   dintr-un fișier ar fi încă o cerere de rețea pentru ceva ce CSS-ul știe să
+   deseneze. Se deschide în X când meniul e deschis.                        */
+.burger { gap: 0; padding: 9px 12px; }
+.burger-linii, .burger-linii::before, .burger-linii::after {
+  display: block; width: 18px; height: 2px; border-radius: 2px;
+  background: currentColor;
+  transition: transform var(--dur-base) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+.burger-linii { position: relative; }
+.burger-linii::before, .burger-linii::after { content: ""; position: absolute; left: 0; }
+.burger-linii::before { top: -6px; }
+.burger-linii::after  { top: 6px; }
+.burger[aria-expanded="true"] .burger-linii { background: transparent; }
+.burger[aria-expanded="true"] .burger-linii::before { transform: translateY(6px) rotate(45deg); }
+.burger[aria-expanded="true"] .burger-linii::after  { transform: translateY(-6px) rotate(-45deg); }
 
 /* --- Hero ---------------------------------------------------------------- */
 .hero { padding-top: var(--sp-20); padding-bottom: var(--sp-16); }
@@ -69,7 +88,7 @@ section + section { padding-top: 0; }
 .hero-actions { gap: var(--sp-5); }
 .hero-note { font-size: var(--fs-sm); color: var(--text-muted); margin-top: var(--sp-5); }
 
-.proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+.proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   gap: var(--sp-6); margin-top: var(--sp-16); }
 .proof-item { border-left: 2px solid var(--stroke-color); padding-left: var(--sp-5); }
 /* tabular-nums: cifrele au aceeași lățime, deci numărul nu tresare cât urcă */
@@ -186,7 +205,7 @@ a.sr-only:focus {
 }
 
 /* --- Blog ---------------------------------------------------------------- */
-.articole { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); }
+.articole { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr)); }
 .articol-card { display: flex; flex-direction: column; gap: var(--sp-3);
   align-items: flex-start; text-decoration: none; color: inherit; }
 .articol-card h3 { font-size: var(--fs-lg); }
@@ -211,7 +230,7 @@ a.sr-only:focus {
 .site-foot { padding-block: var(--sp-16) var(--sp-12); margin-top: var(--sp-24);
   border-top: var(--stroke); }
 .foot-grid { display: grid; gap: var(--sp-10);
-  grid-template-columns: minmax(240px, 1.4fr) repeat(auto-fit, minmax(160px, 1fr)); }
+  grid-template-columns: minmax(min(240px, 100%), 1.4fr) repeat(auto-fit, minmax(min(160px, 100%), 1fr)); }
 .foot-col h4 { font-family: var(--font-secondary); font-weight: var(--fw-semibold);
   font-size: var(--fs-sm); letter-spacing: .06em; text-transform: uppercase;
   color: var(--text-muted); margin-bottom: var(--sp-4); -webkit-text-stroke: 0; }
@@ -264,10 +283,91 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
   }
   #meniu .navlink { text-align: center; }
   .head-inner { position: relative; }
-  .head-actions .btn span { display: none; }
+  /* Regula ascunde etichetele din butoanele antetului, dar nu și liniile
+     hamburgerului, care sunt tot un span.                                  */
+  .head-actions .btn span:not(.burger-linii) { display: none; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 520px) {
+/* --- Telefon: sub 560px ---------------------------------------------------
+   Reperul e iPhone 16, 393px lățime. Regulile de aici sunt doar pentru
+   telefon; pe desktop nu se schimbă nimic.
+   -------------------------------------------------------------------------- */
+@media (max-width: 560px) {
   .foot-grid { grid-template-columns: 1fr; }
   .hero h1 { max-width: none; }
+
+  /* Antetul: sigla și cele două butoane, fără text de marcă. Pe 393px,
+     „Studium Generale by Denisa" se rupea pe trei rânduri și împingea
+     butoanele.                                                             */
+  .brand-text { display: none; }
+  .burger-text { position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap; }
+
+  /* Meniul: ecran plin, pornit din marginea de jos a antetului, cu aceeași
+     hârtie, ca să se citească drept continuarea barei, nu ca un panou pus
+     peste ea. Iese din padding-ul lui .wrap prin left/width.                */
+  #meniu.is-open {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    width: 100vw; height: calc(100dvh - var(--inaltime-antet));
+    flex-direction: column; align-items: stretch; justify-content: flex-start;
+    gap: 0; padding: var(--sp-6) var(--sp-5) var(--sp-10);
+    border: 0; border-radius: 0; box-shadow: none;
+    background: var(--bg);
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  html.meniu-deschis, html.meniu-deschis body { overflow: hidden; }
+
+  /* Antetul devine opac cât e meniul deschis, altfel se vede pagina prin
+     sticla lui și cusătura dintre bară și meniu sare în ochi.               */
+  .site-head:has(.burger[aria-expanded="true"]) { background: var(--bg); }
+
+  #meniu .navlink {
+    text-align: left; border: 0; border-radius: 0; background: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    font-family: var(--font-primary); font-size: var(--fs-xl);
+    font-weight: var(--fw-regular); letter-spacing: var(--ls-snug);
+    padding: var(--sp-4) 0; border-bottom: 1.5px solid var(--border);
+  }
+  #meniu .navlink:hover { transform: none; box-shadow: none; }
+  #meniu .navlink[aria-current="page"] { background: none; color: var(--accent-text); }
+
+  /* Recenziile: una pe ecran, dintr-o margine în alta. Caruselul iese din
+     padding-ul paginii, iar cardul îl primește înapoi ca gutieră.           */
+  #recenzii .carusel { margin-inline: calc(-1 * var(--sp-5)); }
+  #recenzii .carusel-track { padding-inline: var(--sp-5); scroll-padding-inline: var(--sp-5); }
+  /* 100% din cutia de conținut a pistei, care e exact lățimea textului de
+     deasupra. `100vw` ar fi inclus și bara de derulare și ar fi lăsat
+     gutiere inegale.                                                       */
+  #recenzii .carusel-track > * { flex: 0 0 100%; }
+  #recenzii .carusel-nav { padding-inline: var(--sp-5); }
+
+  /* Opțiunile formularului: două pe rând, fiecare cât jumătate de ecran, cu
+     textul la stânga. Pastilele mici, așezate trei pe rând, arătau ca niște
+     etichete, nu ca ceva de apăsat cu degetul.                              */
+  .formular { padding: var(--sp-6) var(--sp-5); }
+  .formular-optiuni { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+  .formular-optiuni .optiune {
+    width: 100%; justify-content: flex-start; text-align: left;
+    padding: 15px var(--sp-4); border-radius: var(--r-md);
+  }
+  /* Trei opțiuni sau mai puține: una pe rând, textele sunt lungi.           */
+  .formular-optiuni.putine { grid-template-columns: 1fr; }
+
+  /* Spațiere: pe un ecran de 393px, aerul desenat pentru desktop devine gol.
+     Secțiunile și hero-ul se strâng, distanțele dintre blocuri rămân în
+     aceeași scară, doar cu o treaptă mai jos.                               */
+  .hero { padding-top: var(--sp-12); padding-bottom: var(--sp-10); }
+  section { padding-block: var(--sp-12); }
+  .sec-head { margin-bottom: var(--sp-8); }
+  .despre-sus { gap: var(--sp-8); }
+  .despre-sus .portret { max-width: none; }
+  .articol h2 { margin-top: var(--sp-10); }
+  .articol h3 { margin-top: var(--sp-8); }
+  .site-foot { margin-top: var(--sp-16); padding-block: var(--sp-12) var(--sp-10); }
+
+  /* Totul la stânga: nimic nu se centrează pe telefon.                      */
+  .ctaband { text-align: left; padding: var(--sp-8) var(--sp-6); }
+  .ctaband h3 { max-width: none; }
+  .video-fallback { text-align: left; align-items: flex-start; }
 }

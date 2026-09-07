@@ -180,9 +180,12 @@
       titlu.tabIndex = -1;
       nod.appendChild(titlu);
 
+      var optiuni = pas.optiuni();
       var lista = document.createElement("div");
-      lista.className = "formular-optiuni";
-      pas.optiuni().forEach(function (o) {
+      /* Sub patru opțiuni textele sunt lungi („În grupă de maximum șase"),
+         deci pe telefon stau una sub alta, nu două pe rând.               */
+      lista.className = "formular-optiuni" + (optiuni.length < 4 ? " putine" : "");
+      optiuni.forEach(function (o) {
         var b = document.createElement("button");
         b.type = "button";
         b.className = "optiune";
@@ -323,8 +326,13 @@
   /* --- 5. Caruselul de recenzii ------------------------------------------
      Derulare cu scroll-snap: degetul merge nativ pe telefon, butoanele și
      tastele săgeți fac restul. Poziția se citește din scrollLeft, deci nu
-     există o stare paralelă care să se desincronizeze. Peste asta, o rulare
-     automată care se dă la o parte de îndată ce intervine cineva.          */
+     există o stare paralelă care să se desincronizeze.
+
+     Bucla e fără capăt și fără salt vizibil: recenziile se clonează o dată
+     la coadă, iar când rularea automată ajunge pe prima clonă, derularea se
+     mută instantaneu cu o lungime înapoi. Clona arată exact ca originalul,
+     deci ochiul nu prinde momentul. Fără clone, întoarcerea de la ultima la
+     prima ar fi o baleiere lungă înapoi, peste toate celelalte.            */
   document.querySelectorAll("[data-carusel]").forEach(function (root) {
     var track = root.querySelector(".carusel-track");
     var slides = Array.prototype.slice.call(track.children);
@@ -332,75 +340,105 @@
     var next = root.querySelector("[data-next]");
     var dots = root.querySelector(".carusel-dots");
     var live = root.querySelector("[data-live]");
-    if (!slides.length) return;
+    var n = slides.length;
+    if (!n) return;
+
+    function reduced() {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    /* Clonele nu sunt conținut: cititoarele de ecran le sar, iar tastatura
+       nu ajunge în ele.                                                    */
+    var clonat = false;
+    if (n > 1 && !reduced()) {
+      slides.forEach(function (s) {
+        var c = s.cloneNode(true);
+        c.setAttribute("aria-hidden", "true");
+        c.querySelectorAll("a, button").forEach(function (f) { f.tabIndex = -1; });
+        track.appendChild(c);
+      });
+      clonat = true;
+    }
+    var toate = Array.prototype.slice.call(track.children);
+    function lungimeSet() {
+      return clonat ? toate[n].offsetLeft - toate[0].offsetLeft : 0;
+    }
 
     slides.forEach(function (s, i) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "carusel-dot";
-      b.setAttribute("aria-label", "Recenzia " + (i + 1) + " din " + slides.length);
-      b.addEventListener("click", function () { go(i); });
+      b.setAttribute("aria-label", "Recenzia " + (i + 1) + " din " + n);
+      b.addEventListener("click", function () { pauza(); go(i); });
       dots.appendChild(b);
     });
 
     function current() {
       var best = 0, min = Infinity;
-      slides.forEach(function (s, i) {
+      toate.forEach(function (s, i) {
         var d = Math.abs(s.offsetLeft - track.scrollLeft);
         if (d < min) { min = d; best = i; }
       });
       return best;
     }
-    function go(i) {
-      i = Math.max(0, Math.min(slides.length - 1, i));
-      track.scrollTo({ left: slides[i].offsetLeft, behavior: reduced() ? "auto" : "smooth" });
-    }
-    function reduced() {
-      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function go(i, instant) {
+      i = Math.max(0, Math.min(toate.length - 1, i));
+      track.scrollTo({ left: toate[i].offsetLeft,
+                       behavior: (instant || reduced()) ? "auto" : "smooth" });
     }
     function sync() {
-      var i = current();
+      var i = current() % n;
       Array.prototype.forEach.call(dots.children, function (d, j) {
         d.setAttribute("aria-current", j === i ? "true" : "false");
       });
-      if (prev) prev.disabled = i === 0;
-      if (next) next.disabled = i === slides.length - 1;
-      if (live) live.textContent = "Recenzia " + (i + 1) + " din " + slides.length;
+      if (live) live.textContent = "Recenzia " + (i + 1) + " din " + n;
     }
-    if (prev) prev.addEventListener("click", function () { go(current() - 1); });
-    if (next) next.addEventListener("click", function () { go(current() + 1); });
+
+    /* Săgețile și tastele merg în cerc, ca și rularea automată. */
+    function paseste(directie) {
+      var i = current() + directie;
+      if (i < 0) { go(clonat ? n - 1 : 0); return; }
+      go(i);
+      if (clonat && i >= n) setTimeout(normalizeaza, 480);
+    }
+    function normalizeaza() {
+      var L = lungimeSet();
+      if (L && track.scrollLeft >= L - 2) track.scrollLeft -= L;
+    }
+
+    if (prev) prev.addEventListener("click", function () { pauza(); paseste(-1); });
+    if (next) next.addEventListener("click", function () { pauza(); paseste(1); });
     root.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { e.preventDefault(); go(current() - 1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); go(current() + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); pauza(); paseste(-1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); pauza(); paseste(1); }
     });
     var t;
     track.addEventListener("scroll", function () { clearTimeout(t); t = setTimeout(sync, 90); });
     sync();
 
-    /* Rulare automată. Pornește doar dacă există ce derula și dacă mișcarea
-       nu e refuzată din sistem. Se suspendă cât timp cursorul e deasupra,
-       cât timp ceva din carusel are focus sau cât timp fila stă în fundal,
-       și se oprește de tot la prima atingere a vizitatorului: cine a luat
-       comanda o păstrează.                                                 */
-    var PAS = 6000;
-    var ceas = null, renuntat = false;
+    /* Rularea automată nu se oprește de tot când intervine cineva, doar se
+       dă la o parte pentru câteva secunde și repornește: caruselul trebuie
+       să curgă mai departe.                                                */
+    var PAS = 5000, REVENIRE = 6000;
+    var ceas = null, ceasPauza = null;
 
     function poate() {
-      return !renuntat && !reduced() && track.scrollWidth > track.clientWidth + 4;
+      return !reduced() && track.scrollWidth > track.clientWidth + 4;
     }
     function opreste() { clearInterval(ceas); ceas = null; }
     function porneste() {
       opreste();
       if (!poate()) return;
-      ceas = setInterval(function () {
-        var i = current();
-        go(i >= slides.length - 1 ? 0 : i + 1);
-      }, PAS);
+      ceas = setInterval(function () { paseste(1); }, PAS);
     }
-    function renunta() { renuntat = true; opreste(); }
+    function pauza() {
+      opreste();
+      clearTimeout(ceasPauza);
+      ceasPauza = setTimeout(porneste, REVENIRE);
+    }
 
-    ["pointerdown", "keydown", "wheel", "touchstart"].forEach(function (ev) {
-      root.addEventListener(ev, renunta, { passive: true });
+    ["pointerdown", "wheel", "touchstart"].forEach(function (ev) {
+      root.addEventListener(ev, pauza, { passive: true });
     });
     root.addEventListener("mouseenter", opreste);
     root.addEventListener("mouseleave", porneste);
@@ -409,7 +447,7 @@
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) opreste(); else porneste();
     });
-    window.addEventListener("resize", porneste);
+    window.addEventListener("resize", function () { normalizeaza(); porneste(); });
     porneste();
   });
 
@@ -420,6 +458,9 @@
     var setOpen = function (open) {
       burger.setAttribute("aria-expanded", String(open));
       menu.classList.toggle("is-open", open);
+      /* Meniul acoperă tot ecranul pe telefon: fără asta, degetul derulează
+         pagina de sub el în loc să deruleze meniul.                        */
+      document.documentElement.classList.toggle("meniu-deschis", open);
     };
     burger.addEventListener("click", function () {
       setOpen(burger.getAttribute("aria-expanded") !== "true");

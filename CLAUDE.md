@@ -41,7 +41,37 @@ tools/audit.sh index.html       # o singură pagină
 tools/audit.sh index.html 390   # o pagină, o lățime
 tools/voal.py poza.jpg          # cât de gros trebuie voalul peste fotografia aia
 tools/voal.py --paragraf a.jpg  # la fel, dar cardul are și text mic
+tools/mobil.sh index.html x.png # captură la 393px, cât are un iPhone 16
 ```
+
+**Chrome headless nu coboară sub 500px lățime de fereastră.** O captură cerută
+la 393px iese randată la 485 și tăiată pe dreapta, deci arată o minciună.
+`tools/mobil.sh` ocolește asta punând pagina într-un iframe de 393px într-o
+fereastră mai mare; media queries se uită la lățimea iframe-ului, deci
+layout-ul e cel adevărat. La fel se poate injecta și `tools/audit.js` în
+iframe, cu `--allow-file-access-from-files`.
+
+## Telefon
+
+Reperul e **iPhone 16, 393px**. Regulile de telefon stau într-un singur bloc,
+`@media (max-width: 560px)` din `assets/site.css`. Ce e decis acolo:
+
+- **Antetul n-are text.** Doar sigla, hamburgerul și WhatsApp. Numele mărcii se
+  rupea pe trei rânduri și împingea butoanele.
+- **Hamburgerul e desenat din trei linii**, nu dintr-o imagine, și se deschide
+  în X. Atenție la regula care ascunde etichetele butoanelor din antet: e
+  scrisă `span:not(.burger-linii)` tocmai ca să nu înghită iconița.
+- **Meniul acoperă ecranul** și pornește din marginea de jos a antetului, cu
+  aceeași hârtie, ca să se citească drept continuarea barei. Cât e deschis,
+  `html.meniu-deschis` blochează derularea paginii de dedesubt.
+- **Grilele folosesc `minmax(min(380px, 100%), 1fr)`.** Fără `min()`, o coloană
+  de 380px într-un ecran de 393 împinge cardurile în afara paginii pe dreapta.
+- **O recenzie pe ecran**, lată exact cât textul de deasupra ei. Nu `100vw`:
+  ar include bara de derulare și ar lăsa gutierele inegale.
+- **Opțiunile formularului stau două pe rând**, cu textul la stânga. Pașii cu
+  cel mult trei opțiuni primesc clasa `putine` și trec pe o coloană, fiindcă
+  acolo etichetele sunt propoziții.
+- **Totul e aliniat la stânga.** Nimic nu se centrează.
 
 `tools/audit.sh` rulează headless (Chrome, Brave sau Chromium, ce găsește) și
 raportează, pe fiecare lățime: contrastul calculat pe fundalul **compus**
