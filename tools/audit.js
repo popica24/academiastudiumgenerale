@@ -43,6 +43,24 @@
     return false;
   }
 
+  // Un <details> închis nu mai arată nimic din conținutul lui, dar Chrome nu-i
+  // pune display:none copiilor ca să-i ascundă, îi ascunde prin alt mecanism,
+  // iar getClientRects tot le găsește cutii acolo unde ochiul nu vede nimic.
+  // Fără filtrul ăsta, un răspuns de acordeon închis pare că se calcă cu
+  // SUMMARY-ul acordeonului următor, deși niciunul din ele nu se vede. Sar
+  // doar peste conținutul, nu și peste SUMMARY-ul care rămâne vizibil cât
+  // acordeonul e închis.
+  function ascunsDeDetailsInchis(el){
+    for(var n=el.parentElement; n; n=n.parentElement){
+      if(n.tagName==='DETAILS' && !n.hasAttribute('open')){
+        var rezumat=n.querySelector('summary');
+        if(rezumat && (rezumat===el || rezumat.contains(el))) continue;
+        return true;
+      }
+    }
+    return false;
+  }
+
   // Un element care trăiește într-un container ce taie sau derulează pe
   // orizontală nu poate împinge pagina în lături: fie e decupat (hidden,
   // clip), fie ajunge la el derularea containerului (auto, scroll).
@@ -82,13 +100,13 @@
     }
 
     // clipped content
-    if(el.scrollWidth > el.clientWidth+1 && st.overflowX==='visible'){
+    if(el.scrollWidth > el.clientWidth+1 && st.overflowX==='visible' && !ascunsDeDetailsInchis(el)){
       out.clipped.push({sel:el.tagName.toLowerCase()+(typeof el.className==='string'&&el.className?'.'+el.className.trim().split(/\s+/).join('.'):''),
         scrollW:el.scrollWidth, clientW:el.clientWidth, text:el.textContent.trim().slice(0,40)});
     }
     // element sticking out of the viewport horizontally,
     // ignorând ce trăiește într-un container derulabil pe orizontală (carusel)
-    if((r.right > window.innerWidth+2 || r.left < -2) && !inScroller(el)){
+    if((r.right > window.innerWidth+2 || r.left < -2) && !inScroller(el) && !ascunsDeDetailsInchis(el)){
       out.overflow.push({sel:el.tagName.toLowerCase()+(typeof el.className==='string'&&el.className?'.'+el.className.trim().split(/\s+/).join('.'):''),
         left:Math.round(r.left), right:Math.round(r.right), vw:window.innerWidth, text:el.textContent.trim().slice(0,40)});
     }
@@ -101,6 +119,7 @@
     if(st.display==='none'||st.visibility==='hidden') continue;
     if(st.position==='absolute'||st.position==='fixed') continue;
     if(!hasOwnText(el)) continue;
+    if(ascunsDeDetailsInchis(el)) continue;
     // Cutiile de linie, nu dreptunghiul care le înconjoară. Un <span> care se
     // rupe pe două rânduri are un getBoundingClientRect care acoperă și golul
     // de la capătul primului rând: doi vecini de pe același rând ar părea că
