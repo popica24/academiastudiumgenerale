@@ -9,9 +9,19 @@
   var PLACEHOLDER = /X{3,}|exemplu|ID_VIDEO/i;
   function isReal(v) { return v && !PLACEHOLDER.test(v); }
 
+  /* Limba paginii se citește de pe <html lang>, nu din adresă: o pagină nouă
+     are nevoie doar de atributul corect, nu de o linie în cod aici.       */
+  var LIMBA = (document.documentElement.lang || "ro").slice(0, 2);
+  var TEXTE = (C.texte && C.texte[LIMBA]) || (C.texte && C.texte.ro) || {};
+  function T(cheie, rezerva) {
+    return TEXTE[cheie] !== undefined ? TEXTE[cheie] : rezerva;
+  }
+  /* Numele materiei în limba paginii; fără traducere, rămâne cel românesc. */
+  function numeMaterie(m) { return (LIMBA === "en" && m.numeEn) || m.nume; }
+
   /* --- 1. WhatsApp ------------------------------------------------------ */
   function waHref(subject) {
-    var text = (C.whatsappMessage || "") + (subject || "");
+    var text = (T("whatsappMessage", C.whatsappMessage) || "") + (subject || "");
     return "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(text.trim());
   }
   document.querySelectorAll("[data-wa]").forEach(function (el) {
@@ -51,8 +61,8 @@
        trebuie să dea peste Excel în aceeași grămadă. Lista de lucru se
        compune o dată, cu grupul scris pe fiecare intrare, ca filtrarea după
        vârstă și căutarea profesorului să rămână un singur cod.           */
-    var GRUP_MATERII = "Materii";
-    var GRUP_CURSURI = "Cursuri speciale";
+    var GRUP_MATERII = T("grupMaterii", "Materii");
+    var GRUP_CURSURI = T("grupCursuri", "Cursuri speciale");
     var materii = adunaOferta();
 
     function adunaOferta() {
@@ -75,34 +85,34 @@
     var PASI = [
       {
         cheie: "varsta",
-        intrebare: "Câți ani ai?",
+        intrebare: T("varsta", "Câți ani ai?"),
         optiuni: function () {
           return VARSTE.map(function (v) {
-            return { eticheta: v === 19 ? "19 sau mai mult" : String(v), valoare: v };
+            return { eticheta: v === 19 ? T("saiMult", "19 sau mai mult") : String(v), valoare: v };
           });
         }
       },
       {
         cheie: "materie",
-        intrebare: "Ce materie te-ar interesa?",
+        intrebare: T("materie", "Ce materie te-ar interesa?"),
         grupuri: function () {
           return [GRUP_MATERII, GRUP_CURSURI].map(function (g) {
             return {
               titlu: g,
               optiuni: materiiLaVarsta(raspunsuri.varsta)
                 .filter(function (m) { return m.grup === g; })
-                .map(function (m) { return { eticheta: m.nume, valoare: m.nume }; })
+                .map(function (m) { return { eticheta: numeMaterie(m), valoare: m.nume }; })
             };
           }).filter(function (g) { return g.optiuni.length; });
         }
       },
       {
         cheie: "mod",
-        intrebare: "Vrei să înveți singur sau în grupă?",
+        intrebare: T("mod", "Vrei să înveți singur sau în grupă?"),
         optiuni: function () {
           return [
-            { eticheta: "Singur, unu la unu", valoare: "individuală" },
-            { eticheta: "În grupă de maximum trei", valoare: "în grupă" }
+            { eticheta: T("individual", "Singur, unu la unu"), valoare: T("valIndividual", "individuală") },
+            { eticheta: T("inGrupa", "În grupă de maximum trei"), valoare: T("valInGrupa", "în grupă") }
           ];
         }
       }
@@ -134,8 +144,9 @@
       return nume.slice(0, -1).join(", ") + " sau " + nume[nume.length - 1];
     }
     function mesajWhatsApp() {
-      var sablon = C.formularMesaj || "";
-      return sablon.replace("%MATERIE%", raspunsuri.materie)
+      var sablon = T("formularMesaj", C.formularMesaj) || "";
+      var alesa = materii.filter(function (m) { return m.nume === raspunsuri.materie; })[0];
+      return sablon.replace("%MATERIE%", alesa ? numeMaterie(alesa) : raspunsuri.materie)
                    .replace("%VARSTA%", raspunsuri.varsta)
                    .replace("%MOD%", raspunsuri.mod);
     }
@@ -190,7 +201,7 @@
       var b = document.createElement("button");
       b.type = "button";
       b.className = "btn btn-ghost formular-inapoi";
-      b.textContent = "← Înapoi";
+      b.textContent = T("inapoi", "← Înapoi");
       b.addEventListener("click", function () {
         indice = Math.max(0, indice - 1);
         delete raspunsuri[PASI[indice].cheie];
@@ -206,7 +217,8 @@
 
       var numar = document.createElement("p");
       numar.className = "formular-numar";
-      numar.textContent = "Pasul " + (indice + 1) + " din " + PASI.length;
+      numar.textContent = T("pasul", "Pasul %N% din %TOTAL%")
+        .replace("%N%", indice + 1).replace("%TOTAL%", PASI.length);
       nod.appendChild(numar);
 
       var titlu = document.createElement("h3");
@@ -268,7 +280,7 @@
 
       var numar = document.createElement("p");
       numar.className = "formular-numar";
-      numar.textContent = "Gata";
+      numar.textContent = T("gata", "Gata");
       nod.appendChild(numar);
 
       var titlu = document.createElement("h3");
@@ -667,7 +679,7 @@
       image: baza + "/assets/og.jpg",
       description: document.querySelector('meta[name="description"]')
         ? document.querySelector('meta[name="description"]').content : "",
-      inLanguage: "ro-RO",
+      inLanguage: LIMBA === "en" ? "en" : "ro-RO",
       areaServed: { "@type": "City", name: "București" }
     };
     if (isReal(C.phone)) scoala.telephone = C.phone.replace(/\s/g, "");
@@ -749,16 +761,23 @@
       });
     }
 
-    /* Firul Ariadnei, pe paginile interioare. */
+    /* Firul Ariadnei, pe paginile interioare. `aici` ignoră folderul, deci
+       `en/despre.html` dă tot `despre.html`: tabela de titluri și prefixul
+       de adresă se aleg după limbă, ca pagina engleză să nu capete titluri
+       și adrese românești.                                                */
     var aici = location.pathname.split("/").pop();
-    var TITLURI = { "despre.html": "Despre", "blog.html": "Blog",
-                    "blog-articol.html": "Articol" };
+    var prefix = LIMBA === "en" ? "/en/" : "/";
+    var TITLURI = LIMBA === "en"
+      ? { "despre.html": "About" }
+      : { "despre.html": "Despre", "blog.html": "Blog", "blog-articol.html": "Articol" };
     if (TITLURI[aici]) {
       noduri.push({
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Acasă", item: baza + "/" },
-          { "@type": "ListItem", position: 2, name: TITLURI[aici], item: baza + "/" + aici }
+          { "@type": "ListItem", position: 1,
+            name: LIMBA === "en" ? "Home" : "Acasă", item: baza + prefix },
+          { "@type": "ListItem", position: 2, name: TITLURI[aici],
+            item: baza + prefix + aici }
         ]
       });
     }

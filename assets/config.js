@@ -21,22 +21,22 @@ window.ACADEMIA = {
      de WhatsApp, deci se scriu exact cum vreți să le citească părintele.
      Aceleași 16 materii sunt și în cardurile din `index.html`.             */
   materii: [
-    { nume: "Română",      profesori: ["Luiza"] },
-    { nume: "Matematică",  profesori: ["Andra"],              pana: 14 },
-    { nume: "Matematică",  profesori: ["Andrei"],             de: 15 },
-    { nume: "Istorie",     profesori: ["Ștefania"] },
-    { nume: "Geografie",   profesori: ["Alexandra"] },
-    { nume: "Logică",      profesori: ["Sara"] },
-    { nume: "Biologie",    profesori: ["Andra", "Cătălin"] },
-    { nume: "Chimie",      profesori: ["Ioana"] },
-    { nume: "Engleză",     profesori: ["Denisa", "Ștefania"] },
-    { nume: "Spaniolă",    profesori: ["Diana"] },
-    { nume: "Franceză",    profesori: ["Sara", "Ilinca"] },
-    { nume: "Chineză",     profesori: ["Alex", "Ana"] },
-    { nume: "Coreeană",    profesori: ["Jun"] },
-    { nume: "Maghiară",    profesori: [] },        /* DE COMPLETAT: cine predă */
-    { nume: "Informatică", profesori: ["Andrei"] },
-    { nume: "Greacă",      profesori: ["Denisa"] },
+    { nume: "Română",      numeEn: "Romanian",   profesori: ["Luiza"] },
+    { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andra"],  pana: 14 },
+    { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andrei"], de: 15 },
+    { nume: "Istorie",     numeEn: "History",     profesori: ["Ștefania"] },
+    { nume: "Geografie",   numeEn: "Geography",   profesori: ["Alexandra"] },
+    { nume: "Logică",      numeEn: "Logic",       profesori: ["Sara"] },
+    { nume: "Biologie",    numeEn: "Biology",     profesori: ["Andra", "Cătălin"] },
+    { nume: "Chimie",      numeEn: "Chemistry",   profesori: ["Ioana"] },
+    { nume: "Engleză",     numeEn: "English",     profesori: ["Denisa", "Ștefania"] },
+    { nume: "Spaniolă",    numeEn: "Spanish",     profesori: ["Diana"] },
+    { nume: "Franceză",    numeEn: "French",      profesori: ["Sara", "Ilinca"] },
+    { nume: "Chineză",     numeEn: "Chinese",     profesori: ["Alex", "Ana"] },
+    { nume: "Coreeană",    numeEn: "Korean",      profesori: ["Jun"] },
+    { nume: "Maghiară",    numeEn: "Hungarian",   profesori: [] },        /* DE COMPLETAT: cine predă */
+    { nume: "Informatică", numeEn: "Computer science", profesori: ["Andrei"] },
+    { nume: "Greacă",      numeEn: "Greek",       profesori: ["Denisa"] },
   ],
 
   /* --- Cursuri speciale ---------------------------------------------------
@@ -49,10 +49,10 @@ window.ACADEMIA = {
      spunem la telefon cine predă." în loc de un nume inventat.            */
   cursuriSpeciale: [
     { nume: "Excel",                profesori: [] },
-    { nume: "Contabilitate",        profesori: [] },
-    { nume: "Dicție",               profesori: [] },
-    { nume: "Dezvoltare personală", profesori: [] },
-    { nume: "Educație financiară",  profesori: [] },
+    { nume: "Contabilitate",        numeEn: "Accounting",         profesori: [] },
+    { nume: "Dicție",               numeEn: "Diction",            profesori: [] },
+    { nume: "Dezvoltare personală", numeEn: "Personal development", profesori: [] },
+    { nume: "Educație financiară",  numeEn: "Financial literacy", profesori: [] },
   ],
 
   /* Mesajul cu care se deschide WhatsApp la capătul formularului.
@@ -60,6 +60,56 @@ window.ACADEMIA = {
   formularMesaj:
     "Bună ziua, aș dori să particip la cursurile de %MATERIE%, îmi puteți da " +
     "mai multe detalii? Am %VARSTA% ani și aș vrea pregătire %MOD%.",
+
+  /* --- Textele care depind de limbă ---------------------------------------
+     Aici intră doar ce se schimbă între română și engleză: întrebările
+     formularului și mesajele de WhatsApp. Telefonul, adresa și restul datelor
+     de firmă NU se dublează: sunt aceleași în orice limbă și rămân mai sus,
+     scrise o singură dată.
+     `site.js` alege ramura după `lang` de pe <html>, deci o pagină nouă nu
+     are nevoie de nicio linie de cod, doar de atributul corect.          */
+  texte: {
+    ro: {
+      whatsappMessage:
+        "Bună ziua! Am găsit Academia pe site și aș vrea detalii despre pregătirea pentru ",
+      formularMesaj:
+        "Bună ziua, aș dori să particip la cursurile de %MATERIE%, îmi puteți da " +
+        "mai multe detalii? Am %VARSTA% ani și aș vrea pregătire %MOD%.",
+      varsta: "Câți ani ai?",
+      materie: "Ce materie te-ar interesa?",
+      mod: "Vrei să înveți singur sau în grupă?",
+      grupMaterii: "Materii",
+      grupCursuri: "Cursuri speciale",
+      individual: "Singur, unu la unu",
+      inGrupa: "În grupă de maximum trei",
+      valIndividual: "individuală",
+      valInGrupa: "în grupă",
+      saiMult: "19 sau mai mult",
+      pasul: "Pasul %N% din %TOTAL%",
+      inapoi: "← Înapoi",
+      gata: "Gata",
+    },
+    en: {
+      whatsappMessage:
+        "Hello! I found the Academy online and I would like details about preparation for ",
+      formularMesaj:
+        "Hello, I would like to join the %MATERIE% classes, could you send me " +
+        "more details? I am %VARSTA% years old and I would prefer %MOD% lessons.",
+      varsta: "How old are you?",
+      materie: "Which subject are you interested in?",
+      mod: "Would you rather study alone or in a small group?",
+      grupMaterii: "Subjects",
+      grupCursuri: "Special courses",
+      individual: "Alone, one to one",
+      inGrupa: "In a group of no more than three",
+      valIndividual: "one to one",
+      valInGrupa: "small group",
+      saiMult: "19 or older",
+      pasul: "Step %N% of %TOTAL%",
+      inapoi: "← Back",
+      gata: "Done",
+    },
+  },
 
   /* --- Video de prezentare ------------------------------------------------
      Doar ID-ul din adresa YouTube (partea de după v=), sau lasă gol.        */
