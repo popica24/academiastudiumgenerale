@@ -329,6 +329,10 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
 /* în antet nu are loc deasupra: coboară sub buton */
 .site-head [data-nedefinit]::after { top: auto; bottom: -11px; right: 0; }
 
+/* în rândul de jos al subsolului, linkul se rupe pe rândul lui, iar
+   eticheta de deasupra ar călca peste afirmația precedentă: coboară sub el */
+.foot-bottom [data-nedefinit]::after { top: auto; bottom: -18px; right: 0; }
+
 /* --- Sub 860px ----------------------------------------------------------- */
 @media (max-width: 860px) {
   .wrap { padding-inline: var(--sp-5); }

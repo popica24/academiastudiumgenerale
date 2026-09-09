@@ -73,8 +73,13 @@ window.ACADEMIA = {
   schedule: "Luni–vineri, 08:00–21:00",
 
   /* --- Rețele (lasă gol ca să dispară din subsol) ------------------------- */
-  facebook: "",
-  instagram: "",
+  facebook: "https://www.facebook.com/p/Academia-Studium-Generale-by-Denisa-61581913795617/",
+  instagram: "https://www.instagram.com/academia_studium_generale/",
+
+  /* Pagina de membru la Camera de Comerț.
+     DE COMPLETAT: adresa o dă clientul. Cât timp scrie XXX, subsolul își pune
+     singur eticheta roșie.                                                */
+  cameraComert: "XXX",
 
   /* --- Date de firmă ------------------------------------------------------
      Obligatorii în subsolul unui site comercial din România.                */

@@ -366,6 +366,19 @@
       if (isReal(C[k])) { el.href = C[k]; } else { el.remove(); }
     });
   });
+  /* Camera de Comerț: doar linkul vine din config, textul stă în pagină.
+     E o afirmație despre firmă, nu o dată de contact, deci se citește și
+     fără JavaScript; doar adresa lipsește până o dă clientul.          */
+  document.querySelectorAll("[data-camera]").forEach(function (el) {
+    if (isReal(C.cameraComert)) {
+      el.href = C.cameraComert;
+      el.target = "_blank";
+      el.rel = "noopener";
+    } else {
+      el.removeAttribute("href");
+      el.setAttribute("data-nedefinit", "Camera de Comerț");
+    }
+  });
 
   function warn(what) {
     return function (e) {
