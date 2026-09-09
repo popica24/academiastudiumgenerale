@@ -700,6 +700,34 @@
 
     var noduri = [scoala];
 
+    /* FAQ, ca date structurate. Întrebările se citesc din DOM, nu dintr-o
+       listă copiată în config.js: un text scris în două locuri se
+       desincronizează la prima corectură, iar Google ar ajunge să arate
+       varianta veche. Se emite doar dacă secțiunea există în pagină, deci
+       Despre și blogul nu îl capătă.
+       Rulează după secțiunea 4, care umple `data-address` și `data-schedule`,
+       deci `textContent` e deja complet.                                  */
+    var faq = document.querySelector("[data-faq]");
+    var intrebari = faq ? faq.querySelectorAll("details") : [];
+    if (intrebari.length) {
+      noduri.push({
+        "@type": "FAQPage",
+        "@id": baza + "/#intrebari",
+        mainEntity: Array.prototype.map.call(intrebari, function (d) {
+          var q = d.querySelector("summary");
+          var a = d.querySelector(".faq-raspuns");
+          return {
+            "@type": "Question",
+            name: q ? q.textContent.trim() : "",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: a ? a.textContent.replace(/\s+/g, " ").trim() : ""
+            }
+          };
+        })
+      });
+    }
+
     /* Firul Ariadnei, pe paginile interioare. */
     var aici = location.pathname.split("/").pop();
     var TITLURI = { "despre.html": "Despre", "blog.html": "Blog",

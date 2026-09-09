@@ -859,6 +859,48 @@ h1, h2, h3, h4,
   --voal-foto: rgba(11, 25, 54, 0.48); }
 .materie h3 { font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
 
+/* --- Întrebări frecvente -------------------------------------------------
+   `<details>`, nu un acordeon din JavaScript: browserul îl deschide singur,
+   îl face accesibil din tastatură fără nicio linie de cod, și îl arată
+   întreg dacă scriptul nu ajunge. Săgeata implicită se scoate și se
+   desenează una proprie, ca să se rotească.                              */
+.faq { display: flex; flex-direction: column; gap: var(--sp-3); }
+.faq details {
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  border: var(--stroke); border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-6);
+}
+.faq summary {
+  /* Grid, nu flex: coloana textului cere `minmax(0, 1fr)`, altfel textul
+     nu se strânge sub lățimea lui minimă (cel mai lung cuvânt) și, la o
+     întrebare lungă, iese cu câțiva pixeli peste cutie și împinge săgeata
+     în afara cardului.
+     `padding-right` rezervă locul pentru colțul rotit de mai jos: un pătrat
+     de 12px întors la 45° are diagonala mai lată decât latura, deci cerul
+     lui vizual trece cu vreo 3px peste propria cutie dacă nu i se face loc.*/
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--sp-4); cursor: pointer; list-style: none;
+  padding-right: 4px;
+  font-family: var(--font-primary); font-size: var(--fs-lg);
+  letter-spacing: var(--ls-snug); line-height: var(--lh-heading);
+  color: var(--text);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; flex: none; width: 12px; height: 12px; margin-top: 6px;
+  border-right: 2px solid var(--text); border-bottom: 2px solid var(--text);
+  transform: rotate(45deg);
+  transition: transform var(--dur-base) var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(-135deg); }
+.faq summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+.faq-raspuns {
+  margin: var(--sp-4) 0 0; max-width: 68ch;
+  font-size: var(--fs-sm); color: var(--text-secondary);
+}
+
 
 /* ==========================================================================
    TENTE
