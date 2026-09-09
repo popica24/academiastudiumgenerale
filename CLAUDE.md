@@ -217,9 +217,10 @@ Firma e înregistrată la **2025-11-03**, deci prima sesiune de examene prin car
 a trecut e cea din **iunie 2026**. Orice rezultat datat 2025 e imposibil.
 
 Sunt încă inventate și nu au voie să ajungă publice așa: cifrele din hero
-(media 8.40, 92%), cele patru recenzii, prețurile. Fotografia din
-`assets/foto/` e o previzualizare Adobe Stock nelicențiată, arată un birou și
-nu o școală, și are 640×360. Detalii în `README.md`.
+(media 8.40, 92%), cele patru recenzii, prețurile. `assets/foto/clasa.jpg` e
+o previzualizare Adobe Stock nelicențiată, arată un birou și nu o școală, și
+are 640×360; a rămas pe disc, dar nicio pagină nu o mai încarcă. Detalii în
+`README.md`.
 
 Sunt încă neconfirmate de client: cele șase răspunsuri din FAQ, scrise din
 ce spune deja site-ul, dar necitite de el, cu o notă vizibilă în pagină
@@ -238,7 +239,7 @@ carduri o vreme, dar au fost scoase. Secțiunea „Profesori”, cu trei nume
 inventate, a fost ștearsă; linkurile către ea au dispărut din meniu și din
 subsol.
 
-Fotografia din „Despre” (`assets/foto/despre.jpg`, derivată din `image.png`) e
+Fotografia din „Despre” (`assets/foto/despre.webp`, derivată din `image.png`) e
 a școlii, primită de la client: singura cu oameni reali și fără problemă de
 licență. Restul, cele 16 de la materii (`assets/foto/materii/`), cele
 patru din „Cum lucrăm” (`assets/foto/motive/`) și cele cinci din cursurile
