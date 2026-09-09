@@ -88,10 +88,9 @@ section + section { padding-top: 0; }
   background: var(--white); color: var(--navy-700);
 }
 
-/* Comutatorul de limbă: pastilă îngustă, doar două litere. Pe telefon iese
-   din bară și intră în meniu, unde e loc: la 393px bara are deja siglă,
-   hamburger și WhatsApp.                                                  */
-.lang-comutator { padding-inline: var(--sp-3); font-weight: var(--fw-semibold); }
+/* Comutatorul de limbă (`.lang-comutator`, componenta e în tokens.css) iese
+   din bară pe telefon și intră în meniu, unde e loc: la 393px bara are deja
+   siglă, hamburger și WhatsApp.                                            */
 /* În bară, versiunea din meniu ar fi un al doilea comutator: se ascunde. */
 .lang-meniu { display: none; }
 

@@ -453,6 +453,11 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 .navlink:active { transform: translateY(0) scale(0.975); box-shadow: none; }
 .navlink[aria-current="page"] { background: var(--navy-700); color: #fff; }
 
+/* Comutatorul de limbă: variantă de `.navlink`, pastilă îngustă cu doar
+   două litere, deci mai puțin padding orizontal și literă mai grea decât
+   restul linkurilor din bară.                                             */
+.lang-comutator { padding-inline: var(--sp-3); font-weight: var(--fw-semibold); }
+
 /* --- Card ---------------------------------------------------------------- */
 .card {
   container-type: inline-size;
