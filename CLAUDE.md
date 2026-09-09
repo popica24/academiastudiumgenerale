@@ -240,8 +240,9 @@ subsol.
 
 Fotografia din „Despre” (`assets/foto/despre.jpg`, derivată din `image.png`) e
 a școlii, primită de la client: singura cu oameni reali și fără problemă de
-licență. Restul, cele 16 de la materii (`assets/foto/materii/`) și cele
-patru din „Cum lucrăm” (`assets/foto/motive/`), sunt domeniu public sau CC0,
+licență. Restul, cele 16 de la materii (`assets/foto/materii/`), cele
+patru din „Cum lucrăm” (`assets/foto/motive/`) și cele cinci din cursurile
+speciale (`assets/foto/cursuri/`), sunt domeniu public sau CC0,
 deci se pot publica. Proveniența fiecăreia e într-un `SURSE.txt` lângă ele și în
 tabelele din `README.md`. `clasa.jpg`, previzualizarea Adobe Stock, nu mai e
 folosit nicăieri.
