@@ -2,26 +2,38 @@ Fotografiile din cardurile secțiunii „Cum lucrăm”. Toate sunt domeniu
 public sau CC0: se pot folosi comercial, fără atribuire. Proveniența e
 scrisă oricum, ca să se poată verifica oricând.
 
+Trei dintre ele (parinte, raport, recuperare) ieșeau calde pe fișierul brut,
+sub voalul bleumarin, cardul citea murdar, nu albastru. La 2026-09-10 au
+primit un viraj rece: gri (luminanță) cu autocontrast la prag 1%, apoi
+colorizare pe trei puncte, umbre #060C1C, mijloc #284676, lumini #DAE5F1,
+aceiași parametri pe toate trei. Detaliul e cel din fotografia originală,
+doar culoarea s-a schimbat. Fișierele calde, dinainte de viraj, rămân
+recuperabile din istoricul git, commitul 9e860b1 și cele dinaintea lui.
+`simulare.jpg` nu a fost atinsă, era deja albastră.
+
 parinte.jpg  (Părintele știe în fiecare moment ce se întâmplă la curs)
-  ce arată : Cineva scrie într-un caiet, lângă un laptop
-  licență  : CC0
-  sursă    : Flickr
-  pagina   : https://www.flickr.com/photos/132795455@N08/18692128651
-  fișier   : https://live.staticflickr.com/313/18692128651_9fde6621b8_b.jpg
+  ce arată  : Cineva scrie într-un caiet, lângă un laptop
+  licență   : CC0
+  sursă     : Flickr
+  pagina    : https://www.flickr.com/photos/132795455@N08/18692128651
+  fișier    : https://live.staticflickr.com/313/18692128651_9fde6621b8_b.jpg
+  prelucrare: viraj rece, 2026-09-10 (vezi mai sus)
 
 raport.jpg  (Raport de progres în fiecare lună)
-  ce arată : O mână parcurge cu pixul un document tipărit
-  licență  : domeniu public
-  sursă    : Flickr
-  pagina   : https://www.flickr.com/photos/49208525@N08/6343722631
-  fișier   : https://live.staticflickr.com/6218/6343722631_84be289da6_b.jpg
+  ce arată  : O mână parcurge cu pixul un document tipărit
+  licență   : domeniu public
+  sursă     : Flickr
+  pagina    : https://www.flickr.com/photos/49208525@N08/6343722631
+  fișier    : https://live.staticflickr.com/6218/6343722631_84be289da6_b.jpg
+  prelucrare: viraj rece, 2026-09-10 (vezi mai sus)
 
 recuperare.jpg  (Recuperările nu se pierd)
-  ce arată : Pagini de calendar, ediție din 1914
-  licență  : domeniu public
-  sursă    : Wikimedia Commons
-  pagina   : https://commons.wikimedia.org/wiki/File:1914-julian-gregorian-calendar-Greek-French.jpg
-  fișier   : https://upload.wikimedia.org/wikipedia/commons/a/a8/1914-julian-gregorian-calendar-Greek-French.jpg
+  ce arată  : Pagini de calendar, ediție din 1914
+  licență   : domeniu public
+  sursă     : Wikimedia Commons
+  pagina    : https://commons.wikimedia.org/wiki/File:1914-julian-gregorian-calendar-Greek-French.jpg
+  fișier    : https://upload.wikimedia.org/wikipedia/commons/a/a8/1914-julian-gregorian-calendar-Greek-French.jpg
+  prelucrare: viraj rece, 2026-09-10 (vezi mai sus)
 
 simulare.jpg  (Simulări în condiții reale)
   ce arată : Amfiteatru cu bănci și draperii albastre, studenți așezați la

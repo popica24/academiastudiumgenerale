@@ -92,12 +92,19 @@ Cele patru carduri au fiecare poza lor, în `assets/foto/motive/`, la 1100 px pe
 latura lungă. Domeniu public sau CC0, ca și cele de la materii. Proveniența
 completă e în `assets/foto/motive/SURSE.txt`.
 
-| Fișier | Cardul | Ce arată | Licență | Sursă |
-| --- | --- | --- | --- | --- |
-| `parinte.jpg` | Părintele știe ce se întâmplă la curs | Cineva scrie într-un caiet, lângă un laptop | CC0 | Flickr |
-| `raport.jpg` | Raport de progres în fiecare lună | O mână parcurge cu pixul un document tipărit | domeniu public | Flickr |
-| `recuperare.jpg` | Recuperările nu se pierd | Pagini de calendar, ediție din 1914 | domeniu public | Wikimedia Commons |
-| `simulare.jpg` | Simulări în condiții reale | Amfiteatru cu bănci și draperii albastre, studenți așezați la un curs | domeniu public | Wikimedia Commons |
+Clientul a cerut ca acest card să predomine cu albastru. Trei din patru
+ieșeau calde pe fișierul brut și au primit, la 2026-09-10, un viraj rece:
+gri pe luminanță, cu autocontrast, apoi colorizare pe trei puncte, aceiași
+parametri pentru toate trei. Fișierele calde, dinainte de viraj, rămân
+recuperabile din istoricul git. `simulare.jpg` nu a fost atinsă, era deja
+albastră.
+
+| Fișier | Cardul | Ce arată | Licență | Sursă | Prelucrare |
+| --- | --- | --- | --- | --- | --- |
+| `parinte.jpg` | Părintele știe ce se întâmplă la curs | Cineva scrie într-un caiet, lângă un laptop | CC0 | Flickr | viraj rece |
+| `raport.jpg` | Raport de progres în fiecare lună | O mână parcurge cu pixul un document tipărit | domeniu public | Flickr | viraj rece |
+| `recuperare.jpg` | Recuperările nu se pierd | Pagini de calendar, ediție din 1914 | domeniu public | Wikimedia Commons | viraj rece |
+| `simulare.jpg` | Simulări în condiții reale | Amfiteatru cu bănci și draperii albastre, studenți așezați la un curs | domeniu public | Wikimedia Commons | neatinsă |
 
 ## Fotografiile materiilor
 
