@@ -720,24 +720,29 @@
     if (retele.length) scoala.sameAs = retele;
 
     /* Materiile, ca ofertă: fiecare cu profesorul ei nu intră aici, dar
-       lista în sine spune ce se predă.                                     */
+       lista în sine spune ce se predă. Numele și descrierea trec prin
+       `numeMaterie()` și `T("ofertaDescriere")`, ca pagina engleză să nu
+       arate materii cu nume și descrieri românești.                        */
     var oferta = (C.materii || []).concat(C.cursuriSpeciale || []);
     if (oferta.length) {
       var vazute = [];
+      var unice = [];
       oferta.forEach(function (m) {
-        if (vazute.indexOf(m.nume) === -1) vazute.push(m.nume);
+        if (vazute.indexOf(m.nume) === -1) { vazute.push(m.nume); unice.push(m); }
       });
       scoala.hasOfferCatalog = {
         "@type": "OfferCatalog",
         name: "Materii",
-        itemListElement: vazute.map(function (nume) {
+        itemListElement: unice.map(function (m) {
+          var nume = numeMaterie(m);
           return {
             "@type": "Offer",
             itemOffered: {
               "@type": "Course",
               name: nume,
-              description: "Pregătire la " + nume +
-                ", individual sau în grupe de maximum trei elevi.",
+              description: T("ofertaDescriere",
+                "Pregătire la %MATERIE%, individual sau în grupe de maximum trei elevi."
+              ).replace("%MATERIE%", nume),
               provider: { "@id": baza + "/#scoala" }
             }
           };

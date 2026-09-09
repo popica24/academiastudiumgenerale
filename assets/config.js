@@ -75,6 +75,11 @@ window.ACADEMIA = {
       formularMesaj:
         "Bună ziua, aș dori să particip la cursurile de %MATERIE%, îmi puteți da " +
         "mai multe detalii? Am %VARSTA% ani și aș vrea pregătire %MOD%.",
+      /* Descrierea ofertei din datele structurate (JSON-LD), citită de
+         `hasOfferCatalog` din site.js, secțiunea 9. %MATERIE% se înlocuiește
+         cu numele materiei, deja tradus de `numeMaterie()`.               */
+      ofertaDescriere:
+        "Pregătire la %MATERIE%, individual sau în grupe de maximum trei elevi.",
       varsta: "Câți ani ai?",
       materie: "Ce materie te-ar interesa?",
       mod: "Vrei să înveți singur sau în grupă?",
@@ -102,6 +107,8 @@ window.ACADEMIA = {
       formularMesaj:
         "Hello, I would like to join the %MATERIE% classes, could you send me " +
         "more details? I am %VARSTA% years old and I would prefer %MOD% lessons.",
+      ofertaDescriere:
+        "Preparation for %MATERIE%, one to one or in groups of up to three students.",
       varsta: "How old are you?",
       materie: "Which subject are you interested in?",
       mod: "Would you rather study alone or in a small group?",
