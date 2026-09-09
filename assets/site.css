@@ -55,8 +55,6 @@ section + section { padding-top: 0; }
 }
 .brand-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 /* Numele mărcii, caligrafic, ca semnătura de sub blazon. Fontul are ochiul
-   mic, deci urcă la fs-xl ca să rămână la aceeași greutate optică.       */
-/* Numele mărcii, caligrafic, ca semnătura de sub blazon. Fontul are ochiul
    mic și se scrie legat, deci urcă în corp și nu se rărește.              */
 .brand-name { font-family: var(--font-accent); font-size: var(--fs-xl);
   font-weight: 400; letter-spacing: 0; line-height: 1.05; -webkit-text-stroke: 0; }
