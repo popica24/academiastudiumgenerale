@@ -193,12 +193,15 @@ care vor deveni buclă și șablon.
   virgulă pentru inciză, punct când sunt două fraze, două puncte pentru
   etichetă-plus-explicație, `·` ca separator în titluri. Cratima scurtă (–)
   rămâne pentru intervale reale (`Luni–vineri`, `VII–VIII`).
-- **Fără gradient**, cu două excepții aprobate, amândouă structurale: dunga
-  speculară de 1px de pe muchia sticlei și masca care topește marginile
-  fotografiilor. A doua nu e o umplere, e o mască: două treceri liniare,
-  una pe orizontală și una pe verticală, păstrate doar unde se suprapun, ca
-  fiecare latură a cardului să se stingă la fel, iar colțurile de două ori.
-  Fără forme colorate în fundal.
+- **Fără gradient**, cu trei excepții aprobate, toate structurale: dunga
+  speculară de 1px de pe muchia sticlei; masca care topește marginile
+  fotografiilor; și fundalul paginii, singurul gradient care nu desenează un
+  obiect, ci lumina pe suportul pe care stau toate obiectele. A doua nu e o
+  umplere, e o mască: două treceri liniare, una pe orizontală și una pe
+  verticală, păstrate doar unde se suprapun, ca fiecare latură a cardului să
+  se stingă la fel, iar colțurile de două ori. A treia e limitată de contrast:
+  capătul rece e `#F3F4F7` fiindcă pe `#F0F1F7` textul estompat cade la
+  4.45:1. Fără forme colorate în fundal.
 - **Titlurile sunt propoziții întregi**, într-un singur `h1`, nu cuvinte în
   casete separate.
 - **Contrast minim 4.5:1** pentru text normal. Peste fotografie, calculează

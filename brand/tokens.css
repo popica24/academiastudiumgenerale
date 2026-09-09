@@ -15,8 +15,11 @@
    una prin `prefers-color-scheme`, paleta e construită pentru hârtie.
 
    TREI REGULI ABSOLUTE
-     1. Fără gradient, cu O singură excepție: dunga speculară de 1px de pe
-        muchia de sus a sticlei (--glass-sheen). Nicăieri altundeva.
+     1. Fără gradient, cu trei excepții, toate structurale, nicio umplere
+        vizibilă din sistem: dunga speculară de 1px de pe muchia de sus a
+        sticlei (--glass-sheen), masca ce topește marginile fotografiilor
+        (.foto-clar) și fundalul paginii (--bg-rece pe body). Nicăieri
+        altundeva.
      2. Conturul rămâne: 2px navy 900, plin. Sticla se vede prin el, nu îl
         înlocuiește. Fără contur, panourile se topesc unele în altele.
      3. Textul stă pe sticlă opacă, nu pe transparență. Sub 55% umplere,
@@ -172,6 +175,10 @@
      6. ROLURI SEMANTICE
      ---------------------------------------------------------------------- */
   --bg:        var(--paper);
+  /* Capătul rece al hârtiei, în josul paginii. Nu e ales din ochi și nu poate
+     merge mai departe către albastru: pe #F0F1F7, textul estompat
+     --stone-500 cade la 4.45:1, sub prag. Aici e 4.56:1.                  */
+  --bg-rece:   #F3F4F7;
   --bg-sunken: #F4F2EA;
   --surface:   var(--white);      /* suprafață opacă, când sticla nu e potrivită */
   --surface-2: var(--stone-50);
@@ -278,7 +285,20 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  /* A treia excepție de la „fără gradient", și singura care nu desenează un
+     obiect: descrie lumina pe suportul pe care stau toate obiectele.
+     `background-color` NU e decorativ și nu se șterge. tools/audit.js, linia
+     30, citește getComputedStyle(n).backgroundColor, iar un gradient stă în
+     background-image. Fără culoarea plată, auditul ar citi transparent și ar
+     tăcea, fără să dea eroare. Se declară capătul cel mai închis, ca fiecare
+     măsurătoare să cadă pe cazul cel mai rău, nu pe unul mediu.
+     `fixed` ține gradientul în ecran, nu întins pe toată înălțimea
+     documentului, unde pe o pagină de 8000px n-ar mai fi vizibil deloc.
+     Pe iOS, `fixed` se comportă ca `scroll`; e o degradare blândă, pagina
+     rămâne corectă.                                                       */
+  background-color: var(--bg-rece);
+  background-image: linear-gradient(180deg, var(--bg) 0%, var(--bg-rece) 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-secondary);
   font-size: var(--fs-base);

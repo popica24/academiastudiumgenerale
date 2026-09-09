@@ -1115,7 +1115,7 @@ pre code{background:none; border:0; padding:0; white-space:inherit;}
         <p class="plate-note">Mecanica întregului sistem. Dacă se pierde asta, se pierde tot.</p>
       </div>
       <p class="intro">Fiecare suprafață e o lentilă cu ramă: umplere albă translucidă, blur pe ce se află în spate, o dungă de lumină de 1&nbsp;px pe muchia de sus și <b style="color:var(--text)">conturul de 2&nbsp;px în navy 900, care nu dispare niciodată</b>. Pe fundal alb și curat, <b style="color:var(--text)">rama e cea care face toată treaba</b>: fără ea, un card alb pe hârtie albă pur și simplu nu există.</p>
-      <p class="intro"><b style="color:var(--text)">Unde se vede efectiv blurul:</b> sub antetul lipit, când conținutul curge pe dedesubt; sub meniul de pe telefon; între rândurile suprapuse din teancul de pachete; sub orice panou așezat peste o fotografie. În rest, un card singur pe pagină, sticla e doar o suprafață aproape albă cu contur, și e în regulă să fie așa.</p>
+      <p class="intro"><b style="color:var(--text)">Unde se vede efectiv blurul:</b> între rândurile suprapuse din teancul de pachete; sub orice panou așezat peste o fotografie. Antetul și meniul de telefon nu mai sunt pe listă, sunt bleumarin plin, fără <code>backdrop-filter</code>, de când s-a scos capcana care lega blurul antetului de poziția meniului fixat dedesubt. În rest, un card singur pe pagină, sticla e doar o suprafață aproape albă cu contur, și e în regulă să fie așa.</p>
 
       <div class="glassbed" style="margin-bottom:32px">
         <div class="strip" aria-hidden="true">
@@ -1153,8 +1153,9 @@ pre code{background:none; border:0; padding:0; white-space:inherit;}
         </div>
 
         <div class="demo-panel">
-          <div class="eyebrow">Singurul gradient din sistem</div>
-          <p class="note">Regula „fără gradient” rămâne în picioare pentru orice umplere, buton, hero sau fundal. Excepția e una singură și are 1&nbsp;px înălțime: dunga de lumină de pe muchia de sus a sticlei. Se stinge spre capete, ca reflexia pe o muchie reală, o dungă albă uniformă arată ca o linie desenată, nu ca lumină.</p>
+          <div class="eyebrow">Gradientele din sistem, trei la număr</div>
+          <p class="note">Regula „fără gradient” rămâne în picioare pentru orice umplere, buton, hero sau bară. Excepțiile sunt trei, toate structurale, niciuna decorativă: dunga de lumină de pe muchia de sus a sticlei, masca ce topește marginile fotografiilor și fundalul paginii.</p>
+          <p class="note">Prima are 1&nbsp;px înălțime: se stinge spre capete, ca reflexia pe o muchie reală, o dungă albă uniformă arată ca o linie desenată, nu ca lumină.</p>
           <pre style="margin-top:4px">--glass-sheen:
   linear-gradient(90deg,
     rgba(255,255,255,0)   0%,
@@ -1162,6 +1163,7 @@ pre code{background:none; border:0; padding:0; white-space:inherit;}
     rgba(255,255,255,.95) 78%,
     rgba(255,255,255,0) 100%);</pre>
           <p class="note">Pe navy 700 aceeași dungă coboară la <code>.5</code>, pe fundal închis, alb pur la 95% arată ca un defect.</p>
+          <p class="note"><b>A treia: fundalul paginii.</b> <code>body</code> trece, pe verticală, de la <code>--bg</code> (hârtia) la un capăt rece, <code>--bg-rece</code> <code>#F3F4F7</code>, ca lumina să scadă spre josul paginii în loc să rămână plată. Nu e liber să meargă mai departe către albastru: pe <code>#F0F1F7</code>, textul estompat <code>--stone-500</code> cade la 4.45:1, sub prag; pe <code>#F3F4F7</code> e 4.56:1. Capătul e declarat de două ori, ca <code>background-color</code> și ca ultima oprire din <code>background-image</code>: <code>tools/audit.js</code> citește <code>getComputedStyle(n).backgroundColor</code>, nu <code>backgroundImage</code>, deci fără culoarea plată alături, auditul ar vedea fundal transparent și ar tăcea în loc să dea eroare pe orice text prea deschis. Din același motiv fundalul e cel mai închis capăt al gradientului: fiecare măsurătoare de contrast cade pe cazul cel mai defavorabil de pe pagină, nu pe o medie optimistă.</p>
         </div>
 
         <div class="demo-panel">
