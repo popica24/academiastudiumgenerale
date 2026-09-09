@@ -24,8 +24,10 @@ recuperare.jpg  (Recuperările nu se pierd)
   fișier   : https://upload.wikimedia.org/wikipedia/commons/a/a8/1914-julian-gregorian-calendar-Greek-French.jpg
 
 simulare.jpg  (Simulări în condiții reale)
-  ce arată : Sală de clasă goală, cu băncile pregătite
+  ce arată : Sală de curs cu scaune și draperii albastre, elevi așezați în
+             condiții de examen, la Facultatea de Științe a Universității
+             Chiang Mai
   licență  : domeniu public
-  sursă    : Flickr
-  pagina   : https://www.flickr.com/photos/23408922@N07/3571102858
-  fișier   : https://live.staticflickr.com/3594/3571102858_54d5b5f58c_b.jpg
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Room_STB302.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/1/18/Room_STB302.jpg
