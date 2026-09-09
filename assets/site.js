@@ -361,14 +361,22 @@
       if (!isReal(C[k])) el.setAttribute("data-nedefinit", k === "address" ? "Adresa" : k);
     });
   });
+  /* Rețelele duc pe alt site: cine citește despre școală nu trebuie să
+     piardă pagina școlii ca să se uite la Facebook sau Instagram.       */
   ["facebook", "instagram"].forEach(function (k) {
     document.querySelectorAll("[data-" + k + "]").forEach(function (el) {
-      if (isReal(C[k])) { el.href = C[k]; } else { el.remove(); }
+      if (isReal(C[k])) {
+        el.href = C[k];
+        el.target = "_blank";
+        el.rel = "noopener";
+      } else {
+        el.remove();
+      }
     });
   });
   /* Camera de Comerț: doar linkul vine din config, textul stă în pagină.
      E o afirmație despre firmă, nu o dată de contact, deci se citește și
-     fără JavaScript; doar adresa lipsește până o dă clientul.          */
+     fără JavaScript; adresa a venit de la client, în config.            */
   document.querySelectorAll("[data-camera]").forEach(function (el) {
     if (isReal(C.cameraComert)) {
       el.href = C.cameraComert;
