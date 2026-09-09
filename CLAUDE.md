@@ -221,10 +221,22 @@ Sunt încă inventate și nu au voie să ajungă publice așa: cifrele din hero
 `assets/foto/` e o previzualizare Adobe Stock nelicențiată, arată un birou și
 nu o școală, și are 640×360. Detalii în `README.md`.
 
-Cele 15 materii din secțiunea „Materii” sunt reale. Numele profesorilor nu
-apar nicăieri în pagină: au fost pe carduri o vreme, dar au fost scoase.
-Secțiunea „Profesori”, cu trei nume inventate, a fost ștearsă; linkurile către
-ea au dispărut din meniu și din subsol.
+Sunt încă neconfirmate de client: cele șase răspunsuri din FAQ, scrise din
+ce spune deja site-ul, dar necitite de el, cu o notă vizibilă în pagină
+(„De confirmat înainte de publicare."); și cine predă cele cinci cursuri
+speciale, pentru care formularul spune onest „vă spunem la telefon cine
+predă", fără nume inventat. Linkul Camerei de Comerț a fost primit între
+timp de la client și e în `config.js`, deci nu mai e „de completat".
+
+Cele 15 materii din secțiunea „Materii” sunt reale, ca număr de materii
+distincte. În pagină sunt totuși 16 carduri, fiindcă matematica se predă
+altfel la gimnaziu și altfel la liceu și are un card pentru fiecare; nu e o
+contradicție. Cele cinci cursuri speciale (Excel, contabilitate, dicție,
+dezvoltare personală, educație financiară) nu sunt materii de examen și nu
+intră în cele 15. Numele profesorilor nu apar nicăieri în pagină: au fost pe
+carduri o vreme, dar au fost scoase. Secțiunea „Profesori”, cu trei nume
+inventate, a fost ștearsă; linkurile către ea au dispărut din meniu și din
+subsol.
 
 Fotografia din „Despre” (`assets/foto/despre.jpg`, derivată din `image.png`) e
 a școlii, primită de la client: singura cu oameni reali și fără problemă de
