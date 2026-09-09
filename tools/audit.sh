@@ -24,12 +24,21 @@ WIDTHS=("${2:-}")
 [ -z "${WIDTHS[0]}" ] && WIDTHS=(1440 900 560)
 
 for page in "${PAGES[@]}"; do
-  tmp="_audit_$page"
-  python3 - "$page" "$tmp" <<'PY'
+  # Copia de lucru stă lângă original, nu la rădăcină: o pagină din en/ are
+  # căile scrise cu ../, iar mutată la rădăcină ar rămâne fără CSS și ar fi
+  # măsurată o pagină goală. Din același motiv, calea către audit.js urcă
+  # cu tot atâtea ../ câte are pagina.
+  dir="$(dirname "$page")"
+  base="$(basename "$page")"
+  tmp="$dir/_audit_$base"
+  sus=""
+  [ "$dir" != "." ] && sus="../"
+  python3 - "$page" "$tmp" "${sus}tools/audit.js" <<'PY'
 import sys
-src,dst=sys.argv[1],sys.argv[2]
-s=open(src,encoding='utf-8').read()
-open(dst,'w',encoding='utf-8').write(s.replace('</body>','<script src="tools/audit.js"></'+'script>\n</body>'))
+src, dst, script = sys.argv[1], sys.argv[2], sys.argv[3]
+s = open(src, encoding='utf-8').read()
+open(dst, 'w', encoding='utf-8').write(
+    s.replace('</body>', '<script src="%s"></' % script + 'script>\n</body>'))
 PY
   for w in "${WIDTHS[@]}"; do
     "$BROWSER" --headless --disable-gpu --virtual-time-budget=10000 \
