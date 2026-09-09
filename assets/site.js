@@ -683,7 +683,11 @@
     var baza = "https://studiumgenerale.ro";
     if (!isReal(C.company)) return;
 
-    var orar = (C.schedule || "").match(/(\d{2}):(\d{2})[^\d]+(\d{2}):(\d{2})/);
+    /* Prefixul de adresă după limbă, ca la firul Ariadnei mai jos: pagina
+       engleză nu are voie să declare adresa românească drept a ei.        */
+    var prefix = LIMBA === "en" ? "/en/" : "/";
+
+    var orar = (T("schedule", "") || "").match(/(\d{2}):(\d{2})[^\d]+(\d{2}):(\d{2})/);
     var scoala = {
       "@type": "EducationalOrganization",
       "@id": baza + "/#scoala",
@@ -691,7 +695,7 @@
          `legalName`, unde îl caută cine trebuie                            */
       name: "Academia · Studium Generale by Denisa",
       legalName: C.company,
-      url: baza + "/",
+      url: baza + prefix,
       logo: baza + "/assets/logo.webp",
       image: baza + "/assets/og.jpg",
       description: document.querySelector('meta[name="description"]')
@@ -735,7 +739,7 @@
       });
       scoala.hasOfferCatalog = {
         "@type": "OfferCatalog",
-        name: "Materii",
+        name: T("grupMaterii", "Materii"),
         itemListElement: unice.map(function (m) {
           var nume = numeMaterie(m);
           return {
@@ -767,7 +771,7 @@
     if (intrebari.length) {
       noduri.push({
         "@type": "FAQPage",
-        "@id": baza + "/#intrebari",
+        "@id": baza + prefix + "#intrebari",
         mainEntity: Array.prototype.map.call(intrebari, function (d) {
           var q = d.querySelector("summary");
           var a = d.querySelector(".faq-raspuns");
@@ -784,11 +788,11 @@
     }
 
     /* Firul Ariadnei, pe paginile interioare. `aici` ignoră folderul, deci
-       `en/despre.html` dă tot `despre.html`: tabela de titluri și prefixul
-       de adresă se aleg după limbă, ca pagina engleză să nu capete titluri
-       și adrese românești.                                                */
+       `en/despre.html` dă tot `despre.html`: tabela de titluri se alege
+       după limbă, ca pagina engleză să nu capete titluri românești. Adresa
+       folosește `prefix`, ales deja mai sus, la fel ca pentru organizație
+       și pentru FAQPage.                                                  */
     var aici = location.pathname.split("/").pop();
-    var prefix = LIMBA === "en" ? "/en/" : "/";
     var TITLURI = LIMBA === "en"
       ? { "despre.html": "About" }
       : { "despre.html": "Despre", "blog.html": "Blog", "blog-articol.html": "Articol" };
