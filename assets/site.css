@@ -403,6 +403,10 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
 
   #meniu .navlink {
     text-align: left; border: 0; border-radius: 0; background: none;
+    /* `.navlink` din tokens.css are `backdrop-filter: saturate(170%) blur(20px)`.
+       Fără resetul ăsta, fundalul „none" e transparent, dar filtrul saturează
+       bleumarinul meniului de dedesubt și rândul iese vizibil mai albastru. */
+    -webkit-backdrop-filter: none; backdrop-filter: none;
     font-family: var(--font-primary); font-size: var(--fs-xl);
     font-weight: var(--fw-regular); letter-spacing: var(--ls-snug);
     padding: var(--sp-4) 0;
