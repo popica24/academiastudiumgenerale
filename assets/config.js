@@ -88,6 +88,13 @@ window.ACADEMIA = {
       pasul: "Pasul %N% din %TOTAL%",
       inapoi: "← Înapoi",
       gata: "Gata",
+      felicitari: "Felicitări!",
+      cuProfesor: "La %MATERIE% vei lucra cu %PROFESORI%.",
+      faraProfesor: "La %MATERIE% vă spunem la telefon cine predă.",
+      recapitulare: "%VARSTA% ani · %MATERIE% · pregătire %MOD%",
+      separatorSau: " sau ",
+      apasaAici: "Apasă aici pentru a finaliza",
+      delaCapat: "Iau întrebările de la capăt",
     },
     en: {
       whatsappMessage:
@@ -108,6 +115,13 @@ window.ACADEMIA = {
       pasul: "Step %N% of %TOTAL%",
       inapoi: "← Back",
       gata: "Done",
+      felicitari: "Congratulations!",
+      cuProfesor: "For %MATERIE% you will work with %PROFESORI%.",
+      faraProfesor: "For %MATERIE% we will tell you by phone who teaches it.",
+      recapitulare: "%VARSTA% years old · %MATERIE% · %MOD% preparation",
+      separatorSau: " or ",
+      apasaAici: "Click here to finish",
+      delaCapat: "Start the questions over",
     },
   },
 

@@ -141,11 +141,16 @@
        nu cu amândoi deodată.                                              */
     function insiruie(nume) {
       if (nume.length < 2) return nume[0] || "";
-      return nume.slice(0, -1).join(", ") + " sau " + nume[nume.length - 1];
+      return nume.slice(0, -1).join(", ") + T("separatorSau", " sau ") + nume[nume.length - 1];
+    }
+    /* Obiectul materiei alese, ca să-i putem cere numele tradus; căutarea
+       tot pe `m.nume` merge, valoarea din răspuns rămâne cea românească.  */
+    function materiaAleasa() {
+      return materii.filter(function (m) { return m.nume === raspunsuri.materie; })[0];
     }
     function mesajWhatsApp() {
       var sablon = T("formularMesaj", C.formularMesaj) || "";
-      var alesa = materii.filter(function (m) { return m.nume === raspunsuri.materie; })[0];
+      var alesa = materiaAleasa();
       return sablon.replace("%MATERIE%", alesa ? numeMaterie(alesa) : raspunsuri.materie)
                    .replace("%VARSTA%", raspunsuri.varsta)
                    .replace("%MOD%", raspunsuri.mod);
@@ -284,21 +289,30 @@
       nod.appendChild(numar);
 
       var titlu = document.createElement("h3");
-      titlu.textContent = "Felicitări!";
+      titlu.textContent = T("felicitari", "Felicitări!");
       titlu.tabIndex = -1;
       nod.appendChild(titlu);
+
+      /* Materia intră tradusă în text, dar căutarea de mai sus a rămas pe
+         numele românesc: același compromis ca la mesajul de WhatsApp.     */
+      var alesa = materiaAleasa();
+      var materieAfisata = alesa ? numeMaterie(alesa) : raspunsuri.materie;
 
       var raspuns = document.createElement("p");
       raspuns.className = "formular-raspuns";
       raspuns.textContent = profesori.length
-        ? "La " + raspunsuri.materie + " vei lucra cu " + insiruie(profesori) + "."
-        : "La " + raspunsuri.materie + " vă spunem la telefon cine predă.";
+        ? T("cuProfesor", "La %MATERIE% vei lucra cu %PROFESORI%.")
+            .replace("%MATERIE%", materieAfisata).replace("%PROFESORI%", insiruie(profesori))
+        : T("faraProfesor", "La %MATERIE% vă spunem la telefon cine predă.")
+            .replace("%MATERIE%", materieAfisata);
       nod.appendChild(raspuns);
 
       var recap = document.createElement("p");
       recap.className = "formular-recapitulare";
-      recap.textContent = raspunsuri.varsta + " ani · " + raspunsuri.materie +
-                          " · pregătire " + raspunsuri.mod;
+      recap.textContent = T("recapitulare", "%VARSTA% ani · %MATERIE% · pregătire %MOD%")
+        .replace("%VARSTA%", raspunsuri.varsta)
+        .replace("%MATERIE%", materieAfisata)
+        .replace("%MOD%", raspunsuri.mod);
       nod.appendChild(recap);
 
       var final = document.createElement("div");
@@ -306,7 +320,7 @@
 
       var trimite = document.createElement("a");
       trimite.className = "btn btn-primary";
-      trimite.textContent = "Apasă aici pentru a finaliza";
+      trimite.textContent = T("apasaAici", "Apasă aici pentru a finaliza");
       if (isReal(C.whatsapp)) {
         trimite.href = "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(mesajWhatsApp());
         trimite.target = "_blank";
@@ -321,7 +335,7 @@
       var dinNou = document.createElement("button");
       dinNou.type = "button";
       dinNou.className = "btn btn-ghost";
-      dinNou.textContent = "Iau întrebările de la capăt";
+      dinNou.textContent = T("delaCapat", "Iau întrebările de la capăt");
       dinNou.addEventListener("click", function () {
         raspunsuri = {}; indice = 0; deseneazaPas();
       });
