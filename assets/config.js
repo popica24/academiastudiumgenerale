@@ -9,10 +9,6 @@ window.ACADEMIA = {
      Format internațional, fără + și fără spații.  Ex: 40721004118           */
   whatsapp: "40735433720",
 
-  /* Textul cu care se deschide conversația. Părintele îl poate șterge.      */
-  whatsappMessage:
-    "Bună ziua! Am găsit Academia pe site și aș vrea detalii despre pregătirea pentru ",
-
   /* --- Formularul de potrivire --------------------------------------------
      Cele trei întrebări de pe pagina principală ajung aici. Materia și
      profesorul ei: `de` și `pana` sunt vârstele între care se oferă, pentru
@@ -55,19 +51,17 @@ window.ACADEMIA = {
     { nume: "Educație financiară",  numeEn: "Financial literacy", profesori: [] },
   ],
 
-  /* Mesajul cu care se deschide WhatsApp la capătul formularului.
-     %MATERIE%, %VARSTA% și %MOD% se înlocuiesc cu ce a ales vizitatorul.   */
-  formularMesaj:
-    "Bună ziua, aș dori să particip la cursurile de %MATERIE%, îmi puteți da " +
-    "mai multe detalii? Am %VARSTA% ani și aș vrea pregătire %MOD%.",
-
   /* --- Textele care depind de limbă ---------------------------------------
      Aici intră doar ce se schimbă între română și engleză: întrebările
-     formularului și mesajele de WhatsApp. Telefonul, adresa și restul datelor
-     de firmă NU se dublează: sunt aceleași în orice limbă și rămân mai sus,
-     scrise o singură dată.
-     `site.js` alege ramura după `lang` de pe <html>, deci o pagină nouă nu
-     are nevoie de nicio linie de cod, doar de atributul corect.          */
+     formularului, mesajele de WhatsApp și programul. Telefonul, adresa și
+     restul datelor de firmă NU se dublează: sunt aceleași în orice limbă și
+     rămân mai sus, scrise o singură dată.
+     `whatsappMessage` și `formularMesaj` există DOAR aici, nu și mai sus:
+     un text scris în două locuri se desincronizează la prima corectură,
+     exact cum s-a întâmplat cu `schedule`. Sursa de adevăr e `texte`;
+     `site.js` citește mereu prin `T()`, cu ramura după `lang` de pe <html>,
+     deci o pagină nouă nu are nevoie de nicio linie de cod, doar de
+     atributul corect.                                                     */
   texte: {
     ro: {
       whatsappMessage:
@@ -100,6 +94,10 @@ window.ACADEMIA = {
       separatorSau: " sau ",
       apasaAici: "Apasă aici pentru a finaliza",
       delaCapat: "Iau întrebările de la capăt",
+      /* Programul, ca propoziție: nu e o dată de contact, e text și se
+         traduce. `site.js` îl citește prin `T("schedule", ...)`, nu direct
+         din obiectul de mai jos.                                          */
+      schedule: "Luni–vineri, 08:00–21:00",
     },
     en: {
       whatsappMessage:
@@ -129,6 +127,7 @@ window.ACADEMIA = {
       separatorSau: " or ",
       apasaAici: "Click here to finish",
       delaCapat: "Start the questions over",
+      schedule: "Monday–Friday, 08:00–21:00",
     },
   },
 
@@ -141,11 +140,13 @@ window.ACADEMIA = {
   youtubeId: "",
   youtubeTitle: "Cum arată o ședință la Academia",
 
-  /* --- Contact ------------------------------------------------------------ */
+  /* --- Contact ------------------------------------------------------------
+     Programul nu mai e aici: e o propoziție, nu o dată de contact, deci s-a
+     mutat în `texte.ro.schedule` / `texte.en.schedule`, mai sus. `site.js`
+     îl citește de acolo prin `T("schedule", ...)`.                        */
   phone: "+40 735 433 720",
   email: "contact@studiumgenerale.ro",
   address: "Str. Edgar Quinet 10, et. 1, ap. 4, 010018 București",
-  schedule: "Luni–vineri, 08:00–21:00",
 
   /* --- Rețele (lasă gol ca să dispară din subsol) ------------------------- */
   facebook: "https://www.facebook.com/p/Academia-Studium-Generale-by-Denisa-61581913795617/",

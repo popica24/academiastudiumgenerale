@@ -21,7 +21,7 @@
 
   /* --- 1. WhatsApp ------------------------------------------------------ */
   function waHref(subject) {
-    var text = (T("whatsappMessage", C.whatsappMessage) || "") + (subject || "");
+    var text = (T("whatsappMessage", "") || "") + (subject || "");
     return "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(text.trim());
   }
   document.querySelectorAll("[data-wa]").forEach(function (el) {
@@ -149,7 +149,7 @@
       return materii.filter(function (m) { return m.nume === raspunsuri.materie; })[0];
     }
     function mesajWhatsApp() {
-      var sablon = T("formularMesaj", C.formularMesaj) || "";
+      var sablon = T("formularMesaj", "") || "";
       var alesa = materiaAleasa();
       return sablon.replace("%MATERIE%", alesa ? numeMaterie(alesa) : raspunsuri.materie)
                    .replace("%VARSTA%", raspunsuri.varsta)
@@ -381,10 +381,13 @@
       }
     });
   });
+  /* `schedule` nu vine din `C`: e o propoziție, deci se traduce, și stă în
+     `texte.ro.schedule` / `texte.en.schedule`, citită prin `T()`.          */
   ["address", "schedule", "company", "cui", "regCom"].forEach(function (k) {
     document.querySelectorAll("[data-" + k + "]").forEach(function (el) {
-      el.textContent = C[k];
-      if (!isReal(C[k])) el.setAttribute("data-nedefinit", k === "address" ? "Adresa" : k);
+      var v = k === "schedule" ? T("schedule", "") : C[k];
+      el.textContent = v;
+      if (!isReal(v)) el.setAttribute("data-nedefinit", k === "address" ? "Adresa" : k);
     });
   });
   /* Rețelele duc pe alt site: cine citește despre școală nu trebuie să
