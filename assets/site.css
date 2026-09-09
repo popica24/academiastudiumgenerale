@@ -341,8 +341,7 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
     position: absolute; left: var(--sp-5); right: var(--sp-5); top: calc(100% + 10px);
     flex-direction: column; align-items: stretch; gap: var(--sp-2);
     padding: var(--sp-4); border: var(--stroke); border-radius: var(--r-xl);
-    background: var(--glass-fill-deep); box-shadow: var(--sh-3);
-    -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg);
+    background: var(--navy-700); box-shadow: var(--sh-3);
   }
   #meniu .navlink { text-align: center; }
   .head-inner { position: relative; }
@@ -367,39 +366,41 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
   /* Meniul: ecran plin, lipit sub antet.
 
      `fixed`, nu `absolute`. Menit ca meniul să se raporteze la ecran, nu la
-     antet. Două capcane ocolite aici, amândouă au rupt varianta dinainte:
+     antet. O capcană ocolită aici, a rupt varianta dinainte:
 
-       1. `backdrop-filter` face din antet blocul de referință pentru orice
-          copil `fixed`. Cât e meniul deschis, filtrul se stinge, altfel
-          `bottom: 0` ar însemna marginea de jos a barei, nu a ecranului.
-       2. `overflow: hidden` pe `<html>` blochează derularea, dar taie și
-          lipirea antetului: dacă pagina era derulată, bara se întorcea la
-          locul ei din document, adică deasupra ecranului, iar meniul pleca
-          odată cu ea. Rezultatul: meniu invizibil și pagină înțepenită.
-          Meniul acoperă acum tot ecranul, deci n-are nevoie de blocaj.     */
-  html.meniu-deschis .site-head {
-    background: var(--bg);
-    -webkit-backdrop-filter: none; backdrop-filter: none;
-  }
+     `overflow: hidden` pe `<html>` blochează derularea, dar taie și lipirea
+     antetului: dacă pagina era derulată, bara se întorcea la locul ei din
+     document, adică deasupra ecranului, iar meniul pleca odată cu ea.
+     Rezultatul: meniu invizibil și pagină înțepenită. Meniul acoperă acum
+     tot ecranul, deci n-are nevoie de blocaj.
+
+     Regula care stingea `backdrop-filter` pe antet cât era meniul deschis a
+     dispărut: bara nu mai are filtru de sters, e opacă din capul locului.  */
   #meniu.is-open {
     position: fixed; top: var(--inaltime-antet); left: 0; right: 0; bottom: 0;
     flex-direction: column; align-items: stretch; justify-content: flex-start;
     gap: 0; padding: var(--sp-6) var(--sp-5) var(--sp-10);
     border: 0; border-radius: 0; box-shadow: none;
-    background: var(--bg);
-    -webkit-backdrop-filter: none; backdrop-filter: none;
+    background: var(--navy-700);
     overflow-y: auto; overscroll-behavior: contain;
   }
 
   #meniu .navlink {
     text-align: left; border: 0; border-radius: 0; background: none;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
     font-family: var(--font-primary); font-size: var(--fs-xl);
     font-weight: var(--fw-regular); letter-spacing: var(--ls-snug);
-    padding: var(--sp-4) 0; border-bottom: 1.5px solid var(--border);
+    padding: var(--sp-4) 0;
+    /* Aurul de pe bară, 8.29:1 pe bleumarin. Linia despărțitoare trece de la
+       --border, o piatră deschisă care ar dispărea, la un bleumarin mai
+       deschis, care se vede fără să taie.                                 */
+    color: var(--brass-300);
+    border-bottom: 1.5px solid var(--navy-500);
   }
   #meniu .navlink:hover { transform: none; box-shadow: none; }
-  #meniu .navlink[aria-current="page"] { background: none; color: var(--accent-text); }
+  /* --accent-text (#9C6304) era ales pentru hârtie și dă 1.86:1 pe bleumarin,
+     adică invizibil. Albul dă 16.10:1 și marchează pagina curentă mai clar
+     decât o nuanță de auriu lângă alt auriu.                              */
+  #meniu .navlink[aria-current="page"] { background: none; color: var(--white); }
 
   /* Recenziile: una pe ecran, dintr-o margine în alta. Caruselul iese din
      padding-ul paginii, iar cardul îl primește înapoi ca gutieră.           */
