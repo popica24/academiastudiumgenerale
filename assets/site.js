@@ -466,9 +466,10 @@
     var setOpen = function (open) {
       burger.setAttribute("aria-expanded", String(open));
       menu.classList.toggle("is-open", open);
-      /* Meniul acoperă tot ecranul pe telefon: fără asta, degetul derulează
-         pagina de sub el în loc să deruleze meniul.                        */
-      document.documentElement.classList.toggle("meniu-deschis", open);
+      /* Nu blocăm derularea paginii de dedesubt cu o clasă pe <html>: meniul
+         acoperă tot ecranul, iar `overscroll-behavior: contain`, scris în
+         site.css pe #meniu.is-open, oprește singur scrollul să treacă la
+         pagina din spate.                                                  */
     };
     burger.addEventListener("click", function () {
       setOpen(burger.getAttribute("aria-expanded") !== "true");

@@ -375,7 +375,7 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
      tot ecranul, deci n-are nevoie de blocaj.
 
      Regula care stingea `backdrop-filter` pe antet cât era meniul deschis a
-     dispărut: bara nu mai are filtru de sters, e opacă din capul locului.  */
+     dispărut: bara nu mai are filtru de șters, e opacă din capul locului.  */
   #meniu.is-open {
     position: fixed; top: var(--inaltime-antet); left: 0; right: 0; bottom: 0;
     flex-direction: column; align-items: stretch; justify-content: flex-start;

@@ -89,7 +89,9 @@ Reperul e **iPhone 16, 393px**. Regulile de telefon stau într-un singur bloc,
   scrisă `span:not(.burger-linii)` tocmai ca să nu înghită iconița.
 - **Meniul acoperă ecranul** și pornește din marginea de jos a antetului, cu
   aceeași hârtie, ca să se citească drept continuarea barei. Cât e deschis,
-  `html.meniu-deschis` blochează derularea paginii de dedesubt.
+  nu e nevoie de nimic care să blocheze derularea paginii de dedesubt:
+  meniul acoperă tot ecranul, iar `overscroll-behavior: contain`, pe
+  `#meniu.is-open`, oprește singur scrollul să treacă mai departe.
 - **Grilele folosesc `minmax(min(380px, 100%), 1fr)`.** Fără `min()`, o coloană
   de 380px într-un ecran de 393 împinge cardurile în afara paginii pe dreapta.
 - **O recenzie pe ecran**, lată exact cât textul de deasupra ei. Nu `100vw`:
