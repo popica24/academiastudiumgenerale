@@ -1,0 +1,38 @@
+Fotografiile din cardurile de curs special. Toate sunt domeniu public sau CC0:
+pot fi folosite comercial, fără atribuire. Linia de atribuire de mai jos e
+scrisă oricum, ca să se poată verifica proveniența oricând.
+
+excel.jpg  (Excel)
+  ce arată : Un laptop pe o masă cu suprafață lucioasă, cu ecranul arătând un tablou de bord cu cifre, un grafic de arie și un grafic circular
+  licență  : CC0
+  sursă    : Wikimedia Commons (poză de pe Unsplash)
+  pagina   : https://commons.wikimedia.org/wiki/File:Statistics_on_a_laptop_(Unsplash).jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/b/b4/Statistics_on_a_laptop_(Unsplash).jpg
+
+contabilitate.jpg  (Contabilitate)
+  ce arată : Un calculator mecanic vechi, marca Produx, model Record, cu coloane de cifre de la 0 la 9, fotografiat pe fundal alb
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Old_produx_mechanical_calculator.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/f/fb/Old_produx_mechanical_calculator.jpg
+
+dictie.jpg  (Dicție)
+  ce arată : Un microfon pe stativ, cu fundalul neclar, luminat difuz
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Microphone_1.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/d/d4/Microphone_1.jpg
+
+dezvoltare.jpg  (Dezvoltare personală)
+  ce arată : Mâinile unei persoane la o masă de lemn, una pe tastatura unui laptop, cealaltă scriind cu un pix într-un carnet deschis; la mână are un ceas, iar pe masă e un telefon
+  licență  : CC0 (Public Domain Dedication)
+  sursă    : Flickr (image-catalog)
+  pagina   : https://www.flickr.com/photos/image-catalog/18692128651
+  fișier   : https://live.staticflickr.com/313/18692128651_e4f92f4c27_o.jpg
+
+financiara.jpg  (Educație financiară)
+  ce arată : Cinci teancuri de monede argintii, așezate în ordine crescătoare, pe fundal alb
+  licență  : CC0
+  sursă    : Wikimedia Commons
+  pagina   : https://commons.wikimedia.org/wiki/File:Stacks_of_Coins.jpg
+  fișier   : https://upload.wikimedia.org/wikipedia/commons/0/00/Stacks_of_Coins.jpg

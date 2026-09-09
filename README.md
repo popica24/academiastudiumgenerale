@@ -21,8 +21,9 @@ assets/site.js        WhatsApp, formularul de potrivire, video, carusel, meniu,
 assets/logo.webp      Sigla
 assets/og.jpg         Imaginea de previzualizare pentru linkuri
 assets/fonturi/       Fonturile, subsetate pentru română
-assets/foto/materii/  Cele 15 fotografii ale materiilor, plus SURSE.txt
+assets/foto/materii/  Cele 16 fotografii ale materiilor, plus SURSE.txt
 assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
+assets/foto/cursuri/  Cele 5 fotografii ale cursurilor speciale, plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
 tools/voal.py         Cât de gros trebuie voalul peste o fotografie
 tools/mobil.sh        Captură la 393px, cât are un iPhone 16
@@ -128,6 +129,21 @@ Ca să schimbi una: pui fișierul cu același nume peste cel vechi. Cardul îl
 folosește de două ori, o dată estompat ca fundal și o dată clar, deci nu e
 nimic de schimbat în HTML. Dacă poza are subiectul descentrat, se adaugă pe
 `<article>` un `style="--foto-pos:70% 40%"`.
+
+## Fotografiile cursurilor speciale
+
+Cele 5 carduri din secțiunea „Cursuri speciale" au fiecare poza ei, în
+`assets/foto/cursuri/`, la 800 px lățime, ca la materii. **Toate sunt CC0**,
+adică se pot folosi comercial fără atribuire și fără plată. Proveniența
+completă e în `assets/foto/cursuri/SURSE.txt`.
+
+| Fișier | Cardul | Ce arată | Licență | Sursă |
+| --- | --- | --- | --- | --- |
+| `excel.jpg` | Excel | Laptop pe o masă lucioasă, cu ecranul arătând un tablou de bord cu cifre și grafice | CC0 | Wikimedia Commons (Unsplash) |
+| `contabilitate.jpg` | Contabilitate | Calculator mecanic vechi Produx, cu coloane de cifre, pe fundal alb | CC0 | Wikimedia Commons |
+| `dictie.jpg` | Dicție | Microfon pe stativ, fundal neclar | CC0 | Wikimedia Commons |
+| `dezvoltare.jpg` | Dezvoltare personală | Mâini la o masă de lemn, una pe tastatura unui laptop, cealaltă scriind într-un carnet deschis | CC0 | Flickr (image-catalog) |
+| `financiara.jpg` | Educație financiară | Cinci teancuri de monede argintii, în ordine crescătoare, pe fundal alb | CC0 | Wikimedia Commons |
 
 ## Când vine backendul PHP
 

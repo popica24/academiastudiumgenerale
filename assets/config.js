@@ -43,8 +43,10 @@ window.ACADEMIA = {
      Nu sunt materii de examen și nu se pregătește nimic cu ele: se iau
      separat, la orice vârstă. Aceeași formă ca `materii`, deci intră în
      același pas al formularului, doar sub alt titlu.
-     DE COMPLETAT: cine predă fiecare. Cât timp `profesori` e gol, pagina își
-     pune singură eticheta roșie, exact ca la Maghiară.                    */
+     DE COMPLETAT: cine predă fiecare. Eticheta roșie „de completat" nu se
+     pune aici, ea e doar pentru WhatsApp, telefon, e-mail și adresă. Cât
+     timp `profesori` e gol, rezultatul formularului scrie „La Excel vă
+     spunem la telefon cine predă." în loc de un nume inventat.            */
   cursuriSpeciale: [
     { nume: "Excel",                profesori: [] },
     { nume: "Contabilitate",        profesori: [] },
