@@ -76,10 +76,8 @@ window.ACADEMIA = {
   facebook: "https://www.facebook.com/p/Academia-Studium-Generale-by-Denisa-61581913795617/",
   instagram: "https://www.instagram.com/academia_studium_generale/",
 
-  /* Pagina de membru la Camera de Comerț.
-     DE COMPLETAT: adresa o dă clientul. Cât timp scrie XXX, subsolul își pune
-     singur eticheta roșie.                                                */
-  cameraComert: "XXX",
+  /* Pagina de membru la Camera de Comerț, dată de client. */
+  cameraComert: "https://www.hrcc.ro/members/",
 
   /* --- Date de firmă ------------------------------------------------------
      Obligatorii în subsolul unui site comercial din România.                */
