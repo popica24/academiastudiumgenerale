@@ -46,7 +46,28 @@
     var scena = radacina.querySelector("[data-scena]");
     var progres = radacina.querySelectorAll(".formular-progres span");
     var live = radacina.querySelector("[data-live-formular]");
-    var materii = C.materii || [];
+    /* Materiile de examen și cursurile speciale merg prin același pas, dar
+       sub titluri diferite: cine caută pregătire pentru Bacalaureat nu
+       trebuie să dea peste Excel în aceeași grămadă. Lista de lucru se
+       compune o dată, cu grupul scris pe fiecare intrare, ca filtrarea după
+       vârstă și căutarea profesorului să rămână un singur cod.           */
+    var GRUP_MATERII = "Materii";
+    var GRUP_CURSURI = "Cursuri speciale";
+    var materii = adunaOferta();
+
+    function adunaOferta() {
+      var lista = [];
+      [[C.materii, GRUP_MATERII], [C.cursuriSpeciale, GRUP_CURSURI]]
+        .forEach(function (pereche) {
+          (pereche[0] || []).forEach(function (m) {
+            var copie = {};
+            for (var k in m) if (Object.prototype.hasOwnProperty.call(m, k)) copie[k] = m[k];
+            copie.grup = pereche[1];
+            lista.push(copie);
+          });
+        });
+      return lista;
+    }
     var raspunsuri = {};
     var indice = 0;
 
@@ -64,10 +85,15 @@
       {
         cheie: "materie",
         intrebare: "Ce materie te-ar interesa?",
-        optiuni: function () {
-          return materiiLaVarsta(raspunsuri.varsta).map(function (m) {
-            return { eticheta: m.nume, valoare: m.nume };
-          });
+        grupuri: function () {
+          return [GRUP_MATERII, GRUP_CURSURI].map(function (g) {
+            return {
+              titlu: g,
+              optiuni: materiiLaVarsta(raspunsuri.varsta)
+                .filter(function (m) { return m.grup === g; })
+                .map(function (m) { return { eticheta: m.nume, valoare: m.nume }; })
+            };
+          }).filter(function (g) { return g.optiuni.length; });
         }
       },
       {
@@ -188,12 +214,13 @@
       titlu.tabIndex = -1;
       nod.appendChild(titlu);
 
-      var optiuni = pas.optiuni();
-      var lista = document.createElement("div");
-      /* Sub patru opțiuni textele sunt lungi („În grupă de maximum trei"),
-         deci pe telefon stau una sub alta, nu două pe rând.               */
-      lista.className = "formular-optiuni" + (optiuni.length < 4 ? " putine" : "");
-      optiuni.forEach(function (o) {
+      /* Un pas are ori `optiuni`, ori `grupuri`. Grupurile sunt aceleași
+         butoane, doar cu un titlu mic peste fiecare teanc.               */
+      var grupuri = pas.grupuri ? pas.grupuri()
+                                : [{ titlu: null, optiuni: pas.optiuni() }];
+      var cate = grupuri.reduce(function (n, g) { return n + g.optiuni.length; }, 0);
+
+      function faButon(o) {
         var b = document.createElement("button");
         b.type = "button";
         b.className = "optiune";
@@ -206,9 +233,25 @@
             if (indice >= PASI.length) deseneazaRezultat(); else deseneazaPas();
           }, 140);
         });
-        lista.appendChild(b);
+        return b;
+      }
+
+      grupuri.forEach(function (g) {
+        if (g.titlu) {
+          var h = document.createElement("p");
+          h.className = "formular-grup";
+          h.textContent = g.titlu;
+          nod.appendChild(h);
+        }
+        var lista = document.createElement("div");
+        /* Sub patru opțiuni textele sunt lungi („În grupă de maximum trei"),
+           deci pe telefon stau una sub alta, nu două pe rând. Se numără
+           opțiunile pasului întreg, nu ale grupului: două teancuri de câte
+           trei nu fac un pas cu texte lungi.                              */
+        lista.className = "formular-optiuni" + (cate < 4 ? " putine" : "");
+        g.optiuni.forEach(function (o) { lista.appendChild(faButon(o)); });
+        nod.appendChild(lista);
       });
-      nod.appendChild(lista);
 
       if (indice > 0) nod.appendChild(butonInapoi());
 
@@ -631,9 +674,10 @@
 
     /* Materiile, ca ofertă: fiecare cu profesorul ei nu intră aici, dar
        lista în sine spune ce se predă.                                     */
-    if ((C.materii || []).length) {
+    var oferta = (C.materii || []).concat(C.cursuriSpeciale || []);
+    if (oferta.length) {
       var vazute = [];
-      (C.materii || []).forEach(function (m) {
+      oferta.forEach(function (m) {
         if (vazute.indexOf(m.nume) === -1) vazute.push(m.nume);
       });
       scoala.hasOfferCatalog = {

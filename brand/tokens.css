@@ -651,6 +651,14 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 .formular-pas h3 { font-size: var(--fs-xl); max-width: 22ch; }
 .formular-optiuni { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-8); }
 
+/* Titlul unui teanc de opțiuni. Discret: e o etichetă, nu o întrebare. */
+.formular-grup {
+  margin: var(--sp-6) 0 0; font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold); letter-spacing: .06em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.formular-grup + .formular-optiuni { margin-top: var(--sp-3); }
+
 /* Opțiunea e un buton, nu o casetă de bifat: se apasă o dată și pasul trece.
    La hover se ridică și atât, ca orice buton din sistem.                    */
 .optiune {

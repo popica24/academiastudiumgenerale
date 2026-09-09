@@ -39,6 +39,20 @@ window.ACADEMIA = {
     { nume: "Greacă",      profesori: ["Denisa"] },
   ],
 
+  /* --- Cursuri speciale ---------------------------------------------------
+     Nu sunt materii de examen și nu se pregătește nimic cu ele: se iau
+     separat, la orice vârstă. Aceeași formă ca `materii`, deci intră în
+     același pas al formularului, doar sub alt titlu.
+     DE COMPLETAT: cine predă fiecare. Cât timp `profesori` e gol, pagina își
+     pune singură eticheta roșie, exact ca la Maghiară.                    */
+  cursuriSpeciale: [
+    { nume: "Excel",                profesori: [] },
+    { nume: "Contabilitate",        profesori: [] },
+    { nume: "Dicție",               profesori: [] },
+    { nume: "Dezvoltare personală", profesori: [] },
+    { nume: "Educație financiară",  profesori: [] },
+  ],
+
   /* Mesajul cu care se deschide WhatsApp la capătul formularului.
      %MATERIE%, %VARSTA% și %MOD% se înlocuiesc cu ce a ales vizitatorul.   */
   formularMesaj:
