@@ -171,11 +171,12 @@ din `site.css` și atributele `data-aos` din HTML.
 
 Detaliile sunt în manual (`brand/brandbook.html`), dar pe scurt:
 
-1. **Fără gradient** și fără forme colorate în fundal, cu două excepții, ambele
-   structurale: dunga de 1px de pe muchia sticlei și masca ce topește marginile
-   fotografiilor.
-2. **Fiecare obiect are contur** de 2px navy 900. Fundalul e alb și curat,
-   deci rama e singurul lucru care separă un card de pagină. Nu se scoate.
+1. **Fără gradient** și fără forme colorate în fundal, cu trei excepții, toate
+   structurale: dunga de 1px de pe muchia sticlei, masca ce topește marginile
+   fotografiilor și fundalul paginii, care se răcește discret spre josul ei.
+2. **Fiecare obiect are contur** de 2px navy 900. Fundalul e aproape alb și
+   curat, deci rama e singurul lucru care separă un card de pagină. Nu se
+   scoate.
 3. **Butonul de WhatsApp e verdele lor** (`#25D366`) cu glifa oficială, iar
    textul de pe el e cerneala sistemului, nu alb.
 4. **Culorile vin din siglă:** `--navy-700` (`#121B52`) și `--navy-900`
