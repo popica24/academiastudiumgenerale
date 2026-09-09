@@ -889,7 +889,7 @@ h1, h2, h3, h4,
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
-  content: ""; flex: none; width: 12px; height: 12px; margin-top: 6px;
+  content: ""; width: 12px; height: 12px; margin-top: 6px;
   border-right: 2px solid var(--text); border-bottom: 2px solid var(--text);
   transform: rotate(45deg);
   transition: transform var(--dur-base) var(--ease);
