@@ -3,3 +3,7 @@
 
 # fișierele temporare ale auditului, dacă rularea a fost întreruptă
 _audit_*.html
+
+# spațiul de lucru al planurilor executate cu subagenți: ledger, brief-uri,
+# rapoarte, pachete de revizuire. Istoricul git e evidența, nu directorul ăsta.
+.superpowers/
