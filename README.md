@@ -40,8 +40,10 @@ Toate în `assets/config.js`, o singură dată pentru tot site-ul:
 | `phone` | ✅ `+40 735 433 720` | subsol |
 | `company`, `cui`, `regCom` | ✅ din registrul comerțului | subsol |
 | `youtubeId` | ⬜ doar ID-ul din adresa YouTube | secțiunea Video |
-| `email`, `address`, `schedule` | ⬜ datele de contact | subsol |
-| `facebook`, `instagram` | ⬜ lasă gol ca să dispară din subsol | subsol |
+| `email`, `address` | ✅ datele de contact | subsol |
+| `schedule` (în `texte.ro`/`texte.en`) | ✅ `Luni–vineri, 08:00–21:00`, tradus | subsol, FAQ |
+| `facebook`, `instagram` | ✅ adresele reale, sau lasă gol ca să dispară din subsol | subsol |
+| `cameraComert` | ✅ linkul de membru la Camera de Comerț Elenă-Română | subsol |
 
 **Despre formular:** cele trei întrebări din secțiunea Programare se hrănesc din
 `materii`. O materie cu `pana: 14` apare doar la gimnaziu, una cu `de: 15` doar
@@ -86,7 +88,7 @@ completează când se știe cine e în poză.
 
 ## Fotografiile din „Cum lucrăm"
 
-Cele patru carduri au fiecare poza lor, în `assets/foto/motive/`, la 1400 px pe
+Cele patru carduri au fiecare poza lor, în `assets/foto/motive/`, la 1100 px pe
 latura lungă. Domeniu public sau CC0, ca și cele de la materii. Proveniența
 completă e în `assets/foto/motive/SURSE.txt`.
 
