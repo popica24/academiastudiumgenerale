@@ -340,8 +340,16 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
    eticheta de deasupra ar călca peste afirmația precedentă: coboară sub el */
 .foot-bottom [data-nedefinit]::after { top: auto; bottom: -18px; right: 0; }
 
-/* --- Sub 860px ----------------------------------------------------------- */
-@media (max-width: 860px) {
+/* --- Sub 1040px -----------------------------------------------------------
+   Pragul era 860px, dar `.nav` are `flex-wrap: wrap`, deci linkul „Cursuri"
+   și comutatorul „EN" adăugate mai târziu nu ieșeau din ecran, se împachetau
+   pe un al doilea rând: antetul ajungea la 114px între 861 și ~1030px, cât
+   bara stă fără hamburger. Măsurat: în engleză bara nu mai încape pe un rând
+   până la ~1032px, cu vreo 6px mai târziu decât în română, fiindcă „Home",
+   „About", „Subjects", „Courses" plus pastila „RO" sunt puțin mai late decât
+   echivalentul românesc. Pragul de aici e cel mai mic la care bara stă pe un
+   rând în ambele limbi, cu o marjă de vreo 8px peste măsurătoare.          */
+@media (max-width: 1040px) {
   .wrap { padding-inline: var(--sp-5); }
   section { padding-block: var(--sp-16); }
   .burger { display: inline-flex; }
