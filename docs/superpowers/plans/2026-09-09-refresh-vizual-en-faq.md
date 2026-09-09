@@ -456,7 +456,7 @@ background-image; fără ea auditul ar fi tăcut. Regula e rescrisă în CLAUDE.
 ### Task 4: Corecturile de text și video mutat sus
 
 **Fișiere:**
-- Modifică: `index.html` (liniile 7, 88, 189-204, 206, 344, 360)
+- Modifică: `index.html` (liniile 7, 88, 152, 179, 344, 360, plus blocul `#video`)
 - Modifică: `despre.html:129`
 
 **Interfețe:**
@@ -476,9 +476,9 @@ fișierele între timp; citește-le înainte să schimbi ceva.
 
 | fișier și linie | acum | devine |
 |---|---|---|
-| `index.html:206` | `Șaisprezece materii, o singură școală` | `Toate materiile, o singură academie` |
+| `index.html:179` | `Șaisprezece materii, o singură școală` | `Toate materiile, o singură academie` |
 | `index.html:344` | `Nu cereți nimic pe încredere` | `Nu faceți nimic pe încredere` |
-| `index.html:184` | `Lunar pentru grupele de Bacalaureat, cu timp` | `Pentru grupele de Bacalaureat, cu timp` |
+| `index.html:152` | `Lunar pentru grupele de Bacalaureat, cu timp` | `Pentru grupele de Bacalaureat, cu timp` |
 
 Atenție la a treia: propoziția începe cu „Lunar", deci după ștergere trebuie
 majusculă pe „Pentru". Fraza întreagă devine:
@@ -1351,15 +1351,13 @@ PY
 done
 ```
 
-- [ ] **Pasul 3: Adaugă paginile engleze la lista implicită**
+- [ ] **Pasul 3: NU atinge lista implicită de pagini**
 
-```bash
-[ -z "${PAGES[0]}" ] && PAGES=(index.html despre.html blog.html blog-articol.html en/index.html en/despre.html)
-```
-
-Ele nu există încă, deci până la Task 11 `tools/audit.sh` fără argumente va
-raporta două fișiere lipsă. E acceptabil și e chiar util: îți aduce aminte ce
-mai e de făcut. Dacă preferi, lasă adăugarea asta pentru Task 11.
+Lista implicită rămâne cele patru pagini românești. Paginile engleze se adaugă
+în Task 11, odată cu fișierele lor. Motivul e că între task-ul ăsta și Task 11
+mai rulează verificări cu `tools/audit.sh` fără argumente, iar o listă care
+trimite la fișiere inexistente le-ar face să raporteze erori care n-au nicio
+legătură cu munca din acel moment.
 
 - [ ] **Pasul 4: Verifică**
 
@@ -1770,7 +1768,15 @@ mărcii, „Academia · Studium Generale by Denisa", rămâne neschimbat.
 Aceeași metodă, pornind de la `despre.html`. `canonical` devine
 `https://studiumgenerale.ro/en/despre.html`.
 
-- [ ] **Pasul 5: `sitemap.xml`**
+- [ ] **Pasul 5: Lista implicită a auditului și `sitemap.xml`**
+
+În `tools/audit.sh`, abia acum, când fișierele există:
+
+```bash
+[ -z "${PAGES[0]}" ] && PAGES=(index.html despre.html blog.html blog-articol.html en/index.html en/despre.html)
+```
+
+Apoi `sitemap.xml`:
 
 ```xml
   <url>
@@ -1841,7 +1847,7 @@ din capul fișierului.
 - [ ] **Pasul 8: Comite**
 
 ```bash
-git add en index.html despre.html blog.html blog-articol.html assets/site.css sitemap.xml CLAUDE.md
+git add en index.html despre.html blog.html blog-articol.html assets/site.css sitemap.xml tools/audit.sh CLAUDE.md
 git commit -m "Versiune engleză pentru Acasă și Despre, cu hreflang și comutator
 
 Pagini separate, nu comutator din JavaScript: Google indexează amândouă
@@ -1899,9 +1905,12 @@ animație de săgeată.
 - [ ] **Pasul 5: Datele structurate**
 
 Trece prin validatorul Google pentru date structurate cele două pagini
-principale. Așteptat: `EducationalOrganization` cu 21 de oferte în catalog și
-`FAQPage` cu șase întrebări, fără erori. Avertismentele despre câmpuri
-opționale se pot ignora.
+principale. Așteptat: `EducationalOrganization` cu **20** de oferte în catalog și
+`FAQPage` cu șase întrebări, fără erori. Douăzeci, nu 21: `hasOfferCatalog`
+deduplică după nume, iar „Matematică" apare de două ori în `materii`, o dată
+pentru gimnaziu și o dată pentru liceu. Cardurile din pagină rămân 16, fiindcă
+acolo sunt două carduri distincte. Avertismentele despre câmpuri opționale se
+pot ignora.
 
 - [ ] **Pasul 6: Actualizează ce nu e adevărat în pagină**
 
@@ -1915,10 +1924,27 @@ cursuri speciale; și adresa paginii de membru al Camerei de Comerț. Primele au
 o notă vizibilă în pagină, ultimele două poartă eticheta roșie „de completat".
 ```
 
-Actualizează și numărul materiilor unde apare („Cele 15 materii" e deja greșit
-față de cele 16 din carduri; acum sunt 16 plus cinci cursuri), și tabelele de
-poze din `README.md` cu cele patru poze noi de la „Cum lucrăm" și cele cinci
-de la cursuri.
+Actualizează și numărul materiilor unde apare: „Cele 15 materii din secțiunea
+Materii sunt reale" rămâne adevărat ca număr de materii distincte, dar în
+pagină sunt 16 carduri, fiindcă matematica are unul de gimnaziu și unul de
+liceu. Scrie asta explicit, ca să nu mai pară o contradicție. Adaugă și cele
+cinci cursuri speciale, care nu sunt materii de examen.
+
+Tabelele de poze din `README.md` au fost deja actualizate în Task 5 și Task 6.
+Aici doar **verifici** că fiecare fișier din `assets/foto/motive/` și
+`assets/foto/cursuri/` are un rând în tabel și în `SURSE.txt`:
+
+```bash
+for d in motive cursuri; do
+  for f in assets/foto/$d/*.webp; do
+    n=$(basename "$f" .webp)
+    grep -q "$n" "assets/foto/$d/SURSE.txt" || echo "LIPSEȘTE din SURSE.txt: $f"
+    grep -q "$n" README.md || echo "LIPSEȘTE din README.md: $f"
+  done
+done
+```
+
+Așteptat: nicio linie.
 
 - [ ] **Pasul 7: Comite**
 
