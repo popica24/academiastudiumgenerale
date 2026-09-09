@@ -28,12 +28,17 @@ section + section { padding-top: 0; }
 .stack { display: flex; flex-direction: column; gap: var(--sp-4); align-items: flex-start; }
 .row   { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
 
-/* --- Antet: sticlă lipită sus, fundalul curge pe sub ea ------------------ */
+/* --- Antet: bleumarinul mărcii, plin ------------------------------------
+   Bara nu mai e de sticlă. Motivele, în ordine: e culoarea butonului primar,
+   deci antetul și acțiunea principală vorbesc aceeași limbă; și, scoțând
+   `backdrop-filter`, dispare capcana care făcea din antet blocul de
+   referință pentru meniul `fixed` de pe telefon (vezi blocul de 560px).
+   `theme-color` din cele patru pagini e deja #121B52, deci bara browserului
+   se potrivea cu o bară care abia acum devine bleumarin.                  */
 .site-head {
   position: sticky; top: 0; z-index: 50;
   padding-block: var(--sp-3);
-  background: var(--glass-fill);
-  -webkit-backdrop-filter: var(--glass-blur-lg); backdrop-filter: var(--glass-blur-lg);
+  background: var(--navy-700);
   border-bottom: var(--stroke);
 }
 .site-head::before {
@@ -58,6 +63,30 @@ section + section { padding-top: 0; }
 .brand-sub { display: block; font-family: var(--font-secondary); font-size: 11px;
   font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
   color: var(--text-muted); margin-top: 3px; }
+
+/* Marca pe bleumarin: același auriu care e deja pe banda de CTA. Măsurat:
+   --brass-300 pe --navy-700 dă 8.29:1, --brass-200 dă 10.6:1. Subtitlul ia
+   tonul mai deschis fiindcă are 11px, unde pragul contează cel mai mult.
+   Subtitlul rămâne Montserrat: Great Vibes are ochiul foarte mic și la 11px
+   nu se mai citește. Caligrafia rămâne doar pe „Academia".                */
+.site-head .brand      { color: var(--brass-300); }
+.site-head .brand-name { color: var(--brass-300); }
+.site-head .brand-sub  { color: var(--brass-200); }
+.site-head .burger     { color: var(--brass-300); }
+
+/* Linkurile primesc sticla pe care o avea bara până acum, cu cerneala peste
+   ea. Măsurat: alb 62% peste --navy-700 compune #A5A8BD, iar --navy-900
+   peste el dă 7.41:1. La 52% ar fi 5.67:1, tot peste prag, dar bara ar
+   rămâne prea închisă pe sub linkuri; la 82% s-ar albi și n-ar mai citi
+   nimeni bleumarinul de dedesubt.
+   La hover transparența dispare de tot: alb plin, 17.4:1.
+   Conturul rămâne --navy-900 și pe bleumarin: se vede ca o muchie închisă,
+   iar regula sistemului e că el nu dispare niciodată.                     */
+.site-head .navlink { background: var(--glass-fill); color: var(--text); }
+.site-head .navlink:hover { background: var(--white); }
+.site-head .navlink[aria-current="page"] {
+  background: var(--white); color: var(--navy-700);
+}
 
 .burger { display: none; }
 /* Hamburgerul e desenat din trei linii, nu dintr-o imagine: o iconiță de 16px
