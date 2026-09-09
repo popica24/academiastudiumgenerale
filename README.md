@@ -94,7 +94,7 @@ completă e în `assets/foto/motive/SURSE.txt`.
 | `parinte.jpg` | Părintele știe ce se întâmplă la curs | Cineva scrie într-un caiet, lângă un laptop | CC0 | Flickr |
 | `raport.jpg` | Raport de progres în fiecare lună | O mână parcurge cu pixul un document tipărit | domeniu public | Flickr |
 | `recuperare.jpg` | Recuperările nu se pierd | Pagini de calendar, ediție din 1914 | domeniu public | Wikimedia Commons |
-| `simulare.jpg` | Simulări în condiții reale | Sală de curs cu scaune și draperii albastre, elevi în condiții de examen | domeniu public | Wikimedia Commons |
+| `simulare.jpg` | Simulări în condiții reale | Amfiteatru cu bănci și draperii albastre, studenți așezați la un curs | domeniu public | Wikimedia Commons |
 
 ## Fotografiile materiilor
 

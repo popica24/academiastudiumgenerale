@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Cât de gros trebuie voalul peste o fotografie, calculat din poză.
 

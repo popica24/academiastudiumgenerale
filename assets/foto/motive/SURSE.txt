@@ -24,9 +24,8 @@ recuperare.jpg  (Recuperările nu se pierd)
   fișier   : https://upload.wikimedia.org/wikipedia/commons/a/a8/1914-julian-gregorian-calendar-Greek-French.jpg
 
 simulare.jpg  (Simulări în condiții reale)
-  ce arată : Sală de curs cu scaune și draperii albastre, elevi așezați în
-             condiții de examen, la Facultatea de Științe a Universității
-             Chiang Mai
+  ce arată : Amfiteatru cu bănci și draperii albastre, studenți așezați la
+             un curs
   licență  : domeniu public
   sursă    : Wikimedia Commons
   pagina   : https://commons.wikimedia.org/wiki/File:Room_STB302.jpg
