@@ -257,7 +257,7 @@
   --poiret-stroke: 0.022em;
   --ls-tight: 0.015em; --ls-snug: 0.005em; --ls-normal: 0; --ls-wide: 0.08em;
   --measure: 60ch;
-  --inaltime-antet: 74px;   /* antetul lipicios: sigla 44px + 2 × --sp-3 + rama */
+  --inaltime-antet: 72px;   /* antetul lipicios: sigla 46px + 2 × --sp-3 (24px) + rama (2px) = 72px, măsurat la 393px */
 
   /* ----------------------------------------------------------------------
      9. COLȚURI: scară Apple, curbă continuă
