@@ -88,6 +88,13 @@ section + section { padding-top: 0; }
   background: var(--white); color: var(--navy-700);
 }
 
+/* Comutatorul de limbă: pastilă îngustă, doar două litere. Pe telefon iese
+   din bară și intră în meniu, unde e loc: la 393px bara are deja siglă,
+   hamburger și WhatsApp.                                                  */
+.lang-comutator { padding-inline: var(--sp-3); font-weight: var(--fw-semibold); }
+/* În bară, versiunea din meniu ar fi un al doilea comutator: se ascunde. */
+.lang-meniu { display: none; }
+
 .burger { display: none; }
 /* Hamburgerul e desenat din trei linii, nu dintr-o imagine: o iconiță de 16px
    dintr-un fișier ar fi încă o cerere de rețea pentru ceva ce CSS-ul știe să
@@ -366,6 +373,11 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
      „Studium Generale by Denisa" se rupea pe trei rânduri și împingea
      butoanele.                                                             */
   .brand-text { display: none; }
+
+  /* Comutatorul de limbă nu mai are loc în bară: iese de acolo și apare în
+     meniu, unde fiecare etichetă are un rând întreg pentru ea.            */
+  .head-actions .lang-comutator { display: none; }
+  #meniu .lang-meniu { display: block; }
 
   /* Meniul: ecran plin, lipit sub antet.
 

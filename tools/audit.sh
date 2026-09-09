@@ -19,7 +19,7 @@ done
 [ -z "$BROWSER" ] && { echo "Nu găsesc Chrome/Brave/Chromium."; exit 1; }
 
 PAGES=("${1:-}")
-[ -z "${PAGES[0]}" ] && PAGES=(index.html despre.html blog.html blog-articol.html)
+[ -z "${PAGES[0]}" ] && PAGES=(index.html despre.html blog.html blog-articol.html en/index.html en/despre.html)
 WIDTHS=("${2:-}")
 [ -z "${WIDTHS[0]}" ] && WIDTHS=(1440 900 560)
 

@@ -8,7 +8,9 @@ Site static pentru **Academia · Studium Generale by Denisa SRL**, o școală
 privată de pregătire pentru Bacalaureat și Evaluarea Națională. Fără build și
 fără framework. O singură dependență, de la 2026-09-07: **AOS**, animația la
 derulare, luată de pe CDN. Backendul PHP pentru blog e planificat, dar nu
-există încă; zonele lui sunt deja marcate în HTML.
+există încă; zonele lui sunt deja marcate în HTML. De la 2026-09-09, Acasă și
+Despre au și o pereche în engleză, în `en/`; comutatorul e în antet, pe toate
+paginile, iar `hreflang` leagă cele două limbi pentru Google.
 
 ### AOS
 
@@ -36,8 +38,8 @@ Tot conținutul e în **română**, inclusiv comentariile din cod. Scrie la fel.
 
 ```bash
 python3 -m http.server 8000     # server local; sau deschide direct index.html
-tools/audit.sh                  # verifică toate paginile la 1440 / 900 / 560
-tools/audit.sh index.html       # o singură pagină
+tools/audit.sh                  # verifică toate paginile (și cele din en/) la 1440 / 900 / 560
+tools/audit.sh en/index.html    # o singură pagină, inclusiv dintr-un subdirector
 tools/audit.sh index.html 390   # o pagină, o lățime
 tools/voal.py poza.jpg          # cât de gros trebuie voalul peste fotografia aia
 tools/voal.py --paragraf a.jpg  # la fel, dar cardul are și text mic
@@ -144,11 +146,13 @@ ce lipsește. Verificarea e insensibilă la majuscule; nu o slăbi.
 
 ### Zonele pentru PHP
 
-Antetul și subsolul sunt identice octet cu octet în cele patru pagini, ca să
-poată fi extrase în `header.php` / `footer.php` fără nicio schimbare de stil.
-Dacă modifici unul, modifică-le pe toate patru. `blog.html` și
-`blog-articol.html` au comentariile `DE AICI PRELUAT DE PHP` în jurul zonelor
-care vor deveni buclă și șablon.
+Antetul și subsolul sunt identice octet cu octet în cele patru pagini
+românești, ca să poată fi extrase în `header.php` / `footer.php` fără nicio
+schimbare de stil. Paginile din `en/` au propria pereche, identică între ele
+dar nu cu cele românești: căile către `assets/` și `brand/` urcă un nivel, iar
+textele sunt traduse. Deci un text din antet se schimbă acum în **șase**
+fișiere, nu în patru. `blog.html` și `blog-articol.html` au comentariile
+`DE AICI PRELUAT DE PHP` în jurul zonelor care vor deveni buclă și șablon.
 
 ## Capcane care au costat deja timp
 

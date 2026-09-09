@@ -807,4 +807,21 @@
   document.querySelectorAll("[data-nav] a").forEach(function (a) {
     if (a.getAttribute("href") === here) a.setAttribute("aria-current", "page");
   });
+
+  /* --- 11. Comutatorul de limbă, ridicat la pagina echivalentă ----------
+     Adresa scrisă în HTML e generică (`en/index.html` din română,
+     `../index.html` din engleză), ca antetul să rămână identic octet cu
+     octet pe fiecare limbă și linkul să funcționeze și fără JavaScript:
+     fără el, duce oricum la pagina principală a celeilalte limbi, o
+     destinație validă. Aici se ridică, când există o pereche mai exactă:
+     `index.html` ↔ `en/index.html`, `despre.html` ↔ `en/despre.html`.
+     Blogul n-are pereche, deci nu e în hartă, și linkul lui rămâne cel
+     generic din HTML.                                                    */
+  var perechi = { "index.html": true, "despre.html": true };
+  if (perechi[here]) {
+    var tinta = LIMBA === "en" ? "../" + here : "en/" + here;
+    document.querySelectorAll(".lang-comutator, .lang-meniu").forEach(function (a) {
+      a.setAttribute("href", tinta);
+    });
+  }
 })();
