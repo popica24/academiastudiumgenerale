@@ -63,6 +63,7 @@
       <a class="navlink" href="despre.html">Despre</a>
       <a class="navlink" href="index.html#materii">Materii</a>
       <a class="navlink" href="index.html#cursuri">Cursuri</a>
+      <a class="navlink" href="index.html#profesori">Profesori</a>
       <a class="navlink" href="blog.html">Blog</a>
       <a class="navlink lang-meniu" href="en/index.html" hreflang="en" lang="en">English</a>
     </nav>
@@ -181,106 +182,108 @@
       <p>Pregătire pentru Evaluarea Națională și Bacalaureat, plus limbi străine, de la engleză la coreeană.</p>
     </div>
 
-    <!-- Fiecare materie are poza ei, `assets/foto/materii/<materie>.webp`,
-         aceeași cale în ambele `<img>` ale cardului: primul e stratul
-         estompat, al doilea cel clar. Toate sunt domeniu public sau CC0;
-         sursa și licența fiecăreia sunt în README.md. `--foto-pos` alege ce
-         parte a pozei rămâne în cadru la decupare. -->
-    <div class="grid grid-3">
+    <!-- Fiecare materie are iconița ei, `assets/foto/materii/<materie>.webp`,
+         decupată din colajul primit de la client, `assets/foto/materii-colaj.png`.
+         Numele materiei e scris în iconiță, deci titlul cardului rămâne doar
+         pentru cititoarele de ecran și pentru Google, cu `.sr-only`. Cardul e
+         pătrat: cercul trebuie să încapă întreg ca să se citească numele.
+         Stratul estompat nu se mai vede, poza acoperă cardul până în colțuri,
+         dar rămâne în pagină ca structura cardurilor să fie una singură. -->
+    <div class="grid grid-materie">
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="assets/foto/materii/romana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/romana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Română</h3>
+        <h3 class="sr-only">Română</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="assets/foto/materii/mate-gimnaziu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/mate-gimnaziu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Matematică, gimnaziu</h3>
+        <h3 class="sr-only">Matematică, gimnaziu</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="assets/foto/materii/mate-liceu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/mate-liceu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Matematică, liceu</h3>
+        <h3 class="sr-only">Matematică, liceu</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="assets/foto/materii/istorie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/istorie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Istorie</h3>
+        <h3 class="sr-only">Istorie</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="assets/foto/materii/geografie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/geografie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Geografie</h3>
-      </article>
-
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Logică</h3>
+        <h3 class="sr-only">Geografie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Biologie</h3>
-      </article>
-
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Chimie</h3>
+        <img class="foto-blur" src="assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Logică</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur" src="assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Engleză</h3>
+        <img class="foto-blur" src="assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Biologie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Spaniolă</h3>
+        <img class="foto-blur" src="assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Chimie</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Franceză</h3>
+        <img class="foto-blur" src="assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Engleză</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
+        <img class="foto-blur" src="assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Spaniolă</h3>
+      </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
+        <img class="foto-blur" src="assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Franceză</h3>
+      </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="assets/foto/materii/chineza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/chineza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Chineză</h3>
+        <h3 class="sr-only">Chineză</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="assets/foto/materii/coreeana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/coreeana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Coreeană</h3>
+        <h3 class="sr-only">Coreeană</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="assets/foto/materii/maghiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/maghiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Maghiară</h3>
+        <h3 class="sr-only">Maghiară</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="assets/foto/materii/informatica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/informatica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Informatică</h3>
+        <h3 class="sr-only">Informatică</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="assets/foto/materii/greaca.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/materii/greaca.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Greacă</h3>
+        <h3 class="sr-only">Greacă</h3>
       </article>
     </div>
   </section>
@@ -293,37 +296,136 @@
       <p>Nu se dă examen la ele și nu se trec în catalog. Se iau separat, la orice vârstă, de obicei în paralel cu pregătirea pentru examen.</p>
     </div>
 
-    <div class="grid grid-3">
+    <div class="grid grid-materie">
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="assets/foto/cursuri/excel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/cursuri/excel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Excel</h3>
+        <h3 class="sr-only">Excel</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="assets/foto/cursuri/contabilitate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/cursuri/contabilitate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Contabilitate</h3>
+        <h3 class="sr-only">Contabilitate</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="assets/foto/cursuri/dictie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/cursuri/dictie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Dicție</h3>
-      </article>
-
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Dezvoltare personală</h3>
+        <h3 class="sr-only">Dicție</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
+        <img class="foto-blur" src="assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Dezvoltare personală</h3>
+      </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="assets/foto/cursuri/financiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="assets/foto/cursuri/financiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Educație financiară</h3>
+        <h3 class="sr-only">Educație financiară</h3>
       </article>
     </div>
+  </section>
+
+
+  <!-- ── Profesori ───────────────────────────────────────────────────── -->
+  <section class="wrap" id="profesori">
+    <div class="sec-head wrap-text" data-aos="fade-up">
+      <p class="eyebrow">Cine predă</p>
+      <h2>Profesorii, în cuvintele lor</h2>
+      <p>Fiecare s-a prezentat singur pe Instagramul școlii. Textele de mai jos sunt scurtate din acele postări, iar fotografiile sunt tot de acolo.</p>
+    </div>
+
+    <!-- Cardul e `.person.person-foto`, componenta e în tokens.css. Poza e
+         un cerc, `assets/foto/profesori/<materie>.webp`, decupată din
+         captura postării cu `tools/taie-profesori.py`. Titlul cu
+         `data-nedefinit` e un profesor al cărui nume nu apare în postare:
+         eticheta roșie din pagină cere numele, nu inventăm unul. -->
+    <div class="grid grid-profesori">
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="assets/foto/profesori/romana.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Luiza</h3>
+          <p class="tag">Română</p>
+          <p class="person-cv">Absolventă a Facultății de Litere, română-engleză, cu masterat în lingvistică teoretică și aplicată. A făcut și modulul psihopedagogic.</p>
+        </div>
+        <blockquote class="person-vorba">„Îmi place să predau limba română pentru că o consider o punte între gândire, cultură și identitate.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="assets/foto/profesori/biologie.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3 data-nedefinit="Numele">Profesorul</h3>
+          <p class="tag">Biologie</p>
+          <p class="person-cv">Olimpic la biologie. Pregătește pentru bacalaureat și pentru admiterea la facultate, de la anatomie și genetică umană la biologia vegetală și animală.</p>
+        </div>
+        <blockquote class="person-vorba">„Fie că dai admitere la facultate sau examen de bacalaureat, te pot ajuta să faci din biologie punctul tău forte.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="assets/foto/profesori/geografie.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Andreea</h3>
+          <p class="tag">Geografie</p>
+          <p class="person-cv">Nota 10 la Bacalaureat la geografie. Urmează modulul psihopedagogic la Psihologie și Științele Educației.</p>
+        </div>
+        <blockquote class="person-vorba">„Misiunea mea este să inspir, să dezvolt și să ghidez fiecare elev în descoperirea propriei voci, curiozități și încrederi în sine.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="assets/foto/profesori/franceza.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Jasmine</h3>
+          <p class="tag">Franceză și engleză</p>
+          <p class="person-cv">Vorbitoare nativă, venită din Franța, dintr-o familie englezească. Predă de la meditații particulare până la cursuri de semestru la universitate.</p>
+        </div>
+        <blockquote class="person-vorba">„Fie că vrei să înveți de la zero sau să îți ridici nivelul, sunt lângă tine și te ghidez prin limbile mele materne.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="assets/foto/profesori/chineza.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Clementina</h3>
+          <p class="tag">Chineză</p>
+          <p class="person-cv">Trainer de limbă chineză, cu pregătire academică în chineză. E în China, la un master de pregătire pedagogică pentru predarea limbii. Pregătește și pentru HSK și HSKK.</p>
+        </div>
+        <blockquote class="person-vorba">„Pun accent pe vorbire, pe pronunție corectă, pe gramatică explicată simplu și pe vocabular util din viața reală.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="assets/foto/profesori/araba.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Bianca</h3>
+          <p class="tag">Arabă și engleză</p>
+          <p class="person-cv">A absolvit filologie arabă-engleză la Universitatea din București și urmează masterul despre spațiul islamic. Dă meditații la engleză din liceu.</p>
+        </div>
+        <blockquote class="person-vorba">„Dacă simți că limba arabă te atrage sau îți dorești o provocare, te aștept să descoperim împreună cât de ușoară și frumoasă este.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="assets/foto/profesori/psihologie.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Andra</h3>
+          <p class="tag">Psihologie și logopedie</p>
+          <p class="person-cv">Psiholog acreditat de Colegiul Psihologilor din România. A absolvit Psihologie și Științele Educației la Universitatea Ovidius din Constanța, cu master la Universitatea din București.</p>
+        </div>
+        <blockquote class="person-vorba">„Cred în învățarea făcută cu sens, într-un cadru sigur, empatic și motivant, unde progresul se construiește pas cu pas.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="assets/foto/profesori/arte.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Irina</h3>
+          <p class="tag">Arte plastice</p>
+          <p class="person-cv">A absolvit Liceul de Arte Plastice „Nicolae Tonitza” și Universitatea Națională de Arte din București. Predă pictură și modelaj.</p>
+        </div>
+        <blockquote class="person-vorba">„Cred că fiecare copil poartă în el o scânteie creativă, iar rolul meu este să o aprind și să o las să lumineze.”</blockquote>
+      </article>
+    </div>
+
+    <p class="note wrap-text" style="margin-top:var(--sp-6)"><b>De verificat înainte de publicare.</b> Fotografiile și textele vin din postările de pe Instagramul școlii. Două postări nu spun numele profesorului. Trei materii predate aici, araba, artele plastice și psihologia, nu apar în secțiunea Materii.</p>
   </section>
 
   <!-- ── Recenzii ────────────────────────────────────────────────────── -->
@@ -471,6 +573,7 @@
           <li><a href="despre.html">Despre noi</a></li>
           <li><a href="index.html#materii">Materii</a></li>
           <li><a href="index.html#cursuri">Cursuri speciale</a></li>
+          <li><a href="index.html#profesori">Profesori</a></li>
           <li><a href="blog.html">Blog</a></li>
         </ul>
       </div>

@@ -44,6 +44,8 @@ tools/audit.sh index.html 390   # o pagină, o lățime
 tools/voal.py poza.jpg          # cât de gros trebuie voalul peste fotografia aia
 tools/voal.py --paragraf a.jpg  # la fel, dar cardul are și text mic
 tools/mobil.sh index.html x.png # captură la 393px, cât are un iPhone 16
+python3 tools/taie-colaj.py     # retaie cele 21 de iconițe din colajul clientului
+python3 tools/taie-profesori.py # plansa de probă cu cele 8 portrete; „scrie" le salvează
 ```
 
 **Chrome headless nu coboară sub 500px lățime de fereastră.** O captură cerută
@@ -66,8 +68,8 @@ iframe, cu `--allow-file-access-from-files`.
   `fade-up`, iar regulile lui sunt scrise în `site.css`. De pe CDN vine doar
   `aos.js`, cu `defer`.
 - **Pozele sunt `.webp`**, la mărimea la care se afișează: 4.4 MB au devenit
-  1.1 MB. Sursele mari, `image.png` și `clasa.jpg`, au rămas pe disc dar nu
-  le încarcă nicio pagină.
+  1.1 MB. Sursele mari, `image.png`, `clasa.jpg` și `materii-colaj.png`, au
+  rămas pe disc dar nu le încarcă nicio pagină.
 - **Open Graph e scris în HTML**, fiindcă aplicațiile care fac previzualizarea
   unui link nu rulează JavaScript. **JSON-LD se construiește din `config.js`**
   în `site.js`, secțiunea 9, ca datele de contact să rămână într-un singur
@@ -156,6 +158,20 @@ fișiere, nu în patru. `blog.html` și `blog-articol.html` au comentariile
 
 ## Capcane care au costat deja timp
 
+- **Cardul de profesor cu poză e `.person.person-foto`, nu `.person` gol.**
+  `.person` din brandbook e varianta compactă, fără fotografie, care ține
+  numele într-o etichetă. Varianta cu poză mută numele în titlu, fiindcă
+  cercul spune deja cine e; ordinea din manual, întâi omul și apoi materia,
+  rămâne. Pe telefon poza urcă deasupra textului: la 393px, un nume în Poiret
+  la 33px nu are unde să se rupă și iese din card pe dreapta.
+- **Cardul de materie e pătrat fiindcă numele e scris în poză.** Iconițele
+  materiilor și ale cursurilor poartă numele desenat în ele, deci `<h3>`-ul
+  cardului stă pe `.sr-only` și cardul nu mai poate fi turtit: la cele 210px
+  înălțime de dinainte, cercul intra la 190px și numele din el cobora la 9px.
+  Din același motiv grila lor e `.grid-materie`, nu `.grid-3`: tot patru
+  coloane, dar cu pragul la 250px, ca să nu treacă la cinci și numele să
+  coboare sub 12px. Cardul lor nu are nici voal, nici topirea marginilor:
+  poza vine deja tăiată pe bleumarinul cardului.
 - **Clasele `.p-*` se scriu ultimele** în `tokens.css`. `.chip` și `.p-butter`
   au aceeași specificitate, deci decide ordinea. Mutate mai sus, fiecare
   componentă își suprascrie tenta cu alb și nu se vede nicio eroare.
@@ -234,16 +250,24 @@ distincte. În pagină sunt totuși 16 carduri, fiindcă matematica se predă
 altfel la gimnaziu și altfel la liceu și are un card pentru fiecare; nu e o
 contradicție. Cele cinci cursuri speciale (Excel, contabilitate, dicție,
 dezvoltare personală, educație financiară) nu sunt materii de examen și nu
-intră în cele 15. Numele profesorilor nu apar nicăieri în pagină: au fost pe
-carduri o vreme, dar au fost scoase. Secțiunea „Profesori”, cu trei nume
-inventate, a fost ștearsă; linkurile către ea au dispărut din meniu și din
-subsol.
+intră în cele 15. Secțiunea „Profesori” s-a întors la 2026-09-10, dar cu oameni adevărați:
+opt profesori, cu portretele și cu prezentările pe care și le-au scris singuri
+pe Instagramul școlii, `@academia_studium_generale`. Cele trei nume inventate
+de dinainte nu mai există nicăieri. Linkul e din nou în meniu și în subsol, în
+toate cele șase fișiere. Ce nu e încă în regulă acolo: două postări nu spun
+numele profesorului, deci cardurile lor poartă eticheta `data-nedefinit`; și
+trei materii predate, araba, artele plastice și psihologia, nu apar în
+secțiunea „Materii”. Detaliile sunt în `README.md`.
 
 Fotografia din „Despre” (`assets/foto/despre.webp`, derivată din `image.png`) e
 a școlii, primită de la client: singura cu oameni reali și fără problemă de
-licență. Restul, cele 16 de la materii (`assets/foto/materii/`), cele
-patru din „Cum lucrăm” (`assets/foto/motive/`) și cele cinci din cursurile
-speciale (`assets/foto/cursuri/`), sunt domeniu public sau CC0,
-deci se pot publica. Proveniența fiecăreia e într-un `SURSE.txt` lângă ele și în
-tabelele din `README.md`. `clasa.jpg`, previzualizarea Adobe Stock, nu mai e
-folosit nicăieri.
+licență. Cele patru din „Cum lucrăm” (`assets/foto/motive/`) sunt domeniu
+public sau CC0, deci se pot publica; proveniența fiecăreia e într-un `SURSE.txt`
+lângă ele și în tabelul din `README.md`. Materiile și cursurile speciale nu mai
+au fotografii: de la 2026-09-10 poartă iconițe rotunde, tot de la client, tăiate
+din `assets/foto/materii-colaj.png` cu `tools/taie-colaj.py`. Numele materiei e
+scris în iconiță, deci pe `en/index.html` rămâne în română. Portretele
+profesorilor (`assets/foto/profesori/`) sunt tăiate din capturi ale postărilor
+de pe Instagramul școlii cu `tools/taie-profesori.py`; capturile brute, 75 MB,
+stau în `assets/teachers/` și sunt trecute în `.gitignore`. `clasa.jpg`,
+previzualizarea Adobe Stock, nu mai e folosit nicăieri.

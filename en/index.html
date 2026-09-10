@@ -63,6 +63,7 @@
       <a class="navlink" href="despre.html">About</a>
       <a class="navlink" href="index.html#materii">Subjects</a>
       <a class="navlink" href="index.html#cursuri">Courses</a>
+      <a class="navlink" href="index.html#profesori">Teachers</a>
       <a class="navlink" href="../blog.html">Blog</a>
       <a class="navlink lang-meniu" href="../index.html" hreflang="ro" lang="ro">Română</a>
     </nav>
@@ -181,106 +182,108 @@
       <p>Preparation for the National Evaluation and the Baccalaureate, plus foreign languages, from English to Korean.</p>
     </div>
 
-    <!-- Fiecare materie are poza ei, `assets/foto/materii/<materie>.webp`,
-         aceeași cale în ambele `<img>` ale cardului: primul e stratul
-         estompat, al doilea cel clar. Toate sunt domeniu public sau CC0;
-         sursa și licența fiecăreia sunt în README.md. `--foto-pos` alege ce
-         parte a pozei rămâne în cadru la decupare. -->
-    <div class="grid grid-3">
+    <!-- Fiecare materie are iconița ei, `assets/foto/materii/<materie>.webp`,
+         decupată din colajul primit de la client, `assets/foto/materii-colaj.png`.
+         Numele materiei e scris în iconiță, deci titlul cardului rămâne doar
+         pentru cititoarele de ecran și pentru Google, cu `.sr-only`. Cardul e
+         pătrat: cercul trebuie să încapă întreg ca să se citească numele.
+         Stratul estompat nu se mai vede, poza acoperă cardul până în colțuri,
+         dar rămâne în pagină ca structura cardurilor să fie una singură. -->
+    <div class="grid grid-materie">
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="../assets/foto/materii/romana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/romana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Romanian</h3>
+        <h3 class="sr-only">Romanian</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="../assets/foto/materii/mate-gimnaziu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/mate-gimnaziu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Mathematics, middle school</h3>
+        <h3 class="sr-only">Mathematics, middle school</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="../assets/foto/materii/mate-liceu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/mate-liceu.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Mathematics, high school</h3>
+        <h3 class="sr-only">Mathematics, high school</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="../assets/foto/materii/istorie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/istorie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>History</h3>
+        <h3 class="sr-only">History</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="../assets/foto/materii/geografie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/geografie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Geography</h3>
-      </article>
-
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="../assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Logic</h3>
+        <h3 class="sr-only">Geography</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="../assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Biology</h3>
-      </article>
-
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="../assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Chemistry</h3>
+        <img class="foto-blur" src="../assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/materii/logica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Logic</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
-        <img class="foto-blur" src="../assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>English</h3>
+        <img class="foto-blur" src="../assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/materii/biologie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Biology</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
-        <img class="foto-blur" src="../assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Spanish</h3>
+        <img class="foto-blur" src="../assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/materii/chimie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Chemistry</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
-        <img class="foto-blur" src="../assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>French</h3>
+        <img class="foto-blur" src="../assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/materii/engleza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">English</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
+        <img class="foto-blur" src="../assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/materii/spaniola.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Spanish</h3>
+      </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
+        <img class="foto-blur" src="../assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/materii/franceza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">French</h3>
+      </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="../assets/foto/materii/chineza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/chineza.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Chinese</h3>
+        <h3 class="sr-only">Chinese</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="../assets/foto/materii/coreeana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/coreeana.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Korean</h3>
+        <h3 class="sr-only">Korean</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="../assets/foto/materii/maghiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/maghiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Hungarian</h3>
+        <h3 class="sr-only">Hungarian</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="../assets/foto/materii/informatica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/informatica.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Computer science</h3>
+        <h3 class="sr-only">Computer science</h3>
       </article>
 
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="../assets/foto/materii/greaca.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/materii/greaca.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Greek</h3>
+        <h3 class="sr-only">Greek</h3>
       </article>
     </div>
   </section>
@@ -293,37 +296,135 @@
       <p>There is no exam for them and they are not recorded in a gradebook. They are taken separately, at any age, usually alongside exam preparation.</p>
     </div>
 
-    <div class="grid grid-3">
+    <div class="grid grid-materie">
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
         <img class="foto-blur" src="../assets/foto/cursuri/excel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/cursuri/excel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Excel</h3>
+        <h3 class="sr-only">Excel</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="../assets/foto/cursuri/contabilitate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/cursuri/contabilitate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Accounting</h3>
+        <h3 class="sr-only">Accounting</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
         <img class="foto-blur" src="../assets/foto/cursuri/dictie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/cursuri/dictie.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Diction</h3>
-      </article>
-
-      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="210">
-        <img class="foto-blur" src="../assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <img class="foto-clar" src="../assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Personal development</h3>
+        <h3 class="sr-only">Diction</h3>
       </article>
 
       <article class="foto-card materie" data-aos="fade-up" data-aos-delay="0">
+        <img class="foto-blur" src="../assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/cursuri/dezvoltare.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <h3 class="sr-only">Personal development</h3>
+      </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="70">
         <img class="foto-blur" src="../assets/foto/cursuri/financiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="foto-clar" src="../assets/foto/cursuri/financiara.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h3>Financial literacy</h3>
+        <h3 class="sr-only">Financial literacy</h3>
       </article>
     </div>
+  </section>
+
+
+  <!-- ── Teachers ────────────────────────────────────────────────────── -->
+  <section class="wrap" id="profesori">
+    <div class="sec-head wrap-text" data-aos="fade-up">
+      <p class="eyebrow">Who teaches</p>
+      <h2>The teachers, in their own words</h2>
+      <p>Each of them wrote their own introduction on the school&rsquo;s Instagram. The texts below are shortened from those posts, and the photographs come from there too.</p>
+    </div>
+
+    <!-- Aceleași fișiere ca pe pagina românească: cardul e `.person.person-foto`,
+         componenta e în tokens.css, iar pozele se taie cu
+         `tools/taie-profesori.py`. Titlul cu `data-nedefinit` e un profesor
+         al cărui nume nu apare în postare. -->
+    <div class="grid grid-profesori">
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="../assets/foto/profesori/romana.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3 data-nedefinit="Numele">Teacher</h3>
+          <p class="tag">Romanian</p>
+          <p class="person-cv">A graduate of the Faculty of Letters, Romanian and English, with a master&rsquo;s in theoretical and applied linguistics. She also completed the teacher-training module.</p>
+        </div>
+        <blockquote class="person-vorba">“I like teaching Romanian because I see it as a bridge between thought, culture and identity.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="../assets/foto/profesori/biologie.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3 data-nedefinit="Numele">Teacher</h3>
+          <p class="tag">Biology</p>
+          <p class="person-cv">A biology olympiad competitor. Prepares students for the baccalaureate and for university entrance, from anatomy and human genetics to plant and animal biology.</p>
+        </div>
+        <blockquote class="person-vorba">“Whether you are sitting a university entrance exam or the baccalaureate, I can help you make biology your strong point.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="../assets/foto/profesori/geografie.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Andreea</h3>
+          <p class="tag">Geography</p>
+          <p class="person-cv">A perfect 10 in geography at the Baccalaureate. Taking the teacher-training module at Psychology and Educational Sciences.</p>
+        </div>
+        <blockquote class="person-vorba">“My mission is to inspire, develop and guide every student towards finding their own voice, curiosity and self-confidence.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="../assets/foto/profesori/franceza.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Jasmine</h3>
+          <p class="tag">French and English</p>
+          <p class="person-cv">A native speaker from France, with an English family. Teaches everything from private lessons to semester courses at university.</p>
+        </div>
+        <blockquote class="person-vorba">“Whether you want to learn from zero or you want to improve your level, I will be by your side, guiding you through the enchanted terrain of my native languages.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="../assets/foto/profesori/chineza.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Clementina</h3>
+          <p class="tag">Chinese</p>
+          <p class="person-cv">A Chinese language trainer with an academic background in Chinese. She is in China, on a master&rsquo;s in teacher training for Chinese. Also prepares students for HSK and HSKK.</p>
+        </div>
+        <blockquote class="person-vorba">“I focus on speaking, on correct pronunciation, on grammar explained simply and on vocabulary you actually use.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="../assets/foto/profesori/araba.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Bianca</h3>
+          <p class="tag">Arabic and English</p>
+          <p class="person-cv">Graduated in Arabic and English philology at the University of Bucharest and is taking the master&rsquo;s on the Islamic world. Has taught English privately since high school.</p>
+        </div>
+        <blockquote class="person-vorba">“If you feel drawn to Arabic or you want a challenge, I am waiting for us to discover together how easy and beautiful it is.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="0">
+        <span class="avatar"><img src="../assets/foto/profesori/psihologie.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Andra</h3>
+          <p class="tag">Psychology and speech therapy</p>
+          <p class="person-cv">A psychologist accredited by the Romanian College of Psychologists. Graduated in Psychology and Educational Sciences at Ovidius University in Constanța, with a master&rsquo;s at the University of Bucharest.</p>
+        </div>
+        <blockquote class="person-vorba">“I believe in learning that makes sense, in a safe, empathetic and motivating setting, where progress is built step by step.”</blockquote>
+      </article>
+
+      <article class="person person-foto" data-aos="fade-up" data-aos-delay="90">
+        <span class="avatar"><img src="../assets/foto/profesori/arte.webp" alt="" width="560" height="560" loading="lazy" decoding="async"></span>
+        <div class="person-cap">
+          <h3>Irina</h3>
+          <p class="tag">Fine arts</p>
+          <p class="person-cv">Graduated from the “Nicolae Tonitza” Fine Arts High School and the National University of Arts in Bucharest. Teaches painting and modelling.</p>
+        </div>
+        <blockquote class="person-vorba">“I believe every child carries a creative spark, and my role is to light it and let it shine.”</blockquote>
+      </article>
+    </div>
+
+    <p class="note wrap-text" style="margin-top:var(--sp-6)"><b>To check before publishing.</b> The photographs and the texts come from the school&rsquo;s Instagram posts. Two posts do not give the teacher&rsquo;s name. Three of the subjects taught here, Arabic, fine arts and psychology, are missing from the Subjects section.</p>
   </section>
 
   <!-- ── Recenzii ────────────────────────────────────────────────────── -->
@@ -471,6 +572,7 @@
           <li><a href="despre.html">About us</a></li>
           <li><a href="index.html#materii">Subjects</a></li>
           <li><a href="index.html#cursuri">Special courses</a></li>
+          <li><a href="index.html#profesori">Teachers</a></li>
           <li><a href="../blog.html">Blog</a></li>
         </ul>
       </div>

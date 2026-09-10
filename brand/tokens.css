@@ -577,6 +577,30 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* --- Cardul de profesor, cu fotografie -----------------------------------
+   Varianta de pagină a lui `.person`. Cardul compact din manual ține numele
+   într-o etichetă fiindcă nu are fotografie; aici cercul spune deja cine e,
+   deci numele urcă în titlu. Regula din manual rămâne întreagă: se citește
+   întâi omul, apoi ce predă.
+   Fotografiile sunt de pe Instagramul școlii și fiecare are lumina ei, de la
+   o seară cu umbrelă roșie la un studio alb. Cercul le aduce la același
+   format, iar `saturate(.9)`, aceeași valoare ca pe cardurile cu poză, le
+   apropie una de alta fără să atingă tonul pielii.
+   Citatul stă pe toată lățimea cardului, sub poză și sub nume: pe coloana
+   din dreapta ar fi rămas la patru cuvinte pe rând.
+   -------------------------------------------------------------------------- */
+.person-foto {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-5); align-items: start;
+  padding: var(--sp-6);
+}
+.person-foto .avatar { width: 152px; height: 152px; align-self: start; }
+.person-foto .avatar img { filter: saturate(.9); }
+.person-foto h3 { font-size: var(--fs-xl); letter-spacing: var(--ls-tight); }
+.person-foto .tag { margin: var(--sp-3) 0 var(--sp-2); }
+.person-cv { font-size: var(--fs-sm); color: var(--text-muted); }
+.person-vorba { grid-column: 1 / -1; margin: 0; line-height: var(--lh-snug); }
+
 /* --- Bulă de dialog ------------------------------------------------------ */
 .bubble { position: relative; display: inline-block; max-width: 30ch;
   padding: var(--sp-4) var(--sp-5); border: var(--stroke); border-radius: var(--r-xl);
@@ -856,13 +880,18 @@ h1, h2, h3, h4,
 .reason { min-height: 360px; gap: var(--sp-4); padding: var(--sp-8); }
 .reason h3 { font-size: var(--fs-xl); max-width: 15ch; }
 
-/* Cardul de materie: fotografia și numele materiei, atât. Neavând text mic
-   pe el, pragul de contrast e 3:1, nu 4.5:1, deci voalul poate fi mai
-   subțire. `tools/voal.py` măsoară pe cele 15 fotografii un maxim cerut de
-   0.46; 0.48 lasă o marjă și se vede mult mai mult din poză.               */
-.materie { min-height: 210px; gap: var(--sp-5); padding: var(--sp-6);
-  --voal-foto: rgba(11, 25, 54, 0.48); }
-.materie h3 { font-size: var(--fs-lg); letter-spacing: var(--ls-snug); }
+/* Cardul de materie: o iconiță rotundă și atât, cu numele materiei scris
+   chiar în ea. Pătrat, fiindcă cercul trebuie să încapă întreg: la cele
+   210px înălțime de dinainte numele cobora la 9px și nu se mai citea.
+   Poza vine tăiată pe același bleumarin cu fundalul cardului, deci nu-i mai
+   trebuie nici voal, care ar stinge auriul degeaba, nici topirea marginilor,
+   care ar mânca linia aurie de sub nume. Titlul rămâne în pagină, dar numai
+   pentru cititoarele de ecran și pentru Google, cu `.sr-only`: pentru ochi
+   e deja scris în poză.                                                    */
+.materie { aspect-ratio: 1; padding: 0; --voal-foto: transparent; }
+.materie .foto-clar { -webkit-mask-image: none; mask-image: none; }
+/* stratul estompat n-are ce umple: poza acoperă cardul până în colțuri */
+.materie .foto-blur { display: none; }
 
 /* --- Întrebări frecvente -------------------------------------------------
    `<details>`, nu un acordeon din JavaScript: browserul îl deschide singur,

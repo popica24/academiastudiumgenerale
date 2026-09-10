@@ -7,3 +7,10 @@ _audit_*.html
 # spațiul de lucru al planurilor executate cu subagenți: ledger, brief-uri,
 # rapoarte, pachete de revizuire. Istoricul git e evidența, nu directorul ăsta.
 .superpowers/
+
+# capturile de pe Instagram din care s-au decupat portretele profesorilor.
+# 75 MB de PNG la 4000×3000, cat opt capturi de ecran retina; portretele
+# taiate din ele sunt in assets/foto/profesori/ si alea se publica. Sursele
+# raman doar pe discul de lucru: daca trebuie retaiat un portret, se pun
+# inapoi in assets/teachers/ si se ruleaza tools/taie-profesori.py.
+assets/teachers/

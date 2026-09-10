@@ -25,6 +25,14 @@ section + section { padding-top: 0; }
    dreapta. Cu `min()`, coloana coboară la lățimea containerului.           */
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+/* Materii și cursuri speciale: cardul e pătrat, fiindcă poartă numele
+   materiei scris în poză și cercul trebuie să încapă întreg. Patru coloane
+   în container dau 261px de card, deci un nume de vreo 12px: se citește,
+   dar mai jos de atât nu se mai poate coborî.                             */
+.grid-materie { grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); }
+/* Profesori: două pe rând. Cardul e orizontal, poza lângă nume, iar citatul
+   ține toată lățimea; sub 460px de card se rupe la patru cuvinte pe rând.  */
+.grid-profesori { grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); }
 .stack { display: flex; flex-direction: column; gap: var(--sp-4); align-items: flex-start; }
 .row   { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
 
@@ -337,6 +345,10 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
    eticheta de deasupra ar călca peste afirmația precedentă: coboară sub el */
 .foot-bottom [data-nedefinit]::after { top: auto; bottom: -18px; right: 0; }
 
+/* pe cardul de profesor, `right: -6px` scotea eticheta cu 6px în afara
+   cardului, iar pe telefon cu 6px în afara ecranului: rămâne în card */
+.person-foto [data-nedefinit]::after { right: 0; }
+
 /* --- Sub 1040px -----------------------------------------------------------
    Pragul era 860px, dar `.nav` are `flex-wrap: wrap`, deci linkul „Cursuri"
    și comutatorul „EN" adăugate mai târziu nu ieșeau din ecran, se împachetau
@@ -373,6 +385,12 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
 @media (max-width: 560px) {
   .foot-grid { grid-template-columns: 1fr; }
   .hero h1 { max-width: none; }
+
+  /* Cardul de profesor: poza deasupra, textul dedesubt. La 393px, cercul de
+     152px lasă coloanei de text 120px, iar un nume în Poiret la 33px nu are
+     unde să se rupă și iese din card pe dreapta.                           */
+  .person-foto { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .person-foto .avatar { width: 116px; height: 116px; }
 
   /* Antetul: sigla și cele două butoane, fără text de marcă. Pe 393px,
      „Studium Generale by Denisa" se rupea pe trei rânduri și împingea

@@ -21,12 +21,15 @@ assets/site.js        WhatsApp, formularul de potrivire, video, carusel, meniu,
 assets/logo.webp      Sigla
 assets/og.jpg         Imaginea de previzualizare pentru linkuri
 assets/fonturi/       Fonturile, subsetate pentru română
-assets/foto/materii/  Cele 16 fotografii ale materiilor, plus SURSE.txt
+assets/foto/materii/  Cele 16 iconițe ale materiilor, plus SURSE.txt
 assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
-assets/foto/cursuri/  Cele 5 fotografii ale cursurilor speciale, plus SURSE.txt
+assets/foto/cursuri/  Cele 5 iconițe ale cursurilor speciale, plus SURSE.txt
+assets/foto/profesori/ Cele 8 portrete de profesor, plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
 tools/voal.py         Cât de gros trebuie voalul peste o fotografie
 tools/mobil.sh        Captură la 393px, cât are un iPhone 16
+tools/taie-colaj.py   Taie cele 21 de iconițe din colajul primit de la client
+tools/taie-profesori.py Taie cele 8 portrete din capturile de pe Instagram
 ```
 
 ## De completat înainte de publicare
@@ -89,8 +92,9 @@ completează când se știe cine e în poză.
 ## Fotografiile din „Cum lucrăm"
 
 Cele patru carduri au fiecare poza lor, în `assets/foto/motive/`, la 1100 px pe
-latura lungă. Domeniu public sau CC0, ca și cele de la materii. Proveniența
-completă e în `assets/foto/motive/SURSE.txt`.
+latura lungă. Domeniu public sau CC0. Sunt singurele fotografii din carduri
+rămase în pagină, materiile trecând între timp pe iconițe. Proveniența completă
+e în `assets/foto/motive/SURSE.txt`.
 
 Clientul a cerut ca acest card să predomine cu albastru. Trei din patru
 ieșeau calde pe fișierul brut și au primit, la 2026-09-10, un viraj rece:
@@ -106,53 +110,83 @@ albastră.
 | `recuperare.jpg` | Recuperările nu se pierd | Pagini de calendar, ediție din 1914 | domeniu public | Wikimedia Commons | viraj rece |
 | `simulare.jpg` | Simulări în condiții reale | Amfiteatru cu bănci și draperii albastre, studenți așezați la un curs | domeniu public | Wikimedia Commons | neatinsă |
 
-## Fotografiile materiilor
+## Iconițele materiilor și ale cursurilor
 
-Cele 16 carduri din secțiunea „Materii" au fiecare poza ei, în
-`assets/foto/materii/`, la 1100 px pe latura lungă, în jur de 190 KB fiecare,
-2,8 MB cu totul. **Toate sunt domeniu public sau CC0**, adică se pot folosi
-comercial fără atribuire și fără plată, spre deosebire de `clasa.jpg`.
-Proveniența completă, cu link către pagina fiecărui fișier, e în
-`assets/foto/materii/SURSE.txt`.
+Cele 16 carduri din „Materii" și cele 5 din „Cursuri speciale" nu mai poartă
+fotografii, ci câte o iconiță rotundă. Toate 21 vin dintr-un singur colaj
+primit de la client la 2026-09-10, păstrat ca `assets/foto/materii-colaj.png`,
+și sunt decupate din el cu `tools/taie-colaj.py`: fiecare cerc ajunge într-un
+pătrat de 600×600, așezat pe același bleumarin `--navy-900` cu fundalul
+cardului, ca să nu rămână colțuri albe. Între 15 și 27 KB fiecare, 484 KB cu
+totul, față de 1,1 MB cât aveau fotografiile.
 
-| Fișier | Ce arată | Licență | Sursă |
-| --- | --- | --- | --- |
-| `romana.jpg` | Scrisoarea lui Neacșu din Câmpulung, 1521, cel mai vechi text păstrat în limba română | domeniu public | Wikimedia Commons |
-| `mate-gimnaziu.jpg` | Abac folosit într-un magazin din Otaru | CC0 | Wikimedia Commons |
-| `mate-liceu.jpg` | Tablă cu ecuații la un curs de matematică | domeniu public | Wikimedia Commons |
-| `istorie.jpg` | Relief de pe Columna lui Traian | domeniu public | Wikimedia Commons |
-| `geografie.jpg` | Harta lui Mercator, ediția Lucas 1898 | domeniu public | Wikimedia Commons |
-| `logica.jpg` | Piese de șah pe tablă | CC0 | Rawpixel |
-| `biologie.jpg` | Obiectivul unui microscop | domeniu public | Flickr |
-| `chimie.jpg` | Sticlărie de laborator | domeniu public | Flickr |
-| `engleza.jpg` | Cabine telefonice roșii, Londra | CC0 | Wikimedia Commons |
-| `spaniola.jpg` | Plaza de España, Sevilla | CC0 | Rawpixel |
-| `franceza.jpg` | Turnul Eiffel | domeniu public | Flickr |
-| `chineza.jpg` | Caligrafie chinezească în stil semicursiv | CC0 | Wikimedia Commons |
-| `coreeana.jpg` | Streașină de templu coreean, Naksansa | CC0 | Rawpixel |
-| `maghiara.jpg` | Parlamentul Ungariei, Budapesta | CC0 | Wikimedia Commons |
-| `informatica.jpg` | Programarea calculatorului ENIAC, 1946 | domeniu public | Wikimedia Commons |
-| `greaca.jpg` | Coloanele unui templu grecesc | CC0 | Rawpixel |
+Numele materiei e scris chiar în iconiță. De aici vin trei lucruri:
 
-Ca să schimbi una: pui fișierul cu același nume peste cel vechi. Cardul îl
-folosește de două ori, o dată estompat ca fundal și o dată clar, deci nu e
-nimic de schimbat în HTML. Dacă poza are subiectul descentrat, se adaugă pe
-`<article>` un `style="--foto-pos:70% 40%"`.
+- **Titlul cardului a trecut pe `.sr-only`.** Rămâne în pagină, pentru
+  cititoarele de ecran și pentru Google, dar nu se mai vede scris de două ori.
+  Pe `en/index.html` numele rămâne în română, fiindcă e desenat în fișier, iar
+  fișierele sunt aceleași; titlul citit de cititoarele de ecran e tradus.
+- **Cardul e pătrat**, nu de 210px înălțime ca înainte. Cercul trebuie să
+  încapă întreg, altfel numele din el coboară sub 9px și nu se mai citește.
+- **Grila lor e `.grid-materie`, nu `.grid-3`.** Patru coloane, ca `.grid-3`,
+  dar cu pragul la 250px, ca să nu treacă niciodată la cinci: un card de 261px
+  are numele scris în iconiță la vreo 12px, iar mai mic de atât nu se mai
+  citește.
 
-## Fotografiile cursurilor speciale
+Cardul nu mai are nici voal, nici topirea marginilor: poza vine deja tăiată pe
+culoarea cardului, deci nu e nimic de topit, iar voalul ar stinge auriul
+degeaba. Stratul estompat rămâne în HTML, dar e ascuns din CSS: nu are ce
+umple, poza acoperă cardul până în colțuri.
 
-Cele 5 carduri din secțiunea „Cursuri speciale" au fiecare poza ei, în
-`assets/foto/cursuri/`, la 800 px lățime, ca la materii. **Toate sunt CC0**,
-adică se pot folosi comercial fără atribuire și fără plată. Proveniența
-completă e în `assets/foto/cursuri/SURSE.txt`.
+**Limita lor e rezoluția.** În colaj fiecare cerc are 243px, deci fișierele de
+600px sunt mărite de 2,5 ori. La lățimea cardului, 261px pe desktop, sunt de
+fapt micșorate și se văd curat; pe telefon, unde cardul ajunge la 353px, se
+vede că literele sunt moi. Dacă vine un colaj mai mare
+sau câte un fișier per materie, se pune peste `materii-colaj.png` și se rulează
+din nou `tools/taie-colaj.py`; nu e nimic de schimbat în HTML.
 
-| Fișier | Cardul | Ce arată | Licență | Sursă |
-| --- | --- | --- | --- | --- |
-| `excel.jpg` | Excel | Laptop pe o masă lucioasă, cu ecranul arătând un tablou de bord cu cifre și grafice | CC0 | Wikimedia Commons (Unsplash) |
-| `contabilitate.jpg` | Contabilitate | Calculator mecanic vechi Produx, cu coloane de cifre, pe fundal alb | CC0 | Wikimedia Commons |
-| `dictie.jpg` | Dicție | Microfon pe stativ, fundal neclar | CC0 | Wikimedia Commons |
-| `dezvoltare.jpg` | Dezvoltare personală | Mâini la o masă de lemn, una pe tastatura unui laptop, cealaltă scriind într-un carnet deschis | CC0 | Flickr (image-catalog) |
-| `financiara.jpg` | Educație financiară | Cinci teancuri de monede argintii, în ordine crescătoare, pe fundal alb | CC0 | Wikimedia Commons |
+Ca să schimbi o singură iconiță: pui fișierul cu același nume peste cel vechi,
+pătrat și pe bleumarinul cardului. Cardul îl folosește de două ori, o dată
+estompat ca fundal și o dată clar, dar la materii se vede doar al doilea.
+
+Fotografiile de dinainte, cele 16 de la materii și cele 5 de la cursuri, erau
+domeniu public sau CC0 și au fost înlocuite peste, cu același nume. Nu le mai
+folosește nicio pagină; se recuperează din istoricul git, iar proveniența lor
+scrisă rămâne în comitul de dinainte de 2026-09-10.
+
+## Profesorii
+
+Secțiunea „Profesori" din `index.html` și `en/index.html` are opt carduri,
+`.person.person-foto`, componenta fiind în `tokens.css`. Fotografiile sunt
+portrete rotunde în `assets/foto/profesori/`, decupate din capturi ale
+postărilor de pe Instagramul școlii cu `tools/taie-profesori.py`; textele sunt
+scurtate din aceleași postări, unde fiecare profesor s-a prezentat singur.
+Proveniența, fișier cu fișier, e în `assets/foto/profesori/SURSE.txt`.
+
+Cardul e un rând orizontal: cercul cu poza, apoi numele în Poiret One,
+materia ca `.tag`, o linie de pregătire și, pe toată lățimea cardului, o frază
+din postarea lui. Grila e `.grid-profesori`, două pe rând, fiindcă citatul are
+nevoie de măsură; pe telefon poza urcă deasupra textului. Cardul compact din
+brandbook, `.person` simplu, rămâne cum era: e varianta fără fotografie.
+
+**Ce nu e gata în secțiunea asta:**
+
+- **Două postări nu spun numele profesorului**, cel de română și cel de
+  biologie. Cardurile lor poartă eticheta roșie „Numele de completat", prin
+  `data-nedefinit`, ca orice altă valoare care lipsește. Numele profesoarei de
+  română se citește pe diploma din fotografia ei, dar nu a fost luat de acolo:
+  școala nu l-a scris în text.
+- **Trei materii predate aici nu apar în secțiunea „Materii":** araba, artele
+  plastice și psihologia cu logopedie. Ori intră între materii, ori între
+  cursurile speciale, ori profesorii lor ies din pagină. Nota din josul
+  secțiunii spune asta pe șleau, ca să nu se publice așa.
+- **Prezentarea profesoarei de franceză e scrisă în engleză** pe Instagram.
+  Pagina românească o dă tradusă, pagina engleză o dă în original.
+- **Două postări anunță 150 de lei pe ședință.** Prețul nu a fost trecut în
+  pagină: site-ul nu are încă o secțiune de prețuri, iar cele din discuții sunt
+  plauzibile, nu reale.
+
+Capturile brute nu sunt în git, sunt 75 MB de PNG; vezi `.gitignore`.
 
 ## Când vine backendul PHP
 

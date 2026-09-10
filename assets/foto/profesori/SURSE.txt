@@ -1,0 +1,32 @@
+Portretele profesorilor. Toate opt sunt decupate din postările contului de
+Instagram al școlii, @academia_studium_generale, unde fiecare profesor și-a
+scris singur prezentarea. Fotografiile sunt ale lor și au fost publicate de
+școală; nu vin dintr-un fond de imagini și nu au licență de urmărit.
+
+  sursă     : capturi de ecran ale postărilor, făcute la 2026-09-10
+  decupare  : tools/taie-profesori.py, din rădăcina proiectului
+  format    : 560×560 .webp, pătrat; cercul îl face CSS-ul, nu fișierul, ca
+              să rămână o singură poză bună și pentru alte încadrări
+  culoare   : neatinsă la tăiere. Pagina pune `saturate(.9)` pe `.avatar`,
+              aceeași valoare ca pe cardurile cu fotografie, ca să apropie
+              opt poze făcute în lumini foarte diferite fără să mute tonul
+              pielii
+
+Capturile brute nu sunt în git: 75 MB de PNG la 4000×3000. Stau în
+assets/teachers/, pe discul de lucru, și sunt trecute în .gitignore. Ca să
+retaiezi un portret, le pui înapoi acolo, reglezi rândul lui din lista FETE
+a scriptului și rulezi scriptul fără argument, ca să vezi plansa de probă.
+
+  fișier            cardul                     numele din postare
+  romana.webp       Română                     nu apare în postare
+  biologie.webp     Biologie                   nu apare în postare
+  geografie.webp    Geografie                  Andreea
+  franceza.webp     Franceză și engleză        Jasmine
+  chineza.webp      Chineză                    Clementina
+  araba.webp        Arabă și engleză           Bianca
+  psihologie.webp   Psihologie și logopedie    Andra
+  arte.webp         Arte plastice              Irina
+
+Postarea de la română arată o diplomă pe care numele se citește. Nu a fost
+luat de acolo: școala nu l-a scris în text, deci nici pagina nu îl scrie.
+Cardul cere numele cu eticheta roșie „Numele de completat".
