@@ -351,22 +351,10 @@
     deseneazaPas();
   }
 
-  /* --- 3. Video: se încarcă la clic, nu la încărcarea paginii ----------- */
-  document.querySelectorAll("[data-video]").forEach(function (el) {
-    if (!isReal(C.youtubeId)) { el.classList.add("is-placeholder"); return; }
-    var poster = el.querySelector(".video-poster");
-    if (poster) poster.style.backgroundImage =
-      "url(https://i.ytimg.com/vi/" + C.youtubeId + "/maxresdefault.jpg)";
-    el.addEventListener("click", function () {
-      var f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + C.youtubeId + "?autoplay=1&rel=0";
-      f.title = C.youtubeTitle || "Video de prezentare";
-      f.allow = "accelerometer; autoplay; encrypted-media; picture-in-picture";
-      f.allowFullscreen = true;
-      el.innerHTML = "";
-      el.appendChild(f);
-    });
-  });
+  /* --- 3. Video --------------------------------------------------------
+     Nimic de făcut aici. Videoul e un <video> obișnuit, cu fișierul pe site
+     și cu controalele browserului; numărul secțiunii a rămas, ca trimiterile
+     la „secțiunea 7" și „secțiunea 9" din CLAUDE.md să fie tot adevărate.  */
 
   /* --- 4. Datele de contact din subsol ---------------------------------- */
   [["phone", "tel:"], ["email", "mailto:"]].forEach(function (pair) {

@@ -62,9 +62,9 @@ section + section { padding-top: 0; }
   background: #fff; border: var(--stroke); border-radius: var(--r-md);
 }
 .brand-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
-/* Numele mărcii, caligrafic, ca semnătura de sub blazon. Fontul are ochiul
-   mic și se scrie legat, deci urcă în corp și nu se rărește.              */
-.brand-name { font-family: var(--font-accent); font-size: var(--fs-xl);
+/* Numele mărcii, caligrafic, în Gwendolyn, fontul lui propriu. Se scrie
+   legat, deci urcă în corp și nu se rărește.                              */
+.brand-name { font-family: var(--font-marca); font-size: var(--fs-xl);
   font-weight: 400; letter-spacing: 0; line-height: 1.05; -webkit-text-stroke: 0; }
 .brand-sub { display: block; font-family: var(--font-secondary); font-size: 11px;
   font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
@@ -73,7 +73,7 @@ section + section { padding-top: 0; }
 /* Marca pe bleumarin: același auriu care e deja pe banda de CTA. Măsurat:
    --brass-300 pe --navy-700 dă 8.29:1, --brass-200 dă 10.6:1. Subtitlul ia
    tonul mai deschis fiindcă are 11px, unde pragul contează cel mai mult.
-   Subtitlul rămâne Montserrat: Great Vibes are ochiul foarte mic și la 11px
+   Subtitlul rămâne Montserrat: caligrafia are ochiul foarte mic și la 11px
    nu se mai citește. Caligrafia rămâne doar pe „Academia".                */
 .site-head .brand      { color: var(--brass-300); }
 .site-head .brand-name { color: var(--brass-300); }
@@ -155,30 +155,13 @@ section + section { padding-top: 0; }
    deci nu era aranjare în pagină. Aici nu mai rămâne nimic din el.         */
 
 /* --- Video --------------------------------------------------------------- */
+/* Fișierul stă pe site, nu pe YouTube: 720p, 14 MB, și nu se descarcă nimic
+   până la clic (`preload="none"`), deci până atunci se vede doar posterul. */
 .video {
-  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+  display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
   border: var(--stroke); border-radius: var(--r-2xl); box-shadow: var(--sh-3);
-  overflow: hidden; cursor: pointer; background: var(--navy-800); padding: 0;
+  background: var(--navy-800);
 }
-.video iframe { width: 100%; height: 100%; border: 0; display: block; }
-.video-poster { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.video-play {
-  position: absolute; inset: 0; margin: auto; width: 84px; height: 84px;
-  display: grid; place-items: center; border-radius: var(--r-full);
-  border: var(--stroke); background: var(--glass-fill-deep);
-  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
-  font-size: 26px; color: var(--navy-900); box-shadow: var(--sh-2);
-  transition: transform var(--dur-fast) var(--ease);
-}
-.video:hover .video-play { transform: scale(1.06); }
-.video.is-placeholder { cursor: default; background: var(--bg-sunken); }
-.video.is-placeholder .video-play { display: none; }
-.video-fallback {
-  position: absolute; inset: 0; display: none; flex-direction: column;
-  align-items: center; justify-content: center; gap: var(--sp-3);
-  text-align: center; padding: var(--sp-8); color: var(--text-secondary);
-}
-.video.is-placeholder .video-fallback { display: flex; }
 
 /* --- Caruselul de recenzii ----------------------------------------------- */
 .carusel { position: relative; }
@@ -482,5 +465,4 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
   /* Totul la stânga: nimic nu se centrează pe telefon.                      */
   .ctaband { text-align: left; padding: var(--sp-8) var(--sp-6); }
   .ctaband h3 { max-width: none; }
-  .video-fallback { text-align: left; align-items: flex-start; }
 }

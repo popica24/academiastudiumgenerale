@@ -14,3 +14,7 @@ _audit_*.html
 # raman doar pe discul de lucru: daca trebuie retaiat un portret, se pun
 # inapoi in assets/teachers/ si se ruleaza tools/taie-profesori.py.
 assets/teachers/
+
+# videoul de prezentare așa cum a venit de la client: 94 MB, 1080p. Pagina
+# încarcă assets/video/prezentare.mp4, recodat la 720p și 14 MB.
+assets/video.mp4

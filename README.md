@@ -42,7 +42,6 @@ Toate în `assets/config.js`, o singură dată pentru tot site-ul:
 | `materii`, `formularMesaj` | ✅ cele 15 materii, profesorii lor și mesajul de WhatsApp | formularul din secțiunea Programare |
 | `phone` | ✅ `+40 735 433 720` | subsol |
 | `company`, `cui`, `regCom` | ✅ din registrul comerțului | subsol |
-| `youtubeId` | ⬜ doar ID-ul din adresa YouTube | secțiunea Video |
 | `email`, `address` | ✅ datele de contact | subsol |
 | `schedule` (în `texte.ro`/`texte.en`) | ✅ `Luni–vineri, 08:00–21:00`, tradus | subsol, FAQ |
 | `facebook`, `instagram` | ✅ adresele reale, sau lasă gol ca să dispară din subsol | subsol |

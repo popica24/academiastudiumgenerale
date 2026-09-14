@@ -79,7 +79,7 @@ iframe, cu `--allow-file-access-from-files`.
   e încă înregistrat. Până atunci, copia de pe `vercel.app` nu se indexează, ea
   arată spre domeniul adevărat. Dacă adresa se schimbă, se schimbă în toate
   cele cinci locuri.
-- **`vercel.json`** ține fonturile un an în cache și restul o lună.
+- **`vercel.json`** ține fonturile un an în cache și restul o lună, inclusiv videoul.
 
 ## Telefon
 
@@ -193,9 +193,12 @@ fișiere, nu în patru. `blog.html` și `blog-articol.html` au comentariile
   umbra, care e și singurul auriu care trece de 4.5:1 pe hârtie, deci singurul
   bun pentru text mic. Aurul și bleumarinul sunt cele două culori ale mărcii.
 - **Caligrafia are fontul ei, Great Vibes**, cel mai apropiat de semnătura de
-  sub blazon. Intră doar prin `.script` și prin numele mărcii din antet,
-  niciodată la text de citit. Se scrie legat: `letter-spacing` rămâne zero,
-  altfel se rup legăturile dintre litere.
+  sub blazon. Intră doar prin `.script`, niciodată la text de citit. Se scrie
+  legat: `letter-spacing` rămâne zero, altfel se rup legăturile dintre litere.
+- **„Academia" din antet și subsol e în Gwendolyn**, nu în Great Vibes, prin
+  `--font-marca` pe `.brand-name`. Fișierul ține doar literele A–Z și a–z,
+  fără diacritice: dacă numele mărcii primește vreodată o literă cu
+  diacritic, fontul trebuie subsetat din nou.
 - **Butonul de WhatsApp poartă verdele lor**, `#25D366`, cu glifa oficială pusă
   ca mască CSS. Textul e cerneala sistemului, nu alb: alb pe verdele lor dă
   1.98:1, cerneala dă 8.78:1.
@@ -231,6 +234,15 @@ fișiere, nu în patru. `blog.html` și `blog-articol.html` au comentariile
 
 Firma e înregistrată la **2025-11-03**, deci prima sesiune de examene prin care
 a trecut e cea din **iunie 2026**. Orice rezultat datat 2025 e imposibil.
+
+**Povestea Denisei, din „Cum a început" pe `despre.html`, e sursa de adevăr**
+(primită de la client la 2026-09-14). Studii și master în Grecia, cu bursă de
+merit, acum 20 de ani; a predat la multinaționale, la Școala Românească din
+Atena și la școli private de limbi străine; motto-ul e „Construim viitorul prin
+educație!". Textul ei nu se rescrie. Orice altă frază din site care o
+contrazice se adaptează la ea, nu invers. Așa au dispărut „14 ani de catedră"
+din hero, înlocuit cu cei 20 de ani, și „Nu promitem note", înlocuit cu „Facem
+mai mult decât promitem", din textul ei.
 
 Sunt încă inventate și nu au voie să ajungă publice așa: cifrele din hero
 (media 8.40, 92%), cele patru recenzii, prețurile. `assets/foto/clasa.jpg` e

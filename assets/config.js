@@ -131,15 +131,6 @@ window.ACADEMIA = {
     },
   },
 
-  /* --- Video de prezentare ------------------------------------------------
-     Doar ID-ul din adresa YouTube (partea de după v=), sau lasă gol.
-     Gol în mod voit: aici a fost un ID străin, al altcuiva, prezentat drept
-     „patru minute filmate într-o grupă obișnuită de clasa a XII-a", și a
-     fost scos. Nu pune alt ID până nu există un video real, filmat la
-     Academia; cât e gol, pagina arată cardul de rezervă onest.             */
-  youtubeId: "",
-  youtubeTitle: "Cum arată o ședință la Academia",
-
   /* --- Contact ------------------------------------------------------------
      Programul nu mai e aici: e o propoziție, nu o dată de contact, deci s-a
      mutat în `texte.ro.schedule` / `texte.en.schedule`, mai sus. `site.js`
