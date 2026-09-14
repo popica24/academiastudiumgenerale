@@ -156,11 +156,19 @@ section + section { padding-top: 0; }
 
 /* --- Video --------------------------------------------------------------- */
 /* Fișierul stă pe site, nu pe YouTube: 720p, 14 MB, și nu se descarcă nimic
-   până la clic (`preload="none"`), deci până atunci se vede doar posterul. */
+   până la clic (`preload="none"`), deci până atunci se vede doar posterul.
+   Rama și umbra stau pe un <div>, nu pe <video>: browserul desenează videoul
+   pe un strat separat, care ignoră `border-radius`, și colțul drept ieșea
+   pe lângă ramă. `clip-path` pe video îl taie cu adevărat; pe <div> ar fi
+   tăiat și umbra, de asta sunt două elemente.                              */
 .video {
-  display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+  width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
   border: var(--stroke); border-radius: var(--r-2xl); box-shadow: var(--sh-3);
   background: var(--navy-800);
+}
+.video video {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  clip-path: inset(0 round calc(var(--r-2xl) - 2px));
 }
 
 /* --- Caruselul de recenzii ----------------------------------------------- */

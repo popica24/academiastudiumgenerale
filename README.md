@@ -59,12 +59,10 @@ Etichetele dispar singure când valorile devin reale.
 
 ## Ce mai e de înlocuit
 
-> ⚠️ **Cifrele de pe pagina principală sunt inventate.**
-> Firma e înregistrată la **3 noiembrie 2025**, deci prima sesiune de examene
-> prin care a trecut e cea din **iunie 2026**. Textele au fost corectate la
-> 2026, dar rămân exemple de așezare în pagină, nu rezultate reale. Media și
-> procentul de creștere trebuie înlocuite cu date adevărate sau șterse
-> înainte de publicare.
+- **Cifrele din capul paginii principale sunt confirmate** de client la
+  2026-09-14: media 8.40, grupa de 3, cei 20 de ani și 100% dintre elevi
+  crescuți cu peste un punct. Firma e înregistrată la **3 noiembrie 2025**,
+  deci orice rezultat trebuie să fie din **iunie 2026** sau de după.
 
 - **Recenziile sunt reale** de la 2026-09-14: cele 17 recomandări de pe pagina
   de Facebook a școlii, doar postările, fără comentarii. Textul e neatins,

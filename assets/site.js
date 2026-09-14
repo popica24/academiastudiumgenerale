@@ -603,7 +603,7 @@
      sau cineva cere mai puțină mișcare, numărul e deja acolo, corect. Ce face
      codul e doar să-l coboare la zero pentru câteva sute de milisecunde, și
      numai când chiar ajunge în ecran. Forma se păstrează din text: „8.40"
-     rămâne cu două zecimale, „92%" își păstrează procentul.               */
+     rămâne cu două zecimale, „100%" își păstrează procentul.               */
   var numere = document.querySelectorAll("[data-numar]");
   if (numere.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     var DURATA = 1100;

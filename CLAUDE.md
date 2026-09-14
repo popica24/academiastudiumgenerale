@@ -242,8 +242,10 @@ contrazice se adaptează la ea, nu invers. Așa au dispărut „14 ani de catedr
 din hero, înlocuit cu cei 20 de ani, și „Nu promitem note", înlocuit cu „Facem
 mai mult decât promitem", din textul ei.
 
-Sunt încă inventate și nu au voie să ajungă publice așa: cifrele din hero
-(media 8.40, 92%) și prețurile. Recenziile nu mai sunt inventate: de la
+Cifrele din hero sunt confirmate de client la 2026-09-14: media 8.40, grupa
+de 3, cei 20 de ani și 100% dintre elevi crescuți cu peste un punct (fost
+92%, corectat de el). Sunt încă inventate și nu au voie să ajungă publice
+așa: prețurile. Recenziile nu mai sunt inventate: de la
 2026-09-14 sunt cele 17 recomandări de pe pagina de Facebook a școlii, doar
 postările, cu textul neatins (inclusiv greșelile de tastare și lipsa
 diacriticelor, care sunt ale autorilor), fără emoji, cu numele scurtat la
@@ -253,8 +255,9 @@ are 640×360; a rămas pe disc, dar nicio pagină nu o mai încarcă. Detalii î
 `README.md`.
 
 Sunt încă neconfirmate de client: cele șase răspunsuri din FAQ, scrise din
-ce spune deja site-ul, dar necitite de el, cu o notă vizibilă în pagină
-(„De confirmat înainte de publicare."); și cine predă cele cinci cursuri
+ce spune deja site-ul, dar necitite de el (nota vizibilă din pagină care o
+spunea a fost scoasă la cererea lui Andrei, la 2026-09-14, la fel ca cea de
+sub profesori); și cine predă cele cinci cursuri
 speciale, pentru care formularul spune onest „vă spunem la telefon cine
 predă", fără nume inventat. Linkul Camerei de Comerț a fost primit între
 timp de la client și e în `config.js`, deci nu mai e „de completat".
