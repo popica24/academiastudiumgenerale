@@ -305,7 +305,8 @@ secțiunea „Materii”. Detaliile sunt în `README.md`.
 
 Fotografia din „Despre” (`assets/foto/despre.webp`, derivată din `image.png`) e
 a școlii, primită de la client: singura cu oameni reali și fără problemă de
-licență. Cele patru din „Cum lucrăm” (`assets/foto/motive/`) sunt domeniu
+licență. În ea e Denisa, profesoara de greacă și de română pentru străini, și
+legenda o numește (de la 2026-09-14). Cele patru din „Cum lucrăm” (`assets/foto/motive/`) sunt domeniu
 public sau CC0, deci se pot publica; proveniența fiecăreia e într-un `SURSE.txt`
 lângă ele și în tabelul din `README.md`. Materiile și cursurile speciale nu mai
 au fotografii: de la 2026-09-10 poartă iconițe rotunde, tot de la client, tăiate
