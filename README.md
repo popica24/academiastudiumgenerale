@@ -21,10 +21,10 @@ assets/site.js        WhatsApp, formularul de potrivire, video, carusel, meniu,
 assets/logo.webp      Sigla
 assets/og.jpg         Imaginea de previzualizare pentru linkuri
 assets/fonturi/       Fonturile, subsetate pentru română
-assets/foto/materii/  Cele 16 iconițe ale materiilor, plus SURSE.txt
+assets/foto/materii/  Cele 18 iconițe ale materiilor, plus SURSE.txt
 assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
 assets/foto/cursuri/  Cele 5 iconițe ale cursurilor speciale, plus SURSE.txt
-assets/foto/profesori/ Cele 8 portrete de profesor, plus SURSE.txt
+assets/foto/profesori/ Cele 15 portrete de profesor, plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
 tools/seo.js          Scrie datele de contact și JSON-LD-ul în pagini, din config.js
 404.html              Pagina pentru adrese greșite, cu căi absolute
@@ -43,7 +43,7 @@ Toate în `assets/config.js`, o singură dată pentru tot site-ul:
 | Câmp | Ce e | Unde se vede |
 |---|---|---|
 | `whatsapp` | ✅ `40735433720` | fiecare buton WhatsApp |
-| `materii`, `formularMesaj` | ✅ cele 15 materii, profesorii lor și mesajul de WhatsApp | formularul din secțiunea Programare |
+| `materii`, `formularMesaj` | ✅ cele 17 materii, profesorii lor și mesajul de WhatsApp | formularul din secțiunea Programare |
 | `phone` | ✅ `+40 735 433 720` | subsol |
 | `company`, `cui`, `regCom` | ✅ din registrul comerțului | subsol |
 | `email`, `address` | ✅ datele de contact | subsol |

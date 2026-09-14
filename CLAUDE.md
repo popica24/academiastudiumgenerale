@@ -47,6 +47,7 @@ tools/voal.py --paragraf a.jpg  # la fel, dar cardul are și text mic
 tools/mobil.sh index.html x.png # captură la 393px, cât are un iPhone 16
 python3 tools/taie-colaj.py     # retaie cele 21 de iconițe din colajul clientului
 python3 tools/taie-profesori.py # plansa de probă cu cele 8 portrete; „scrie" le salvează
+MONTSERRAT_BOLD=… python3 tools/iconita-limba.py  # iconița unei limbi noi, din cea a maghiarei
 ```
 
 **Chrome headless nu coboară sub 500px lățime de fereastră.** O captură cerută
@@ -282,13 +283,17 @@ speciale, pentru care formularul spune onest „vă spunem la telefon cine
 predă", fără nume inventat. Linkul Camerei de Comerț a fost primit între
 timp de la client și e în `config.js`, deci nu mai e „de completat".
 
-Cele 15 materii din secțiunea „Materii” sunt reale, ca număr de materii
-distincte. În pagină sunt totuși 16 carduri, fiindcă matematica se predă
+Cele 17 materii din secțiunea „Materii” sunt reale, ca număr de materii
+distincte (turca și româna pentru străini s-au adăugat la 2026-09-14). În pagină
+sunt totuși 18 carduri, fiindcă matematica se predă
 altfel la gimnaziu și altfel la liceu și are un card pentru fiecare; nu e o
 contradicție. Cele cinci cursuri speciale (Excel, contabilitate, dicție,
 dezvoltare personală, educație financiară) nu sunt materii de examen și nu
 intră în cele 15. Secțiunea „Profesori” s-a întors la 2026-09-10, dar cu oameni adevărați:
-opt profesori, cu portretele și cu prezentările pe care și le-au scris singuri
+cincisprezece profesori (opt din 2026-09-10, plus șapte adăugați la 2026-09-14 din
+poze și texte trimise de client: Andra la matematică și biologie, Sara, Diana,
+Ioana, Alexandra și două profesoare diferite pe nume Denisa), cu
+portretele și cu prezentările pe care și le-au scris singuri
 pe Instagramul școlii, `@academia_studium_generale`. Cele trei nume inventate
 de dinainte nu mai există nicăieri. Linkul e din nou în meniu și în subsol, în
 toate cele șase fișiere. Numele celor doi profesori pe care postările nu

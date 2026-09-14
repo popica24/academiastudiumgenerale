@@ -15,7 +15,7 @@ window.ACADEMIA = {
      materiile care se predau altfel la gimnaziu și altfel la liceu. O materie
      fără ele apare la orice vârstă. Prenumele sunt cele care ies în mesajul
      de WhatsApp, deci se scriu exact cum vreți să le citească părintele.
-     Aceleași 16 materii sunt și în cardurile din `index.html`.             */
+     Aceleași 18 materii sunt și în cardurile din `index.html`.             */
   materii: [
     { nume: "Română",      numeEn: "Romanian",   profesori: ["Luiza"] },
     { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andra"],  pana: 14 },
@@ -33,6 +33,8 @@ window.ACADEMIA = {
     { nume: "Maghiară",    numeEn: "Hungarian",   profesori: [] },        /* DE COMPLETAT: cine predă */
     { nume: "Informatică", numeEn: "Computer science", profesori: ["Andrei"] },
     { nume: "Greacă",      numeEn: "Greek",       profesori: ["Denisa"] },
+    { nume: "Turcă",       numeEn: "Turkish",     profesori: ["Denisa"] },
+    { nume: "Română pentru străini", numeEn: "Romanian for foreigners", profesori: ["Denisa"] },
   ],
 
   /* --- Cursuri speciale ---------------------------------------------------

@@ -232,7 +232,16 @@ function jsonld(html, p) {
   if (/<section[^>]*id="materii"/.test(html)) {
     org.hasOfferCatalog = oferta(limba);
 
-    const profesori = [...html.matchAll(/<article class="person person-foto"[\s\S]*?<img src="([^"]+)"[\s\S]*?<h3>([\s\S]*?)<\/h3>\s*<p class="tag">([\s\S]*?)<\/p>\s*<p class="person-cv">([\s\S]*?)<\/p>/g)];
+    /* Un card poate avea doar bio, doar citat sau amândouă: unii profesori
+       s-au prezentat numai la persoana întâi, fără date de parcurs.       */
+    const profesori = [...html.matchAll(/<article class="person person-foto"[\s\S]*?<\/article>/g)].map(([card]) => [
+      null,
+      (card.match(/<img src="([^"]+)"/) || [])[1],
+      (card.match(/<h3>([\s\S]*?)<\/h3>/) || [])[1],
+      (card.match(/<p class="tag">([\s\S]*?)<\/p>/) || [])[1],
+      [(card.match(/<p class="person-cv">([\s\S]*?)<\/p>/) || [])[1],
+       (card.match(/<blockquote class="person-vorba">([\s\S]*?)<\/blockquote>/) || [])[1]].filter(Boolean).join(" "),
+    ]);
     if (profesori.length) {
       org.employee = profesori.map(([, img, nume, materie, cv]) => ({
         "@type": "Person",
@@ -260,16 +269,16 @@ function jsonld(html, p) {
       });
     }
 
-    const faq = html.match(/data-faq[\s\S]*?<\/div>/);
+    const faq = html.match(/data-faq[\s\S]*?<\/section>/);
     if (faq) {
-      const intrebari = [...faq[0].matchAll(/<summary>([\s\S]*?)<\/summary>\s*<p class="faq-raspuns">([\s\S]*?)<\/p>/g)];
+      const intrebari = [...faq[0].matchAll(/<summary>([\s\S]*?)<\/summary>\s*<(p|div) class="faq-raspuns">([\s\S]*?)<\/\2>/g)];
       if (intrebari.length) {
         noduri.push({
           "@type": "FAQPage",
           "@id": url + "#intrebari",
           isPartOf: { "@id": url + "#pagina" },
           inLanguage: pagina.inLanguage,
-          mainEntity: intrebari.map(([, q, a]) => ({
+          mainEntity: intrebari.map(([, q, , a]) => ({
             "@type": "Question",
             name: faraTaguri(q),
             acceptedAnswer: { "@type": "Answer", text: faraTaguri(a) },

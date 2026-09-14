@@ -945,6 +945,9 @@ h1, h2, h3, h4,
   margin: var(--sp-4) 0 0; max-width: 68ch;
   font-size: var(--fs-sm); color: var(--text-secondary);
 }
+/* Răspunsul poate avea mai multe paragrafe, într-un <div class="faq-raspuns">. */
+.faq-raspuns p { margin: 0; }
+.faq-raspuns p + p { margin-top: var(--sp-3); }
 
 
 /* ==========================================================================

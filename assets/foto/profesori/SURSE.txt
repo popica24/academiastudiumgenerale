@@ -30,3 +30,19 @@ a scriptului și rulezi scriptul fără argument, ca să vezi plansa de probă.
 Postarea de la română arată o diplomă pe care numele se citește. Nu a fost
 luat de acolo: școala nu l-a scris în text, deci nici pagina nu îl scrie.
 Cardul cere numele cu eticheta roșie „Numele de completat".
+
+Adăugate la 2026-09-14, din fotografii trimise direct de client, nu din
+Instagram. Textele vin tot de la client, din assets/teachers/texts.txt.
+Tăiate cu PIL, pătrat centrat pe față, 560×560, fără tools/taie-profesori.py,
+care știe doar capturile de Instagram.
+
+  fișier                     cardul                   sursa
+  matematica-biologie.webp   Matematică și biologie   andra-mate-bio.jpeg
+  logica-franceza.webp       Logică și franceză       sara-logica-franceza.jpeg
+  spaniola.webp              Spaniolă                 diana-spaniola-nativ.jpeg
+  chimie.webp                Chimie                   ioana-chimie.jpeg
+  geografie-alexandra.webp   Geografie (Alexandra)    alexandra-geografie.jpeg
+  engleza-turca-greaca.webp  Engleză, turcă, greacă   denisa-engleza-turca-greaca.jpeg
+  greaca-romana-straini.webp Greacă, română p. străini denisa-greaca-romana-pentru-straini.jpeg
+
+Cele două profesoare pe nume Denisa sunt persoane diferite, confirmat de client.

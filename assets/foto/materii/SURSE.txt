@@ -28,3 +28,10 @@ Cele 16 fișiere, în ordinea cardurilor din pagină, care e și ordinea cercuri
 CC0, de la Wikimedia Commons, Flickr și Rawpixel. Au fost înlocuite peste, cu
 același nume; se recuperează din istoricul git, iar proveniența fiecăreia e
 scrisă în acest fișier, în comitul de dinainte.
+
+Adăugate la 2026-09-14, nu din colaj: turca.webp și romana-straini.webp. Clientul
+nu are iconițe pentru ele, deci au fost făcute cu tools/iconita-limba.py pornind
+de la maghiara.webp: același fundal, aceleași stele, aceeași bulă și linie aurie,
+iar steagul maghiar redesenat cu modelul noului steag, păstrându-i valul și
+umbrele. Numele e scris cu Montserrat Bold. Dacă clientul trimite iconițe
+proprii pentru ele, se pun peste aceste două fișiere, cu același nume.

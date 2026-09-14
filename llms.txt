@@ -1,6 +1,6 @@
 # Academia Studium Generale by Denisa
 
-> Școală privată din București pentru pregătirea la Bacalaureat și la Evaluarea Națională, individual sau în grupe de maximum trei elevi, cu 16 materii de examen, limbi străine și cinci cursuri speciale. Motto: „Construim viitorul prin educație!"
+> Școală privată din București pentru pregătirea la Bacalaureat și la Evaluarea Națională, individual sau în grupe de maximum trei elevi, cu 18 materii, între care limbi străine și română pentru străini, și cinci cursuri speciale. Motto: „Construim viitorul prin educație!"
 >
 > A private school in Bucharest, Romania, preparing students for the Romanian Baccalaureate and National Evaluation exams, one to one or in groups of no more than three students. The site is in Romanian, with an English version of the home and about pages.
 
@@ -17,14 +17,15 @@ Firma: STUDIUM GENERALE BY DENISA SRL, CUI 52829916, Reg. Com. J2025084335006, �
 ## Pe scurt
 
 - Grupele au cel mult trei elevi; se poate lucra și unu la unu.
-- Prima ședință durează 50 de minute și este gratuită: elevul și profesorul se cunosc și stabilesc obiectivele.
+- Prima întâlnire este gratuită și fără nicio obligație: se descoperă nivelul elevului, obiectivele lui și felul în care învață cel mai bine, apoi se stabilește împreună parcursul potrivit.
 - Părintele primește la finalul fiecărei luni un raport de progres: ce s-a parcurs, procentul din programă, unde stă elevul și ce urmează.
-- Ședințele pierdute se reprogramează în aceeași săptămână sau se recuperează online.
-- Pentru grupele de Bacalaureat se dau simulări cu timp cronometrat și barem oficial.
+- Părintele este informat constant despre nivelul elevului, evoluția sa, dificultățile întâmpinate și ce mai e de lucrat.
+- Ședințele pierdute se reprogramează sau se recuperează online și nu se șterg din abonament.
+- Elevii care dau Evaluarea Națională sau Bacalaureatul au simulări cu timp cronometrat și barem oficial.
 
 ## Materii
 
-Română, matematică (gimnaziu și liceu), istorie, geografie, logică, biologie, chimie, informatică, engleză, spaniolă, franceză, chineză, coreeană, maghiară, greacă.
+Română, matematică (gimnaziu și liceu), istorie, geografie, logică, biologie, chimie, informatică, engleză, spaniolă, franceză, chineză, coreeană, maghiară, greacă, turcă și română pentru străini.
 
 Cursuri speciale, în afara programei: Excel, contabilitate, dicție, dezvoltare personală, educație financiară.
 
