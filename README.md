@@ -59,15 +59,18 @@ Etichetele dispar singure când valorile devin reale.
 
 ## Ce mai e de înlocuit
 
-> ⚠️ **Cifrele și recenziile de pe pagina principală sunt inventate.**
+> ⚠️ **Cifrele de pe pagina principală sunt inventate.**
 > Firma e înregistrată la **3 noiembrie 2025**, deci prima sesiune de examene
 > prin care a trecut e cea din **iunie 2026**. Textele au fost corectate la
-> 2026, dar rămân exemple de așezare în pagină, nu rezultate reale. Media,
-> procentul de creștere și cele patru recenzii trebuie înlocuite cu date
-> adevărate sau șterse înainte de publicare.
+> 2026, dar rămân exemple de așezare în pagină, nu rezultate reale. Media și
+> procentul de creștere trebuie înlocuite cu date adevărate sau șterse
+> înainte de publicare.
 
-- **Recenziile** din `index.html` sunt exemple de așezare. Se înlocuiesc cu
-  cele reale înainte de publicare.
+- **Recenziile sunt reale** de la 2026-09-14: cele 17 recomandări de pe pagina
+  de Facebook a școlii, doar postările, fără comentarii. Textul e neatins,
+  în afară de emoji; numele sunt scurtate la prenume și inițială. Pe
+  `en/index.html` sunt traduse. O recomandare nouă se adaugă ca `<figure>` în
+  ambele fișiere, în capul listei.
 - **`assets/foto/clasa.jpg` nu mai e folosit de nicio pagină.** Era pe toate
   cele patru carduri din „Cum lucrăm", e o previzualizare Adobe Stock
   (`t4.ftcdn.net`) **nelicențiată pentru producție**, arată un birou și are

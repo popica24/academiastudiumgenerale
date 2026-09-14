@@ -192,13 +192,11 @@ fișiere, nu în patru. `blog.html` și `blog-articol.html` au comentariile
   mijlocul literelor lui „GRATUITĂ", `#E3B34A` lumina de pe ele, `#9C6304`
   umbra, care e și singurul auriu care trece de 4.5:1 pe hârtie, deci singurul
   bun pentru text mic. Aurul și bleumarinul sunt cele două culori ale mărcii.
-- **Caligrafia are fontul ei, Great Vibes**, cel mai apropiat de semnătura de
-  sub blazon. Intră doar prin `.script`, niciodată la text de citit. Se scrie
-  legat: `letter-spacing` rămâne zero, altfel se rup legăturile dintre litere.
-- **„Academia" din antet și subsol e în Gwendolyn**, nu în Great Vibes, prin
-  `--font-marca` pe `.brand-name`. Fișierul ține doar literele A–Z și a–z,
-  fără diacritice: dacă numele mărcii primește vreodată o literă cu
-  diacritic, fontul trebuie subsetat din nou.
+- **Caligrafia are fontul ei, Gwendolyn** (de la 2026-09-14; înainte era Great
+  Vibes, scos cu totul). Intră prin `--font-accent`, adică `.script` și
+  „Academia" din antet și subsol, niciodată la text de citit. Se scrie legat:
+  `letter-spacing` rămâne zero, altfel se rup legăturile dintre litere. Sunt
+  două fișiere: latina de bază și un al doilea, de 2 KB, doar cu ă, ș, ț.
 - **Butonul de WhatsApp poartă verdele lor**, `#25D366`, cu glifa oficială pusă
   ca mască CSS. Textul e cerneala sistemului, nu alb: alb pe verdele lor dă
   1.98:1, cerneala dă 8.78:1.
@@ -245,7 +243,11 @@ din hero, înlocuit cu cei 20 de ani, și „Nu promitem note", înlocuit cu „
 mai mult decât promitem", din textul ei.
 
 Sunt încă inventate și nu au voie să ajungă publice așa: cifrele din hero
-(media 8.40, 92%), cele patru recenzii, prețurile. `assets/foto/clasa.jpg` e
+(media 8.40, 92%) și prețurile. Recenziile nu mai sunt inventate: de la
+2026-09-14 sunt cele 17 recomandări de pe pagina de Facebook a școlii, doar
+postările, cu textul neatins (inclusiv greșelile de tastare și lipsa
+diacriticelor, care sunt ale autorilor), fără emoji, cu numele scurtat la
+prenume și inițială. Pe `en/index.html` sunt traduse, cu o notă care o spune. `assets/foto/clasa.jpg` e
 o previzualizare Adobe Stock nelicențiată, arată un birou și nu o școală, și
 are 640×360; a rămas pe disc, dar nicio pagină nu o mai încarcă. Detalii în
 `README.md`.

@@ -453,6 +453,11 @@
       return clonat ? toate[n].offsetLeft - toate[0].offsetLeft : 0;
     }
 
+    var numar = document.createElement("span");
+    numar.className = "carusel-numar";
+    numar.setAttribute("aria-hidden", "true");
+    dots.parentNode.insertBefore(numar, dots);
+
     slides.forEach(function (s, i) {
       var b = document.createElement("button");
       b.type = "button";
@@ -480,6 +485,7 @@
       Array.prototype.forEach.call(dots.children, function (d, j) {
         d.setAttribute("aria-current", j === i ? "true" : "false");
       });
+      numar.textContent = (i + 1) + " / " + n;
       if (live) live.textContent = "Recenzia " + (i + 1) + " din " + n;
     }
 

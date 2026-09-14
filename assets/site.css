@@ -62,9 +62,9 @@ section + section { padding-top: 0; }
   background: #fff; border: var(--stroke); border-radius: var(--r-md);
 }
 .brand-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
-/* Numele mărcii, caligrafic, în Gwendolyn, fontul lui propriu. Se scrie
+/* Numele mărcii, caligrafic, în Gwendolyn, ca restul caligrafiei. Se scrie
    legat, deci urcă în corp și nu se rărește.                              */
-.brand-name { font-family: var(--font-marca); font-size: var(--fs-xl);
+.brand-name { font-family: var(--font-accent); font-size: var(--fs-xl);
   font-weight: 400; letter-spacing: 0; line-height: 1.05; -webkit-text-stroke: 0; }
 .brand-sub { display: block; font-family: var(--font-secondary); font-size: 11px;
   font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
@@ -172,13 +172,20 @@ section + section { padding-top: 0; }
 }
 .carusel-track::-webkit-scrollbar { display: none; }
 .carusel-track > * { scroll-snap-align: start; flex: 0 0 min(100%, 420px); }
-.recenzie { display: flex; flex-direction: column; gap: var(--sp-4); height: 100%; }
+/* Fără `height: 100%`: pe un element flex, procentul față de o pistă fără
+   înălțime fixă îl oprea din întins, iar cardurile scurte lăsau o gaură
+   între ele și butoane. Întinse, toate au înălțimea celei mai lungi.      */
+.recenzie { display: flex; flex-direction: column; gap: var(--sp-4); }
 .recenzie blockquote { margin: 0; font-size: var(--fs-md); line-height: var(--lh-snug); }
 .recenzie figcaption { display: flex; align-items: center; gap: var(--sp-3); margin-top: auto; }
 .recenzie .who { font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
 .recenzie .when { font-size: var(--fs-xs); color: var(--text-muted); }
 .carusel-nav { display: flex; align-items: center; gap: var(--sp-4); }
 .carusel-dots { display: flex; gap: var(--sp-2); flex: 1; flex-wrap: wrap; }
+/* „3 / 17": pe telefon ține locul punctelor, care la 17 recenzii treceau pe
+   două rânduri. Cititorul de ecran are deja propoziția din `data-live`.   */
+.carusel-numar { display: none; flex: 1; font-size: var(--fs-sm); color: var(--text-secondary);
+  font-variant-numeric: tabular-nums; }
 .carusel-dot {
   width: 10px; height: 10px; padding: 0; border-radius: var(--r-full);
   border: 1.5px solid var(--stroke-color); background: transparent; cursor: pointer;
@@ -437,6 +444,8 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
      gutiere inegale.                                                       */
   #recenzii .carusel-track > * { flex: 0 0 100%; }
   #recenzii .carusel-nav { padding-inline: var(--sp-5); }
+  .carusel-dots { display: none; }
+  .carusel-numar { display: block; }
 
   /* Opțiunile formularului: două pe rând, fiecare cât jumătate de ecran, cu
      textul la stânga. Pastilele mici, așezate trei pe rând, arătau ca niște
