@@ -28,7 +28,7 @@ window.ACADEMIA = {
     { nume: "Engleză",     numeEn: "English",     profesori: ["Denisa", "Ștefania"] },
     { nume: "Spaniolă",    numeEn: "Spanish",     profesori: ["Diana"] },
     { nume: "Franceză",    numeEn: "French",      profesori: ["Sara", "Ilinca"] },
-    { nume: "Chineză",     numeEn: "Chinese",     profesori: ["Alex", "Ana"] },
+    { nume: "Chineză",     numeEn: "Chinese",     profesori: ["Alexandru", "Ana"] },
     { nume: "Coreeană",    numeEn: "Korean",      profesori: ["Jun"] },
     { nume: "Maghiară",    numeEn: "Hungarian",   profesori: [] },        /* DE COMPLETAT: cine predă */
     { nume: "Informatică", numeEn: "Computer science", profesori: ["Andrei"] },
@@ -138,12 +138,15 @@ window.ACADEMIA = {
      mutat în `texte.ro.schedule` / `texte.en.schedule`, mai sus. `site.js`
      îl citește de acolo prin `T("schedule", ...)`.                        */
   phone: "+40 735 433 720",
-  email: "contact@studiumgenerale.ro",
-  address: "Str. Edgar Quinet 10, et. 1, ap. 4, 010018 București",
+  email: "academiastudiumgeneraledenisa@gmail.com",
+  /* Fără stradă, la cererea clientului (2026-09-14). */
+  address: "București, Sectorul 1, lângă metrou",
 
   /* --- Rețele (lasă gol ca să dispară din subsol) ------------------------- */
   facebook: "https://www.facebook.com/p/Academia-Studium-Generale-by-Denisa-61581913795617/",
   instagram: "https://www.instagram.com/academia_studium_generale/",
+  /* DE COMPLETAT: adresa contului. Cât e gol, linkul dispare din subsol. */
+  tiktok: "",
 
   /* Pagina de membru la Camera de Comerț, dată de client. */
   cameraComert: "https://www.hrcc.ro/members/",

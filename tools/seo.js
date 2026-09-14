@@ -90,7 +90,7 @@ function datele(html, limba) {
   if (real(C.address)) html = umple(html, "address", { text: C.address });
   if (real(T.schedule)) html = umple(html, "schedule", { text: T.schedule });
   for (const k of ["company", "cui", "regCom"]) if (real(C[k])) html = umple(html, k, { text: C[k] });
-  for (const k of ["facebook", "instagram"]) if (real(C[k])) html = umple(html, k, { href: C[k], extern: true });
+  for (const k of ["facebook", "instagram", "tiktok"]) if (real(C[k])) html = umple(html, k, { href: C[k], extern: true });
   if (real(C.cameraComert)) html = umple(html, "camera", { href: C.cameraComert, extern: true });
   if (real(C.whatsapp)) {
     html = html.replace(/<a((?:\s[^>]*)?)\sdata-wa="([^"]*)"((?:\s[^>]*)?)>/g, (tot, inainte, subiect, dupa) => {
@@ -135,7 +135,8 @@ function scoala(limba) {
     const cod = C.address.match(/\b(\d{6})\b/);
     org.address = {
       "@type": "PostalAddress",
-      streetAddress: C.address.replace(/,?\s*\d{6}.*$/, "").trim(),
+      /* Orașul are câmpul lui, deci nu se repetă în stradă. */
+      streetAddress: C.address.replace(/,?\s*\d{6}.*$/, "").replace(/^București,\s*/, "").trim(),
       addressLocality: "București",
       postalCode: cod ? cod[1] : undefined,
       addressCountry: "RO",
@@ -158,7 +159,7 @@ function scoala(limba) {
       availableLanguage: ["ro", "en"],
     };
   }
-  const retele = [C.facebook, C.instagram].filter(real);
+  const retele = [C.facebook, C.instagram, C.tiktok].filter(real);
   if (retele.length) org.sameAs = retele;
   return org;
 }

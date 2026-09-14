@@ -290,9 +290,9 @@ altfel la gimnaziu și altfel la liceu și are un card pentru fiecare; nu e o
 contradicție. Cele cinci cursuri speciale (Excel, contabilitate, dicție,
 dezvoltare personală, educație financiară) nu sunt materii de examen și nu
 intră în cele 15. Secțiunea „Profesori” s-a întors la 2026-09-10, dar cu oameni adevărați:
-cincisprezece profesori (opt din 2026-09-10, plus șapte adăugați la 2026-09-14 din
+șaisprezece profesori (opt din 2026-09-10, plus opt adăugați la 2026-09-14 din
 poze și texte trimise de client: Andra la matematică și biologie, Sara, Diana,
-Ioana, Alexandra și două profesoare diferite pe nume Denisa), cu
+Ioana, Alexandra, Alexandru la chineză și două profesoare diferite pe nume Denisa), cu
 portretele și cu prezentările pe care și le-au scris singuri
 pe Instagramul școlii, `@academia_studium_generale`. Cele trei nume inventate
 de dinainte nu mai există nicăieri. Linkul e din nou în meniu și în subsol, în

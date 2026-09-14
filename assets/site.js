@@ -379,8 +379,8 @@
     });
   });
   /* Rețelele duc pe alt site: cine citește despre școală nu trebuie să
-     piardă pagina școlii ca să se uite la Facebook sau Instagram.       */
-  ["facebook", "instagram"].forEach(function (k) {
+     piardă pagina școlii ca să se uite la Facebook, Instagram sau TikTok.       */
+  ["facebook", "instagram", "tiktok"].forEach(function (k) {
     document.querySelectorAll("[data-" + k + "]").forEach(function (el) {
       if (isReal(C[k])) {
         el.href = C[k];

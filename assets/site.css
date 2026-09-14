@@ -138,6 +138,11 @@ section + section { padding-top: 0; }
   max-width: 54ch; margin-bottom: var(--sp-8); }
 .hero-actions { gap: var(--sp-5); }
 .hero-note { font-size: var(--fs-sm); color: var(--text-muted); margin-top: var(--sp-5); }
+/* Afilierile: etichete, nu butoane. Linkul rămâne subliniat, ca să se vadă
+   că duce undeva; eticheta se rupe pe două rânduri pe telefon.            */
+.hero-afiliere { gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-6); }
+.hero-afiliere .tag { line-height: 1.35; white-space: normal; }
+.hero-afiliere a { color: inherit; }
 
 .proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   gap: var(--sp-6); margin-top: var(--sp-16); }
@@ -281,10 +286,18 @@ a.sr-only:focus {
 }
 
 /* --- Subsol -------------------------------------------------------------- */
+/* Numele mărcii în subsol: bleumarinul siglei, nu cerneala și nu gri.
+   --navy-700 pe hârtie dă 16.1:1, deci și subtitlul de 11px trece.      */
+.site-foot .brand-name, .site-foot .brand-sub { color: var(--navy-700); }
 .site-foot { padding-block: var(--sp-16) var(--sp-12); margin-top: var(--sp-24);
   border-top: var(--stroke); }
+/* Coloana de contact e `auto`: adresa de Gmail e un singur cuvânt lung și
+   nu are unde să se rupă, deci coloana ia lățimea ei, iar celelalte trei
+   împart ce rămâne. Între tabletă și telefon, pe două coloane, e posibil
+   să nu încapă, și atunci adresa se rupe, în loc să iasă din pagină.     */
 .foot-grid { display: grid; gap: var(--sp-10);
-  grid-template-columns: minmax(min(240px, 100%), 1.4fr) repeat(auto-fit, minmax(min(160px, 100%), 1fr)); }
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto minmax(0, 1fr); }
+.foot-col [data-email] { overflow-wrap: anywhere; }
 .foot-col h2 { font-family: var(--font-secondary); font-weight: var(--fw-semibold);
   font-size: var(--fs-sm); letter-spacing: .06em; text-transform: uppercase;
   color: var(--text-muted); margin-bottom: var(--sp-4); -webkit-text-stroke: 0; }
