@@ -2,34 +2,70 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "headers": [
     {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/assets/icons/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
       "source": "/assets/fonturi/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/assets/foto/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
       ]
     },
     {
       "source": "/assets/(.*)\\.(css|js|webp|jpg|png|mp4)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
       ]
     },
     {
       "source": "/brand/(.*)\\.css",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ]

@@ -26,6 +26,10 @@ assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
 assets/foto/cursuri/  Cele 5 iconițe ale cursurilor speciale, plus SURSE.txt
 assets/foto/profesori/ Cele 8 portrete de profesor, plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
+tools/seo.js          Scrie datele de contact și JSON-LD-ul în pagini, din config.js
+404.html              Pagina pentru adrese greșite, cu căi absolute
+llms.txt              Rezumatul școlii pentru asistenții de AI
+robots.txt, sitemap.xml, site.webmanifest, favicon.ico, assets/icons/
 tools/voal.py         Cât de gros trebuie voalul peste o fotografie
 tools/mobil.sh        Captură la 393px, cât are un iPhone 16
 tools/taie-colaj.py   Taie cele 21 de iconițe din colajul primit de la client
@@ -172,10 +176,8 @@ brandbook, `.person` simplu, rămâne cum era: e varianta fără fotografie.
 **Ce nu e gata în secțiunea asta:**
 
 - **Două postări nu spun numele profesorului**, cel de română și cel de
-  biologie. Cardurile lor poartă eticheta roșie „Numele de completat", prin
-  `data-nedefinit`, ca orice altă valoare care lipsește. Numele profesoarei de
-  română se citește pe diploma din fotografia ei, dar nu a fost luat de acolo:
-  școala nu l-a scris în text.
+  biologie. Numele, Luiza și Cătălin, au fost date de client la 2026-09-14,
+  deci eticheta roșie „Numele de completat" a fost scoasă de pe ambele.
 - **Trei materii predate aici nu apar în secțiunea „Materii":** araba, artele
   plastice și psihologia cu logopedie. Ori intră între materii, ori între
   cursurile speciale, ori profesorii lor ies din pagină. Nota din josul

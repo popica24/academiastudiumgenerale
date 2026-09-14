@@ -255,6 +255,10 @@ a.sr-only:focus {
 }
 
 /* --- Blog ---------------------------------------------------------------- */
+/* Fiecare card stă într-un <article>, ca motorul de căutare să vadă trei
+   articole separate; cardul se întinde cât celula grilei, ca înainte.      */
+.articole > article { display: flex; }
+.articole > article > .articol-card { flex: 1; }
 .articole { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr)); }
 .articol-card { display: flex; flex-direction: column; gap: var(--sp-3);
   align-items: flex-start; text-decoration: none; color: inherit; }
@@ -281,13 +285,16 @@ a.sr-only:focus {
   border-top: var(--stroke); }
 .foot-grid { display: grid; gap: var(--sp-10);
   grid-template-columns: minmax(min(240px, 100%), 1.4fr) repeat(auto-fit, minmax(min(160px, 100%), 1fr)); }
-.foot-col h4 { font-family: var(--font-secondary); font-weight: var(--fw-semibold);
+.foot-col h2 { font-family: var(--font-secondary); font-weight: var(--fw-semibold);
   font-size: var(--fs-sm); letter-spacing: .06em; text-transform: uppercase;
   color: var(--text-muted); margin-bottom: var(--sp-4); -webkit-text-stroke: 0; }
 .foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
 /* Butoanele și linkurile de navigație din subsol își păstrează culoarea
    proprie: regula de mai jos e mai specifică decât `.btn` sau `.navlink`,
    deci le-ar decolora textul și l-ar duce spre albastru la hover.          */
+/* textul simplu din coloane (adresa, programul) are aceeași mărime ca
+   linkurile de lângă el; înainte doar linkurile erau micșorate          */
+.foot-col li { font-size: var(--fs-sm); color: var(--text-secondary); }
 .foot-col a:not(.btn):not(.navlink) { color: var(--text-secondary); text-decoration: none; font-size: var(--fs-sm); }
 .foot-col a:not(.btn):not(.navlink):hover { text-decoration: underline; }
 .foot-bottom { margin-top: var(--sp-12); padding-top: var(--sp-6); border-top: 1px solid var(--border);
@@ -342,10 +349,6 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
 /* în rândul de jos al subsolului, linkul se rupe pe rândul lui, iar
    eticheta de deasupra ar călca peste afirmația precedentă: coboară sub el */
 .foot-bottom [data-nedefinit]::after { top: auto; bottom: -18px; right: 0; }
-
-/* pe cardul de profesor, `right: -6px` scotea eticheta cu 6px în afara
-   cardului, iar pe telefon cu 6px în afara ecranului: rămâne în card */
-.person-foto [data-nedefinit]::after { right: 0; }
 
 /* --- Sub 1040px -----------------------------------------------------------
    Pragul era 860px, dar `.nav` are `flex-wrap: wrap`, deci linkul „Cursuri"
@@ -481,5 +484,5 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
 
   /* Totul la stânga: nimic nu se centrează pe telefon.                      */
   .ctaband { text-align: left; padding: var(--sp-8) var(--sp-6); }
-  .ctaband h3 { max-width: none; }
+  .ctaband h2, .ctaband h3 { max-width: none; }
 }

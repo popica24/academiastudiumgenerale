@@ -41,6 +41,7 @@ python3 -m http.server 8000     # server local; sau deschide direct index.html
 tools/audit.sh                  # verifică toate paginile (și cele din en/) la 1440 / 900 / 560
 tools/audit.sh en/index.html    # o singură pagină, inclusiv dintr-un subdirector
 tools/audit.sh index.html 390   # o pagină, o lățime
+node tools/seo.js               # scrie datele de contact și JSON-LD-ul în pagini, din config.js
 tools/voal.py poza.jpg          # cât de gros trebuie voalul peste fotografia aia
 tools/voal.py --paragraf a.jpg  # la fel, dar cardul are și text mic
 tools/mobil.sh index.html x.png # captură la 393px, cât are un iPhone 16
@@ -71,14 +72,32 @@ iframe, cu `--allow-file-access-from-files`.
   1.1 MB. Sursele mari, `image.png`, `clasa.jpg` și `materii-colaj.png`, au
   rămas pe disc dar nu le încarcă nicio pagină.
 - **Open Graph e scris în HTML**, fiindcă aplicațiile care fac previzualizarea
-  unui link nu rulează JavaScript. **JSON-LD se construiește din `config.js`**
-  în `site.js`, secțiunea 9, ca datele de contact să rămână într-un singur
-  loc; Google randează JavaScript înainte să le citească.
+  unui link nu rulează JavaScript.
+- **Tot ce contează se vede în view-source** (de la 2026-09-14). Crawlerele de
+  AI nu rulează JavaScript, deci datele de contact și JSON-LD-ul sunt scrise
+  în HTML de **`node tools/seo.js`**, din `config.js` și din textul paginii
+  (FAQ, profesori, video, articol). JSON-LD-ul stă la capătul lui `<body>`,
+  între marcajele `DATE STRUCTURATE`, și nu se editează de mână. Scriptul se
+  rulează după orice schimbare în `config.js`, în FAQ, la profesori sau în
+  titlul și descrierea unei pagini; rulat a doua oară nu schimbă nimic.
+  `site.js`, secțiunea 9, nu mai construiește nimic.
+- **Recenziile de pe Facebook nu intră în JSON-LD**: Google nu acceptă
+  recenzii publicate de firmă despre ea însăși și poate penaliza stelele.
+- **Fișierele pentru motoare și asistenți**: `robots.txt` (nimic blocat, cu
+  crawlerele de AI numite explicit), `sitemap.xml` (cu perechile de limbă),
+  `llms.txt` (rezumatul școlii pentru modele de limbaj, scris de mână: dacă se
+  schimbă un telefon sau o materie, se schimbă și acolo), `site.webmanifest`,
+  `favicon.ico` și `assets/icons/`, tăiate din blazon fără semnătură, care la
+  16px nu se citește. `404.html` are căi absolute (`/assets/...`), fiindcă
+  Vercel o servește la orice adresă greșită, inclusiv `/en/ceva/greșit`.
+- **`.vercelignore`** ține notițele, uneltele și sursele mari departe de site.
+  Fără el, `CLAUDE.md` și `README.md` ar fi publice.
 - **Adresa canonică e `https://studiumgenerale.ro`**, în `<link rel=canonical>`,
-  în Open Graph, în `sitemap.xml`, în `robots.txt` și în `site.js`. Domeniul nu
-  e încă înregistrat. Până atunci, copia de pe `vercel.app` nu se indexează, ea
-  arată spre domeniul adevărat. Dacă adresa se schimbă, se schimbă în toate
-  cele cinci locuri.
+  în Open Graph, în `sitemap.xml`, în `robots.txt`, în `llms.txt` și în
+  `tools/seo.js`. Domeniul nu e încă înregistrat. Până atunci, copia de pe
+  `vercel.app` nu se indexează, ea arată spre domeniul adevărat. Dacă adresa
+  se schimbă, se schimbă în toate cele șase locuri, apoi se rulează
+  `node tools/seo.js`.
 - **`vercel.json`** ține fonturile un an în cache și restul o lună, inclusiv videoul.
 
 ## Telefon
@@ -137,7 +156,8 @@ https://claude.ai/code/artifact/90cf675a-1888-4355-b5ed-46ee18430677
 
 `assets/config.js` e **singurul** fișier cu numere de telefon, linkuri sau ID-uri.
 `assets/site.js` le leagă prin atribute `data-*` (`data-wa`, `data-phone`,
-`data-company`...). Nicio pagină nu conține date de contact. Tot de acolo vin
+`data-company`...). Valorile apar și scrise în pagini, dar le scrie
+`tools/seo.js`, nu mâna: se schimbă în config.js și se rulează scriptul. Tot de acolo vin
 materiile și profesorii pentru formularul din secțiunea Programare: trei
 întrebări (vârstă, materie, singur sau în grupă) care se termină cu un mesaj
 de WhatsApp compus din răspunsuri. Calendly a fost scos cu totul.
@@ -271,8 +291,10 @@ intră în cele 15. Secțiunea „Profesori” s-a întors la 2026-09-10, dar cu
 opt profesori, cu portretele și cu prezentările pe care și le-au scris singuri
 pe Instagramul școlii, `@academia_studium_generale`. Cele trei nume inventate
 de dinainte nu mai există nicăieri. Linkul e din nou în meniu și în subsol, în
-toate cele șase fișiere. Ce nu e încă în regulă acolo: două postări nu spun
-numele profesorului, deci cardurile lor poartă eticheta `data-nedefinit`; și
+toate cele șase fișiere. Numele celor doi profesori pe care postările nu
+îi numesc au fost completate de client la 2026-09-14, Luiza la română și
+Cătălin la biologie, deci eticheta „Numele de completat" nu mai e pe niciun
+card. Ce nu e încă în regulă acolo:
 trei materii predate, araba, artele plastice și psihologia, nu apar în
 secțiunea „Materii”. Detaliile sunt în `README.md`.
 

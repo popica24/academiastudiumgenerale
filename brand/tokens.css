@@ -756,7 +756,10 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 .ctaband::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
   background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45) 25%,
               rgba(255,255,255,.45) 75%, rgba(255,255,255,0)); pointer-events: none; }
-.ctaband h3 { color: #fff; max-width: 16ch; }
+.ctaband h2, .ctaband h3 { color: #fff; max-width: 16ch; }
+/* Titlul benzii e h2 când banda e secțiunea ei și h3 când stă sub titlul
+   altei secțiuni; arată la fel în ambele cazuri, contează doar ierarhia.  */
+.ctaband h2 { font-size: var(--fs-xl); }
 .ctaband .script { color: var(--brass-300); }
 .ctaband .btn { --stroke-color: rgba(255,255,255,.5); }
 .ctaband .btn-accent { --stroke-color: var(--navy-900); }

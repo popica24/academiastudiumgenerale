@@ -1,0 +1,15 @@
+# Ce stă în repo pentru lucru, dar nu are ce căuta pe site: notițele, uneltele,
+# planurile și sursele mari din care s-au tăiat pozele. Fără lista asta, Vercel
+# le publică pe toate la adrese pe care le poate găsi oricine, și Google.
+CLAUDE.md
+README.md
+todo.txt
+docs/
+tools/
+inspo1.webp
+inspo2.webp
+assets/teachers/
+assets/video.mp4
+assets/foto/image.png
+assets/foto/clasa.jpg
+assets/foto/materii-colaj.png
