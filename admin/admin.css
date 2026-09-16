@@ -1,0 +1,25 @@
+/* Singurul CSS scris pentru tablou. Restul vine din tokens.css și site.css,
+   deci tabloul arată ca site-ul, nu ca un panou străin lipit lângă el.
+   Aici stau numai lucrurile care n-au corespondent în paginile publice:
+   tabelul de articole și câmpurile late ale editorului. */
+.admin-wrap { max-width: 900px; margin-inline: auto; padding-block: var(--sp-10); }
+.admin-bara { display: flex; flex-wrap: wrap; gap: var(--sp-4);
+  align-items: center; justify-content: space-between; margin-bottom: var(--sp-8); }
+.admin-tabel { width: 100%; border-collapse: collapse; }
+.admin-tabel th, .admin-tabel td { text-align: left; padding: var(--sp-3);
+  border-bottom: 1px solid var(--border); font-size: var(--fs-sm); vertical-align: middle; }
+.admin-tabel th { color: var(--text-muted); font-weight: var(--fw-semibold);
+  text-transform: uppercase; letter-spacing: .06em; font-size: var(--fs-xs); }
+.admin-form { display: flex; flex-direction: column; gap: var(--sp-5); max-width: 700px; }
+.admin-form label { display: flex; flex-direction: column; gap: var(--sp-2);
+  font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+.admin-form input, .admin-form textarea, .admin-form select {
+  font: inherit; font-size: var(--fs-base); padding: var(--sp-3);
+  border: var(--stroke-thin); border-radius: var(--r-md); background: var(--surface);
+  color: var(--text); width: 100%; }
+.admin-form textarea { min-height: 320px; resize: vertical; line-height: var(--lh-body); }
+.admin-eroare { color: var(--danger); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+.admin-gol { color: var(--text-muted); padding-block: var(--sp-10); }
+@media (max-width: 560px) {
+  .admin-tabel th:nth-child(2), .admin-tabel td:nth-child(2) { display: none; }
+}
