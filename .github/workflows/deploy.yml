@@ -68,6 +68,8 @@ jobs:
             .github/**
             docs/**
             tools/**
+            teste/**
+            schema.sql
             CLAUDE.md
             README.md
             todo.txt

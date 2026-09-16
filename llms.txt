@@ -10,7 +10,7 @@ Firma: STUDIUM GENERALE BY DENISA SRL, CUI 52829916, Reg. Com. J2025084335006, �
 
 - [Pagina principală](https://studiumgenerale.ro/): ce se predă, cum se lucrează, profesorii, recomandările de pe Facebook, întrebări frecvente și programarea primei ședințe
 - [Despre](https://studiumgenerale.ro/despre.html): povestea fondatoarei, Denisa, și cum arată un an de pregătire
-- [Blog](https://studiumgenerale.ro/blog.html): articole despre pregătirea pentru examene
+- [Blog](https://studiumgenerale.ro/blog/): articole despre pregătirea pentru examene
 - [Home, in English](https://studiumgenerale.ro/en/): the home page in English
 - [About, in English](https://studiumgenerale.ro/en/despre.html): the founder's story in English
 

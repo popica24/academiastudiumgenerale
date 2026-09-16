@@ -11,6 +11,9 @@ Allow: /
 Disallow: /brand/
 Disallow: /tools/
 Disallow: /docs/
+# tabloul de administrare și fișierele PHP interne nu sunt pentru public
+Disallow: /admin/
+Disallow: /inc/
 
 # Asistenți și motoare de căutare cu AI
 User-agent: GPTBot
@@ -36,5 +39,8 @@ Allow: /
 Disallow: /brand/
 Disallow: /tools/
 Disallow: /docs/
+Disallow: /admin/
+Disallow: /inc/
 
 Sitemap: https://studiumgenerale.ro/sitemap.xml
+Sitemap: https://studiumgenerale.ro/blog/sitemap.xml

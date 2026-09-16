@@ -44,8 +44,6 @@ const real = (v) => Boolean(v) && !PLACEHOLDER.test(v);
 const PAGINI = [
   { fisier: "index.html",        adresa: "/",                  tip: "WebPage" },
   { fisier: "despre.html",       adresa: "/despre.html",       tip: "AboutPage",      fir: [["Despre", "/despre.html"]] },
-  { fisier: "blog.html",         adresa: "/blog.html",         tip: "CollectionPage", fir: [["Blog", "/blog.html"]] },
-  { fisier: "blog-articol.html", adresa: "/blog-articol.html", tip: "WebPage",        fir: [["Blog", "/blog.html"], [null, "/blog-articol.html"]] },
   { fisier: "en/index.html",     adresa: "/en/",               tip: "WebPage" },
   { fisier: "en/despre.html",    adresa: "/en/despre.html",    tip: "AboutPage",      fir: [["About", "/en/despre.html"]] },
   { fisier: "404.html",          fara_jsonld: true },
@@ -291,27 +289,8 @@ function jsonld(html, p) {
     }
   }
 
-  /* Articolul de blog. Când vine PHP-ul, JSON-LD-ul lui se scrie din baza
-     de date cu aceleași câmpuri; aici se citește din șablonul static.      */
-  const articol = html.match(/<article class="articol"[\s\S]*?<\/article>/);
-  if (articol) {
-    const a = articol[0];
-    const data = (a.match(/<time datetime="([^"]+)"/) || [])[1];
-    const autor = citeste(a, /data-autor>([\s\S]*?)<\/span>/);
-    noduri.push({
-      "@type": "BlogPosting",
-      "@id": url + "#articol",
-      mainEntityOfPage: { "@id": url + "#pagina" },
-      headline: citeste(a, /<h1[^>]*>([\s\S]*?)<\/h1>/),
-      description: faraTaguri(descriere),
-      datePublished: data,
-      dateModified: data,
-      inLanguage: "ro-RO",
-      image: BAZA + "/assets/og.jpg",
-      author: autor ? { "@type": "Person", name: autor, worksFor: { "@id": BAZA + "/#scoala" } } : { "@id": BAZA + "/#scoala" },
-      publisher: { "@id": BAZA + "/#scoala" },
-    });
-  }
+  /* Articolul de blog are acum propriul JSON-LD, scris de blog/articol.php
+     din baza de date; funcția de aici nu mai are ce face.                 */
 
   const json = JSON.stringify({ "@context": "https://schema.org", "@graph": noduri }, null, 2)
     .replace(/<\//g, "<\\/");
