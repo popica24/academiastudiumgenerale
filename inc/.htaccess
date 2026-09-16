@@ -1,0 +1,4 @@
+# Aici stau funcții și datele de acces la MySQL, nu pagini. Nimic de aici nu
+# se cere vreodată din browser. Al doilea gard, peste regula din .htaccess-ul
+# de la rădăcină: dacă unul e șters din greșeală, celălalt ține.
+Require all denied
