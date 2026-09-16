@@ -29,11 +29,14 @@ Patru întrebări, patru răspunsuri, de la client la 2026-09-16:
 
 ## Versiunea de PHP
 
-Necunoscută încă: clientul n-a spus-o și gazda nu o arată în antete. Codul se
-scrie deci fără nimic introdus după **PHP 7.4**: fără `match`, fără `enum`,
-fără proprietăți promovate în constructor, fără `readonly`. Merge la fel pe
-7.4 și pe 8.x. Dacă se află versiunea și e 8.1 sau mai nouă, restricția se
-poate ridica, dar nu e nimic aici care să aibă nevoie de ea.
+**8.1**, spusă de client la 2026-09-16. Deci se pot folosi tipurile pe
+proprietăți, `match`, proprietățile promovate în constructor și `readonly`.
+Se folosesc unde fac codul mai scurt sau mai greu de greșit, nu fiindcă
+există: un blog cu două tabele nu are nevoie de ierarhii de clase.
+
+Un lucru pe care 8.1 îl schimbă și contează aici: `PDO` aruncă implicit
+excepții de la 8.0 încolo, deci o interogare greșită nu mai trece tăcut mai
+departe. Conexiunea o cere oricum explicit, dar e bine știut.
 
 ## Fișierele
 
@@ -246,5 +249,4 @@ rescrie.
   încă. Blogul are nevoie de reguli de rescriere acolo, deci fișierul trebuie
   citit și împletit cu al nostru înainte de punerea în funcțiune. Până atunci
   `.htaccess` e exclus din deploy, ca să nu-l înlocuiască orbește.
-- **Versiunea de PHP de pe gazdă.** Ocolită scriind cod bun de la 7.4 în sus.
 - **Parola de FTP** ar fi bine rotită, a trecut prin chat.
