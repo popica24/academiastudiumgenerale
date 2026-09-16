@@ -1,51 +1,73 @@
-# Ce făcea vercel.json, scris pentru Apache. Pe Vercel, antetele de cache, cele
-# de securitate și pagina de 404 veneau din vercel.json; pe găzduirea nouă nu
-# le mai pune nimeni, deci le punem aici. Fără fișierul ăsta site-ul merge, dar
-# fonturile și pozele se descarcă din nou la fiecare vizită, iar o adresă
-# greșită arată eroarea serverului, nu 404.html al școlii.
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php8_module>
+   php_value error_log "/home/kwgvtdaq/logs/php.error.log"
+   php_flag log_errors On
+</IfModule>
+<IfModule lsapi_module>
+   php_value error_log "/home/kwgvtdaq/logs/php.error.log"
+   php_flag log_errors On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# ══════════════════════════════════════════════════════════════════════════
+# De aici în jos sunt regulile site-ului. Blocul de deasupra e pus de cPanel
+# și se păstrează cuvânt cu cuvânt: îl regenerează MultiPHP INI Editor, iar
+# el trimite erorile de PHP în /home/…/logs/php.error.log. Acolo se caută
+# când o pagină PHP se poartă ciudat pe server.
+#
+# Tot ce urmează făcea vercel.json până la mutarea pe găzduire. Pe Vercel,
+# antetele de cache, cele de securitate și pagina de eroare veneau din el;
+# aici nu le mai pune nimeni, deci le punem noi. Fără ele site-ul merge, dar
+# fiecare vizitator descarcă din nou toate fonturile și toate pozele, iar o
+# adresă greșită arată eroarea seacă a serverului în loc de 404.html.
+# ══════════════════════════════════════════════════════════════════════════
 
 # --- Pagina de eroare ------------------------------------------------------
 # Calea e absolută fiindcă 404.html se servește la orice adresă greșită,
 # inclusiv /en/ceva/gresit. Din același motiv are căi absolute și în HTML.
 ErrorDocument 404 /404.html
 
-# --- llms.txt: text simplu, cu diacritice ----------------------------------
-<Files "llms.txt">
-  ForceType text/plain
-  Header set Content-Type "text/plain; charset=utf-8"
-</Files>
+# --- Fișierele .txt sunt text, cu diacritice -------------------------------
+# llms.txt și robots.txt sunt în română. Fără charset, browserul ghicește și
+# strică ă, ș, ț.
+AddType "text/plain; charset=UTF-8" .txt
 
 # --- Lista deploy-ului nu e a vizitatorilor --------------------------------
+# Acțiunea de pe GitHub ține pe server lista fișierelor urcate. Nu e un
+# secret, dar e harta întregului site și n-are de ce să fie publică.
 <Files ".deploy-state.json">
   Require all denied
 </Files>
 
-# --- Antete de securitate, pe tot site-ul ----------------------------------
+# --- inc/ nu se cere din browser -------------------------------------------
+# Al doilea gard peste inc/.htaccess: acolo stau datele de acces la MySQL.
+<FilesMatch "^config\.php$">
+  Require all denied
+</FilesMatch>
+
 <IfModule mod_headers.c>
+  # --- Antete de securitate, pe tot site-ul --------------------------------
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
 
-# --- Cache ------------------------------------------------------------------
-# Fonturile un an și „immutable": sunt subsetate și nu se schimbă decât dacă
-# li se schimbă și numele. Restul o lună, ca pe Vercel.
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType font/woff2               "access plus 1 year"
-  ExpiresByType text/css                 "access plus 1 month"
-  ExpiresByType application/javascript   "access plus 1 month"
-  ExpiresByType image/webp               "access plus 1 month"
-  ExpiresByType image/jpeg               "access plus 1 month"
-  ExpiresByType image/png                "access plus 1 month"
-  ExpiresByType image/x-icon             "access plus 1 month"
-  ExpiresByType video/mp4                "access plus 1 month"
-  # HTML-ul nu se ține în cache: altfel un text schimbat azi s-ar vedea
-  # abia peste o lună.
-  ExpiresByType text/html                "access plus 0 seconds"
-</IfModule>
-
-<IfModule mod_headers.c>
+  # --- Cache --------------------------------------------------------------
+  # Fonturile un an și „immutable": sunt subsetate de noi și nu se schimbă
+  # decât dacă li se schimbă și numele.
   <FilesMatch "\.woff2$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Restul fișierelor care nu poartă text, o lună, ca pe Vercel.
+  <FilesMatch "\.(css|js|webp|jpg|jpeg|png|ico|mp4|svg|webmanifest)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+
+  # Paginile nu se țin în cache: altfel un text schimbat azi s-ar vedea abia
+  # peste o lună. „must-revalidate" lasă browserul să întrebe, nu să ghicească.
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>

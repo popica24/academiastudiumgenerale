@@ -55,16 +55,15 @@ jobs:
           # acolo n-ar fi comentariu, ci un tipar care nu se potrivește cu
           # nimic, deci explicațiile stau aici, deasupra.
           #
-          # `.htaccess` e exclus TEMPORAR: serverul are deja unul pus de
-          # gazdă, iar deploy-ul l-ar înlocui cu al nostru. Dacă al gazdei
-          # ține handlerul de PHP sau redirectul spre HTTPS, înlocuirea ar
-          # pica site-ul. Se citește întâi, se împletește cu cel din repo,
-          # apoi se scoate linia.
+          # `.htaccess` se urcă din nou, de la 2026-09-16: cel din repo
+          # conține blocul pus de cPanel, cuvânt cu cuvânt, plus regulile
+          # noastre sub el. Dacă cPanel își schimbă vreodată blocul din
+          # MultiPHP INI Editor, se ia de pe server și se pune aici, altfel
+          # deploy-ul îl dă înapoi peste schimbare.
           exclude: |
             **/.git*
             **/.git*/**
             **/.DS_Store
-            .htaccess
             inc/config.php
             .github/**
             docs/**
