@@ -84,16 +84,22 @@ AddType "text/plain; charset=UTF-8" .txt
   RewriteRule ^blog\.html$          /blog/ [R=301,L]
   RewriteRule ^blog-articol\.html$  /blog/ [R=301,L]
 
-  # Harta blogului, înaintea regulii de articol: altfel „sitemap.xml" ar fi
-  # citit ca slug de articol.
+  # Harta blogului, scrisă prima din citire, nu din nevoie: regulile nu se
+  # suprapun, fiindcă tiparul de articol nu se potrivește pe un nume cu
+  # punct în el, deci „sitemap.xml" nu poate fi citit ca slug oricum le-ai
+  # ordona.
   RewriteRule ^blog/sitemap\.xml$   blog/sitemap.php [L]
 
   # Lista.
   RewriteRule ^blog/?$              blog/index.php [L]
 
   # Un articol. Slugul e numai litere mici, cifre și cratime, exact ce scoate
-  # slug(); orice altceva nu se potrivește aici și cade în 404.
-  RewriteRule ^blog/([a-z0-9-]+)/?$ blog/articol.php?slug=$1 [L,QSA]
+  # slug(); orice altceva nu se potrivește aici și cade în 404. Fără QSA:
+  # slugul vine din cale, nu din query string, iar cu QSA un „?slug=" adăugat
+  # de mână la adresă s-ar alătura celui din substituție și, la chei
+  # duplicate, PHP ține ultima valoare, adică pe cea din query string, nu pe
+  # cea din cale.
+  RewriteRule ^blog/([a-z0-9-]+)/?$ blog/articol.php?slug=$1 [L]
 </IfModule>
 
 # Notă: „Tabloul nu se indexează" NU stă aici. Un FilesMatch pe „index.php"
