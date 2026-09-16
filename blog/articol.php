@@ -2,12 +2,20 @@
 declare(strict_types=1);
 require_once dirname(__DIR__) . '/inc/articole.php';
 
-$a = articol_dupa_slug((string) ($_GET['slug'] ?? ''));
+/* Doar șir de caractere: „?slug[]=" trimite un tablou, iar (string) pe un
+   tablou aruncă avertismentul „Array to string conversion", care ar ieși în
+   fața <!doctype html> din răspuns. */
+$slug_cerut = is_string($_GET['slug'] ?? null) ? $_GET['slug'] : '';
+$a = articol_dupa_slug($slug_cerut);
 
 /* Slug inexistent și articol în ciornă dau același răspuns: 404 adevărat,
    cu pagina site-ului. Nu „nu aveți voie", fiindcă asta ar spune că
-   articolul există. */
-if ($a === null) {
+   articolul există.
+
+   Colația bazei, utf8mb4_unicode_ci, e insensibilă la majuscule, deci
+   WHERE slug = ? găsește articolul și scris cu litere mari. Comparăm exact,
+   octet cu octet, altfel același articol ar avea zeci de adrese. */
+if ($a === null || $a['slug'] !== $slug_cerut) {
     http_response_code(404);
     readfile(dirname(__DIR__) . '/404.html');
     exit;
@@ -18,10 +26,11 @@ $titlu           = $a['titlu'] . ' · Academia';
 $descriere       = $a['rezumat'];
 $adresa_canonica = $adresa;
 
-/* JSON_HEX_TAG transformă „<” și „>” în < și >. Fără el, un titlu
-   care conține literalmente „</script>” ar închide eticheta de mai jos
-   înainte de vreme și tot ce urmează ar rula ca HTML în pagină, nu ca text
-   în JSON. Diacriticele rămân neescapate, JSON_HEX_TAG nu le atinge. */
+/* JSON_HEX_TAG scrie semnele mai-mic-decât și mai-mare-decât ca secvențe
+   unicode, nu ca ele însele. Fără el, un titlu care conține literalmente
+   „</script>” ar închide eticheta de mai jos înainte de vreme și tot ce
+   urmează ar rula ca HTML în pagină, nu ca text în JSON. Diacriticele rămân
+   neescapate, JSON_HEX_TAG nu le atinge. */
 $jsonld = json_encode([
     '@context'         => 'https://schema.org',
     '@type'            => 'BlogPosting',
