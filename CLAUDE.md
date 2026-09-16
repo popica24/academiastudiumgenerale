@@ -171,13 +171,13 @@ ce lipsește. Verificarea e insensibilă la majuscule; nu o slăbi.
 
 `blog/` (listă, articol, harta blogului) și `admin/` (intrare, listă, editor,
 ștergere) sunt scrise în PHP, cu antetul și subsolul extrași o singură dată în
-`header.php` / `footer.php`, incluse din amândouă. Cele patru pagini HTML
-românești rămân statice și țin în continuare propria copie, identică octet cu
+`header.php` / `footer.php`, incluse din amândouă. Cele trei pagini HTML
+românești (index.html, despre.html, 404.html) rămân statice și țin în continuare propria copie, identică octet cu
 octet cu `header.php` / `footer.php`, ca să nu se vadă nicio diferență de stil
 între o pagină statică și una servită de PHP. Paginile din `en/` au propria
 pereche, identică între ele dar nu cu cele românești: căile către `assets/` și
 `brand/` urcă un nivel, iar textele sunt traduse. Deci un text din antet se
-schimbă acum în **șase** fișiere HTML statice, plus `header.php` / `footer.php`
+schimbă acum în **cinci** fișiere HTML statice (trei românești plus două engleze), plus `header.php` / `footer.php`
 pentru blog și tablou.
 
 Datele de conectare la MySQL stau într-un singur fișier, `inc/config.php`, pe

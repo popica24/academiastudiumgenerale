@@ -236,8 +236,8 @@ program, catalogul de materii și firul Ariadnei, se construiesc din
 `assets/config.js`, deci nu se pot desincroniza de datele reale.
 
 **Toate adresele arată spre `https://studiumgenerale.ro`,** care nu e încă
-înregistrat. Se schimbă în cinci locuri: cele patru pagini, `sitemap.xml`,
-`robots.txt` și `assets/site.js`.
+înregistrat. Se schimbă în cinci locuri: cele cinci pagini HTML statice, `sitemap.xml`,
+`robots.txt` și `assets/site.js` (paginile de blog și admin folosesc PHP pentru a genera adrese canonice).
 
 ## Singura dependență
 
@@ -251,7 +251,7 @@ integritate în fiecare pagină. Ce trebuie știut:
 - `tools/audit.js` îl neutralizează înainte să măsoare.
 
 Ca să scoți AOS: ștergi cele două etichete din `<head>` și dinaintea lui
-`config.js` în cele patru pagini, secțiunea 7 din `site.js`, regula `fara-aos`
+`config.js` în cele cinci pagini, secțiunea 7 din `site.js`, regula `fara-aos`
 din `site.css` și atributele `data-aos` din HTML.
 
 ## Reguli care nu se încalcă
