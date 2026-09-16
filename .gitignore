@@ -18,3 +18,9 @@ assets/teachers/
 # videoul de prezentare așa cum a venit de la client: 94 MB, 1080p. Pagina
 # încarcă assets/video/prezentare.mp4, recodat la 720p și 14 MB.
 assets/video.mp4
+
+# datele de acces la MySQL. Fișierul stă DOAR pe server, pus o dată prin FTP.
+# Dacă ar intra în git, parola bazei de date ar ajunge în istoric, de unde nu
+# se mai scoate. Acțiunea de deploy îl are și ea în lista de excluderi, deci
+# nici nu se urcă și nici nu se suprascrie cel de pe server.
+inc/config.php

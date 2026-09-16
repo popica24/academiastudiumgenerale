@@ -65,6 +65,7 @@ jobs:
             **/.git*/**
             **/.DS_Store
             .htaccess
+            inc/config.php
             .github/**
             docs/**
             tools/**
