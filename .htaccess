@@ -12,6 +12,18 @@
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
 
+# --- Erorile nu se afișează în pagină ---------------------------------------
+# Blocul de deasupra pornește jurnalul, dar nu oprește afișarea: implicit,
+# PHP arată erorile direct pe pagină. O excepție necaptată ar putea scrie
+# acolo un mesaj cu urme din bază, vizibil oricui, nu doar în jurnal. Erorile
+# tot se scriu în php.error.log, unde se caută la nevoie.
+<IfModule php8_module>
+   php_flag display_errors Off
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors Off
+</IfModule>
+
 # ══════════════════════════════════════════════════════════════════════════
 # De aici în jos sunt regulile site-ului. Blocul de deasupra e pus de cPanel
 # și se păstrează cuvânt cu cuvânt: îl regenerează MultiPHP INI Editor, iar
@@ -45,6 +57,16 @@ AddType "text/plain; charset=UTF-8" .txt
 # --- inc/ nu se cere din browser -------------------------------------------
 # Al doilea gard peste inc/.htaccess: acolo stau datele de acces la MySQL.
 <FilesMatch "^config\.php$">
+  Require all denied
+</FilesMatch>
+
+# --- header.php și footer.php nu se cer direct din browser -----------------
+# Cele două sunt bucăți de pagină, nu pagini: header.php se oprește la un
+# <main> nedeschis, footer.php e doar un fragment. „require" din PHP citește
+# fișierul de pe disc, nu prin HTTP, deci includerile din blog/, admin/ și
+# celelalte pagini PHP merg mai departe neatinse. Regula prinde numele
+# oriunde ar sta, la rădăcină sau în subdirectoare.
+<FilesMatch "^(header|footer)\.php$">
   Require all denied
 </FilesMatch>
 

@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/db.php';
 
-/* O excepție necaptată își arată argumentele apelurilor din urmă în mesaj și
-   în jurnalul de erori, iar parola în clar trece prin autentifica() și
-   admin_creeaza() ca argument. Oprim asta din capul fișierului, nu doar la
-   locul unde s-ar putea scurge. */
-ini_set('zend.exception_ignore_args', '1');
+/* zend.exception_ignore_args se pornește în db.php, nu aici: fiecare pagină
+   ajunge la db.php (prin require_once), inclusiv cele publice ale blogului,
+   care nu încarcă niciodată acest fișier. Rămâne adevărat și pentru
+   auth.php: parola în clar trece prin autentifica() și admin_creeaza() ca
+   argument, deci excepțiile de aici au nevoie de aceeași protecție, moștenită
+   din db.php. */
 
 const ESECURI_MAXIME = 5;
 const MINUTE_BLOCARE = 10;

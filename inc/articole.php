@@ -16,7 +16,7 @@ function articole_publicate(): array
 {
     $s = db()->prepare(
         'SELECT ' . CAMPURI . ' FROM articole
-          WHERE stare = "publicat"
+          WHERE stare = \'publicat\'
           ORDER BY data_publicare DESC, id DESC'
     );
     $s->execute();
@@ -28,7 +28,7 @@ function articole_publicate(): array
 function articol_dupa_slug(string $slug): ?array
 {
     $s = db()->prepare(
-        'SELECT ' . CAMPURI . ' FROM articole WHERE slug = ? AND stare = "publicat" LIMIT 1'
+        'SELECT ' . CAMPURI . ' FROM articole WHERE slug = ? AND stare = \'publicat\' LIMIT 1'
     );
     $s->execute([$slug]);
     $r = $s->fetch();

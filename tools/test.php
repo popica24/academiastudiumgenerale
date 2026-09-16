@@ -51,6 +51,32 @@ function arunca(callable $f, string $ce = ''): void {
 }
 
 $radacina = dirname(__DIR__);
+
+/* teste/articole.php și teste/auth.php încep cu DELETE FROM la scop de
+   fișier, împotriva bazei din inc/config.php, oricare ar fi ea. Dacă cineva
+   copiază local configurația de pe server, ca să depaneze o problemă vie,
+   o rulare obișnuită a suitei ar șterge fiecare articol și fiecare cont de
+   pe site. Se verifică numele bazei ÎNAINTE de a atinge orice fișier de
+   teste, nu după. */
+$cale_config = $radacina . '/inc/config.php';
+if (!is_file($cale_config)) {
+    fwrite(STDERR, "Lipsește inc/config.php. Copiază inc/config.exemplu.php și pune datele bazei de dezvoltare.\n");
+    exit(1);
+}
+$config = require $cale_config;
+$baza = (string) ($config['baza'] ?? '');
+$are_voie = getenv('TESTE') === 'da'
+    || str_contains(strtolower($baza), 'test')
+    || $baza === 'asd_blog';
+if (!$are_voie) {
+    fwrite(STDERR, "Suita golește tabelele înaintea fiecărui test și nu pune nimic la loc.\n");
+    fwrite(STDERR, "Baza configurată în inc/config.php e „{$baza}”, care nu pare o bază de dezvoltare\n");
+    fwrite(STDERR, "(un nume cu „test” în el, sau baza locală „asd_blog”).\n");
+    fwrite(STDERR, "Refuz să rulez, ca să nu șterg date adevărate.\n");
+    fwrite(STDERR, "Dacă e chiar o bază de test, forțează cu: TESTE=da php tools/test.php\n");
+    exit(1);
+}
+
 $filtru = $argv[1] ?? '';
 $fisiere = glob($radacina . '/teste/*.php');
 sort($fisiere);
