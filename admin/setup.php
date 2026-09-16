@@ -34,7 +34,10 @@ if (!$exista && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $eroare = 'E-mailul nu pare a fi un e-mail.';
-    } elseif (strlen($parola) < 12) {
+    } elseif (mb_strlen($parola, 'UTF-8') < 12) {
+        /* mb_strlen, nu strlen: pe un site românesc, „țâșîăâ" are 6 litere
+           dar 12 octeți în UTF-8. strlen() ar număra octeții și ar lăsa să
+           treacă o parolă de jumătate din lungimea promisă în mesaj. */
         $eroare = 'Parola trebuie să aibă cel puțin 12 caractere.';
     } else {
         admin_creeaza($email, $parola);
