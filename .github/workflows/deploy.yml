@@ -60,11 +60,19 @@ jobs:
           # noastre sub el. Dacă cPanel își schimbă vreodată blocul din
           # MultiPHP INI Editor, se ia de pe server și se pune aici, altfel
           # deploy-ul îl dă înapoi peste schimbare.
+          #
+          # `admin/setup.php` și `schema.sql` se urcă o singură dată, de mână,
+          # prin FTP, la fel ca `inc/config.php`, și se șterg de pe server
+          # după instalare. Dacă ar pleca la fiecare deploy, pagina care
+          # creează contul de administrator ar fi mereu pe server, oricine
+          # ar putea s-o găsească (depozitul e public) și n-ar mai putea fi
+          # ștearsă niciodată: împingerea următoare ar aduce-o înapoi.
           exclude: |
             **/.git*
             **/.git*/**
             **/.DS_Store
             inc/config.php
+            admin/setup.php
             .github/**
             docs/**
             tools/**

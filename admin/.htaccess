@@ -3,4 +3,18 @@
 # și blog/index.php, adică ar scoate din index chiar lista articolelor.
 <IfModule mod_headers.c>
   Header set X-Robots-Tag "noindex, nofollow"
+
+  # Regula generală din .htaccess-ul de la rădăcină pune „public,
+  # max-age=0, must-revalidate" pe toate paginile PHP, ceea ce lasă un
+  # intermediar (proxy, CDN, browser în cache partajat) să țină minte o
+  # pagină de-a tabloului. Aici stau jetonul CSRF și lista ciornelor
+  # nepublicate, deci se suprascrie cu „no-store": nicăieri nu se ține nimic.
+  # Regula de la rădăcină e scrisă într-un FilesMatch pe „.php"; verificat pe
+  # Apache adevărat că un „Header set" simplu, fără FilesMatch, NU o
+  # suprascrie, indiferent de subdirector, fiindcă cele două stau în liste
+  # separate la îmbinarea configurației. De aceea și regula de aici e pusă
+  # în același fel de container, ca să câștige cu adevărat.
+  <FilesMatch "\.php$">
+    Header set Cache-Control "no-store"
+  </FilesMatch>
 </IfModule>

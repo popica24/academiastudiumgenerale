@@ -11,37 +11,60 @@ require_once dirname(__DIR__) . '/inc/sablon.php';
 $eroare = '';
 $gata = false;
 
-/* schema.sql are două CREATE TABLE plus comentarii, iar PDO_MySQL nu
-   garantează că exec() rulează mai multe instrucțiuni date dintr-o dată:
-   dacă driverul ar tăcea la a doua, tocmai pasul care rulează pe serverul
-   adevărat, unde e cel mai greu de depanat, ar eșua pe jumătate. De aceea
-   fișierul se taie pe ';' și fiecare bucată se execută separat, sărind peste
-   ce rămâne gol sau e numai comentariu. */
-$schema = file_get_contents(dirname(__DIR__) . '/schema.sql');
-foreach (explode(';', $schema) as $instructiune) {
-    $fara_comentarii = preg_replace('/--.*$/m', '', $instructiune);
-    if (trim($fara_comentarii) === '') {
-        continue;
-    }
-    db()->exec($instructiune);
+try {
+    $exista = admin_exista();
+} catch (PDOException $ex) {
+    /* Prima vizită pe o bază complet goală: nici tabelul administratori nu
+       există încă, fiindcă schema n-a rulat niciodată. Nu e o eroare, e
+       chiar starea de dinaintea instalării, deci tratăm întrebarea ca „nu,
+       nu există cont" și lăsăm formularul să apară. */
+    $exista = false;
 }
 
-$exista = admin_exista();
-
+/* Schema se citește și se rulează DOAR cât timp nu există încă niciun cont,
+   nu la fiecare cerere: odată contul creat, tabelele sunt deja acolo, iar
+   a mai executa CREATE TABLE la fiecare vizită ar fi lucru degeaba pe o
+   pagină care oricum stă pe server doar temporar. */
 if (!$exista && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email  = trim((string) ($_POST['email'] ?? ''));
-    $parola = (string) ($_POST['parola'] ?? '');
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $eroare = 'E-mailul nu pare a fi un e-mail.';
-    } elseif (mb_strlen($parola, 'UTF-8') < 12) {
-        /* mb_strlen, nu strlen: pe un site românesc, „țâșîăâ" are 6 litere
-           dar 12 octeți în UTF-8. strlen() ar număra octeții și ar lăsa să
-           treacă o parolă de jumătate din lungimea promisă în mesaj. */
-        $eroare = 'Parola trebuie să aibă cel puțin 12 caractere.';
+    $cale_schema = dirname(__DIR__) . '/schema.sql';
+    if (!is_file($cale_schema)) {
+        /* admin/setup.php și schema.sql se urcă separat, de mână, prin FTP:
+           deploy-ul automat le exclude pe amândouă (vezi deploy.yml). Dacă
+           operatorul a uitat schema.sql alături de setup.php, spunem exact
+           asta, în română, nu lăsăm file_get_contents() să dea un TypeError
+           neinteligibil. */
+        $eroare = 'Lipsește fișierul schema.sql. Urcați-l prin FTP alături de setup.php, apoi reîncărcați pagina.';
     } else {
-        admin_creeaza($email, $parola);
-        $gata = true;
+        $schema = file_get_contents($cale_schema);
+        /* schema.sql are două CREATE TABLE plus comentarii, iar PDO_MySQL nu
+           garantează că exec() rulează mai multe instrucțiuni date dintr-o
+           dată: dacă driverul ar tăcea la a doua, tocmai pasul care rulează
+           pe serverul adevărat, unde e cel mai greu de depanat, ar eșua pe
+           jumătate. De aceea fișierul se taie pe ';' și fiecare bucată se
+           execută separat, sărind peste ce rămâne gol sau e numai
+           comentariu. */
+        foreach (explode(';', $schema) as $instructiune) {
+            $fara_comentarii = preg_replace('/--.*$/m', '', $instructiune);
+            if (trim($fara_comentarii) === '') {
+                continue;
+            }
+            db()->exec($instructiune);
+        }
+
+        $email  = trim((string) ($_POST['email'] ?? ''));
+        $parola = (string) ($_POST['parola'] ?? '');
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $eroare = 'E-mailul nu pare a fi un e-mail.';
+        } elseif (mb_strlen($parola, 'UTF-8') < 12) {
+            /* mb_strlen, nu strlen: pe un site românesc, „țâșîăâ" are 6 litere
+               dar 12 octeți în UTF-8. strlen() ar număra octeții și ar lăsa să
+               treacă o parolă de jumătate din lungimea promisă în mesaj. */
+            $eroare = 'Parola trebuie să aibă cel puțin 12 caractere.';
+        } else {
+            admin_creeaza($email, $parola);
+            $gata = true;
+        }
     }
 }
 
