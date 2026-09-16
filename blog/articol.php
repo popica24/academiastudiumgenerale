@@ -51,7 +51,16 @@ $extra_head = '
 <meta property="og:title" content="' . e($a['titlu']) . '">
 <meta property="og:description" content="' . e($a['rezumat']) . '">
 <meta property="og:image" content="https://studiumgenerale.ro/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Blazonul Academiei Studium Generale by Denisa">
+<meta property="article:published_time" content="' . e($a['data_publicare']) . '">
+<meta property="article:author" content="Academia · Studium Generale by Denisa">
+<meta property="article:section" content="' . e($a['eticheta']) . '">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="' . e($titlu) . '">
+<meta name="twitter:description" content="' . e($a['rezumat']) . '">
+<meta name="twitter:image" content="https://studiumgenerale.ro/assets/og.jpg">
 <script type="application/ld+json">' . $jsonld . '</script>';
 
 require dirname(__DIR__) . '/header.php';

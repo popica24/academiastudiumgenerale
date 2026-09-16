@@ -15,7 +15,13 @@ $extra_head = '
 <meta property="og:title" content="Blog · Academia Studium Generale">
 <meta property="og:description" content="' . e($descriere) . '">
 <meta property="og:image" content="https://studiumgenerale.ro/assets/og.jpg">
-<meta name="twitter:card" content="summary_large_image">';
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Blazonul Academiei Studium Generale by Denisa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog · Academia Studium Generale">
+<meta name="twitter:description" content="' . e($descriere) . '">
+<meta name="twitter:image" content="https://studiumgenerale.ro/assets/og.jpg">';
 require dirname(__DIR__) . '/header.php';
 ?>
   <section class="hero wrap">
