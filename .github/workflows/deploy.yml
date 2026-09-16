@@ -51,16 +51,19 @@ jobs:
           # excluderile implicite ale acțiunii, deci „.git" e scris aici
           # explicit. Sursele mari (assets/video.mp4, assets/teachers/) nu
           # apar: sunt în .gitignore, deci nici nu ajung în checkout.
+          # Atenție: liniile de sub „exclude" sunt tipare, nu text. Un „#" pus
+          # acolo n-ar fi comentariu, ci un tipar care nu se potrivește cu
+          # nimic, deci explicațiile stau aici, deasupra.
+          #
+          # `.htaccess` e exclus TEMPORAR: serverul are deja unul pus de
+          # gazdă, iar deploy-ul l-ar înlocui cu al nostru. Dacă al gazdei
+          # ține handlerul de PHP sau redirectul spre HTTPS, înlocuirea ar
+          # pica site-ul. Se citește întâi, se împletește cu cel din repo,
+          # apoi se scoate linia.
           exclude: |
             **/.git*
             **/.git*/**
             **/.DS_Store
-            # TEMPORAR. Serverul are deja un .htaccess pus de gazdă, iar
-            # deploy-ul l-ar înlocui cu al nostru. Până îi citim conținutul
-            # și îl împletim cu regulile din .htaccess-ul din repo, nu-l
-            # urcăm: dacă al gazdei ține handlerul de PHP sau redirectul
-            # spre HTTPS, înlocuirea ar pica site-ul. După ce e împletit,
-            # se șterge linia asta.
             .htaccess
             .github/**
             docs/**
