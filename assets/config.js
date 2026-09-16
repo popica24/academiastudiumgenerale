@@ -145,8 +145,7 @@ window.ACADEMIA = {
   /* --- Rețele (lasă gol ca să dispară din subsol) ------------------------- */
   facebook: "https://www.facebook.com/p/Academia-Studium-Generale-by-Denisa-61581913795617/",
   instagram: "https://www.instagram.com/academia_studium_generale/",
-  /* DE COMPLETAT: adresa contului. Cât e gol, linkul dispare din subsol. */
-  tiktok: "",
+  tiktok: "https://www.tiktok.com/@academia.studium",
 
   /* Pagina de membru la Camera de Comerț, dată de client. */
   cameraComert: "https://www.hrcc.ro/members/",

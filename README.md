@@ -48,7 +48,7 @@ Toate în `assets/config.js`, o singură dată pentru tot site-ul:
 | `company`, `cui`, `regCom` | ✅ din registrul comerțului | subsol |
 | `email`, `address` | ✅ datele de contact | subsol |
 | `schedule` (în `texte.ro`/`texte.en`) | ✅ `Luni–vineri, 08:00–21:00`, tradus | subsol, FAQ |
-| `facebook`, `instagram` | ✅ adresele reale, sau lasă gol ca să dispară din subsol | subsol |
+| `facebook`, `instagram`, `tiktok` | ✅ adresele reale, sau lasă gol ca să dispară din subsol | subsol |
 | `cameraComert` | ✅ linkul de membru la Camera de Comerț Eleno-Română | hero, subsol |
 | `mediterraneanCollege` | ✅ linkul colegiului partener din Grecia | hero, subsol |
 
