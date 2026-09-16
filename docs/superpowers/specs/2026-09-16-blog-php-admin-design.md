@@ -146,7 +146,14 @@ Toate interogările sunt pregătite, cu `PDO::ATTR_EMULATE_PREPARES` pe `false`
 
 ## Rutare
 
-În `.htaccess`, la rădăcină:
+În `.htaccess` de la rădăcină, **sub** blocul pus de cPanel. Blocul acela e
+generat de MultiPHP INI Editor, scrie „do not edit" și trimite erorile de PHP
+în `/home/…/logs/php.error.log`; se păstrează cuvânt cu cuvânt, altfel cPanel
+îl pune înapoi peste regulile noastre. Fișierul e împletit și pus pe server de
+la 2026-09-16, cu partea care nu ține de blog: 404, cache, antete de
+securitate. Regulile de mai jos se adaugă odată cu blogul, fiindcă un 301 de
+la `/blog.html` înainte să existe `/blog/index.php` ar rupe pagina care merge
+acum.
 
 ```
 /blog/                  ->  blog/index.php
@@ -208,6 +215,9 @@ un server public sunt o datorie, nu o pagubă.
   pagina `404.html`, aceeași ca în restul site-ului.
 - **Baza de date nu răspunde:** pagină simplă în română, cod 503, fără urmă de
   excepție în pagină. Detaliul se scrie în jurnalul serverului.
+- **Unde se citesc:** erorile de PHP de pe server ajung în
+  `/home/…/logs/php.error.log`, pus de blocul cPanel din `.htaccess`. Local,
+  în ieșirea lui `php -S`.
 - **Formular greșit completat:** erorile se arată lângă câmpuri și textul scris
   rămâne în formular. Un articol lung nu se pierde pentru o etichetă uitată.
 - **Slug care se repetă:** se adaugă un sufix numeric, `titlu-2`.
@@ -245,8 +255,4 @@ rescrie.
 
 ## Ce mai lipsește
 
-- **`.htaccess`-ul de pe server.** Are 612 octeți puși de gazdă și nu e citit
-  încă. Blogul are nevoie de reguli de rescriere acolo, deci fișierul trebuie
-  citit și împletit cu al nostru înainte de punerea în funcțiune. Până atunci
-  `.htaccess` e exclus din deploy, ca să nu-l înlocuiască orbește.
 - **Parola de FTP** ar fi bine rotită, a trecut prin chat.
