@@ -1,0 +1,6 @@
+# Tabloul nu are ce căuta în rezultatele căutării. Regula stă aici, nu în
+# .htaccess-ul de la rădăcină: acolo un FilesMatch pe „index.php" ar prinde
+# și blog/index.php, adică ar scoate din index chiar lista articolelor.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

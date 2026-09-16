@@ -71,3 +71,32 @@ AddType "text/plain; charset=UTF-8" .txt
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
+
+# --- Blogul ----------------------------------------------------------------
+# Adresele articolelor sunt /blog/titlul-articolului, nu /blog/?id=7: se
+# citesc, se rețin și spun despre ce e vorba, și oamenilor, și motoarelor.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Vechile fișiere statice. Se păstrează redirectul chiar dacă fișierele se
+  # șterg de pe server: un link trimis cuiva înainte de mutare trebuie să
+  # ajungă undeva, nu în 404.
+  RewriteRule ^blog\.html$          /blog/ [R=301,L]
+  RewriteRule ^blog-articol\.html$  /blog/ [R=301,L]
+
+  # Harta blogului, înaintea regulii de articol: altfel „sitemap.xml" ar fi
+  # citit ca slug de articol.
+  RewriteRule ^blog/sitemap\.xml$   blog/sitemap.php [L]
+
+  # Lista.
+  RewriteRule ^blog/?$              blog/index.php [L]
+
+  # Un articol. Slugul e numai litere mici, cifre și cratime, exact ce scoate
+  # slug(); orice altceva nu se potrivește aici și cade în 404.
+  RewriteRule ^blog/([a-z0-9-]+)/?$ blog/articol.php?slug=$1 [L,QSA]
+</IfModule>
+
+# Notă: „Tabloul nu se indexează" NU stă aici. Un FilesMatch pe „index.php"
+# la rădăcină ar prinde și blog/index.php, adică ar scoate din index chiar
+# lista articolelor, singura pagină pentru care există tot blogul. Regula
+# stă în admin/.htaccess, unde prinde numai fișierele din tablou.
