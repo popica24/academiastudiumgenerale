@@ -11,7 +11,8 @@
      1. umple elementele `data-phone`, `data-email`, `data-address`,
         `data-schedule`, `data-company`, `data-cui`, `data-regCom`, anul din
         subsol și linkurile `data-wa`, `data-facebook`, `data-instagram`,
-        `data-camera`. `site.js` face la fel la încărcare, deci cele două nu
+        `data-camera`, `data-colegiu`. `site.js` face la fel la încărcare, deci cele
+        două nu
         se contrazic: HTML-ul e doar punctul de plecare.
      2. rescrie JSON-LD-ul dintre marcajele DATE STRUCTURATE, la capătul lui <body>,
         construit din config.js și din textul paginii (FAQ, profesori,
@@ -92,6 +93,7 @@ function datele(html, limba) {
   for (const k of ["company", "cui", "regCom"]) if (real(C[k])) html = umple(html, k, { text: C[k] });
   for (const k of ["facebook", "instagram", "tiktok"]) if (real(C[k])) html = umple(html, k, { href: C[k], extern: true });
   if (real(C.cameraComert)) html = umple(html, "camera", { href: C.cameraComert, extern: true });
+  if (real(C.mediterraneanCollege)) html = umple(html, "colegiu", { href: C.mediterraneanCollege, extern: true });
   if (real(C.whatsapp)) {
     html = html.replace(/<a((?:\s[^>]*)?)\sdata-wa="([^"]*)"((?:\s[^>]*)?)>/g, (tot, inainte, subiect, dupa) => {
       const mesaj = ((T.whatsappMessage || "") + subiect).trim();

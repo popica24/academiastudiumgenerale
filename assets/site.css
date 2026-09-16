@@ -140,7 +140,11 @@ section + section { padding-top: 0; }
 .hero-note { font-size: var(--fs-sm); color: var(--text-muted); margin-top: var(--sp-5); }
 /* Afilierile: etichete, nu butoane. Linkul rămâne subliniat, ca să se vadă
    că duce undeva; eticheta se rupe pe două rânduri pe telefon.            */
-.hero-afiliere { gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-6); }
+/* `max-width: none` peste măsura de lectură: `p` o primește de la tokens, ca
+   rândurile de text să nu fie prea lungi, dar rândul ăsta nu e text de citit,
+   e o pereche de insigne. Cu măsura pe el, a doua insignă cădea pe rândul
+   următor deși mai era loc pe ecran.                                      */
+.hero-afiliere { gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-6); max-width: none; }
 .hero-afiliere .tag { line-height: 1.35; white-space: normal; }
 .hero-afiliere a { color: inherit; }
 
@@ -316,7 +320,8 @@ a.sr-only:focus {
    aceeași pastilă ca în hero, și e primul lucru care se vede când pagina se
    termină. Numele Camerei e lung: pastila se rupe pe mai multe rânduri, iar
    linkul din ea ia cerneala pastilei, nu albastrul de link.                */
-.foot-afiliere { margin: 0 0 var(--sp-10); }
+.foot-afiliere { display: flex; flex-wrap: wrap; gap: var(--sp-3);
+  margin: 0 0 var(--sp-10); max-width: none; }
 .foot-afiliere .tag { line-height: 1.35; white-space: normal; }
 .foot-afiliere a { color: inherit; }
 

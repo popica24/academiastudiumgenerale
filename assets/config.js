@@ -151,6 +151,9 @@ window.ACADEMIA = {
   /* Pagina de membru la Camera de Comerț, dată de client. */
   cameraComert: "https://www.hrcc.ro/members/",
 
+  /* Colegiul din Grecia cu care școala e parteneră, dat de client. */
+  mediterraneanCollege: "https://www.medcollege.edu.gr/",
+
   /* --- Date de firmă ------------------------------------------------------
      Obligatorii în subsolul unui site comercial din România.                */
   company: "STUDIUM GENERALE BY DENISA SRL",

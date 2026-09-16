@@ -49,7 +49,8 @@ Toate în `assets/config.js`, o singură dată pentru tot site-ul:
 | `email`, `address` | ✅ datele de contact | subsol |
 | `schedule` (în `texte.ro`/`texte.en`) | ✅ `Luni–vineri, 08:00–21:00`, tradus | subsol, FAQ |
 | `facebook`, `instagram` | ✅ adresele reale, sau lasă gol ca să dispară din subsol | subsol |
-| `cameraComert` | ✅ linkul de membru la Camera de Comerț Elenă-Română | subsol |
+| `cameraComert` | ✅ linkul de membru la Camera de Comerț Eleno-Română | hero, subsol |
+| `mediterraneanCollege` | ✅ linkul colegiului partener din Grecia | hero, subsol |
 
 **Despre formular:** cele trei întrebări din secțiunea Programare se hrănesc din
 `materii`. O materie cu `pana: 14` apare doar la gimnaziu, una cu `de: 15` doar

@@ -391,18 +391,21 @@
       }
     });
   });
-  /* Camera de Comerț: doar linkul vine din config, textul stă în pagină.
-     E o afirmație despre firmă, nu o dată de contact, deci se citește și
-     fără JavaScript; adresa a venit de la client, în config.            */
-  document.querySelectorAll("[data-camera]").forEach(function (el) {
-    if (isReal(C.cameraComert)) {
-      el.href = C.cameraComert;
-      el.target = "_blank";
-      el.rel = "noopener";
-    } else {
-      el.removeAttribute("href");
-      el.setAttribute("data-nedefinit", "Camera de Comerț");
-    }
+  /* Afilierile: doar linkurile vin din config, textele stau în pagină.
+     Sunt afirmații despre firmă, nu date de contact, deci se citesc și
+     fără JavaScript; adresele au venit de la client, în config.         */
+  [["camera", C.cameraComert, "Camera de Comerț"],
+   ["colegiu", C.mediterraneanCollege, "Mediterranean College"]].forEach(function (a) {
+    document.querySelectorAll("[data-" + a[0] + "]").forEach(function (el) {
+      if (isReal(a[1])) {
+        el.href = a[1];
+        el.target = "_blank";
+        el.rel = "noopener";
+      } else {
+        el.removeAttribute("href");
+        el.setAttribute("data-nedefinit", a[2]);
+      }
+    });
   });
 
   function warn(what) {
