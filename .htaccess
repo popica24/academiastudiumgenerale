@@ -1,0 +1,51 @@
+# Ce făcea vercel.json, scris pentru Apache. Pe Vercel, antetele de cache, cele
+# de securitate și pagina de 404 veneau din vercel.json; pe găzduirea nouă nu
+# le mai pune nimeni, deci le punem aici. Fără fișierul ăsta site-ul merge, dar
+# fonturile și pozele se descarcă din nou la fiecare vizită, iar o adresă
+# greșită arată eroarea serverului, nu 404.html al școlii.
+
+# --- Pagina de eroare ------------------------------------------------------
+# Calea e absolută fiindcă 404.html se servește la orice adresă greșită,
+# inclusiv /en/ceva/gresit. Din același motiv are căi absolute și în HTML.
+ErrorDocument 404 /404.html
+
+# --- llms.txt: text simplu, cu diacritice ----------------------------------
+<Files "llms.txt">
+  ForceType text/plain
+  Header set Content-Type "text/plain; charset=utf-8"
+</Files>
+
+# --- Lista deploy-ului nu e a vizitatorilor --------------------------------
+<Files ".deploy-state.json">
+  Require all denied
+</Files>
+
+# --- Antete de securitate, pe tot site-ul ----------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# --- Cache ------------------------------------------------------------------
+# Fonturile un an și „immutable": sunt subsetate și nu se schimbă decât dacă
+# li se schimbă și numele. Restul o lună, ca pe Vercel.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2               "access plus 1 year"
+  ExpiresByType text/css                 "access plus 1 month"
+  ExpiresByType application/javascript   "access plus 1 month"
+  ExpiresByType image/webp               "access plus 1 month"
+  ExpiresByType image/jpeg               "access plus 1 month"
+  ExpiresByType image/png                "access plus 1 month"
+  ExpiresByType image/x-icon             "access plus 1 month"
+  ExpiresByType video/mp4                "access plus 1 month"
+  # HTML-ul nu se ține în cache: altfel un text schimbat azi s-ar vedea
+  # abia peste o lună.
+  ExpiresByType text/html                "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.woff2$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

@@ -1,0 +1,77 @@
+# Urcă site-ul pe găzduire la fiecare împingere în main.
+#
+# Datele de conectare NU stau aici. Sunt trei secrete în GitHub, la
+# Settings > Secrets and variables > Actions:
+#   FTP_SERVER    adresa serverului, de pildă ftp.studiumgenerale.ro
+#   FTP_USERNAME  deploy@studiumgenerale.ro
+#   FTP_PASSWORD  parola contului
+# Fișierul ăsta se poate citi de oricine; secretele nu se văd nici în jurnal.
+name: Deploy pe găzduire
+
+on:
+  push:
+    branches: [main]
+  # Butonul „Run workflow" din GitHub, ca să se poată retrimite site-ul
+  # fără un commit gol.
+  workflow_dispatch:
+
+# Un singur deploy o dată. Două care se suprapun ar urca fișiere din două
+# versiuni diferite, amestecate.
+concurrency:
+  group: ftp
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Urcă prin FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # TLS explicit, pe portul 21. Cu „ftp" simplu, parola ar trece
+          # necriptată prin internet la fiecare deploy. Dacă gazda nu are
+          # TLS, se schimbă aici, dar atunci parola se rotește des.
+          protocol: ftps
+          # Unde stă site-ul pe server. Contul „deploy@" e de obicei legat
+          # deja de rădăcina lui, deci „/". Dacă fișierele ajung alături de
+          # site în loc de în el, se pune /public_html/ în variabila FTP_DIR,
+          # la Settings > Secrets and variables > Variables. Nu e un secret,
+          # deci e variabilă, nu secret.
+          server-dir: ${{ vars.FTP_DIR || '/' }}
+          # Acțiunea ține pe server lista fișierelor urcate, deci prima oară
+          # urcă tot, iar apoi doar ce s-a schimbat. Fișierul e ascuns de
+          # vizitatori din .htaccess.
+          state-name: .deploy-state.json
+          # Ce nu are ce căuta pe un server public. Lista înlocuiește
+          # excluderile implicite ale acțiunii, deci „.git" e scris aici
+          # explicit. Sursele mari (assets/video.mp4, assets/teachers/) nu
+          # apar: sunt în .gitignore, deci nici nu ajung în checkout.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            # TEMPORAR. Serverul are deja un .htaccess pus de gazdă, iar
+            # deploy-ul l-ar înlocui cu al nostru. Până îi citim conținutul
+            # și îl împletim cu regulile din .htaccess-ul din repo, nu-l
+            # urcăm: dacă al gazdei ține handlerul de PHP sau redirectul
+            # spre HTTPS, înlocuirea ar pica site-ul. După ce e împletit,
+            # se șterge linia asta.
+            .htaccess
+            .github/**
+            docs/**
+            tools/**
+            CLAUDE.md
+            README.md
+            todo.txt
+            inspo1.webp
+            inspo2.webp
+            vercel.json
+            .vercelignore
+            assets/foto/image.png
+            assets/foto/clasa.jpg
+            assets/foto/materii-colaj.png
