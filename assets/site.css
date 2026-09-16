@@ -310,9 +310,22 @@ a.sr-only:focus {
 .foot-col li { font-size: var(--fs-sm); color: var(--text-secondary); }
 .foot-col a:not(.btn):not(.navlink) { color: var(--text-secondary); text-decoration: none; font-size: var(--fs-sm); }
 .foot-col a:not(.btn):not(.navlink):hover { text-decoration: underline; }
+/* Apartenența la Camera de Comerț stătea în rândul de jos, la 12px estompat,
+   lângă CUI și numărul de registru: ultimul lucru din pagină, citit ca o notă
+   de subsol. E o dovadă, nu o formalitate, deci urcă deasupra coloanelor, în
+   aceeași pastilă ca în hero, și e primul lucru care se vede când pagina se
+   termină. Numele Camerei e lung: pastila se rupe pe mai multe rânduri, iar
+   linkul din ea ia cerneala pastilei, nu albastrul de link.                */
+.foot-afiliere { margin: 0 0 var(--sp-10); }
+.foot-afiliere .tag { line-height: 1.35; white-space: normal; }
+.foot-afiliere a { color: inherit; }
+
+/* Rândul de jos a rămas doar cu textul de lege. Era la 12px estompat, adică
+   sub pragul la care se citește fără efort; urcă la mărimea restului
+   subsolului și la stone-600, care dă 6.94:1 pe hârtie.                    */
 .foot-bottom { margin-top: var(--sp-12); padding-top: var(--sp-6); border-top: 1px solid var(--border);
   display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between;
-  font-size: var(--fs-xs); color: var(--text-muted); }
+  font-size: var(--fs-sm); color: var(--text-secondary); }
 
 /* --- AOS: animația, scrisă aici ------------------------------------------
    `aos.css` de pe CDN era încă o foaie de stil care blochează randarea, pe al
