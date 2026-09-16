@@ -1,7 +1,10 @@
 # Academia · Studium Generale by Denisa
 
-Site static, fără backend. Tot ce ține de aspect vine din manualul de brand;
-paginile nu conțin culori, mărimi sau umbre scrise de mână.
+Site în cea mai mare parte static: cele cinci pagini principale sunt HTML
+simplu, fără build și fără framework. Tot ce ține de aspect vine din manualul
+de brand; paginile nu conțin culori, mărimi sau umbre scrise de mână. Blogul
+și tabloul de administrare, în `blog/` și `admin/`, sunt scrise în PHP, cu
+o bază MySQL în spate; vezi „Blogul și tabloul" mai jos.
 
 ## Fișiere
 
@@ -9,8 +12,14 @@ paginile nu conțin culori, mărimi sau umbre scrise de mână.
 index.html            Landing: hero, metodă, materii (15 carduri), video,
                       recenzii (carusel), programare
 despre.html           Pagina cu descrierea („O pagina cu o descriere")
-blog.html             Lista de articole
-blog-articol.html     Șablonul unui articol
+header.php, footer.php Antetul și subsolul comune paginilor PHP (blog și
+                      tablou). Cele cinci pagini HTML de mai sus țin încă
+                      propria copie, identică, fiindcă nu sunt servite de PHP.
+blog/                 Lista de articole, un articol, harta blogului
+admin/                Tabloul: intrare, listă, editor, ștergere
+inc/                  Funcțiile PHP comune (bază de date, autentificare,
+                      articole, șablon) și config.php, cu datele de acces la
+                      MySQL, care nu intră niciodată în git (vezi mai jos)
 
 brand/tokens.css      Sistemul: culori, tente, sticlă, tipografie, componente
 brand/brandbook.html  Manualul de brand. De citit înainte de orice schimbare
@@ -191,16 +200,32 @@ brandbook, `.person` simplu, rămâne cum era: e varianta fără fotografie.
 
 Capturile brute nu sunt în git, sunt 75 MB de PNG; vezi `.gitignore`.
 
-## Când vine backendul PHP
+## Blogul și tabloul
 
-Două zone sunt deja marcate cu comentarii în HTML:
+Blogul (`blog/`) și tabloul de administrare (`admin/`) sunt PHP, cu o bază
+MySQL cu două tabele, `articole` și `administratori`. Cele cinci pagini HTML
+statice de mai sus nu trec prin PHP: continuă să poarte propria copie a
+antetului și a subsolului, identică octet cu octet cu `header.php` /
+`footer.php`, ca să nu se vadă nicio diferență de stil între o pagină statică
+și una servită de PHP.
 
-- `blog.html` → `DE AICI PRELUAT DE PHP`: bucla înlocuiește cele trei
-  carduri `a.card.articol-card`.
-- `blog-articol.html` → `ȘABLON DE ARTICOL`: titlu, tag, dată, autor și corp.
+**Datele de conectare la MySQL** stau în `inc/config.php`, pe un singur rând:
+gazdă, nume de bază, utilizator, parolă. Fișierul ăsta nu intră niciodată în
+git (e în `.gitignore`) și nu se urcă prin deploy (e exclus explicit în
+`.github/workflows/deploy.yml`): stă o singură dată pe server, pus de mână
+prin FTP, și rămâne acolo la fiecare împingere ulterioară, fiindcă acțiunea de
+deploy nu șterge niciodată fișiere de pe server. Local, se copiază din
+`inc/config.exemplu.php`.
 
-Antetul și subsolul sunt identice în cele patru pagini, ca să poată fi
-extrase în `header.php` / `footer.php` fără nicio modificare de stil.
+**Instalarea** se face cu `admin/setup.php` și `schema.sql`, care creează
+tabelele și primul cont de administrator. Amândouă se urcă de mână prin FTP,
+la fel ca `inc/config.php`, și sunt excluse din deploy-ul automat: dacă
+`setup.php` ar pleca la fiecare împingere, pagina care creează un cont de
+administrator, fără autentificare și fără jeton CSRF, ar fi mereu pe server,
+la o adresă cunoscută (depozitul e public), și n-ar mai putea fi ștearsă
+niciodată. După ce contul e creat, ambele fișiere se șterg manual de pe
+server; `setup.php` refuză singur să mai facă ceva dacă e găsit acolo cu un
+cont deja existent, dar refuzul e plasa, nu motivul să rămână.
 
 ## SEO
 

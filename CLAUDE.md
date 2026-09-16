@@ -167,15 +167,28 @@ Cât timp o valoare arată a substituent (`XXX`, `exemplu`, `ID_VIDEO`), element
 primește automat o etichetă roșie „de completat" în pagină, iar clicul explică
 ce lipsește. Verificarea e insensibilă la majuscule; nu o slăbi.
 
-### Zonele pentru PHP
+### Blogul și tabloul, în PHP
 
-Antetul și subsolul sunt identice octet cu octet în cele patru pagini
-românești, ca să poată fi extrase în `header.php` / `footer.php` fără nicio
-schimbare de stil. Paginile din `en/` au propria pereche, identică între ele
-dar nu cu cele românești: căile către `assets/` și `brand/` urcă un nivel, iar
-textele sunt traduse. Deci un text din antet se schimbă acum în **șase**
-fișiere, nu în patru. `blog.html` și `blog-articol.html` au comentariile
-`DE AICI PRELUAT DE PHP` în jurul zonelor care vor deveni buclă și șablon.
+`blog/` (listă, articol, harta blogului) și `admin/` (intrare, listă, editor,
+ștergere) sunt scrise în PHP, cu antetul și subsolul extrași o singură dată în
+`header.php` / `footer.php`, incluse din amândouă. Cele patru pagini HTML
+românești rămân statice și țin în continuare propria copie, identică octet cu
+octet cu `header.php` / `footer.php`, ca să nu se vadă nicio diferență de stil
+între o pagină statică și una servită de PHP. Paginile din `en/` au propria
+pereche, identică între ele dar nu cu cele românești: căile către `assets/` și
+`brand/` urcă un nivel, iar textele sunt traduse. Deci un text din antet se
+schimbă acum în **șase** fișiere HTML statice, plus `header.php` / `footer.php`
+pentru blog și tablou.
+
+Datele de conectare la MySQL stau într-un singur fișier, `inc/config.php`, pe
+gazdă, bază, utilizator și parolă. Nu intră niciodată în git și nu se urcă
+prin deploy (excluse amândouă în `.github/workflows/deploy.yml`): se pun o
+singură dată pe server, de mână, prin FTP, la fel ca instalarea. `admin/setup.php`
+și `schema.sql`, care fac tabelele și primul cont de administrator, se urcă și
+ele de mână, tot prin FTP, tot excluse din deploy-ul automat, și se șterg de pe
+server imediat după ce contul există: o pagină care creează un cont fără
+autentificare și fără jeton CSRF n-are voie să rămână la o adresă cunoscută pe
+un depozit public.
 
 ## Capcane care au costat deja timp
 
