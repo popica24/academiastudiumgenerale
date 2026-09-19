@@ -76,8 +76,19 @@ require_once __DIR__ . '/inc/sablon.php';
     <div class="row head-actions" style="gap:var(--sp-3)">
       <a class="navlink lang-comutator" href="/en/index.html" hreflang="en" lang="en">EN</a>
       <a class="btn btn-sm btn-wa" data-wa="Bacalaureat." href="https://wa.me/40735433720?text=Bun%C4%83%20ziua!%20Am%20g%C4%83sit%20Academia%20pe%20site%20%C8%99i%20a%C8%99%20vrea%20detalii%20despre%20preg%C4%83tirea%20pentru%20Bacalaureat." target="_blank" rel="noopener">WhatsApp</a>
+      <button class="btn btn-sm cauta-btn" type="button" data-cauta aria-expanded="false" aria-controls="cautare" aria-label="Caută în pagină"><span class="lupa" aria-hidden="true"></span></button>
       <button class="btn btn-sm burger" type="button" data-burger aria-expanded="false" aria-controls="meniu" aria-label="Meniu"><span class="burger-linii" aria-hidden="true"></span></button>
     </div>
+  </div>
+  <div class="cautare" id="cautare" hidden>
+    <form class="wrap cautare-inner" role="search" data-cautare>
+      <label class="sr-only" for="cautare-text">Caută în pagină</label>
+      <input id="cautare-text" class="cautare-camp" type="search" placeholder="Caută în pagină" autocomplete="off" spellcheck="false" enterkeyhint="search">
+      <span class="cautare-numar" aria-live="polite"></span>
+      <button class="cautare-pas" type="button" data-pas="-1" aria-label="Rezultatul anterior"><span class="sageata sageata-sus" aria-hidden="true"></span></button>
+      <button class="cautare-pas" type="button" data-pas="1" aria-label="Rezultatul următor"><span class="sageata" aria-hidden="true"></span></button>
+      <button class="cautare-pas" type="button" data-inchide aria-label="Închide căutarea"><span class="inchide" aria-hidden="true"></span></button>
+    </form>
   </div>
 </header>
 

@@ -1,7 +1,8 @@
 /* ==========================================================================
    ACADEMIA · comportamentul site-ului
    Leagă datele din config.js, formularul de potrivire, caruselul de
-   recenzii și meniul pe mobil. Nimic altceva. Fără dependențe.
+   recenzii, meniul pe mobil și căutarea în pagină. Nimic altceva. Fără
+   dependențe.
    ========================================================================== */
 (function () {
   "use strict";
@@ -691,6 +692,177 @@
     var tinta = LIMBA === "en" ? "../" + here : "en/" + here;
     document.querySelectorAll(".lang-comutator, .lang-meniu").forEach(function (a) {
       a.setAttribute("href", tinta);
+    });
+  }
+
+  /* --- 12. Căutarea în pagină ---------------------------------------------
+     Un Ctrl+F al site-ului, pentru telefon, unde browserul îl ascunde într-un
+     meniu. Caută în <main> și în subsol, fără să țină cont de majuscule sau
+     de diacritice: „stiinte" găsește „științe". Enter trece la următorul
+     rezultat, Shift+Enter la cel dinainte, Escape închide.
+
+     Evidențierea e CSS Custom Highlight API: nu se înfășoară nimic în <mark>,
+     deci textul paginii, caruselul și formularul rămân neatinse. Un browser
+     fără ea tot găsește și tot duce la rezultat, doar fără culoare.
+
+     Text care nu se vede nu intră, cu două excepții, fiindcă acolo cititorul
+     chiar caută ceva ce există în pagină: răspunsurile din FAQ închise, care
+     se deschid, și numele materiilor, scrise doar în iconiță și ținute în
+     `.sr-only`, unde se încercuiește cardul.                              */
+  var cautaBtn = document.querySelector("[data-cauta]");
+  var cautare = document.getElementById("cautare");
+  if (cautaBtn && cautare) {
+    var formCautare = cautare.querySelector("[data-cautare]");
+    var camp = cautare.querySelector(".cautare-camp");
+    var numarCautare = cautare.querySelector(".cautare-numar");
+    var pasi = cautare.querySelectorAll("[data-pas]");
+    var cuEvidentiere = !!(window.CSS && CSS.highlights && typeof Highlight === "function");
+    var gasite = [], curent = -1, amanare = null, tintaVeche = null;
+    var FARA = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEMPLATE: 1, SVG: 1 };
+
+    /* O literă, fără diacritice și mică. Rămâne mereu un singur caracter,
+       ca poziția din textul pliat să fie aceeași cu cea din textul real. */
+    var plia = function (c) {
+      var f = c.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+      return f.length === 1 ? f : c;
+    };
+    var pliaTot = function (s) {
+      var r = "";
+      for (var i = 0; i < s.length; i++) r += plia(s[i]);
+      return r;
+    };
+
+    var ascunsVizual = function (el) { return el.closest(".sr-only"); };
+    var faqInchis = function (el) {
+      var d = el.closest("details");
+      return d && !d.open && !el.closest("summary") ? d : null;
+    };
+    var cautabil = function (el) {
+      if (ascunsVizual(el) || faqInchis(el)) return true;
+      if (!el.getClientRects().length) return false;
+      return getComputedStyle(el).visibility !== "hidden";
+    };
+
+    var golesteEvidentierea = function () {
+      if (cuEvidentiere) { CSS.highlights.delete("cautare"); CSS.highlights.delete("cautare-curent"); }
+      if (tintaVeche) { tintaVeche.classList.remove("cautare-tinta"); tintaVeche = null; }
+    };
+
+    var arataNumar = function () {
+      var q = camp.value.trim();
+      numarCautare.textContent = !q || pliaTot(q).length < 2 ? ""
+        : !gasite.length ? (LIMBA === "en" ? "No results" : "Niciun rezultat")
+        : (curent + 1) + (LIMBA === "en" ? " of " : " din ") + gasite.length;
+      pasi.forEach(function (b) { b.disabled = gasite.length < 2; });
+    };
+
+    var gaseste = function () {
+      clearTimeout(amanare); amanare = null;
+      golesteEvidentierea();
+      gasite = []; curent = -1;
+      var q = pliaTot(camp.value.trim());
+      if (q.length >= 2) {
+        var verificate = new Map();
+        document.querySelectorAll("main, .site-foot").forEach(function (zona) {
+          var mers = document.createTreeWalker(zona, NodeFilter.SHOW_TEXT, {
+            acceptNode: function (n) {
+              var el = n.parentElement;
+              if (!el || FARA[el.nodeName.toUpperCase()] || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+              if (!verificate.has(el)) verificate.set(el, cautabil(el));
+              return verificate.get(el) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+            }
+          });
+          var n;
+          while ((n = mers.nextNode())) {
+            var text = pliaTot(n.nodeValue), de = 0, i;
+            while ((i = text.indexOf(q, de)) !== -1) {
+              var r = document.createRange();
+              r.setStart(n, i); r.setEnd(n, i + q.length);
+              gasite.push(r);
+              de = i + q.length;
+            }
+          }
+        });
+        if (cuEvidentiere && gasite.length) {
+          var toate = new Highlight();
+          gasite.forEach(function (r) { toate.add(r); });
+          CSS.highlights.set("cautare", toate);
+        }
+      }
+      if (gasite.length) mergiLa(0); else arataNumar();
+    };
+
+    var mergiLa = function (i) {
+      if (!gasite.length) return;
+      curent = (i + gasite.length) % gasite.length;
+      var r = gasite[curent];
+      var el = r.startContainer.parentElement;
+      var d = faqInchis(el);
+      if (d) d.open = true;
+      if (tintaVeche) { tintaVeche.classList.remove("cautare-tinta"); tintaVeche = null; }
+      var ascuns = ascunsVizual(el);
+      if (ascuns) {
+        tintaVeche = ascuns.parentElement;
+        tintaVeche.classList.add("cautare-tinta");
+        el = tintaVeche;
+      }
+      /* Un bloc cu `data-aos` e ascuns până îl aprinde AOS, iar saltul ar
+         ajunge înaintea animației: rezultatul ar fi evidențiat pe un gol.
+         Se aprinde aici, pe loc; `once: true` nu-l mai stinge după.        */
+      var animat = el.closest("[data-aos]");
+      if (animat) animat.classList.add("aos-animate");
+      if (cuEvidentiere) CSS.highlights.set("cautare-curent", new Highlight(r));
+      /* `center`, nu `start`: sus stau antetul lipit și bara de căutare, care
+         ar acoperi exact rândul găsit. `nearest` pe orizontală mută și
+         caruselul de recenzii la recenzia potrivită, fără să miște pagina. */
+      el.scrollIntoView({ block: "center", inline: "nearest",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      arataNumar();
+    };
+
+    var deschideCautarea = function (deschis) {
+      /* Cele două nu încap deodată pe telefon: căutarea închide meniul.
+         Înainte de a se deschide ea, altfel clicul pe hamburger, care
+         închide căutarea, ar închide-o și pe asta.                      */
+      if (deschis && burger && burger.getAttribute("aria-expanded") === "true") burger.click();
+      cautare.hidden = !deschis;
+      cautaBtn.setAttribute("aria-expanded", String(deschis));
+      if (deschis) {
+        camp.focus();
+        camp.select();
+        if (camp.value.trim()) gaseste();
+      } else {
+        clearTimeout(amanare); amanare = null;
+        golesteEvidentierea();
+        gasite = []; curent = -1;
+      }
+    };
+
+    cautaBtn.addEventListener("click", function () { deschideCautarea(cautare.hidden); });
+    if (burger) burger.addEventListener("click", function () {
+      if (!cautare.hidden) deschideCautarea(false);
+    });
+    camp.addEventListener("input", function () {
+      clearTimeout(amanare);
+      amanare = setTimeout(gaseste, 180);
+    });
+    formCautare.addEventListener("submit", function (e) { e.preventDefault(); });
+    camp.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        /* Enter înainte să fi trecut pauza de tastare caută imediat. */
+        if (amanare) { gaseste(); return; }
+        mergiLa(curent + (e.shiftKey ? -1 : 1));
+      }
+    });
+    pasi.forEach(function (b) {
+      b.addEventListener("click", function () { mergiLa(curent + Number(b.getAttribute("data-pas"))); });
+    });
+    cautare.querySelector("[data-inchide]").addEventListener("click", function () {
+      deschideCautarea(false); cautaBtn.focus();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !cautare.hidden) { deschideCautarea(false); cautaBtn.focus(); }
     });
   }
 })();

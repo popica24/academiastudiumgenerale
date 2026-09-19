@@ -132,14 +132,24 @@ Reperul e **iPhone 16, 393px**. Regulile de telefon stau într-un singur bloc,
   rânduri.
 - **Totul e aliniat la stânga.** Nimic nu se centrează.
 
-**Bara de sus nu mai are „Acasă" și trece pe hamburger sub 1140px.** Cu
+**Bara de sus nu mai are „Acasă" și trece pe hamburger sub 1200px.** Cu
 „Prețuri" adăugat la 2026-09-19, șapte linkuri cer 1117px, iar containerul
 mărcii are 1116px de conținut și e plafonat la 1180px, deci niciun ecran nu
 e destul de lat: meniul s-ar rupe pe două rânduri și antetul ar crește de la
 82 la 114px peste tot. Sigla duce deja acasă, deci linkul „Acasă" iese din
-bară și rămâne doar în meniul de telefon, prin clasa `.acasa-meniu`. Pragul
-hamburgerului a urcat de la 1040 la 1140px, fiindcă bara cere 1035px în
-română și 1040px în engleză, adică ferestre de 1099 și 1104px.
+bară și rămâne doar în meniul de telefon, prin clasa `.acasa-meniu`. Tot la
+2026-09-19 a intrat lupa căutării în bară: ca să încapă, pastilele din antet
+stau la 8px una de alta, nu la 12, iar pragul hamburgerului a urcat de la
+1140 la 1200px. Bara cere acum 1077px în română și 1082px în engleză, adică
+ferestre de vreo 1165px.
+
+**Căutarea în pagină** (`site.js`, secțiunea 12) e un Ctrl+F al site-ului,
+pe toate lățimile: lupa deschide o bară lipită sub antet. Ignoră majusculele
+și diacriticele, evidențiază cu CSS Custom Highlight API (nu atinge DOM-ul),
+deschide răspunsurile din FAQ și încercuiește cardul unei materii, al cărei
+nume e doar în `.sr-only`. Lupa e în toate cele cinci pagini statice și în
+`header.php`; eticheta ei e în regula care ascunde textul butoanelor din
+antet, scrisă `:not(.lupa)`.
 
 `tools/audit.sh` rulează headless (Chrome, Brave sau Chromium, ce găsește) și
 raportează, pe fiecare lățime: contrastul calculat pe fundalul **compus**

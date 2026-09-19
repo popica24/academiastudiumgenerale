@@ -88,6 +88,10 @@ section + section { padding-top: 0; }
    La hover transparența dispare de tot: alb plin, 17.4:1.
    Conturul rămâne --navy-900 și pe bleumarin: se vede ca o muchie închisă,
    iar regula sistemului e că el nu dispare niciodată.                     */
+/* Între pastile 8px, nu 12px ca în `.nav` din tokens.css: cu lupa adăugată
+   la 2026-09-19, cei 20px recuperați aici sunt aerul care ține bara pe un
+   singur rând (vezi pragul de 1200px, mai jos).                          */
+.site-head .nav { gap: var(--sp-2); }
 .site-head .navlink { background: var(--glass-fill); color: var(--text); }
 .site-head .navlink:hover { background: var(--white); }
 .site-head .navlink[aria-current="page"] {
@@ -106,8 +110,9 @@ section + section { padding-top: 0; }
    + două distanțe de 20px fac 1117px, adică un pixel peste. Containerul e
    plafonat la 1180px, deci un ecran mai lat nu ajută deloc: meniul s-ar rupe
    pe două rânduri și antetul ar crește de la 82 la 114px pe orice lățime.
-   Fără „Acasă" bara cere 1035px în română și 1040px în engleză, deci rămân
-   vreo 80px de aer. În meniul de sub 1140px linkul se întoarce: acolo
+   Fără „Acasă", cu lupa și cu 8px între pastile, bara cere 1077px în română
+   și 1082px în engleză, deci rămân 34px de aer. În meniul de sub 1200px
+   linkul se întoarce: acolo
    fiecare link are rândul lui.                                            */
 .acasa-meniu { display: none; }
 
@@ -133,6 +138,70 @@ section + section { padding-top: 0; }
 .burger[aria-expanded="true"] .burger-linii { background: transparent; }
 .burger[aria-expanded="true"] .burger-linii::before { transform: translateY(6px) rotate(45deg); }
 .burger[aria-expanded="true"] .burger-linii::after  { transform: translateY(-6px) rotate(-45deg); }
+
+/* --- Căutarea în pagină ----------------------------------------------------
+   Un Ctrl+F al site-ului: lupa din antet deschide o bară lipită sub el, de
+   aceeași culoare, ca meniul de telefon. Bara stă `absolute` sub antet, nu în
+   fluxul lui: dacă antetul ar crește cât e deschisă, lipit cum e, ar împinge
+   pagina în jos sub degetul cititorului.
+   Lupa e desenată din CSS, ca hamburgerul, și e tot o iconiță fără ramă.   */
+.cauta-btn { gap: 0; padding: 9px 6px; border: 0; box-shadow: none;
+  background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  color: var(--brass-300); }
+.cauta-btn::before { display: none; }
+.cauta-btn:hover { box-shadow: none; }
+.lupa { position: relative; display: block; width: 18px; height: 18px; }
+.lupa::before { content: ""; position: absolute; left: 0; top: 0;
+  width: 13px; height: 13px; border: 2px solid currentColor; border-radius: 50%; }
+.lupa::after { content: ""; position: absolute; right: 0; bottom: 1px;
+  width: 7px; height: 2px; border-radius: 2px; background: currentColor;
+  transform: rotate(45deg); transform-origin: right center; }
+
+.cautare {
+  position: absolute; left: 0; right: 0; top: 100%;
+  padding-block: var(--sp-3);
+  background: var(--navy-700); border-bottom: var(--stroke);
+}
+.cautare[hidden] { display: none; }
+/* La dreapta, sub lupa care a deschis-o. Câmpul se oprește la 30rem: întins
+   pe toată bara ar fi fost o cutie de 900px pentru un cuvânt. Pe telefon
+   limita nu contează, câmpul ia tot ce rămâne lângă butoane.              */
+.cautare-inner { display: flex; align-items: center; justify-content: flex-end; gap: var(--sp-2); }
+.cautare-camp {
+  flex: 1; min-width: 0; max-width: 30rem;
+  font: inherit; font-size: var(--fs-base); color: var(--text);
+  padding: 9px var(--sp-4);
+  background: var(--white); border: var(--stroke); border-radius: var(--r-full);
+}
+.cautare-camp:focus { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+/* Numărul de rezultate, pe bleumarin: aurul barei, 10.6:1. */
+.cautare-numar { flex: none; min-width: 7ch; text-align: right;
+  font-size: var(--fs-sm); color: var(--brass-200); white-space: nowrap; }
+.cautare-pas {
+  flex: none; display: inline-grid; place-items: center;
+  width: 38px; height: 38px; padding: 0; border: 0; border-radius: var(--r-full);
+  background: none; color: var(--brass-300); cursor: pointer;
+}
+.cautare-pas:hover { background: var(--navy-500); }
+.cautare-pas:disabled { opacity: .45; cursor: default; background: none; }
+.sageata { display: block; width: 9px; height: 9px; margin-top: -4px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); }
+.sageata-sus { margin-top: 4px; transform: rotate(-135deg); }
+.inchide { position: relative; display: block; width: 16px; height: 16px; }
+.inchide::before, .inchide::after { content: ""; position: absolute; left: 0; top: 7px;
+  width: 16px; height: 2px; border-radius: 2px; background: currentColor; }
+.inchide::before { transform: rotate(45deg); }
+.inchide::after  { transform: rotate(-45deg); }
+
+/* Ce s-a găsit. Evidențierea nu atinge DOM-ul: e CSS Custom Highlight API,
+   deci textul paginii rămâne neschimbat. Toate potrivirile iau tenta de unt,
+   cea curentă aurul plin; cerneala rămâne --navy-900 pe amândouă.          */
+::highlight(cautare)        { background-color: var(--p-butter); color: var(--navy-900); }
+::highlight(cautare-curent) { background-color: var(--brass-300); color: var(--navy-900); }
+/* O potrivire în text ascuns pentru ochi (numele materiei, scris doar în
+   poză) nu are ce evidenția: se încercuiește cardul care o poartă.        */
+.cautare-tinta { outline: 3px solid var(--brass-500); outline-offset: 4px; }
 
 /* --- Hero ---------------------------------------------------------------- */
 .hero { padding-top: var(--sp-20); padding-bottom: var(--sp-16); }
@@ -406,19 +475,22 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
    eticheta de deasupra ar călca peste afirmația precedentă: coboară sub el */
 .foot-bottom [data-nedefinit]::after { top: auto; bottom: -18px; right: 0; }
 
-/* --- Sub 1140px -----------------------------------------------------------
-   Pragul era 860px, apoi 1040px, dar `.nav` are `flex-wrap: wrap`, deci un
-   link adăugat mai târziu nu iese din ecran, se împachetează pe un al doilea
-   rând: antetul crește de la 82 la 114px, cât bara stă fără hamburger.
-   Măsurat din nou la 2026-09-19, cu „Prețuri" în bară și „Acasă" scos din ea
-   (vezi `.acasa-meniu`): siglă, meniu și butoane cer 1035px în română și
-   1040px în engleză, adică ferestre de 1099px și 1104px, fiindcă `.wrap` ia
-   64px de gutieră. Pragul de aici e rotunjit la 1140px, cu vreo 36px de
-   marjă peste măsurătoarea engleză, cea mai lată dintre cele două.        */
-@media (max-width: 1140px) {
+/* --- Sub 1200px -----------------------------------------------------------
+   Pragul era 860px, apoi 1040px, apoi 1140px, dar `.nav` are `flex-wrap:
+   wrap`, deci un link adăugat mai târziu nu iese din ecran, se împachetează
+   pe un al doilea rând: antetul crește de la 82 la 114px, cât bara stă fără
+   hamburger. Măsurat din nou la 2026-09-19, după lupa căutării: siglă, meniu
+   și butoane cer 1077px în română și 1082px în engleză. Cu cei 64px de
+   gutieră ai lui `.wrap` și bara de derulare, bara încape pe un rând de la
+   ferestre de vreo 1165px; la 1160 se rupe deja în engleză. Pragul e
+   rotunjit la 1200px, cu vreo 35px de marjă.                              */
+@media (max-width: 1200px) {
   .wrap { padding-inline: var(--sp-5); }
   section { padding-block: var(--sp-16); }
   .burger { display: inline-flex; }
+  /* Pe desktop lupa e strânsă ca să încapă bara; aici are loc, deci își ia
+     înapoi suprafața de atins, cât a hamburgerului.                        */
+  .cauta-btn { padding-inline: 10px; }
   /* închis din CSS, nu din JS: altfel prima încărcare arată meniul peste hero */
   #meniu { display: none; }
   #meniu.is-open { display: flex; }
@@ -432,8 +504,8 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
   #meniu .acasa-meniu { display: block; }
   .head-inner { position: relative; }
   /* Regula ascunde etichetele din butoanele antetului, dar nu și liniile
-     hamburgerului, care sunt tot un span.                                  */
-  .head-actions .btn span:not(.burger-linii):not(.ico-wa) { display: none; }
+     hamburgerului sau lupa, care sunt tot câte un span.                    */
+  .head-actions .btn span:not(.burger-linii):not(.ico-wa):not(.lupa) { display: none; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
 }
 /* --- Telefon: sub 560px ---------------------------------------------------

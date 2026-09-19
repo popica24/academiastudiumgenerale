@@ -75,8 +75,19 @@
     <div class="row head-actions" style="gap:var(--sp-3)">
       <a class="navlink lang-comutator" href="../index.html" hreflang="ro" lang="ro">RO</a>
       <a class="btn btn-sm btn-wa" data-wa="the Baccalaureate." href="https://wa.me/40735433720?text=Hello!%20I%20found%20the%20Academy%20online%20and%20I%20would%20like%20details%20about%20preparation%20for%20the%20Baccalaureate." target="_blank" rel="noopener">WhatsApp</a>
+      <button class="btn btn-sm cauta-btn" type="button" data-cauta aria-expanded="false" aria-controls="cautare" aria-label="Search this page"><span class="lupa" aria-hidden="true"></span></button>
       <button class="btn btn-sm burger" type="button" data-burger aria-expanded="false" aria-controls="meniu" aria-label="Menu"><span class="burger-linii" aria-hidden="true"></span></button>
     </div>
+  </div>
+  <div class="cautare" id="cautare" hidden>
+    <form class="wrap cautare-inner" role="search" data-cautare>
+      <label class="sr-only" for="cautare-text">Search this page</label>
+      <input id="cautare-text" class="cautare-camp" type="search" placeholder="Search this page" autocomplete="off" spellcheck="false" enterkeyhint="search">
+      <span class="cautare-numar" aria-live="polite"></span>
+      <button class="cautare-pas" type="button" data-pas="-1" aria-label="Previous result"><span class="sageata sageata-sus" aria-hidden="true"></span></button>
+      <button class="cautare-pas" type="button" data-pas="1" aria-label="Next result"><span class="sageata" aria-hidden="true"></span></button>
+      <button class="cautare-pas" type="button" data-inchide aria-label="Close search"><span class="inchide" aria-hidden="true"></span></button>
+    </form>
   </div>
 </header>
 
