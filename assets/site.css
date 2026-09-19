@@ -88,10 +88,6 @@ section + section { padding-top: 0; }
    La hover transparența dispare de tot: alb plin, 17.4:1.
    Conturul rămâne --navy-900 și pe bleumarin: se vede ca o muchie închisă,
    iar regula sistemului e că el nu dispare niciodată.                     */
-/* Între pastile 8px, nu 12px ca în `.nav` din tokens.css: cu lupa adăugată
-   la 2026-09-19, cei 20px recuperați aici sunt aerul care ține bara pe un
-   singur rând (vezi pragul de 1200px, mai jos).                          */
-.site-head .nav { gap: var(--sp-2); }
 .site-head .navlink { background: var(--glass-fill); color: var(--text); }
 .site-head .navlink:hover { background: var(--white); }
 .site-head .navlink[aria-current="page"] {
@@ -110,9 +106,8 @@ section + section { padding-top: 0; }
    + două distanțe de 20px fac 1117px, adică un pixel peste. Containerul e
    plafonat la 1180px, deci un ecran mai lat nu ajută deloc: meniul s-ar rupe
    pe două rânduri și antetul ar crește de la 82 la 114px pe orice lățime.
-   Fără „Acasă", cu lupa și cu 8px între pastile, bara cere 1077px în română
-   și 1082px în engleză, deci rămân 34px de aer. În meniul de sub 1200px
-   linkul se întoarce: acolo
+   Fără „Acasă" și cu lupa, bara cere 1097px în română și 1102px în engleză,
+   deci rămân 14px de aer. În meniul de sub 1200px linkul se întoarce: acolo
    fiecare link are rândul lui.                                            */
 .acasa-meniu { display: none; }
 
@@ -480,10 +475,11 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
    wrap`, deci un link adăugat mai târziu nu iese din ecran, se împachetează
    pe un al doilea rând: antetul crește de la 82 la 114px, cât bara stă fără
    hamburger. Măsurat din nou la 2026-09-19, după lupa căutării: siglă, meniu
-   și butoane cer 1077px în română și 1082px în engleză. Cu cei 64px de
+   și butoane cer 1097px în română și 1102px în engleză. Cu cei 64px de
    gutieră ai lui `.wrap` și bara de derulare, bara încape pe un rând de la
-   ferestre de vreo 1165px; la 1160 se rupe deja în engleză. Pragul e
-   rotunjit la 1200px, cu vreo 35px de marjă.                              */
+   ferestre de vreo 1185px. Peste 1195px containerul e deja plafonat la
+   1116px de conținut, deci marja nu mai crește: rămân 14px. Un link în plus
+   în bară nu mai încape; atunci trebuie scos altceva, nu urcat pragul.    */
 @media (max-width: 1200px) {
   .wrap { padding-inline: var(--sp-5); }
   section { padding-block: var(--sp-16); }

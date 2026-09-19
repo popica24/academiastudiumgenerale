@@ -138,10 +138,11 @@ mărcii are 1116px de conținut și e plafonat la 1180px, deci niciun ecran nu
 e destul de lat: meniul s-ar rupe pe două rânduri și antetul ar crește de la
 82 la 114px peste tot. Sigla duce deja acasă, deci linkul „Acasă" iese din
 bară și rămâne doar în meniul de telefon, prin clasa `.acasa-meniu`. Tot la
-2026-09-19 a intrat lupa căutării în bară: ca să încapă, pastilele din antet
-stau la 8px una de alta, nu la 12, iar pragul hamburgerului a urcat de la
-1140 la 1200px. Bara cere acum 1077px în română și 1082px în engleză, adică
-ferestre de vreo 1165px.
+2026-09-19 a intrat lupa căutării în bară, iar pragul hamburgerului a urcat
+de la 1140 la 1200px. Bara cere acum 1097px în română și 1102px în engleză,
+din 1116 câți are containerul: rămân 14px, deci **niciun link nou nu mai
+încape în bară** fără să iasă altceva. Pastilele au rămas la 12px una de
+alta; varianta cu 8px a fost încercată și respinsă de Andrei.
 
 **Căutarea în pagină** (`site.js`, secțiunea 12) e un Ctrl+F al site-ului,
 pe toate lățimile: lupa deschide o bară lipită sub antet. Ignoră majusculele
