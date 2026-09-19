@@ -32,7 +32,7 @@ assets/og.jpg         Imaginea de previzualizare pentru linkuri
 assets/fonturi/       Fonturile, subsetate pentru română
 assets/foto/materii/  Cele 18 iconițe ale materiilor, plus SURSE.txt
 assets/foto/motive/   Cele 4 fotografii din „Cum lucrăm", plus SURSE.txt
-assets/foto/cursuri/  Cele 5 iconițe ale cursurilor speciale, plus SURSE.txt
+assets/foto/cursuri/  Cele 6 iconițe ale cursurilor speciale, plus SURSE.txt
 assets/foto/profesori/ Cele 15 portrete de profesor, plus SURSE.txt
 tools/audit.sh        Verificarea de contrast, tăiere, suprapunere
 tools/seo.js          Scrie datele de contact și JSON-LD-ul în pagini, din config.js
@@ -43,6 +43,7 @@ tools/voal.py         Cât de gros trebuie voalul peste o fotografie
 tools/mobil.sh        Captură la 393px, cât are un iPhone 16
 tools/taie-colaj.py   Taie cele 21 de iconițe din colajul primit de la client
 tools/taie-profesori.py Taie cele 8 portrete din capturile de pe Instagram
+tools/iconita-powerbi.py Iconița Power BI, făcută din cea de Excel
 ```
 
 ## De completat înainte de publicare
@@ -88,9 +89,13 @@ Etichetele dispar singure când valorile devin reale.
   (`t4.ftcdn.net`) **nelicențiată pentru producție**, arată un birou și are
   640×360. Acum fiecare card are poza lui. Fișierul a rămas pe disc, dar se
   poate șterge oricând.
-- **Prețurile** sunt plauzibile, nu reale. Cele 15 materii din secțiunea
-  „Materii" sunt reale. Numele profesorilor nu apar în pagină; la Maghiară
-  profesorul e încă necunoscut, vezi `materii` în `assets/config.js`.
+- **Prețurile sunt reale** de la 2026-09-19, date de client: 150 lei ședința
+  individuală la toate materiile, 200 lei la matematica de liceu, chineză și
+  coreeană, iar în grupă 120, respectiv 160. Stau în `pret` și `pretGrupa`,
+  în `materii` din `assets/config.js`, și scrise în tabelul din secțiunea
+  „Prețuri". Cursurile speciale nu au preț: la ele se face ofertă. Materiile
+  din secțiunea „Materii" sunt reale. La Maghiară profesorul e încă
+  necunoscut, vezi `materii` în `assets/config.js`.
 
 ## Fotografia din „Despre"
 
@@ -126,8 +131,8 @@ albastră.
 
 ## Iconițele materiilor și ale cursurilor
 
-Cele 16 carduri din „Materii" și cele 5 din „Cursuri speciale" nu mai poartă
-fotografii, ci câte o iconiță rotundă. Toate 21 vin dintr-un singur colaj
+Cele 18 carduri din „Materii" și cele 6 din „Cursuri speciale" nu mai poartă
+fotografii, ci câte o iconiță rotundă. Douăzeci și una vin dintr-un singur colaj
 primit de la client la 2026-09-10, păstrat ca `assets/foto/materii-colaj.png`,
 și sunt decupate din el cu `tools/taie-colaj.py`: fiecare cerc ajunge într-un
 pătrat de 600×600, așezat pe același bleumarin `--navy-900` cu fundalul
@@ -158,6 +163,15 @@ fapt micșorate și se văd curat; pe telefon, unde cardul ajunge la 353px, se
 vede că literele sunt moi. Dacă vine un colaj mai mare
 sau câte un fișier per materie, se pune peste `materii-colaj.png` și se rulează
 din nou `tools/taie-colaj.py`; nu e nimic de schimbat în HTML.
+
+Trei iconițe nu vin din colaj, fiindcă materiile lor au venit după el: turca
+și româna pentru străini, făcute din cea a maghiarei cu
+`tools/iconita-limba.py`, și Power BI, făcută la 2026-09-19 din cea de Excel
+cu `tools/iconita-powerbi.py`. A doua păstrează din Excel cercul, petele,
+stelele și linia aurie, umple prin difuzie locul logoului vechi și desenează
+în loc barele galbene ale aplicației, cu numele scris cu Montserrat SemiBold,
+luat din woff2-ul subsetat din `assets/fonturi/`. Dacă vine iconița clientului
+pentru Power BI, se pune peste `assets/foto/cursuri/powerbi.webp`.
 
 Ca să schimbi o singură iconiță: pui fișierul cu același nume peste cel vechi,
 pătrat și pe bleumarinul cardului. Cardul îl folosește de două ori, o dată
@@ -194,9 +208,8 @@ brandbook, `.person` simplu, rămâne cum era: e varianta fără fotografie.
   secțiunii spune asta pe șleau, ca să nu se publice așa.
 - **Prezentarea profesoarei de franceză e scrisă în engleză** pe Instagram.
   Pagina românească o dă tradusă, pagina engleză o dă în original.
-- **Două postări anunță 150 de lei pe ședință.** Prețul nu a fost trecut în
-  pagină: site-ul nu are încă o secțiune de prețuri, iar cele din discuții sunt
-  plauzibile, nu reale.
+- **Două postări anunță 150 de lei pe ședință**, exact prețul confirmat de
+  client la 2026-09-19 și trecut acum în secțiunea „Prețuri".
 
 Capturile brute nu sunt în git, sunt 75 MB de PNG; vezi `.gitignore`.
 

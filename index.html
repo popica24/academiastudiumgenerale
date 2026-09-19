@@ -63,10 +63,11 @@
       </span>
     </a>
     <nav id="meniu" class="nav" data-nav aria-label="Navigație principală">
-      <a class="navlink" href="index.html">Acasă</a>
+      <a class="navlink acasa-meniu" href="index.html">Acasă</a>
       <a class="navlink" href="despre.html">Despre</a>
       <a class="navlink" href="index.html#materii">Materii</a>
       <a class="navlink" href="index.html#cursuri">Cursuri</a>
+      <a class="navlink" href="index.html#preturi">Prețuri</a>
       <a class="navlink" href="index.html#profesori">Profesori</a>
       <a class="navlink" href="/blog/">Blog</a>
       <a class="navlink lang-meniu" href="en/index.html" hreflang="en" lang="en">English</a>
@@ -347,9 +348,149 @@
         <img class="foto-clar" src="assets/foto/cursuri/financiara.webp" alt="Iconița cursului: Educație financiară" loading="lazy" decoding="async">
         <h3 class="sr-only">Educație financiară</h3>
       </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
+        <img class="foto-blur" src="assets/foto/cursuri/powerbi.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="assets/foto/cursuri/powerbi.webp" alt="Iconița cursului: Power BI" loading="lazy" decoding="async">
+        <h3 class="sr-only">Power BI</h3>
+      </article>
     </div>
   </section>
 
+
+  <!-- ── Prețuri ─────────────────────────────────────────────────────────
+       Prețurile sunt cele date de client la 2026-09-19, pe ședință. Tabelul e
+       scris în HTML, nu construit din JavaScript: crawlerele nu îl rulează,
+       iar un preț pe care motorul de căutare nu îl vede nu există. Aceleași
+       cifre stau în `assets/config.js`, de unde `tools/seo.js` le pune în
+       datele structurate, deci se schimbă în amândouă locurile deodată.
+       ─────────────────────────────────────────────────────────────────── -->
+  <section class="wrap" id="preturi">
+    <div class="sec-head wrap-text" data-aos="fade-up">
+      <p class="eyebrow">Cât costă</p>
+      <h2>Prețurile sunt scrise aici, nu cerute la telefon</h2>
+      <p>Prețul e pe ședință, la fel pentru Evaluarea Națională și pentru Bacalaureat. Prima ședință nu costă nimic.</p>
+    </div>
+
+    <div class="preturi">
+      <div class="card" data-aos="fade-up">
+        <table class="pret-tabel">
+          <caption class="sr-only">Prețul unei ședințe, pe materie, individual și în grupă de maximum trei elevi</caption>
+          <thead>
+            <tr>
+              <th scope="col">Materie</th>
+              <th scope="col">Individual</th>
+              <th scope="col">În grupă</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Română</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Matematică, gimnaziu</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Matematică, liceu</th>
+              <td><span class="pret-eticheta">Individual </span>200 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>160 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Istorie</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Geografie</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Logică</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Biologie</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Chimie</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Engleză</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Spaniolă</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Franceză</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Chineză</th>
+              <td><span class="pret-eticheta">Individual </span>200 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>160 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Coreeană</th>
+              <td><span class="pret-eticheta">Individual </span>200 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>160 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Maghiară</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Informatică</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Greacă</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Turcă</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Română pentru străini</th>
+              <td><span class="pret-eticheta">Individual </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">în grupă </span>120 lei</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="preturi-note">
+        <div class="card" data-aos="fade-up" data-aos-delay="70">
+          <h3>Mai multe materii, mai puțin</h3>
+          <p>Cine ia mai multe materii sau mai multe ședințe plătește mai puțin pe ședință. Cât anume, vă spunem când știm ce alege elevul.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="140">
+          <h3>Cursurile speciale se ofertează</h3>
+          <p>Excel, Power BI, contabilitatea, dicția, dezvoltarea personală și educația financiară nu au preț de listă. Spuneți-ne ce vă trebuie și facem o ofertă pe nevoile dumneavoastră.</p>
+          <a class="btn btn-wa" data-wa="cursurile speciale." href="https://wa.me/40735433720?text=Bun%C4%83%20ziua!%20Am%20g%C4%83sit%20Academia%20pe%20site%20%C8%99i%20a%C8%99%20vrea%20detalii%20despre%20preg%C4%83tirea%20pentru%20cursurile%20speciale." target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── Profesori ───────────────────────────────────────────────────── -->
   <section class="wrap" id="profesori">
@@ -720,7 +861,7 @@
 
       <details>
         <summary>Ce se predă?</summary>
-        <p class="faq-raspuns">Optsprezece materii, pentru Evaluarea Națională, Bacalaureat și limbi străine, de la română și matematică până la coreeană, turcă și română pentru străini, plus cinci cursuri care nu țin de programă: Excel, contabilitate, dicție, dezvoltare personală și educație financiară.</p>
+        <p class="faq-raspuns">Optsprezece materii, pentru Evaluarea Națională, Bacalaureat și limbi străine, de la română și matematică până la coreeană, turcă și română pentru străini, plus șase cursuri care nu țin de programă: Excel, Power BI, contabilitate, dicție, dezvoltare personală și educație financiară.</p>
       </details>
 
       <details>
@@ -786,6 +927,7 @@
           <li><a href="despre.html">Despre noi</a></li>
           <li><a href="index.html#materii">Materii</a></li>
           <li><a href="index.html#cursuri">Cursuri speciale</a></li>
+          <li><a href="index.html#preturi">Prețuri</a></li>
           <li><a href="index.html#profesori">Profesori</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -920,6 +1062,30 @@
         "itemListElement": [
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Română",
@@ -931,6 +1097,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Matematică",
@@ -942,6 +1132,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Istorie",
@@ -953,6 +1167,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Geografie",
@@ -964,6 +1202,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Logică",
@@ -975,6 +1237,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Biologie",
@@ -986,6 +1272,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Chimie",
@@ -997,6 +1307,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Engleză",
@@ -1008,6 +1342,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Spaniolă",
@@ -1019,6 +1377,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Franceză",
@@ -1030,6 +1412,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 200,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 160,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Chineză",
@@ -1041,6 +1447,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 200,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 160,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Coreeană",
@@ -1052,6 +1482,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Maghiară",
@@ -1063,6 +1517,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Informatică",
@@ -1074,6 +1552,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Greacă",
@@ -1085,6 +1587,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Turcă",
@@ -1096,6 +1622,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "Individual",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "În grupă de maximum trei",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "ședință"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Română pentru străini",
@@ -1155,6 +1705,17 @@
               "@type": "Course",
               "name": "Educație financiară",
               "description": "Pregătire la Educație financiară, individual sau în grupe de maximum trei elevi.",
+              "provider": {
+                "@id": "https://studiumgenerale.ro/#scoala"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Course",
+              "name": "Power BI",
+              "description": "Pregătire la Power BI, individual sau în grupe de maximum trei elevi.",
               "provider": {
                 "@id": "https://studiumgenerale.ro/#scoala"
               }
@@ -1417,7 +1978,7 @@
           "name": "Ce se predă?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Optsprezece materii, pentru Evaluarea Națională, Bacalaureat și limbi străine, de la română și matematică până la coreeană, turcă și română pentru străini, plus cinci cursuri care nu țin de programă: Excel, contabilitate, dicție, dezvoltare personală și educație financiară."
+            "text": "Optsprezece materii, pentru Evaluarea Națională, Bacalaureat și limbi străine, de la română și matematică până la coreeană, turcă și română pentru străini, plus șase cursuri care nu țin de programă: Excel, Power BI, contabilitate, dicție, dezvoltare personală și educație financiară."
           }
         },
         {

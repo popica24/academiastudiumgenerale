@@ -23,6 +23,7 @@
           <li><a href="/despre.html">Despre noi</a></li>
           <li><a href="/index.html#materii">Materii</a></li>
           <li><a href="/index.html#cursuri">Cursuri speciale</a></li>
+          <li><a href="/index.html#preturi">Prețuri</a></li>
           <li><a href="/index.html#profesori">Profesori</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>

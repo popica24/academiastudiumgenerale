@@ -1,6 +1,6 @@
 # Academia Studium Generale by Denisa
 
-> Școală privată din București pentru pregătirea la Bacalaureat și la Evaluarea Națională, individual sau în grupe de maximum trei elevi, cu 18 materii, între care limbi străine și română pentru străini, și cinci cursuri speciale. Motto: „Construim viitorul prin educație!"
+> Școală privată din București pentru pregătirea la Bacalaureat și la Evaluarea Națională, individual sau în grupe de maximum trei elevi, cu 18 materii, între care limbi străine și română pentru străini, și șase cursuri speciale. Motto: „Construim viitorul prin educație!"
 >
 > A private school in Bucharest, Romania, preparing students for the Romanian Baccalaureate and National Evaluation exams, one to one or in groups of no more than three students. The site is in Romanian, with an English version of the home and about pages.
 
@@ -27,7 +27,11 @@ Firma: STUDIUM GENERALE BY DENISA SRL, CUI 52829916, Reg. Com. J2025084335006, �
 
 Română, matematică (gimnaziu și liceu), istorie, geografie, logică, biologie, chimie, informatică, engleză, spaniolă, franceză, chineză, coreeană, maghiară, greacă, turcă și română pentru străini.
 
-Cursuri speciale pentru companii și persoane fizice, în afara programei: Excel, contabilitate, dicție, dezvoltare personală, educație financiară.
+Cursuri speciale pentru companii și persoane fizice, în afara programei: Excel, Power BI, contabilitate, dicție, dezvoltare personală, educație financiară.
+
+## Prețuri
+
+Prețul e pe ședință. Individual: 150 lei la toate materiile, în afară de matematica de liceu, chineză și coreeană, care sunt 200 lei. În grupă de maximum trei elevi: 120 lei, respectiv 160 lei. Prima ședință este gratuită. Se fac reduceri pentru mai multe materii sau mai multe ședințe, stabilite de la caz la caz. Cursurile speciale nu au preț de listă: se face o ofertă după nevoile fiecăruia.
 
 ## Fondatoarea
 

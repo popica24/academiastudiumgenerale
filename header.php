@@ -64,10 +64,11 @@ require_once __DIR__ . '/inc/sablon.php';
       </span>
     </a>
     <nav id="meniu" class="nav" data-nav aria-label="Navigație principală">
-      <a class="navlink" href="/index.html">Acasă</a>
+      <a class="navlink acasa-meniu" href="/index.html">Acasă</a>
       <a class="navlink" href="/despre.html">Despre</a>
       <a class="navlink" href="/index.html#materii">Materii</a>
       <a class="navlink" href="/index.html#cursuri">Cursuri</a>
+      <a class="navlink" href="/index.html#preturi">Prețuri</a>
       <a class="navlink" href="/index.html#profesori">Profesori</a>
       <a class="navlink" href="/blog/">Blog</a>
       <a class="navlink lang-meniu" href="/en/index.html" hreflang="en" lang="en">English</a>

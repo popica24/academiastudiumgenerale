@@ -164,6 +164,27 @@ function scoala(limba) {
   return org;
 }
 
+/* Cele două prețuri ale unei materii, pe ședință, așa cum sunt în config.js.
+   Cursurile speciale n-au preț: la ele se face o ofertă, deci `pret` lipsește
+   și `priceSpecification` nu se scrie deloc.                               */
+function pretul(m, limba) {
+  const pe = (nume, valoare) => ({
+    "@type": "UnitPriceSpecification",
+    name: nume,
+    price: valoare,
+    priceCurrency: "RON",
+    referenceQuantity: {
+      "@type": "QuantitativeValue",
+      value: 1,
+      unitText: limba === "en" ? "session" : "ședință",
+    },
+  });
+  return [
+    pe(limba === "en" ? "One to one" : "Individual", m.pret),
+    pe(limba === "en" ? "In a group of no more than three" : "În grupă de maximum trei", m.pretGrupa),
+  ];
+}
+
 function oferta(limba) {
   const vazute = new Set();
   const toate = (C.materii || []).concat(C.cursuriSpeciale || []).filter((m) => !vazute.has(m.nume) && vazute.add(m.nume));
@@ -174,6 +195,7 @@ function oferta(limba) {
       const nume = (limba === "en" && m.numeEn) || m.nume;
       return {
         "@type": "Offer",
+        ...(m.pret ? { priceSpecification: pretul(m, limba) } : {}),
         itemOffered: {
           "@type": "Course",
           name: nume,

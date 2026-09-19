@@ -100,6 +100,17 @@ section + section { padding-top: 0; }
 /* În bară, versiunea din meniu ar fi un al doilea comutator: se ascunde. */
 .lang-meniu { display: none; }
 
+/* „Acasă" nu stă în bară: sigla din stânga duce deja acolo, iar bara are
+   exact 1116px de conținut, în care șapte linkuri nu încap. Măsurat la
+   1440px, cu „Prețuri" adăugat: siglă 258 + butoane 172 + șapte linkuri 647
+   + două distanțe de 20px fac 1117px, adică un pixel peste. Containerul e
+   plafonat la 1180px, deci un ecran mai lat nu ajută deloc: meniul s-ar rupe
+   pe două rânduri și antetul ar crește de la 82 la 114px pe orice lățime.
+   Fără „Acasă" bara cere 1035px în română și 1040px în engleză, deci rămân
+   vreo 80px de aer. În meniul de sub 1140px linkul se întoarce: acolo
+   fiecare link are rândul lui.                                            */
+.acasa-meniu { display: none; }
+
 .burger { display: none; }
 /* Hamburgerul e desenat din trei linii, nu dintr-o imagine: o iconiță de 16px
    dintr-un fișier ar fi încă o cerere de rețea pentru ceva ce CSS-ul știe să
@@ -222,6 +233,19 @@ a.sr-only:focus {
   border: var(--stroke); background: var(--surface); box-shadow: var(--sh-2);
 }
 
+/* --- Prețuri: tabelul și cele două note -----------------------------------
+   Tabelul ia coloana largă, notele stau la dreapta, una sub alta. Aceleași
+   proporții ca la „Despre", din același motiv: coloana de citit rămâne pe
+   măsura ei, iar restul paginii nu se golește. Sub 900px trec una sub alta.
+   -------------------------------------------------------------------------- */
+.preturi { display: grid; gap: var(--sp-6) var(--sp-8);
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  align-items: start; }
+.preturi-note { display: flex; flex-direction: column; gap: var(--sp-6); }
+.preturi-note h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-3); }
+.preturi-note p { color: var(--text-secondary); }
+.preturi-note p + .btn { margin-top: var(--sp-5); }
+
 /* --- Despre: textul și omul, unul lângă altul -----------------------------
    Textul rămâne pe măsura lui de citit, portretul ia coloana din dreapta și
    stă lipit cât timp textul curge pe lângă el. Sub 900px coloanele se pun una
@@ -259,6 +283,7 @@ a.sr-only:focus {
 .despre-sus .articol h2:first-child { margin-top: 0; }
 
 @media (max-width: 900px) {
+  .preturi { grid-template-columns: 1fr; }
   .despre-sus { grid-template-columns: 1fr; }
   .despre-sus .portret { position: static; order: -1; max-width: 420px; }
 }
@@ -381,16 +406,16 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
    eticheta de deasupra ar călca peste afirmația precedentă: coboară sub el */
 .foot-bottom [data-nedefinit]::after { top: auto; bottom: -18px; right: 0; }
 
-/* --- Sub 1040px -----------------------------------------------------------
-   Pragul era 860px, dar `.nav` are `flex-wrap: wrap`, deci linkul „Cursuri"
-   și comutatorul „EN" adăugate mai târziu nu ieșeau din ecran, se împachetau
-   pe un al doilea rând: antetul ajungea la 114px între 861 și ~1030px, cât
-   bara stă fără hamburger. Măsurat: în engleză bara nu mai încape pe un rând
-   până la ~1032px, cu vreo 6px mai târziu decât în română, fiindcă „Home",
-   „About", „Subjects", „Courses" plus pastila „RO" sunt puțin mai late decât
-   echivalentul românesc. Pragul de aici e cel mai mic la care bara stă pe un
-   rând în ambele limbi, cu o marjă de vreo 8px peste măsurătoare.          */
-@media (max-width: 1040px) {
+/* --- Sub 1140px -----------------------------------------------------------
+   Pragul era 860px, apoi 1040px, dar `.nav` are `flex-wrap: wrap`, deci un
+   link adăugat mai târziu nu iese din ecran, se împachetează pe un al doilea
+   rând: antetul crește de la 82 la 114px, cât bara stă fără hamburger.
+   Măsurat din nou la 2026-09-19, cu „Prețuri" în bară și „Acasă" scos din ea
+   (vezi `.acasa-meniu`): siglă, meniu și butoane cer 1035px în română și
+   1040px în engleză, adică ferestre de 1099px și 1104px, fiindcă `.wrap` ia
+   64px de gutieră. Pragul de aici e rotunjit la 1140px, cu vreo 36px de
+   marjă peste măsurătoarea engleză, cea mai lată dintre cele două.        */
+@media (max-width: 1140px) {
   .wrap { padding-inline: var(--sp-5); }
   section { padding-block: var(--sp-16); }
   .burger { display: inline-flex; }
@@ -404,6 +429,7 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
     background: var(--navy-700); box-shadow: var(--sh-3);
   }
   #meniu .navlink { text-align: center; }
+  #meniu .acasa-meniu { display: block; }
   .head-inner { position: relative; }
   /* Regula ascunde etichetele din butoanele antetului, dar nu și liniile
      hamburgerului, care sunt tot un span.                                  */
@@ -512,6 +538,23 @@ html.fara-aos [data-aos] { opacity: 1 !important; transform: none !important; }
   .articol h2 { margin-top: var(--sp-10); }
   .articol h3 { margin-top: var(--sp-8); }
   .site-foot { margin-top: var(--sp-16); padding-block: var(--sp-12) var(--sp-10); }
+
+  /* Tabelul de prețuri: capul de tabel dispare și fiecare rând devine un
+     bloc, cu materia pe primul rând și cele două prețuri dedesubt, fiecare
+     cu eticheta lui. La 393px, în card mai rămân 313px: trei coloane ar fi
+     rupt „Română pentru străini" pe trei rânduri, lângă două cifre.        */
+  .pret-tabel thead { display: none; }
+  .pret-tabel tbody tr { display: block; padding-block: var(--sp-3);
+    border-bottom: 1.5px solid var(--border); }
+  .pret-tabel tbody tr:last-child { border-bottom: 0; }
+  .pret-tabel tbody th, .pret-tabel tbody tr > *:not(:first-child) {
+    display: inline-block; width: auto; padding: 0; border: 0; white-space: nowrap; }
+  .pret-tabel tbody th { display: block; margin-bottom: 2px; white-space: normal; }
+  /* Cele două prețuri stau pe același rând, despărțite de o distanță, nu de
+     un semn: dacă rândul se rupe totuși, un punct rămas la început de linie
+     ar arăta ca o greșeală.                                                */
+  .pret-tabel tbody tr > *:nth-child(3) { padding-left: var(--sp-4); }
+  .pret-eticheta { display: inline; font-size: var(--fs-sm); color: var(--text-secondary); }
 
   /* Totul la stânga: nimic nu se centrează pe telefon.                      */
   .ctaband { text-align: left; padding: var(--sp-8) var(--sp-6); }

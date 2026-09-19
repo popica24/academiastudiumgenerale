@@ -15,26 +15,30 @@ window.ACADEMIA = {
      materiile care se predau altfel la gimnaziu și altfel la liceu. O materie
      fără ele apare la orice vârstă. Prenumele sunt cele care ies în mesajul
      de WhatsApp, deci se scriu exact cum vreți să le citească părintele.
-     Aceleași 18 materii sunt și în cardurile din `index.html`.             */
+     Aceleași 18 materii sunt și în cardurile din `index.html`.
+     `pret` e prețul unei ședințe individuale, `pretGrupa` al uneia în grupă,
+     în lei, date de client la 2026-09-19. De aici le ia `tools/seo.js` și le
+     scrie în datele structurate; tabelul din secțiunea Prețuri le are scrise
+     în HTML, deci se schimbă în amândouă locurile deodată.                */
   materii: [
-    { nume: "Română",      numeEn: "Romanian",   profesori: ["Luiza"] },
-    { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andra"],  pana: 14 },
-    { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andrei"], de: 15 },
-    { nume: "Istorie",     numeEn: "History",     profesori: ["Ștefania"] },
-    { nume: "Geografie",   numeEn: "Geography",   profesori: ["Alexandra"] },
-    { nume: "Logică",      numeEn: "Logic",       profesori: ["Sara"] },
-    { nume: "Biologie",    numeEn: "Biology",     profesori: ["Andra", "Cătălin"] },
-    { nume: "Chimie",      numeEn: "Chemistry",   profesori: ["Ioana"] },
-    { nume: "Engleză",     numeEn: "English",     profesori: ["Denisa", "Ștefania"] },
-    { nume: "Spaniolă",    numeEn: "Spanish",     profesori: ["Diana"] },
-    { nume: "Franceză",    numeEn: "French",      profesori: ["Sara", "Ilinca"] },
-    { nume: "Chineză",     numeEn: "Chinese",     profesori: ["Alexandru", "Ana"] },
-    { nume: "Coreeană",    numeEn: "Korean",      profesori: ["Jun"] },
-    { nume: "Maghiară",    numeEn: "Hungarian",   profesori: [] },        /* DE COMPLETAT: cine predă */
-    { nume: "Informatică", numeEn: "Computer science", profesori: ["Andrei"] },
-    { nume: "Greacă",      numeEn: "Greek",       profesori: ["Denisa"] },
-    { nume: "Turcă",       numeEn: "Turkish",     profesori: ["Denisa"] },
-    { nume: "Română pentru străini", numeEn: "Romanian for foreigners", profesori: ["Denisa"] },
+    { nume: "Română",      numeEn: "Romanian",   profesori: ["Luiza"],   pret: 150, pretGrupa: 120 },
+    { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andra"],  pana: 14, pret: 150, pretGrupa: 120 },
+    { nume: "Matematică",  numeEn: "Mathematics", profesori: ["Andrei"], de: 15,   pret: 200, pretGrupa: 160 },
+    { nume: "Istorie",     numeEn: "History",     profesori: ["Ștefania"],  pret: 150, pretGrupa: 120 },
+    { nume: "Geografie",   numeEn: "Geography",   profesori: ["Alexandra"], pret: 150, pretGrupa: 120 },
+    { nume: "Logică",      numeEn: "Logic",       profesori: ["Sara"],      pret: 150, pretGrupa: 120 },
+    { nume: "Biologie",    numeEn: "Biology",     profesori: ["Andra", "Cătălin"], pret: 150, pretGrupa: 120 },
+    { nume: "Chimie",      numeEn: "Chemistry",   profesori: ["Ioana"],     pret: 150, pretGrupa: 120 },
+    { nume: "Engleză",     numeEn: "English",     profesori: ["Denisa", "Ștefania"], pret: 150, pretGrupa: 120 },
+    { nume: "Spaniolă",    numeEn: "Spanish",     profesori: ["Diana"],     pret: 150, pretGrupa: 120 },
+    { nume: "Franceză",    numeEn: "French",      profesori: ["Sara", "Ilinca"], pret: 150, pretGrupa: 120 },
+    { nume: "Chineză",     numeEn: "Chinese",     profesori: ["Alexandru", "Ana"], pret: 200, pretGrupa: 160 },
+    { nume: "Coreeană",    numeEn: "Korean",      profesori: ["Jun"],       pret: 200, pretGrupa: 160 },
+    { nume: "Maghiară",    numeEn: "Hungarian",   profesori: [],            pret: 150, pretGrupa: 120 },        /* DE COMPLETAT: cine predă */
+    { nume: "Informatică", numeEn: "Computer science", profesori: ["Andrei"], pret: 150, pretGrupa: 120 },
+    { nume: "Greacă",      numeEn: "Greek",       profesori: ["Denisa"],    pret: 150, pretGrupa: 120 },
+    { nume: "Turcă",       numeEn: "Turkish",     profesori: ["Denisa"],    pret: 150, pretGrupa: 120 },
+    { nume: "Română pentru străini", numeEn: "Romanian for foreigners", profesori: ["Denisa"], pret: 150, pretGrupa: 120 },
   ],
 
   /* --- Cursuri speciale ---------------------------------------------------
@@ -44,13 +48,16 @@ window.ACADEMIA = {
      DE COMPLETAT: cine predă fiecare. Eticheta roșie „de completat" nu se
      pune aici, ea e doar pentru WhatsApp, telefon, e-mail și adresă. Cât
      timp `profesori` e gol, rezultatul formularului scrie „La Excel vă
-     spunem la telefon cine predă." în loc de un nume inventat.            */
+     spunem la telefon cine predă." în loc de un nume inventat.
+     Nu au `pret`: la ele se face o ofertă după nevoile fiecăruia, așa cum
+     spune și cardul din secțiunea Prețuri.                                */
   cursuriSpeciale: [
     { nume: "Excel",                profesori: [] },
     { nume: "Contabilitate",        numeEn: "Accounting",         profesori: [] },
     { nume: "Dicție",               numeEn: "Diction",            profesori: [] },
     { nume: "Dezvoltare personală", numeEn: "Personal development", profesori: [] },
     { nume: "Educație financiară",  numeEn: "Financial literacy", profesori: [] },
+    { nume: "Power BI",             profesori: [] },
   ],
 
   /* --- Textele care depind de limbă ---------------------------------------

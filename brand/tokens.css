@@ -519,6 +519,37 @@ a:not(.btn):hover { text-decoration-thickness: 2px; }
 .offer-stack > .offer + .offer { margin-top: -14px; }
 .offer-stack > .offer:hover { z-index: 2; }
 
+/* --- Tabel de prețuri ----------------------------------------------------
+   Optsprezece materii nu încap în teancul de oferte, care se oprește la trei
+   rânduri. Aici rama e una singură, a cardului din jur, iar rândurile se
+   despart doar printr-o linie: optsprezece cutii ar fi fost optsprezece rame
+   una sub alta. Cifrele sunt tabulare, ca sutele să stea una sub alta, și
+   coloanele de preț se strâng cât le trebuie, ca numele materiei să ia tot
+   restul lățimii.
+   -------------------------------------------------------------------------- */
+.pret-tabel { width: 100%; border-collapse: collapse; text-align: left; }
+.pret-tabel th, .pret-tabel td {
+  padding: var(--sp-3) 0; border-bottom: 1.5px solid var(--border); vertical-align: baseline;
+}
+.pret-tabel thead th {
+  font-family: var(--font-secondary); font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide); text-transform: uppercase;
+  color: var(--text-secondary); padding-bottom: var(--sp-2);
+}
+.pret-tabel tbody th { font-weight: var(--fw-medium); padding-right: var(--sp-4); }
+/* Coloanele de preț, și capul, și celulele: se strâng cât le trebuie și își
+   iau distanța la stânga. Regula prinde și `thead th`, altfel cele două
+   etichete ar sta lipite una de alta.                                     */
+.pret-tabel tr > *:not(:first-child) {
+  width: 1%; white-space: nowrap; padding-left: var(--sp-5);
+}
+.pret-tabel td { font-variant-numeric: tabular-nums; }
+.pret-tabel .pret-grupa { color: var(--text-secondary); }
+.pret-tabel tbody tr:last-child th, .pret-tabel tbody tr:last-child td { border-bottom: 0; }
+/* Eticheta coloanei, scrisă în celulă: se vede doar pe telefon, unde capul de
+   tabel dispare fiindcă rândul se rupe pe două linii.                       */
+.pret-eticheta { display: none; }
+
 /* --- Listă de progres ---------------------------------------------------- */
 .progress-list { display: flex; flex-direction: column; }
 .progress-row {

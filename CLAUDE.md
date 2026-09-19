@@ -48,6 +48,7 @@ tools/mobil.sh index.html x.png # captură la 393px, cât are un iPhone 16
 python3 tools/taie-colaj.py     # retaie cele 21 de iconițe din colajul clientului
 python3 tools/taie-profesori.py # plansa de probă cu cele 8 portrete; „scrie" le salvează
 MONTSERRAT_BOLD=… python3 tools/iconita-limba.py  # iconița unei limbi noi, din cea a maghiarei
+python3 tools/iconita-powerbi.py # iconița Power BI, făcută din cea de Excel
 ```
 
 **Chrome headless nu coboară sub 500px lățime de fereastră.** O captură cerută
@@ -124,7 +125,21 @@ Reperul e **iPhone 16, 393px**. Regulile de telefon stau într-un singur bloc,
 - **Opțiunile formularului stau două pe rând**, cu textul la stânga. Pașii cu
   cel mult trei opțiuni primesc clasa `putine` și trec pe o coloană, fiindcă
   acolo etichetele sunt propoziții.
+- **Tabelul de prețuri se rupe în blocuri.** Capul dispare, iar fiecare rând
+  devine numele materiei pe un rând și cele două prețuri pe următorul, cu
+  eticheta lor („Individual 150 lei   în grupă 120 lei"). Trei coloane în
+  cele 313px care rămân în card ar fi rupt „Română pentru străini" pe trei
+  rânduri.
 - **Totul e aliniat la stânga.** Nimic nu se centrează.
+
+**Bara de sus nu mai are „Acasă" și trece pe hamburger sub 1140px.** Cu
+„Prețuri" adăugat la 2026-09-19, șapte linkuri cer 1117px, iar containerul
+mărcii are 1116px de conținut și e plafonat la 1180px, deci niciun ecran nu
+e destul de lat: meniul s-ar rupe pe două rânduri și antetul ar crește de la
+82 la 114px peste tot. Sigla duce deja acasă, deci linkul „Acasă" iese din
+bară și rămâne doar în meniul de telefon, prin clasa `.acasa-meniu`. Pragul
+hamburgerului a urcat de la 1040 la 1140px, fiindcă bara cere 1035px în
+română și 1040px în engleză, adică ferestre de 1099 și 1104px.
 
 `tools/audit.sh` rulează headless (Chrome, Brave sau Chromium, ce găsește) și
 raportează, pe fiecare lățime: contrastul calculat pe fundalul **compus**
@@ -278,8 +293,9 @@ mai mult decât promitem", din textul ei.
 
 Cifrele din hero sunt confirmate de client la 2026-09-14: media 8.40, grupa
 de 3, cei 20 de ani și 100% dintre elevi crescuți cu peste un punct (fost
-92%, corectat de el). Sunt încă inventate și nu au voie să ajungă publice
-așa: prețurile. Recenziile nu mai sunt inventate: de la
+92%, corectat de el). Prețurile nu mai sunt inventate: de la 2026-09-19 sunt cele
+date de client, pe ședință, în `pret` și `pretGrupa` din `config.js` și în
+tabelul secțiunii „Prețuri". Recenziile nu mai sunt inventate: de la
 2026-09-14 sunt cele 17 recomandări de pe pagina de Facebook a școlii, doar
 postările, cu textul neatins (inclusiv greșelile de tastare și lipsa
 diacriticelor, care sunt ale autorilor), fără emoji, cu numele scurtat la
@@ -291,7 +307,7 @@ are 640×360; a rămas pe disc, dar nicio pagină nu o mai încarcă. Detalii î
 Sunt încă neconfirmate de client: cele șase răspunsuri din FAQ, scrise din
 ce spune deja site-ul, dar necitite de el (nota vizibilă din pagină care o
 spunea a fost scoasă la cererea lui Andrei, la 2026-09-14, la fel ca cea de
-sub profesori); și cine predă cele cinci cursuri
+sub profesori); și cine predă cele șase cursuri
 speciale, pentru care formularul spune onest „vă spunem la telefon cine
 predă", fără nume inventat. Linkul Camerei de Comerț a fost primit între
 timp de la client și e în `config.js`, deci nu mai e „de completat".
@@ -300,9 +316,12 @@ Cele 17 materii din secțiunea „Materii” sunt reale, ca număr de materii
 distincte (turca și româna pentru străini s-au adăugat la 2026-09-14). În pagină
 sunt totuși 18 carduri, fiindcă matematica se predă
 altfel la gimnaziu și altfel la liceu și are un card pentru fiecare; nu e o
-contradicție. Cele cinci cursuri speciale (Excel, contabilitate, dicție,
+contradicție. Cele șase cursuri speciale (Excel, Power BI, contabilitate, dicție,
 dezvoltare personală, educație financiară) nu sunt materii de examen și nu
-intră în cele 15. Secțiunea „Profesori” s-a întors la 2026-09-10, dar cu oameni adevărați:
+intră în cele 15. Power BI s-a adăugat la 2026-09-19, cu o iconiță făcută
+din cea de Excel cu `tools/iconita-powerbi.py`, fiindcă în colajul clientului
+nu era. Ele nu au preț de listă: cardul din „Prețuri" spune că se face o
+ofertă după nevoi. Secțiunea „Profesori” s-a întors la 2026-09-10, dar cu oameni adevărați:
 șaisprezece profesori (opt din 2026-09-10, plus opt adăugați la 2026-09-14 din
 poze și texte trimise de client: Andra la matematică și biologie, Sara, Diana,
 Ioana, Alexandra, Alexandru la chineză și două profesoare diferite pe nume Denisa), cu

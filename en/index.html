@@ -63,10 +63,11 @@
       </span>
     </a>
     <nav id="meniu" class="nav" data-nav aria-label="Main navigation">
-      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink acasa-meniu" href="index.html">Home</a>
       <a class="navlink" href="despre.html">About</a>
       <a class="navlink" href="index.html#materii">Subjects</a>
       <a class="navlink" href="index.html#cursuri">Courses</a>
+      <a class="navlink" href="index.html#preturi">Prices</a>
       <a class="navlink" href="index.html#profesori">Teachers</a>
       <a class="navlink" href="/blog/">Blog</a>
       <a class="navlink lang-meniu" href="../index.html" hreflang="ro" lang="ro">Română</a>
@@ -345,9 +346,149 @@
         <img class="foto-clar" src="../assets/foto/cursuri/financiara.webp" alt="Icon for the course: Financial literacy (name written in Romanian)" loading="lazy" decoding="async">
         <h3 class="sr-only">Financial literacy</h3>
       </article>
+
+      <article class="foto-card materie" data-aos="fade-up" data-aos-delay="140">
+        <img class="foto-blur" src="../assets/foto/cursuri/powerbi.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="foto-clar" src="../assets/foto/cursuri/powerbi.webp" alt="Icon for the course: Power BI" loading="lazy" decoding="async">
+        <h3 class="sr-only">Power BI</h3>
+      </article>
     </div>
   </section>
 
+
+  <!-- ── Prices ──────────────────────────────────────────────────────────
+       The prices given by the client on 2026-09-19, per session. The table is
+       written in HTML, not built from JavaScript: crawlers do not run it, and
+       a price a search engine cannot see does not exist. The same figures are
+       in `assets/config.js`, where `tools/seo.js` reads them for the
+       structured data, so both places change at once.
+       ─────────────────────────────────────────────────────────────────── -->
+  <section class="wrap" id="preturi">
+    <div class="sec-head wrap-text" data-aos="fade-up">
+      <p class="eyebrow">What it costs</p>
+      <h2>The prices are written here, not asked for on the phone</h2>
+      <p>The price is per session, the same for the National Evaluation and for the Baccalaureate. The first session costs nothing.</p>
+    </div>
+
+    <div class="preturi">
+      <div class="card" data-aos="fade-up">
+        <table class="pret-tabel">
+          <caption class="sr-only">The price of one session, by subject, one to one and in a group of no more than three students</caption>
+          <thead>
+            <tr>
+              <th scope="col">Subject</th>
+              <th scope="col">One to one</th>
+              <th scope="col">In a group</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Romanian</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Mathematics, middle school</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Mathematics, high school</th>
+              <td><span class="pret-eticheta">One to one </span>200 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>160 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">History</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Geography</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Logic</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Biology</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Chemistry</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">English</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Spanish</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">French</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Chinese</th>
+              <td><span class="pret-eticheta">One to one </span>200 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>160 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Korean</th>
+              <td><span class="pret-eticheta">One to one </span>200 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>160 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Hungarian</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Computer science</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Greek</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Turkish</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+            <tr>
+              <th scope="row">Romanian for foreigners</th>
+              <td><span class="pret-eticheta">One to one </span>150 lei</td>
+              <td class="pret-grupa"><span class="pret-eticheta">in a group </span>120 lei</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="preturi-note">
+        <div class="card" data-aos="fade-up" data-aos-delay="70">
+          <h3>More subjects, less per session</h3>
+          <p>Whoever takes more subjects or more sessions pays less per session. How much less, we tell you once we know what the student chooses.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="140">
+          <h3>Special courses are quoted</h3>
+          <p>Excel, Power BI, accounting, diction, personal development and financial literacy have no list price. Tell us what you need and we make an offer that fits it.</p>
+          <a class="btn btn-wa" data-wa="the special courses." href="https://wa.me/40735433720?text=Hello!%20I%20found%20the%20Academy%20online%20and%20I%20would%20like%20details%20about%20preparation%20for%20the%20special%20courses." target="_blank" rel="noopener">Message us on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── Teachers ────────────────────────────────────────────────────── -->
   <section class="wrap" id="profesori">
@@ -715,7 +856,7 @@
 
       <details>
         <summary>What is taught?</summary>
-        <p class="faq-raspuns">Eighteen subjects, for the National Evaluation, the Baccalaureate and foreign languages, from Romanian and math to Korean, Turkish and Romanian for foreigners, plus five courses outside the curriculum: Excel, accounting, diction, personal development, and financial literacy.</p>
+        <p class="faq-raspuns">Eighteen subjects, for the National Evaluation, the Baccalaureate and foreign languages, from Romanian and math to Korean, Turkish and Romanian for foreigners, plus six courses outside the curriculum: Excel, Power BI, accounting, diction, personal development, and financial literacy.</p>
       </details>
 
       <details>
@@ -781,6 +922,7 @@
           <li><a href="despre.html">About us</a></li>
           <li><a href="index.html#materii">Subjects</a></li>
           <li><a href="index.html#cursuri">Special courses</a></li>
+          <li><a href="index.html#preturi">Prices</a></li>
           <li><a href="index.html#profesori">Teachers</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
@@ -915,6 +1057,30 @@
         "itemListElement": [
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Romanian",
@@ -926,6 +1092,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Mathematics",
@@ -937,6 +1127,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "History",
@@ -948,6 +1162,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Geography",
@@ -959,6 +1197,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Logic",
@@ -970,6 +1232,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Biology",
@@ -981,6 +1267,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Chemistry",
@@ -992,6 +1302,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "English",
@@ -1003,6 +1337,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Spanish",
@@ -1014,6 +1372,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "French",
@@ -1025,6 +1407,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 200,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 160,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Chinese",
@@ -1036,6 +1442,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 200,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 160,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Korean",
@@ -1047,6 +1477,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Hungarian",
@@ -1058,6 +1512,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Computer science",
@@ -1069,6 +1547,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Greek",
@@ -1080,6 +1582,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Turkish",
@@ -1091,6 +1617,30 @@
           },
           {
             "@type": "Offer",
+            "priceSpecification": [
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "One to one",
+                "price": 150,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              },
+              {
+                "@type": "UnitPriceSpecification",
+                "name": "In a group of no more than three",
+                "price": 120,
+                "priceCurrency": "RON",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": 1,
+                  "unitText": "session"
+                }
+              }
+            ],
             "itemOffered": {
               "@type": "Course",
               "name": "Romanian for foreigners",
@@ -1150,6 +1700,17 @@
               "@type": "Course",
               "name": "Financial literacy",
               "description": "Preparation in Financial literacy, one to one or in groups of no more than three students.",
+              "provider": {
+                "@id": "https://studiumgenerale.ro/#scoala"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Course",
+              "name": "Power BI",
+              "description": "Preparation in Power BI, one to one or in groups of no more than three students.",
               "provider": {
                 "@id": "https://studiumgenerale.ro/#scoala"
               }
@@ -1412,7 +1973,7 @@
           "name": "What is taught?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Eighteen subjects, for the National Evaluation, the Baccalaureate and foreign languages, from Romanian and math to Korean, Turkish and Romanian for foreigners, plus five courses outside the curriculum: Excel, accounting, diction, personal development, and financial literacy."
+            "text": "Eighteen subjects, for the National Evaluation, the Baccalaureate and foreign languages, from Romanian and math to Korean, Turkish and Romanian for foreigners, plus six courses outside the curriculum: Excel, Power BI, accounting, diction, personal development, and financial literacy."
           }
         },
         {
